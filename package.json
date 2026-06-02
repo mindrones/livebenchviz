@@ -1,0 +1,16 @@
+{
+	"devDependencies": {
+		"gh-pages": "^6.3.0"
+	},
+	"name": "benchmarks-workspace",
+	"private": true,
+	"scripts": {
+		"build": "pnpm --filter website run build",
+		"deploy": "pnpm run build && gh-pages -d website/build --nojekyll --no-history",
+		"deploy:only": "gh-pages -d website/build --nojekyll --no-history",
+		"dev": "pnpm --filter website run dev",
+		"fetch-data": "pnpm --filter pipeline run build:data",
+		"pipeline": "pnpm --filter pipeline run all"
+	},
+	"version": "1.0.0"
+}

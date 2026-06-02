@@ -1,0 +1,42 @@
+{
+	"dependencies": {
+		"@lucide/svelte": "^1.17.0",
+		"d3": "^7.9.0",
+		"lucide": "^1.17.0"
+	},
+	"devDependencies": {
+		"@playwright/test": "^1.60.0",
+		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/kit": "^2.21.0",
+		"@sveltejs/vite-plugin-svelte": "^5.0.3",
+		"@types/d3": "^7.4.3",
+		"@types/node": "^20.19.41",
+		"playwright": "^1.60.0",
+		"sharp": "^0.34.5",
+		"start-server-and-test": "^3.0.6",
+		"svelte": "^5.33.0",
+		"svelte-check": "^4.1.5",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.5"
+	},
+	"name": "website",
+	"private": true,
+	"scripts": {
+		"build": "vite build",
+		"build:og": "npm run build && start-server-and-test og:serve http://localhost:4173/livebenchviz/ og:from-preview",
+		"og:serve": "npx vite preview --port 4173 --host localhost",
+		"og:from-preview": "node scripts/generate-og-image.js --url http://localhost:4173/livebenchviz/ --copy-to-build",
+		"og:dev": "start-server-and-test dev http://localhost:5174/livebenchviz/ og:from-dev",
+		"og:from-dev": "node scripts/generate-og-image.js",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"dev": "vite dev",
+		"fetch-data": "node ../data/fetch_benchmarks.js",
+		"livebench-coverage": "bash ../data/livebench_coverage.sh",
+		"preview": "vite preview",
+		"generate-favicon": "node scripts/generate-favicon.js",
+		"generate-og-image": "node scripts/generate-og-image.js",
+		"test": "playwright test",
+		"test:ui": "playwright test --ui"
+	},
+	"type": "module"
+}

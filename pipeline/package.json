@@ -1,0 +1,33 @@
+{
+	"dependencies": {
+		"hyparquet": "^1.15.0",
+		"hyparquet-compressors": "^1.0.0",
+		"luxon": "^3.7.2",
+		"node-html-parser": "^7.1.0",
+		"slugify": "^1.6.9"
+	},
+	"devDependencies": {
+		"@types/luxon": "^3.7.1",
+		"@types/node": "^20.0.0",
+		"tsx": "^4.19.0",
+		"typescript": "^5.8.0"
+	},
+	"name": "pipeline",
+	"private": true,
+	"scripts": {
+		"all": "pnpm run fetch:livebench && pnpm run fetch:lb-model-config && pnpm run process:livebench && pnpm run normalize && pnpm run fetch:openrouter && pnpm run fetch:ollama && pnpm run export:all && pnpm run copy:website",
+		"all:skip-ollama": "pnpm run fetch:livebench && pnpm run fetch:lb-model-config && pnpm run process:livebench && pnpm run normalize && pnpm run fetch:openrouter && pnpm run export:all && pnpm run copy:website",
+		"compare": "tsx src/compareModels.ts",
+		"copy:website": "tsx src/copyToWebsite.ts",
+		"export:all": "pnpm run export:lb && pnpm run export:inference",
+		"export:inference": "tsx src/exportInference.ts",
+		"export:lb": "tsx src/exportLBFull.ts",
+		"fetch:livebench": "tsx src/fetchLiveBench.ts",
+		"fetch:lb-model-config": "tsx src/fetchLiveBenchModelConfig.ts",
+		"fetch:ollama": "tsx src/fetchOllama.ts",
+		"fetch:openrouter": "tsx src/fetchOpenRouter.ts",
+		"normalize": "tsx src/normalizeModelIds.ts",
+		"process:livebench": "tsx src/processLiveBench.ts"
+	},
+	"type": "module"
+}

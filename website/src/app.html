@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM Benchmark Dashboard</title>
+    <meta name="description" content="Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates." />
+    <link rel="canonical" href="https://mindrones.github.io/livebenchviz/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- ─── Open Graph (Facebook, LinkedIn, Pinterest, Slack, Discord, iMessage, WhatsApp, Telegram, Reddit, Mastodon, Threads, Bluesky) ─── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mindrones.github.io/livebenchviz/" />
+    <meta property="og:title" content="LLM Benchmark Dashboard" />
+    <meta property="og:description" content="Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates." />
+    <meta property="og:image" content="https://mindrones.github.io/livebenchviz/og-image.png" />
+    <meta property="og:image:secure_url" content="https://mindrones.github.io/livebenchviz/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Screenshot of the LLM Benchmark Dashboard showing parallel coordinates, timeline, and model comparison tables." />
+    <meta property="og:site_name" content="LiveBench Viz" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ─── Twitter / X Card ─── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@mindrones" />
+    <meta name="twitter:title" content="LLM Benchmark Dashboard" />
+    <meta name="twitter:description" content="Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates." />
+    <meta name="twitter:image" content="https://mindrones.github.io/livebenchviz/og-image.png" />
+    <meta name="twitter:image:alt" content="Screenshot of the LLM Benchmark Dashboard showing parallel coordinates, timeline, and model comparison tables." />
+
+    <!-- ─── Schema.org JSON-LD (Google Search, Bing, AI crawlers) ─── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://mindrones.github.io/livebenchviz/#webapp",
+          "name": "LLM Benchmark Dashboard",
+          "alternateName": "LiveBench Viz",
+          "url": "https://mindrones.github.io/livebenchviz/",
+          "description": "Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates.",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "screenshot": "https://mindrones.github.io/livebenchviz/og-image.png",
+          "browserRequirements": "Requires a modern browser with JavaScript enabled"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://mindrones.github.io/livebenchviz/#website",
+          "url": "https://mindrones.github.io/livebenchviz/",
+          "name": "LiveBench Viz",
+          "publisher": { "@id": "https://mindrones.github.io/livebenchviz/#webapp" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ─── Microsoft / Windows tiles (Teams, pinned sites) ─── -->
+    <meta name="msapplication-TileColor" content="#0f1117" />
+    <meta name="msapplication-TileImage" content="%sveltekit.assets%/favicon-32x32.png" />
+
+    <!-- ─── Apple iOS web app ─── -->
+    <meta name="apple-mobile-web-app-title" content="LiveBench Viz" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- ─── Browser chrome / theme ─── -->
+    <meta name="theme-color" content="#0f1117" />
+    <link rel="icon" type="image/x-icon" href="%sveltekit.assets%/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/favicon-16x16.png">
+    <link rel="manifest" href="%sveltekit.assets%/site.webmanifest">
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background: #0f1117;
+        color: #e2e8f0;
+        font-family: 'Inter', system-ui, sans-serif;
+        font-size: 14px;
+        height: 100vh;
+        overflow: hidden;
+      }
+      ::-webkit-scrollbar       { width: 5px; height: 5px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #2e3250; border-radius: 3px; }
+    </style>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="off">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
+</html>
