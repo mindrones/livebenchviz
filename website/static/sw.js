@@ -1,25 +1,20 @@
-// sw.js — Minimal cache-first service worker for LiveBench Viz
-// Caches the app shell + data JSONs so the dashboard works offline.
+// sw.js — Service worker for LiveBench Viz
+// Strategy: network-first for app shell, cache-first for data JSONs.
 
-const CACHE_NAME = 'livebench-v1';
-
-// Assets that make the app shell (HTML, JS, CSS, fonts)
-// and the two data files the dashboard needs to render.
-const PRECACHE_URLS = [
-  './',                           // index.html (adapter-static fallback)
-  './benchmark_lb.json',          // benchmark scores
-  './inference.json',              // model inference availability
+const CACHE_NAME = 'livebench-__SW_VERSION__';
+const DATA_URLS = [
+	'/livebenchviz/benchmark_lb.json',
+	'/livebenchviz/inference.json'
 ];
 
-// Install: precache essential assets
 self.addEventListener('install', (event) => {
+  // Precache data files only; app shell is always fetched fresh
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(DATA_URLS))
   );
   self.skipWaiting();
 });
 
-// Activate: clean up old caches
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -29,28 +24,37 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch: cache-first for same-origin, network-only for cross-origin
 self.addEventListener('fetch', (event) => {
   const { request } = event;
-
-  // Only handle GET requests to our own origin
   if (request.method !== 'GET' || !request.url.startsWith(self.location.origin)) return;
 
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      // Return cached version if available
-      if (cached) return cached;
+  const url = new URL(request.url);
+  const isData = DATA_URLS.some((u) => url.pathname === u);
 
-      // Otherwise fetch from network and cache a clone
-      return fetch(request).then((response) => {
-        // Don't cache non-OK or opaque responses
-        if (!response || response.status !== 200 || response.type === 'opaque') {
-          return response;
-        }
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-        return response;
-      });
-    })
-  );
+  if (isData) {
+    // Cache-first for data: serve cached copy immediately, refresh in background
+    event.respondWith(
+      caches.open(CACHE_NAME).then(async (cache) => {
+        const cached = await cache.match(request);
+        const networkFetch = fetch(request).then((res) => {
+          if (res && res.status === 200) cache.put(request, res.clone());
+          return res;
+        }).catch(() => null);
+        return cached || networkFetch;
+      })
+    );
+  } else {
+    // Network-first for app shell: always get fresh JS/HTML/CSS, fall back to cache
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          if (res && res.status === 200) {
+            const resClone = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, resClone));
+          }
+          return res;
+        })
+        .catch(() => caches.match(request))
+    );
+  }
 });

@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { BarChart3, CircleQuestionMark, Funnel, TrendingUp } from '@lucide/svelte';
+  import { ChartColumn, CircleQuestionMark, Funnel, TrendingUp } from '@lucide/svelte';
   import { SvelteSet } from 'svelte/reactivity';
   import { browser } from '$app/environment';
+  import { replaceState, afterNavigate } from '$app/navigation';
   import { breakpoints } from '$lib/stores/breakpoints.svelte';
   import { version } from '../../../package.json';
 
@@ -18,6 +19,9 @@
 
   // Data loaded by +layout.ts (default: lb_full). Reactive reloads in $effect below.
   let { data }: { data: LayoutData } = $props();
+
+  let mounted = $state(false);
+  afterNavigate(() => { mounted = true; });
 
   // ── Local benchmark data state (drives everything in this page) ─────────────
   let benchmarkData = $state<BenchmarkData | null>(data.benchmarkData ?? null);
@@ -227,7 +231,7 @@
 
   // ─── URL sync (all persisted settings) ──────────────────────────────────
   $effect(() => {
-    if (!browser) return;
+    if (!browser || !mounted) return;
     const sp = new URLSearchParams();
     // Inference group — write only non-defaults (default = true → write =0 when off)
     if (!openRouterOnly)   sp.set('or',          '0');
@@ -255,7 +259,7 @@
     // Mobile tab — only persist on mobile viewport to keep URLs clean on desktop
     if (breakpoints.isMobile && activeTab !== 'chart') sp.set('tab', activeTab);
     const qs = sp.toString();
-    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+    replaceState(qs ? `?${qs}` : window.location.pathname, {});
   });
 
   // ─── Selection ─────────────────────────────────────────────────────────────
@@ -437,7 +441,7 @@
         </button>
         <button class="nav-btn" class:active={activeTab === 'chart'}
           onclick={() => activeTab = 'chart'}>
-          <BarChart3 size={20} />
+          <ChartColumn size={20} />
           <span>Chart</span>
         </button>
         <button class="nav-btn" class:active={activeTab === 'stats'}
