@@ -72,3 +72,27 @@ export const AXIS_CATEGORIES: Record<string, string> = {
   price_cr:  'Cost ↓ better',
   price_cw:  'Cost ↓ better',
 };
+
+// Abbreviations shown at the top of each LiveBench axis
+export const AXIS_ABBREV: Record<string, string> = {
+  lb_avg:    'Avg',
+  lb_coding: 'C',
+  lb_agentic:'AC',
+  lb_math:   'M',
+  lb_reasoning: 'R',
+  lb_data:   'DA',
+  lb_lang:   'L',
+  lb_instruct: 'I',
+};
+
+// Full names for the category legend
+export const AXIS_CATEGORY_NAMES: Record<string, string> = {
+  lb_avg:    'LiveBench Average',
+  lb_coding: 'Coding',
+  lb_agentic:'Agentic Coding',
+  lb_math:   'Mathematics',
+  lb_reasoning: 'Reasoning',
+  lb_data:   'Data Analysis',
+  lb_lang:   'Language',
+  lb_instruct: 'Instruction',
+};

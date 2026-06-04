@@ -66,7 +66,7 @@
 
     <!-- ─── Microsoft / Windows tiles (Teams, pinned sites) ─── -->
     <meta name="msapplication-TileColor" content="#0f1117" />
-    <meta name="msapplication-TileImage" content="%sveltekit.assets%/favicon-32x32.png" />
+    <meta name="msapplication-TileImage" content="%sveltekit.assets%/icon-32x32.png" />
 
     <!-- ─── Apple iOS web app ─── -->
     <meta name="apple-mobile-web-app-title" content="LiveBench Viz" />
@@ -76,9 +76,10 @@
     <!-- ─── Browser chrome / theme ─── -->
     <meta name="theme-color" content="#0f1117" />
     <link rel="icon" type="image/x-icon" href="%sveltekit.assets%/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="%sveltekit.assets%/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="%sveltekit.assets%/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="%sveltekit.assets%/icon-16x16.png">
     <link rel="manifest" href="%sveltekit.assets%/site.webmanifest">
     <link
       rel="preconnect"
@@ -88,23 +89,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        background: #0f1117;
-        color: #e2e8f0;
-        font-family: 'Inter', system-ui, sans-serif;
-        font-size: 14px;
-        height: 100vh;
-        overflow: hidden;
-      }
-      ::-webkit-scrollbar       { width: 5px; height: 5px; }
-      ::-webkit-scrollbar-track { background: transparent; }
-      ::-webkit-scrollbar-thumb { background: #2e3250; border-radius: 3px; }
-    </style>
     %sveltekit.head%
   </head>
   <body data-sveltekit-preload-data="off">
     <div style="display: contents">%sveltekit.body%</div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('%sveltekit.assets%/sw.js', { scope: '/livebenchviz/' });
+        });
+      }
+    </script>
   </body>
 </html>

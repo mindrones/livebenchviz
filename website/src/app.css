@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  /* Map the existing dark palette so Tailwind tokens match component <style> blocks */
+  --color-bg-primary:    #0f1117;
+  --color-bg-surface:    #1a1d27;
+  --color-bg-elevated:   #1e2130;
+  --color-bg-hover:      #22263a;
+  --color-bg-input:      #141620;
+  --color-border:        #2e3250;
+  --color-border-focus:  #6366f1;
+  --color-text-primary:  #e2e8f0;
+  --color-text-muted:    #8892a4;
+  --color-text-faint:    #4a5568;
+  --color-accent:        #6366f1;
+  --color-accent-light:  #818cf8;
+  --color-accent-violet: #a78bfa;
+  --color-open:          #4ade80;
+  --color-closed:        #fbbf24;
+  --color-olama:         #60a5fa;
+  --color-error:         #ef4444;
+}
+
+@layer base {
+  html, body {
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  body {
+    background: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    height: 100dvh;
+    overflow: hidden;
+  }
+  button, a, [role='button'] {
+    touch-action: manipulation;
+  }
+  /* Prevent long-press context menu and text selection on interactive SVGs */
+  .chart-section svg,
+  .tl-outer svg,
+  .tl-svg-wrap svg {
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+}
+
+/* Scrollbar styles (moved from +layout.svelte and app.html) */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2e3250; border-radius: 3px; }

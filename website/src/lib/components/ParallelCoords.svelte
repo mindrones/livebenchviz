@@ -13,8 +13,9 @@
    */
   import { scalePoint, scaleLinear } from 'd3';
   import { line as d3line, max as d3max, quadtree as d3quadtree } from 'd3';
+
+  import { familyColor, AXIS_ABBREV } from '$lib/colors';
   import type { Model, Benchmark } from '$lib/types';
-  import { familyColor, AXIS_CATEGORIES } from '$lib/colors';
 
   interface Props {
     benchmarks:       Benchmark[];
@@ -24,10 +25,13 @@
     onToggleSelection: (id: string) => void;
     onClearSelection: () => void;
     axisOrder:        string[];        // $bindable — user can reorder
+    axisBrushes:      Record<string, [number, number]>; // $bindable — brush ranges per axis (persisted to URL)
     parallelBrushIds: Set<string> | null; // $bindable — brushed model ids (null = no brush)
     releaseHoverIds:  Set<string> | null; // release-time hover from Timeline (null = inactive)
     sortBy:           'count' | 'alpha' | 'category'; // read-only, drives axis highlight
     selectedSortAxis: string;          // $bindable — axis key driving category sort
+    isMobile?: boolean;                // mobile viewport – disables hover/select, enlarges touch targets
+    isXl?: boolean;                    // ≥1280px (Tailwind xl) – show full axis labels
   }
   let {
     benchmarks,
@@ -37,10 +41,13 @@
     onToggleSelection,
     onClearSelection,
     axisOrder        = $bindable([] as string[]),
+    axisBrushes      = $bindable({} as Record<string, [number, number]>),
     parallelBrushIds = $bindable(null as Set<string> | null),
     releaseHoverIds  = null as Set<string> | null,
     sortBy,
     selectedSortAxis = $bindable('lb_avg'),
+    isMobile          = false,
+    isXl              = false,
   }: Props = $props();
 
   // (dataset-switch sync effect is further down, after axisBrushes is declared)
@@ -48,16 +55,13 @@
   // ── Container size ──
   let containerW = $state(0);
   let containerH = $state(0);
+  let headerH   = $state(0);   // measured height of the HTML header div
   let svgEl      = $state<SVGSVGElement | null>(null);
 
-  // Bottom margin is only needed for cost-axis labels/titles (drawn BELOW the
-  // axis). When the dataset has no cost axes, reserving that space leaves the
-  // bottom of the container empty — so make it dynamic and let the y-scales
-  // (range [innerH, 0]) stretch into the freed space.
-  const hasCostAxis = $derived(benchmarks.some(b => b.higherIsBetter === false));
-  const M = $derived({ top: 100, right: 52, bottom: hasCostAxis ? 80 : 24, left: 52 });
+  const svgH     = $derived(Math.max(0, containerH - headerH));
+  const M = $derived({ top: 60, right: 52, bottom: 24, left: 52 });
   const innerW = $derived(Math.max(0, containerW - M.left - M.right));
-  const innerH = $derived(Math.max(0, containerH - M.top  - M.bottom));
+  const innerH = $derived(Math.max(0, svgH - M.top  - M.bottom));
 
   // Vertical padding inside the plot so extreme points / labels don't clip
   const plotPad = $derived(Math.min(20, Math.max(0, innerH * 0.08)));
@@ -129,12 +133,14 @@
   });
 
   // Manual invert: pixel y → score value (no d3 invert needed)
+  // Rounded to 1 decimal — matches pipeline precision (round1) so brush
+  // ranges are meaningful, URLs stay short, and floating-point noise is eliminated.
   function invertY(pixelY: number, key: string): number {
     const pad = plotPad;
     const plotH = Math.max(1, innerH - 2 * pad);
     const hi = axisDomainMax[key] ?? 100;
     const normalized = Math.max(0, Math.min(1, (innerH - pad - pixelY) / plotH));
-    return normalized * hi;
+    return Math.round(normalized * hi * 10) / 10;
   }
 
   // ── D3: line generator ──
@@ -158,14 +164,6 @@
 
   // Ticks
   const PERF_TICKS = [0, 20, 40, 60, 80, 100];
-  function costTicks(key: string) {
-    const hi = axisDomainMax[key] ?? 1;
-    return [0, hi * 0.25, hi * 0.5, hi * 0.75, hi].map(v => ({
-      val: v, y: yScales[key](v),
-      label: v === 0 ? 'Free' : (v < 1 ? `$${v.toFixed(2)}` : `$${v.toFixed(1)}`),
-    }));
-  }
-
   // ── Highlight ──
   const highlightedModel = $derived(
     highlightedId ? (models.find(m => m.id === highlightedId) ?? null) : null
@@ -224,9 +222,7 @@
   });
 
   // ── Brush state ──
-  let axisBrushes    = $state<Record<string, [number, number]>>({});
-  const activeBrushCount = $derived(Object.keys(axisBrushes).length);
-
+  // (axisBrushes is now a $bindable prop — owned by the page, persists across remounts)
   let pillHoverId = $state<string | null>(null);
 
   // When the benchmark set changes (dataset toggle): synchronously, displayOrder
@@ -293,7 +289,10 @@
   type BrushMode = 'new' | 'move' | 'top' | 'bot';
   interface BrushDrag { key: string; mode: BrushMode; startScore: number; origBrush: [number,number]|null }
   let brushDrag = $state<BrushDrag | null>(null);
-  const HANDLE_PX = 14;
+  const handleHitPx = $derived(isMobile ? 28 : 14);  // brush handle hit area (larger on touch)
+  const brushZoneW = $derived(isMobile ? 44 : 16);     // axis brush zone width (wider on touch)
+  let labelDragMoved = $state(false);                  // track whether label drag actually moved
+  let labelHoverX = $state<number | null>(null);      // x position within label overlay for cursor feedback
   const MIN_RANGE = 0.5;
 
   function clientYtoScore(clientY: number, key: string): number {
@@ -302,6 +301,7 @@
   }
 
   function onAxisDown(e: PointerEvent, key: string) {
+    e.preventDefault();
     const rect   = svgEl!.getBoundingClientRect();
     const pixelY = e.clientY - rect.top - M.top;
     const score  = invertY(pixelY, key);
@@ -311,9 +311,9 @@
     if (brush) {
       const topPx = yScales[key](brush[1]);
       const botPx = yScales[key](brush[0]);
-      if      (Math.abs(pixelY - topPx) <= HANDLE_PX)                          { mode = 'top'; origBrush = [...brush]; }
-      else if (Math.abs(pixelY - botPx) <= HANDLE_PX)                          { mode = 'bot'; origBrush = [...brush]; }
-      else if (pixelY > topPx - HANDLE_PX && pixelY < botPx + HANDLE_PX)       { mode = 'move'; origBrush = [...brush]; }
+      if      (Math.abs(pixelY - topPx) <= handleHitPx)                          { mode = 'top'; origBrush = [...brush]; }
+      else if (Math.abs(pixelY - botPx) <= handleHitPx)                          { mode = 'bot'; origBrush = [...brush]; }
+      else if (pixelY > topPx - handleHitPx && pixelY < botPx + handleHitPx)       { mode = 'move'; origBrush = [...brush]; }
     }
     if (mode === 'new') axisBrushes = { ...axisBrushes, [key]: [score, score] };
     brushDrag = { key, mode, startScore: score, origBrush };
@@ -342,8 +342,7 @@
     brushDrag = null;
   }
 
-  function clearBrush(key: string, e: MouseEvent) { e.stopPropagation(); const { [key]: _, ...rest } = axisBrushes; axisBrushes = rest; }
-  function clearAllBrushes() { axisBrushes = {}; }
+
 
   // ── Quadtree for proximity hover ────────────────────────────────────────────────────
   // Rebuilt as a pure $derived whenever models, axis order, or scales change.
@@ -381,8 +380,10 @@
 
   const HOVER_THRESHOLD = 28; // px — max distance to trigger highlight
 
-  function onChartMouseMove(e: MouseEvent) {
+  function onChartPointerMove(e: PointerEvent) {
     if (!svgEl || dragKey || brushDrag) { highlightedId = null; return; }
+    // On mobile layout, disable hover — users select via Filter tab
+    if (isMobile) return;
     const rect = svgEl.getBoundingClientRect();
     const mx = e.clientX - rect.left - M.left;
     const my = e.clientY - rect.top  - M.top;
@@ -391,6 +392,8 @@
   }
 
   function onChartClick(e: MouseEvent) {
+    // On mobile, curve clicking is disabled — use Filter tab for selection
+    if (isMobile) return;
     if (dragKey || brushDrag) return;
     if (highlightedId) {
       onToggleSelection(highlightedId);
@@ -400,25 +403,29 @@
   // ── Axis label (reorder) drag ──
   function onLabelDown(e: PointerEvent, key: string) {
     if (brushDrag) return;
+    e.preventDefault();
     // Capture the axis's current pixel x BEFORE setting dragKey.
-    // Setting dragKey would immediately re-derive displayOrder (inserting the
-    // axis at slot 0 because dragCurrentX hasn't been set yet), which would
-    // re-derive xScale, making xScale(key) return 0 — the jump bug.
     const axisX = xScale(key) ?? 0;
     dragStartMouseX = e.clientX;
     dragAxisOriginX = axisX;
     dragCurrentX    = axisX;   // start visually at current position
     dragKey         = key;     // set last so displayOrder reacts to correct dragCurrentX
+    labelDragMoved  = false;
     (e.currentTarget as Element).setPointerCapture(e.pointerId);
     e.stopPropagation();
   }
   function onLabelMove(e: PointerEvent, key: string) {
     if (!dragKey || dragKey !== key) return;
     const dx = e.clientX - dragStartMouseX;
+    if (Math.abs(dx) > 3) labelDragMoved = true;
     dragCurrentX = Math.max(0, Math.min(innerW, dragAxisOriginX + dx));
   }
   function onLabelUp(_e: PointerEvent, _key: string) {
     if (!dragKey) return;
+    if (!labelDragMoved) {
+      // No drag movement — treat as a tap/click to sort by this axis
+      selectedSortAxis = _key;
+    }
     axisOrder = [...displayOrder];
     dragKey   = null;
   }
@@ -452,89 +459,65 @@
 
 <div class="wrap" bind:clientWidth={containerW} bind:clientHeight={containerH}>
   {#if containerW > 0 && containerH > 0}
-    <svg width={containerW} height={containerH} bind:this={svgEl}
+
+    <!-- ── HTML header: hint or model name + selected tags ── -->
+    <div class="chart-header" bind:clientHeight={headerH}>
+      {#if releaseHoverLabel}
+        <div class="header-title" style="color: #f87171;">
+          ▾ {releaseHoverLabel.date} · {releaseHoverLabel.count} model{releaseHoverLabel.count === 1 ? '' : 's'}
+        </div>
+        <div class="selected-tags">
+          {#each releaseHoverLabel.models as m (m.id)}
+            <div class="sel-tag">
+              <span class="sel-name">{m.name}</span>
+            </div>
+          {/each}
+        </div>
+      {:else if highlightedModel || selectedIds.size > 0}
+        <div class="header-title">
+          {#if highlightedModel}
+            {highlightedModel.name}
+          {:else}
+            {selectedModels[0]?.name}{selectedModels.length > 1 ? ', ...' : ''}
+          {/if}
+        </div>
+        <div class="selected-tags">
+          {#each selectedModels as m (m.id)}
+            <div class="sel-tag"
+              class:hovered={highlightedId === m.id || pillHoverId === m.id}
+              onpointerenter={() => (pillHoverId = m.id)}
+              onpointerleave={() => (pillHoverId = null)}
+            >
+              <span class="sel-name">{m.name}</span>
+              <button class="sel-remove" onclick={(e) => onDeselectModel(e, m.id)} title="Remove from selection">✕</button>
+            </div>
+          {/each}
+          {#if selectedIds.size > 0}
+            <button class="clear-btn" onclick={onClearAll}>Clear all</button>
+          {/if}
+        </div>
+      {:else}
+        <div class="hint-row" style="font-size:{isMobile ? '11.5px' : '13px'};">
+          <span class="hint-chip pointer-fine-only">hover/click a curve to toggle models</span>
+          <span class="hint-chip">drag axis labels to reorder</span>
+          <span class="hint-chip">brush axes to filter</span>
+        </div>
+      {/if}
+    </div>
+
+    <svg width={containerW} height={svgH} bind:this={svgEl}
       style:cursor={dragKey ? 'grabbing' : (highlightedId && (selectedIds.has(highlightedId) || selectedIds.size < 8)) ? 'pointer' : null}
-      onmousemove={onChartMouseMove}
+      style:touch-action="none"
+      oncontextmenu={(e) => e.preventDefault()}
+      onpointermove={onChartPointerMove}
       onclick={onChartClick}
-      onmouseleave={() => {
+      onpointerleave={() => {
         if (!brushDrag && !dragKey) {
           highlightedId = null;
           pillHoverId = null;
         }
       }}
     >
-
-      <!-- ── Fixed hover label (top-centre, never moves) ── -->
-      {#if releaseHoverLabel}
-        <text x={containerW/2} y={26} text-anchor="middle" fill="#f87171"
-          font-size={16} font-weight={700} font-family="Inter,system-ui,sans-serif"
-          pointer-events="none"
-        >▾ {releaseHoverLabel.date} · {releaseHoverLabel.count} model{releaseHoverLabel.count === 1 ? '' : 's'}</text>
-        <foreignObject x={0} y={34} width={containerW} height={42} pointer-events="none">
-          <div class="selected-tags" style="display:flex; justify-content:center; gap:6px; flex-wrap:wrap; padding: 0 20px;">
-            {#each releaseHoverLabel.models as m (m.id)}
-              <div class="sel-tag"
-                style="pointer-events:auto; display:flex; align-items:center; gap:4px; background:#2e3250; color:#e2e8f0; font-size:11px; padding:2px 6px; border-radius:4px; border:1px solid #3a4060; cursor:default; transition: border-color 0.1s;"
-              >
-                <span style="max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{m.name}</span>
-              </div>
-            {/each}
-          </div>
-        </foreignObject>
-      {:else if highlightedModel || selectedIds.size > 0}
-        <text x={containerW/2} y={26} text-anchor="middle" fill="#e2e8f0"
-          font-size={18} font-weight={700} font-family="Inter,system-ui,sans-serif"
-          pointer-events="none"
-        >
-          {#if highlightedModel}
-            {highlightedModel.name}
-          {:else}
-            {selectedModels[0]?.name}{selectedModels.length > 1 ? ', ...' : ''}
-          {/if}
-        </text>
-
-        <!-- Selected list with little crosses -->
-        <foreignObject x={0} y={34} width={containerW} height={42} pointer-events="none">
-          <div class="selected-tags" style="display:flex; justify-content:center; gap:6px; flex-wrap:wrap; padding: 0 20px;">
-            {#each selectedModels as m (m.id)}
-              <div class="sel-tag"
-                class:hovered={highlightedId === m.id || pillHoverId === m.id}
-                style="pointer-events:auto; display:flex; align-items:center; gap:4px; background:#2e3250; color:#e2e8f0; font-size:11px; padding:2px 6px; border-radius:4px; border:1px solid { (highlightedId === m.id || pillHoverId === m.id) ? '#818cf8' : '#3a4060'}; cursor:default; transition: border-color 0.1s;"
-                onmouseenter={() => (pillHoverId = m.id)}
-                onmouseleave={() => (pillHoverId = null)}
-              >
-                <span style="max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{m.name}</span>
-                <button
-                  onclick={(e) => onDeselectModel(e, m.id)}
-                  style="background:none; border:none; color:#8892a4; cursor:pointer; padding:0 2px; font-size:12px; display:flex; align-items:center; justify-content:center;"
-                  title="Remove from selection"
-                >✕</button>
-              </div>
-            {/each}
-            {#if selectedIds.size > 0}
-              <button
-                onclick={onClearAll}
-                style="pointer-events:auto; background:transparent; border:1px solid #f8717155; color:#f87171; font-size:10px; padding:2px 6px; border-radius:4px; cursor:pointer;"
-              >Clear all</button>
-            {/if}
-          </div>
-        </foreignObject>
-      {:else}
-        <text x={containerW/2} y={36} text-anchor="middle" fill="#3a4060"
-          font-size={13} font-style="italic" font-family="Inter,system-ui,sans-serif"
-          pointer-events="none"
-        >hover a curve · drag axis labels to reorder · drag axis lines to filter</text>
-      {/if}
-      {#if activeBrushCount > 0}
-        <text x={containerW/2} y={62} text-anchor="middle" fill="#a5b4fc"
-          font-size={11} font-family="Inter,system-ui,sans-serif" pointer-events="none"
-        >{activeBrushCount} filter{activeBrushCount>1?'s':''} active — {brushPassIds?.size ?? models.length} model{brushPassIds?.size===1?'':' s'} match</text>
-        <text x={containerW/2} y={77} text-anchor="middle" fill="#f87171"
-          font-size={11} font-family="Inter,system-ui,sans-serif"
-          style="cursor:pointer" role="button" tabindex="0"
-          onclick={clearAllBrushes} onkeypress={(e)=>e.key==='Enter'&&clearAllBrushes()}
-        >✕ Clear all filters</text>
-      {/if}
 
       <g transform="translate({M.left},{M.top})">
 
@@ -551,63 +534,42 @@
               pointer-events="none" />
 
             <!-- Performance: label + ticks ABOVE -->
-            {#if isPerf}
               {#each PERF_TICKS as tick}
                 {@const ty = yScales[key](tick)}
                 <line x1={-5} y1={ty} x2={5} y2={ty} stroke="#3a4060" pointer-events="none" />
                 <text x={-9} y={ty} text-anchor="end" dominant-baseline="middle"
                   fill="#4b5563" font-size={9} pointer-events="none">{tick}%</text>
               {/each}
-              <!-- Category label -->
-              <text x={0} y={-30} text-anchor="middle" fill="#6b7280" font-size={10.5}
-                pointer-events="none">{AXIS_CATEGORIES[key] ?? ''}</text>
-              <!-- Title + drag icon: tspans carry their own cursor + handlers directly -->
-              <text x={0} y={-14} text-anchor="middle" font-size={13} font-weight={600}>
+              <!-- Touch-friendly overlay for axis label (drag reorder + tap sort) -->
+              <rect x={-22} y={-56} width={44} height={52} rx={4}
+                fill="transparent" pointer-events="all"
+                style="cursor:{dragKey === key ? 'grabbing' : (labelHoverX !== null && labelHoverX < 15 ? 'grab' : 'pointer')};user-select:none"
+                onpointerdown={(e) => onLabelDown(e, key)}
+                onpointermove={(e) => {
+                  onLabelMove(e, key);
+                  const rect = svgEl?.getBoundingClientRect();
+                  if (rect) {
+                    const svgLocalX = e.clientX - rect.left - M.left;
+                    const axisX = xScale(key) ?? 0;
+                    labelHoverX = svgLocalX - axisX + 22; // 22 is the offset of the rect's left edge
+                  }
+                }}
+                onpointerup={(e) => onLabelUp(e, key)}
+                onpointercancel={(e) => { onLabelUp(e, key); labelHoverX = null; }}
+                onpointerleave={() => labelHoverX = null}
+              />
+              <!-- Visual label (no pointer events — overlay rect handles interaction) -->
+              <text x={0} y={-14} text-anchor="middle" font-size={isXl ? 12 : 13} font-weight={600} pointer-events="none">
                 <tspan
                   fill="#8892a4"
                   font-size={11} font-weight={400}
-                  pointer-events="all" style:cursor={dragKey === key ? 'grabbing' : 'grab'} style="user-select:none"
-                  onpointerdown={(e) => onLabelDown(e, key)}
-                  onpointermove={(e) => onLabelMove(e, key)}
-                  onpointerup={(e)   => onLabelUp(e, key)}
-                  onpointercancel={(e) => onLabelUp(e, key)}
+                  style="user-select:none"
                 >⠿</tspan><tspan
                   dx={5}
                   fill={sortBy === 'category' && key === selectedSortAxis ? '#f97316' : '#c4cad8'}
-                  pointer-events="all" style="cursor:pointer;user-select:none"
-                  onclick={() => onAxisTitleClick(key)}
-                  onkeypress={(e) => e.key === 'Enter' && onAxisTitleClick(key)}
-                >{bench.label}</tspan>
+                  style="user-select:none"
+                >{isXl ? bench.label : (AXIS_ABBREV[key] ?? bench.label)}</tspan>
               </text>
-
-            {:else}
-              <!-- Cost: ticks + label BELOW -->
-              {#each costTicks(key) as t}
-                <line x1={-5} y1={t.y} x2={5} y2={t.y} stroke="#3a4060" pointer-events="none" />
-                <text x={9} y={t.y} text-anchor="start" dominant-baseline="middle"
-                  fill="#9ca3af" font-size={9} pointer-events="none">{t.label}</text>
-              {/each}
-              <!-- Title + drag icon: tspans carry their own cursor + handlers directly -->
-              <text x={0} y={innerH+16} text-anchor="middle" font-size={13} font-weight={600}>
-                <tspan
-                  fill="#8892a4"
-                  font-size={11} font-weight={400}
-                  pointer-events="all" style:cursor={dragKey === key ? 'grabbing' : 'grab'} style="user-select:none"
-                  onpointerdown={(e) => onLabelDown(e, key)}
-                  onpointermove={(e) => onLabelMove(e, key)}
-                  onpointerup={(e)   => onLabelUp(e, key)}
-                  onpointercancel={(e) => onLabelUp(e, key)}
-                >⠿</tspan><tspan
-                  dx={5}
-                  fill={sortBy === 'category' && key === selectedSortAxis ? '#f97316' : '#fca5a5'}
-                  pointer-events="all" style="cursor:pointer;user-select:none"
-                  onclick={() => onAxisTitleClick(key)}
-                  onkeypress={(e) => e.key === 'Enter' && onAxisTitleClick(key)}
-                >{bench.label}</tspan>
-              </text>
-              <text x={0} y={innerH+30} text-anchor="middle" fill="#9ca3af" font-size={10.5}
-                pointer-events="none">{AXIS_CATEGORIES[key] ?? ''}</text>
-            {/if}
 
             <!-- Brush visual (pointer-events:none) -->
             {#if brush}
@@ -626,13 +588,6 @@
               <text x={22} y={bBot+4} fill="#a5b4fc" font-size={9} pointer-events="none">
                 {isPerf ? brush[0].toFixed(0)+'%' : '$'+brush[0].toFixed(2)}
               </text>
-              <!-- Clear button (above/below chart area, outside brush zone) -->
-              <text x={0} y={isPerf ? -46 : innerH+46}
-                text-anchor="middle" fill="#f87171" font-size={14}
-                style="cursor:pointer" role="button" tabindex="0"
-                onclick={(e)=>clearBrush(key,e)}
-                onkeypress={(e)=>e.key==='Enter'&&clearBrush(key,new MouseEvent('click'))}
-              >×</text>
             {/if}
           </g>
         {/each}
@@ -646,7 +601,7 @@
 
           <g transform="translate({x},0)">
             <!-- Brush zone: 16px wide (±8px) — narrow enough not to block hover between axes -->
-            <rect x={-8} y={0} width={16} height={innerH}
+            <rect x={-brushZoneW/2} y={0} width={brushZoneW} height={innerH}
               fill="transparent"
               style:cursor={brush ? 'ns-resize' : 'crosshair'}
               role="slider" tabindex="0" aria-valuenow="50" aria-label="Brush {bench.label} axis"
@@ -696,8 +651,50 @@
 </div>
 
 <style>
-  .wrap { width: 100%; height: 100%; flex: 1; min-height: 0; }
+  .wrap { width: 100%; height: 100%; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+  /* ── HTML header above SVG ── */
+  .chart-header {
+    flex-shrink: 0;
+    text-align: center;
+    padding: 4px 0 0;
+    min-height: 20px;
+  }
+  .header-title {
+    font-size: 18px; font-weight: 700; font-family: Inter, system-ui, sans-serif;
+    color: #e2e8f0;
+  }
+  .selected-tags {
+    display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+    padding: 2px 20px 0;
+  }
+  .sel-tag {
+    display: flex; align-items: center; gap: 4px;
+    background: #2e3250; color: #e2e8f0; font-size: 11px;
+    padding: 2px 6px; border-radius: 4px;
+    border: 1px solid #3a4060; cursor: default; transition: border-color 0.1s;
+  }
   .sel-tag:hover { border-color: #6366f1 !important; }
-  .sel-tag button:hover { color: #f87171 !important; }
   .sel-tag.hovered { border-color: #6366f1 !important; background: #3a4060 !important; }
+  .sel-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sel-remove {
+    background: none; border: none; color: #8892a4; cursor: pointer;
+    padding: 0 2px; font-size: 12px; display: flex; align-items: center; justify-content: center;
+  }
+  .sel-remove:hover { color: #f87171; }
+  .clear-btn {
+    background: transparent; border: 1px solid #f8717155; color: #f87171;
+    font-size: 10px; padding: 2px 6px; border-radius: 4px; cursor: pointer;
+  }
+  .clear-btn:hover { border-color: #f87171; }
+
+  .hint-row {
+    display: flex; flex-wrap: wrap; gap: 4px 14px;
+    align-items: center; justify-content: center;
+    font-style: italic; font-family: Inter, system-ui, sans-serif;
+    color: #3a4060; padding: 8px 12px 0;
+  }
+  .hint-chip { white-space: nowrap; }
+  .pointer-fine-only { display: none; }
+  @media (pointer: fine) { .pointer-fine-only { display: inline; } }
 </style>

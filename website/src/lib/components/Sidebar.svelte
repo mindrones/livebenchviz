@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Info } from '@lucide/svelte';
+  import { Info, ChevronDown, ChevronUp } from '@lucide/svelte';
 
   import type { Model, InferenceMap, Benchmark } from '$lib/types';
   import { familyColor } from '$lib/colors';
@@ -30,6 +30,8 @@
     showOpen:         boolean;
     sortBy:           'count' | 'alpha' | 'category'; // $bindable – persisted by parent
     visibleIds:       Set<string>;        // models passing ALL filters incl. time brush
+    compact?:         boolean;                         // mobile: remove fixed width/border
+    settingsCollapsed?: boolean;                       // $bindable – persisted by parent across tab switches
   }
 
   let {
@@ -40,6 +42,7 @@
 		inferenceMap,
 		visibleIds,
     benchmarks,
+    compact           = $bindable(false),
     expandedFamilies = $bindable(),
     generatedDate,
     groupByProvider  = $bindable(),
@@ -57,6 +60,7 @@
     showClosed  = $bindable(),
     showOpen    = $bindable(),
     sortBy           = $bindable(),
+    settingsCollapsed = $bindable(false),
   }: Props = $props();
 
   // ── Category sort helpers ──
@@ -195,7 +199,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 
-<aside>
+<aside class:compact={compact}>
   <div class="sb-head">
     <div class="citation">
       <button class="livebench-btn" onclick={() => showCitation = true}>
@@ -203,65 +207,76 @@
       </button>
       {new Date(generatedDate).toLocaleDateString()}
     </div>
-    <button class="reset-btn" onclick={onReset} title="Reset all filters and preferences">↺ Reset</button>
-  </div>
-
-  <div class="type-row">
-    <button class="type-btn" class:on-open={showOpen}   onclick={() => (showOpen   = !showOpen)}>🟢 Open Weights</button>
-    <button class="type-btn" class:on-closed={showClosed} onclick={() => (showClosed = !showClosed)}>🟡 Closed Weights</button>
-  </div>
-
-  <div class="filter-group">
-    <span class="group-label">Inference</span>
-    <label><input type="checkbox" bind:checked={ollamaCloudOnly} /> Available on Ollama Cloud</label>
-    <label><input type="checkbox" bind:checked={ollamaLocalOnly} /> Available for Ollama Download</label>
-    <label><input type="checkbox" bind:checked={openRouterOnly}  /> Available on OpenRouter</label>
-    <label><input type="checkbox" bind:checked={otherSourceOnly} /> Other source</label>
-  </div>
-  <div class="filter-group">
-    <span class="group-label">Display</span>
-    <label><input type="checkbox" bind:checked={latest2}          /> Show latest 2 per series</label>
-    <label><input type="checkbox" bind:checked={groupByProvider} /> Group by provider</label>
-  </div>
-
-  <!-- search -->
-  <div class="search-row">
-    <div class="search-wrap">
-      <span class="search-icon">🔍</span>
-      <input
-        class="search-input"
-        type="search"
-        placeholder="Search models or providers…"
-        bind:value={searchQuery}
-      />
-      {#if hasSearch}
-        <button class="search-clr" onclick={() => (searchQuery = '')} title="Clear search">✕</button>
+    <div class="head-actions">
+      {#if compact}
+        <button class="collapse-btn" onclick={() => settingsCollapsed = !settingsCollapsed} title={settingsCollapsed ? 'Expand settings' : 'Collapse settings'}>
+          {#if settingsCollapsed}<ChevronDown size={20} />{:else}<ChevronUp size={20} />{/if}
+        </button>
       {/if}
+      <button class="reset-btn" onclick={onReset} title="Reset all filters and preferences">↺ Reset</button>
     </div>
   </div>
 
-  <!-- select / expand controls -->
-  <div class="ctrl-row">
-    <button class="ctrl-btn" onclick={() => allSelected ? deselectAll() : selectAll()}>
-      {allSelected ? '☑' : '☐'} Select all
-    </button>
-    {#if groupByProvider}
-      <button class="ctrl-btn" onclick={() => { for (const f of visibleFamilies) expandedFamilies[f] = true; }}>⊞ Expand all</button>
-      <button class="ctrl-btn" onclick={() => { for (const f of visibleFamilies) expandedFamilies[f] = false; }}>⊟ Collapse all</button>
-    {/if}
-  </div>
+  {#if !settingsCollapsed}
+    <div class="settings-scroll">
+      <div class="type-row">
+        <button class="type-btn" class:on-open={showOpen}   onclick={() => (showOpen   = !showOpen)}>🟢 Open Weights</button>
+        <button class="type-btn" class:on-closed={showClosed} onclick={() => (showClosed = !showClosed)}>🟡 Closed Weights</button>
+      </div>
 
-  <!-- sort controls -->
-  <div class="sort-row">
-    <button class="sort-btn" class:active={sortBy === 'category'} title="Sort by benchmark metric (click an axis to select)"
-      onclick={() => (sortBy = 'category')}>◈ Category</button>
-    <button class="sort-btn" class:active={sortBy === 'count'} title={groupByProvider ? 'Sort by model count' : 'Sort by date (newest first)'}
-      onclick={() => (sortBy = 'count')}>{groupByProvider ? '# ↓ Count' : '📅 Newest'}</button>
-    <button class="sort-btn" class:active={sortBy === 'alpha'} title="Sort alphabetically"
-      onclick={() => (sortBy = 'alpha')}>A–Z Name</button>
-  </div>
-  {#if sortBy === 'category'}
-    <div class="sort-hint">▶ {selectedAxisLabel} · click an axis title to change</div>
+      <div class="filter-group">
+        <span class="group-label">Inference</span>
+        <label><input type="checkbox" bind:checked={ollamaCloudOnly} /> Available on Ollama Cloud</label>
+        <label><input type="checkbox" bind:checked={ollamaLocalOnly} /> Available for Ollama Download</label>
+        <label><input type="checkbox" bind:checked={openRouterOnly}  /> Available on OpenRouter</label>
+        <label><input type="checkbox" bind:checked={otherSourceOnly} /> Other source</label>
+      </div>
+      <div class="filter-group">
+        <span class="group-label">Display</span>
+        <label><input type="checkbox" bind:checked={latest2}          /> Show latest 2 per series</label>
+        <label><input type="checkbox" bind:checked={groupByProvider} /> Group by provider</label>
+      </div>
+
+      <!-- search -->
+      <div class="search-row">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input
+            class="search-input"
+            type="search"
+            placeholder="Search models or providers…"
+            bind:value={searchQuery}
+          />
+          {#if hasSearch}
+            <button class="search-clr" onclick={() => (searchQuery = '')} title="Clear search">✕</button>
+          {/if}
+        </div>
+      </div>
+
+      <!-- select / expand controls -->
+      <div class="ctrl-row">
+        <button class="ctrl-btn" onclick={() => allSelected ? deselectAll() : selectAll()}>
+          {allSelected ? '☑' : '☐'} Select all
+        </button>
+        {#if groupByProvider}
+          <button class="ctrl-btn" onclick={() => { for (const f of visibleFamilies) expandedFamilies[f] = true; }}>⊞ Expand all</button>
+          <button class="ctrl-btn" onclick={() => { for (const f of visibleFamilies) expandedFamilies[f] = false; }}>⊟ Collapse all</button>
+        {/if}
+      </div>
+
+      <!-- sort controls -->
+      <div class="sort-row">
+        <button class="sort-btn" class:active={sortBy === 'category'} title="Sort by benchmark metric (click an axis to select)"
+          onclick={() => (sortBy = 'category')}>◈ Category</button>
+        <button class="sort-btn" class:active={sortBy === 'count'} title={groupByProvider ? 'Sort by model count' : 'Sort by date (newest first)'}
+          onclick={() => (sortBy = 'count')}>{groupByProvider ? '# ↓ Count' : '📅 Newest'}</button>
+        <button class="sort-btn" class:active={sortBy === 'alpha'} title="Sort alphabetically"
+          onclick={() => (sortBy = 'alpha')}>A–Z Name</button>
+      </div>
+      {#if sortBy === 'category'}
+        <div class="sort-hint">▶ {selectedAxisLabel} · click an axis title to change</div>
+      {/if}
+    </div>
   {/if}
 
   <div class="tree">
@@ -295,9 +310,10 @@
             <div class="children">
               {#each fms as m}
                 <div class="model-row" class:highlighted={highlightedId === m.id} class:selected={selectedIds.has(m.id)}
-                  onmouseenter={() => (highlightedId = m.id)}
-                  onmouseleave={() => (highlightedId = null)}
                   onclick={() => onToggleSelection(m.id)}
+                  onpointerenter={() => (highlightedId = m.id)}
+                  onpointerleave={() => (highlightedId = null)}
+                  ontouchstart={() => (highlightedId = m.id)}
                 >
                   <input type="checkbox"
                     checked={!hidden.has(m.id)}
@@ -325,9 +341,10 @@
       <div class="flat-list">
         {#each flatModels as m}
           <div class="model-row flat" class:highlighted={highlightedId === m.id} class:selected={selectedIds.has(m.id)}
-            onmouseenter={() => (highlightedId = m.id)}
-            onmouseleave={() => (highlightedId = null)}
             onclick={() => onToggleSelection(m.id)}
+            onpointerenter={() => (highlightedId = m.id)}
+            onpointerleave={() => (highlightedId = null)}
+            ontouchstart={() => (highlightedId = m.id)}
           >
             <input type="checkbox"
               checked={!hidden.has(m.id)}
@@ -354,19 +371,31 @@
 
 <style>
   aside {
-    width: 408px; min-width: 408px; background: #1a1d27;
+    width: 320px; min-width: 320px; background: #1a1d27;
     border-left: 1px solid #2e3250; display: flex; flex-direction: column; overflow: hidden;
+  }
+  aside.compact {
+    width: 100%; min-width: unset; border-left: none;
+    display: flex; flex-direction: column;
   }
   .sb-head {
     padding: 10px 12px; border-bottom: 1px solid #2e3250; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .head-actions {
+    display: flex; align-items: center; gap: 6px;
   }
   .citation { font-size: 13px; color: #e2e8f0; display: flex; align-items: center; gap: 8px; }
   .livebench-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: #e2e8f0; background: transparent; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 7px; cursor: pointer; transition: all .15s; }
   .livebench-btn:hover { background: rgba(255,255,255,.1); border-color: #ffffff; }
+  .collapse-btn { padding: 4px; background: transparent; border: none; color: #8892a4; cursor: pointer; transition: color .15s; display: flex; align-items: center; justify-content: center; }
+  .collapse-btn:hover { color: #e2e8f0; }
   .reset-btn { font-size: 12px; padding: 4px 10px; border-radius: 5px; border: 1px solid #e2e8f0; background: transparent; color: #e2e8f0; cursor: pointer; transition: all .15s; }
   .reset-btn:hover { background: rgba(255,255,255,.1); border-color: #ffffff; }
 
+  .settings-scroll {
+    flex-shrink: 0;
+  }
   .ctrl-row, .sort-row {
     display: flex; gap: 4px; padding: 6px 10px;
     border-bottom: 1px solid #2e3250; background: #1e2130; flex-shrink: 0;
@@ -443,4 +472,14 @@
   .tag.ol  { background: rgba(96,165,250,.12); color: #60a5fa; }
   .tag.oss { background: rgba(74,222,128,.12); color: #4ade80; }
   .tag.api { background: rgba(251,191,36,.12); color: #fbbf24; }
+
+  /* ── Touch-friendly sizing on mobile ── */
+  @media (max-width: 767px) {
+    .model-row { min-height: 44px; }
+    .filter-group input { width: 20px; height: 20px; }
+    .search-clr { min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+    .ctrl-btn, .sort-btn { min-height: 44px; }
+    .type-btn { min-height: 44px; }
+    .fam-row { min-height: 44px; }
+  }
 </style>

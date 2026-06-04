@@ -15,19 +15,21 @@
   import { familyColor } from '$lib/colors';
 
   interface Props {
-    models:     Model[];
-    brushStart: Date | null;
     brushEnd:   Date | null;
-    releaseHoverIds: Set<string> | null;
+    brushStart: Date | null;
     chartIds:   Set<string> | null;  // ids of curves currently visible in the chart
+    isMobile?:  boolean;
+    models:     Model[];
+    releaseHoverIds: Set<string> | null;
   }
 
   let {
-    models: allModels,
-    brushStart = $bindable(null),
     brushEnd   = $bindable(null),
-    releaseHoverIds = $bindable(null),
+    brushStart = $bindable(null),
     chartIds = null,
+    isMobile = false,
+    models: allModels,
+    releaseHoverIds = $bindable(null),
   }: Props = $props();
 
   // ── Geometry ──
@@ -36,7 +38,7 @@
   const SVG_H    = TRACK_H + AXIS_H;
   const ML       = 12;   // left margin
   const MR       = 12;   // right margin
-  const EDGE_PX  = 8;    // pixels within which the brush edge is "grabbable"
+  const EDGE_PX  = $derived(isMobile ? 16 : 8);    // brush edge grab zone (larger on touch)
 
   let containerW  = $state(0);
   let activeYears  = $state(0);        // 0 = All
@@ -263,7 +265,6 @@
 
   // Derive the ref so we can pass it into handlers
   let svgEl = $state<SVGSVGElement | null>(null);
-  let svgRect = $derived(svgEl?.getBoundingClientRect() ?? null);
 </script>
 
 <div class="tl-outer">
@@ -312,6 +313,8 @@
         aria-label="Model release timeline with brushable range selector"
         bind:this={svgEl}
         style:cursor={cursor}
+        style:touch-action="none"
+        oncontextmenu={(e) => e.preventDefault()}
         onpointermove={(e) => {
           onPointerMove(e, svgEl!);
           if (svgEl) {
@@ -412,6 +415,12 @@
   }
   .tl-btn:hover { border-color: #6366f1; color: #e2e8f0; }
   .tl-btn.active { background: rgba(99,102,241,.18); border-color: #6366f1; color: #818cf8; }
+
+  /* ── Touch-friendly sizing on mobile ── */
+  @media (max-width: 767px) {
+    .tl-btn { min-width: 44px; min-height: 44px; padding: 6px 12px; font-size: 13px; }
+    .tl-range { min-height: 28px; display: flex; align-items: center; justify-content: center; }
+  }
 
   .tl-svg-wrap { width: 100%; }
 
