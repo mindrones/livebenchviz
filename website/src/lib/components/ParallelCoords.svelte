@@ -632,16 +632,14 @@
           {@const hd = modelPath(highlightedModel)}
           {#if hd}
             <path d={hd} fill="none" stroke="white" stroke-width={2.8} pointer-events="none" />
-            {#if selectedIds.size <= 1}
-              {#each highlightedLabels as item (item.key)}
-                <circle cx={item.x} cy={item.y} r={4} fill="white" pointer-events="none" />
-                <text x={item.x} y={item.labelY} text-anchor="middle" dominant-baseline="middle"
-                  fill="white" font-size={22} font-weight={700}
-                  stroke="#000" stroke-width={3} stroke-opacity={0.6} paint-order="stroke"
-                  font-family="Inter,system-ui,sans-serif" pointer-events="none"
-                >{item.label}{item.isPerf ? '%' : ''}</text>
-              {/each}
-            {/if}
+            {#each highlightedLabels as item (item.key)}
+              <circle cx={item.x} cy={item.y} r={4} fill="white" pointer-events="none" />
+              <text x={item.x} y={item.labelY} text-anchor="middle" dominant-baseline="middle"
+                fill="white" font-size={22} font-weight={700}
+                stroke="#000" stroke-width={3} stroke-opacity={0.6} paint-order="stroke"
+                font-family="Inter,system-ui,sans-serif" pointer-events="none"
+              >{item.label}{item.isPerf ? '%' : ''}</text>
+            {/each}
           {/if}
         {/if}
 
