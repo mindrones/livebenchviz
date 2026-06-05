@@ -62,6 +62,7 @@ async function generateFavicons() {
 		for (const [filename, size] of Object.entries(ICON_SIZES)) {
 			await sharp(svgBuffer)
 				.resize(size, size)
+				.flatten({ background: 'palegreen' })
 				.png()
 				.toFile(path.join(OUTPUT_DIR, filename));
 			console.log(`  ✓ ${filename} (${size}×${size})`);
@@ -70,6 +71,7 @@ async function generateFavicons() {
 		// 2. favicon.ico (32×32 PNG-in-ICO — widely supported)
 		await sharp(svgBuffer)
 			.resize(32, 32)
+			.flatten({ background: 'palegreen' })
 			.png()
 			.toFile(path.join(OUTPUT_DIR, 'favicon.ico'));
 		console.log('  ✓ favicon.ico (32×32)');
