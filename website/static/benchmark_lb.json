@@ -1,8 +1,8 @@
 {
-  "generated": "2026-05-31T16:49:41.925Z",
+  "generated": "2026-06-08T11:47:46.187Z",
   "dataset": "lb",
   "openRouterOnly": false,
-  "modelCount": 119,
+  "modelCount": 122,
   "benchmarks": {
     "lb_avg": {
       "key": "lb_avg",
@@ -80,13 +80,15 @@
   "models": [
     {
       "id": "gpt-5.5-xhigh",
-      "name": "Gpt 5.5 Xhigh",
+      "slug": "gpt-55-xhigh",
+      "name": "Gpt 5.5",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-04-23",
+      "effort": "xhigh",
       "vfl": 0,
-      "openRouterId": null,
+      "openRouterId": "openai/gpt-5.5",
       "sources": [
         "livebench"
       ],
@@ -99,16 +101,17 @@
         "lb_data": 81.1,
         "lb_lang": 87.7,
         "lb_instruct": 73.1
-      },
-      "slug": "gpt-55-xhigh"
+      }
     },
     {
       "id": "gpt-5.5-medium",
-      "name": "Gpt 5.5 Medium",
+      "slug": "gpt-55-medium",
+      "name": "Gpt 5.5",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-04-23",
+      "effort": "medium",
       "vfl": 1,
       "openRouterId": null,
       "sources": [
@@ -123,16 +126,17 @@
         "lb_data": 77,
         "lb_lang": 85.6,
         "lb_instruct": 65.7
-      },
-      "slug": "gpt-55-medium"
+      }
     },
     {
       "id": "gpt-5.5-high",
-      "name": "Gpt 5.5 High",
+      "slug": "gpt-55-high",
+      "name": "Gpt 5.5",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-04-23",
+      "effort": "high",
       "vfl": 2,
       "openRouterId": null,
       "sources": [
@@ -147,16 +151,17 @@
         "lb_data": 79.5,
         "lb_lang": 87.4,
         "lb_instruct": 72
-      },
-      "slug": "gpt-55-high"
+      }
     },
     {
       "id": "gpt-5.4-nano-xhigh",
-      "name": "Gpt 5.4 Nano Xhigh",
+      "slug": "gpt-54-nano-xhigh",
+      "name": "Gpt 5.4 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "xhigh",
       "vfl": 3,
       "openRouterId": null,
       "sources": [
@@ -171,16 +176,17 @@
         "lb_data": 67.6,
         "lb_lang": 62.5,
         "lb_instruct": 67.2
-      },
-      "slug": "gpt-54-nano-xhigh"
+      }
     },
     {
       "id": "gpt-5.4-nano-medium",
-      "name": "Gpt 5.4 Nano Medium",
+      "slug": "gpt-54-nano-medium",
+      "name": "Gpt 5.4 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "medium",
       "vfl": 4,
       "openRouterId": null,
       "sources": [
@@ -195,16 +201,17 @@
         "lb_data": 48.7,
         "lb_lang": 51,
         "lb_instruct": 50.9
-      },
-      "slug": "gpt-54-nano-medium"
+      }
     },
     {
       "id": "gpt-5.4-nano-low",
-      "name": "Gpt 5.4 Nano Low",
+      "slug": "gpt-54-nano-low",
+      "name": "Gpt 5.4 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "low",
       "vfl": 5,
       "openRouterId": null,
       "sources": [
@@ -219,16 +226,17 @@
         "lb_data": 44,
         "lb_lang": 45.6,
         "lb_instruct": 37.2
-      },
-      "slug": "gpt-54-nano-low"
+      }
     },
     {
       "id": "gpt-5.4-nano-high",
-      "name": "Gpt 5.4 Nano High",
+      "slug": "gpt-54-nano-high",
+      "name": "Gpt 5.4 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "high",
       "vfl": 6,
       "openRouterId": null,
       "sources": [
@@ -243,16 +251,17 @@
         "lb_data": 52.7,
         "lb_lang": 54.7,
         "lb_instruct": 53.7
-      },
-      "slug": "gpt-54-nano-high"
+      }
     },
     {
       "id": "gpt-5.4-nano",
+      "slug": "gpt-54-nano",
       "name": "Gpt 5.4 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": null,
       "vfl": 7,
       "openRouterId": "openai/gpt-5.4-nano",
       "sources": [
@@ -267,16 +276,17 @@
         "lb_data": 39.1,
         "lb_lang": 28.7,
         "lb_instruct": 16.5
-      },
-      "slug": "gpt-54-nano"
+      }
     },
     {
       "id": "gpt-5.4-mini-xhigh",
-      "name": "Gpt 5.4 Mini Xhigh",
+      "slug": "gpt-54-mini-xhigh",
+      "name": "Gpt 5.4 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "xhigh",
       "vfl": 8,
       "openRouterId": null,
       "sources": [
@@ -291,16 +301,17 @@
         "lb_data": 71,
         "lb_lang": 71.5,
         "lb_instruct": 60.3
-      },
-      "slug": "gpt-54-mini-xhigh"
+      }
     },
     {
       "id": "gpt-5.4-mini-medium",
-      "name": "Gpt 5.4 Mini Medium",
+      "slug": "gpt-54-mini-medium",
+      "name": "Gpt 5.4 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "medium",
       "vfl": 9,
       "openRouterId": null,
       "sources": [
@@ -315,16 +326,17 @@
         "lb_data": 64.3,
         "lb_lang": 62.4,
         "lb_instruct": 50.8
-      },
-      "slug": "gpt-54-mini-medium"
+      }
     },
     {
       "id": "gpt-5.4-mini-low",
-      "name": "Gpt 5.4 Mini Low",
+      "slug": "gpt-54-mini-low",
+      "name": "Gpt 5.4 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "low",
       "vfl": 10,
       "openRouterId": null,
       "sources": [
@@ -339,16 +351,17 @@
         "lb_data": 51.9,
         "lb_lang": 57.6,
         "lb_instruct": 36.4
-      },
-      "slug": "gpt-54-mini-low"
+      }
     },
     {
       "id": "gpt-5.4-mini-high",
-      "name": "Gpt 5.4 Mini High",
+      "slug": "gpt-54-mini-high",
+      "name": "Gpt 5.4 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": "high",
       "vfl": 11,
       "openRouterId": null,
       "sources": [
@@ -363,16 +376,17 @@
         "lb_data": 69.3,
         "lb_lang": 65.8,
         "lb_instruct": 56.3
-      },
-      "slug": "gpt-54-mini-high"
+      }
     },
     {
       "id": "gpt-5.4-mini",
+      "slug": "gpt-54-mini",
       "name": "Gpt 5.4 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-17",
+      "effort": null,
       "vfl": 12,
       "openRouterId": "openai/gpt-5.4-mini",
       "sources": [
@@ -387,18 +401,19 @@
         "lb_data": 47.4,
         "lb_lang": 41.8,
         "lb_instruct": 18.9
-      },
-      "slug": "gpt-54-mini"
+      }
     },
     {
       "id": "gpt-5.4-xhigh",
-      "name": "Gpt 5.4 Xhigh",
+      "slug": "gpt-54-xhigh",
+      "name": "Gpt 5.4",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-05",
+      "effort": "xhigh",
       "vfl": 13,
-      "openRouterId": null,
+      "openRouterId": "openai/gpt-5.4",
       "sources": [
         "livebench"
       ],
@@ -411,16 +426,17 @@
         "lb_data": 79.3,
         "lb_lang": 82.6,
         "lb_instruct": 70.2
-      },
-      "slug": "gpt-54-xhigh"
+      }
     },
     {
       "id": "gpt-5.4-high",
-      "name": "Gpt 5.4 High",
+      "slug": "gpt-54-high",
+      "name": "Gpt 5.4",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-03-05",
+      "effort": "high",
       "vfl": 14,
       "openRouterId": null,
       "sources": [
@@ -435,16 +451,17 @@
         "lb_data": 77.1,
         "lb_lang": 83,
         "lb_instruct": 65
-      },
-      "slug": "gpt-54-high"
+      }
     },
     {
       "id": "gpt-5.3-instant",
+      "slug": "gpt-53-instant",
       "name": "Gpt 5.3 Instant",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-02-24",
+      "effort": null,
       "vfl": 15,
       "openRouterId": null,
       "sources": [
@@ -459,16 +476,17 @@
         "lb_data": 48,
         "lb_lang": 70,
         "lb_instruct": 59.4
-      },
-      "slug": "gpt-53-instant"
+      }
     },
     {
       "id": "gpt-5.3-codex-xhigh",
-      "name": "Gpt 5.3 Codex Xhigh",
+      "slug": "gpt-53-codex-xhigh",
+      "name": "Gpt 5.3 Codex",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-02-24",
+      "effort": "xhigh",
       "vfl": 16,
       "openRouterId": null,
       "sources": [
@@ -483,16 +501,17 @@
         "lb_data": 49.7,
         "lb_lang": 79.2,
         "lb_instruct": 71.3
-      },
-      "slug": "gpt-53-codex-xhigh"
+      }
     },
     {
       "id": "gpt-5.3-codex-high",
-      "name": "Gpt 5.3 Codex High",
+      "slug": "gpt-53-codex-high",
+      "name": "Gpt 5.3 Codex",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-02-24",
+      "effort": "high",
       "vfl": 17,
       "openRouterId": null,
       "sources": [
@@ -507,16 +526,17 @@
         "lb_data": 62.7,
         "lb_lang": 80.1,
         "lb_instruct": 65.4
-      },
-      "slug": "gpt-53-codex-high"
+      }
     },
     {
       "id": "gpt-5.2-codex",
+      "slug": "gpt-52-codex",
       "name": "Gpt 5.2 Codex",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2026-01-14",
+      "effort": null,
       "vfl": 18,
       "openRouterId": "openai/gpt-5.2-codex",
       "sources": [
@@ -531,16 +551,17 @@
         "lb_data": 78.2,
         "lb_lang": 73.7,
         "lb_instruct": 66.5
-      },
-      "slug": "gpt-52-codex"
+      }
     },
     {
       "id": "gpt-5.2-2025-12-11-nothinking",
+      "slug": "gpt-52-2025-12-11-nothinking",
       "name": "Gpt 5.2",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-12-11",
+      "effort": null,
       "vfl": 19,
       "openRouterId": null,
       "sources": [
@@ -555,16 +576,17 @@
         "lb_data": 47.7,
         "lb_lang": 50,
         "lb_instruct": 27.2
-      },
-      "slug": "gpt-52"
+      }
     },
     {
       "id": "gpt-5.2-2025-12-11-medium",
+      "slug": "gpt-52-2025-12-11-medium",
       "name": "Gpt 5.2",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-12-11",
+      "effort": "medium",
       "vfl": 20,
       "openRouterId": null,
       "sources": [
@@ -579,16 +601,17 @@
         "lb_data": 70.4,
         "lb_lang": 74.9,
         "lb_instruct": 57.5
-      },
-      "slug": "gpt-52"
+      }
     },
     {
       "id": "gpt-5.2-2025-12-11-low",
+      "slug": "gpt-52-2025-12-11-low",
       "name": "Gpt 5.2",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-12-11",
+      "effort": "low",
       "vfl": 21,
       "openRouterId": null,
       "sources": [
@@ -603,18 +626,19 @@
         "lb_data": 52.7,
         "lb_lang": 70.2,
         "lb_instruct": 54.5
-      },
-      "slug": "gpt-52"
+      }
     },
     {
       "id": "gpt-5.2-2025-12-11-high",
+      "slug": "gpt-52-2025-12-11-high",
       "name": "Gpt 5.2",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-12-11",
+      "effort": "high",
       "vfl": 22,
-      "openRouterId": null,
+      "openRouterId": "openai/gpt-5.2",
       "sources": [
         "livebench"
       ],
@@ -627,16 +651,17 @@
         "lb_data": 78.2,
         "lb_lang": 79.8,
         "lb_instruct": 61.8
-      },
-      "slug": "gpt-52"
+      }
     },
     {
       "id": "gpt-5.1-codex-max-high",
-      "name": "Gpt 5.1 Codex Max High",
+      "slug": "gpt-51-codex-max-high",
+      "name": "Gpt 5.1 Codex Max",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-25",
+      "effort": "high",
       "vfl": 23,
       "openRouterId": null,
       "sources": [
@@ -651,16 +676,17 @@
         "lb_data": 70.1,
         "lb_lang": 76.5,
         "lb_instruct": 70.4
-      },
-      "slug": "gpt-51-codex-max-high"
+      }
     },
     {
       "id": "gpt-5.1-codex-max",
+      "slug": "gpt-51-codex-max",
       "name": "Gpt 5.1 Codex Max",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-25",
+      "effort": null,
       "vfl": 24,
       "openRouterId": "openai/gpt-5.1-codex-max",
       "sources": [
@@ -675,16 +701,17 @@
         "lb_data": 54.9,
         "lb_lang": 75.4,
         "lb_instruct": 67.2
-      },
-      "slug": "gpt-51-codex-max"
+      }
     },
     {
       "id": "gpt-5.1-codex-mini",
+      "slug": "gpt-51-codex-mini",
       "name": "Gpt 5.1 Codex Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-13",
+      "effort": null,
       "vfl": 25,
       "openRouterId": "openai/gpt-5.1-codex-mini",
       "sources": [
@@ -699,16 +726,17 @@
         "lb_data": 49.7,
         "lb_lang": 63,
         "lb_instruct": 59.1
-      },
-      "slug": "gpt-51-codex-mini"
+      }
     },
     {
       "id": "gpt-5.1-codex",
+      "slug": "gpt-51-codex",
       "name": "Gpt 5.1 Codex",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-13",
+      "effort": null,
       "vfl": 26,
       "openRouterId": "openai/gpt-5.1-codex",
       "sources": [
@@ -723,16 +751,17 @@
         "lb_data": 60.7,
         "lb_lang": 69.5,
         "lb_instruct": 63.4
-      },
-      "slug": "gpt-51-codex"
+      }
     },
     {
       "id": "gpt-5.1-2025-11-13-nothinking",
+      "slug": "gpt-51-2025-11-13-nothinking",
       "name": "Gpt 5.1",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-13",
+      "effort": null,
       "vfl": 27,
       "openRouterId": null,
       "sources": [
@@ -747,16 +776,17 @@
         "lb_data": 44.1,
         "lb_lang": 53.9,
         "lb_instruct": 23.5
-      },
-      "slug": "gpt-51"
+      }
     },
     {
       "id": "gpt-5.1-2025-11-13-medium",
+      "slug": "gpt-51-2025-11-13-medium",
       "name": "Gpt 5.1",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-13",
+      "effort": "medium",
       "vfl": 28,
       "openRouterId": null,
       "sources": [
@@ -771,16 +801,17 @@
         "lb_data": 63.2,
         "lb_lang": 78.7,
         "lb_instruct": 60.3
-      },
-      "slug": "gpt-51"
+      }
     },
     {
       "id": "gpt-5.1-2025-11-13-low",
+      "slug": "gpt-51-2025-11-13-low",
       "name": "Gpt 5.1",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-13",
+      "effort": "low",
       "vfl": 29,
       "openRouterId": null,
       "sources": [
@@ -795,16 +826,17 @@
         "lb_data": 45.9,
         "lb_lang": 77.9,
         "lb_instruct": 47.6
-      },
-      "slug": "gpt-51"
+      }
     },
     {
       "id": "gpt-5.1-2025-11-13-high",
+      "slug": "gpt-51-2025-11-13-high",
       "name": "Gpt 5.1",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-11-13",
+      "effort": "high",
       "vfl": 30,
       "openRouterId": null,
       "sources": [
@@ -819,16 +851,17 @@
         "lb_data": 69.6,
         "lb_lang": 79.2,
         "lb_instruct": 63.9
-      },
-      "slug": "gpt-51"
+      }
     },
     {
       "id": "gpt-5-pro-2025-10-06",
+      "slug": "gpt-5-pro-2025-10-06",
       "name": "Gpt 5 Pro",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": null,
       "vfl": 31,
       "openRouterId": null,
       "sources": [
@@ -843,16 +876,17 @@
         "lb_data": 57,
         "lb_lang": 80.7,
         "lb_instruct": 64
-      },
-      "slug": "gpt-5-pro"
+      }
     },
     {
       "id": "gpt-5-nano-low",
-      "name": "Gpt 5 Nano Low",
+      "slug": "gpt-5-nano-low",
+      "name": "Gpt 5 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": "low",
       "vfl": 32,
       "openRouterId": null,
       "sources": [
@@ -867,16 +901,17 @@
         "lb_data": 36.6,
         "lb_lang": 35.4,
         "lb_instruct": 29.1
-      },
-      "slug": "gpt-5-nano-low"
+      }
     },
     {
       "id": "gpt-5-nano-high",
-      "name": "Gpt 5 Nano High",
+      "slug": "gpt-5-nano-high",
+      "name": "Gpt 5 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": "high",
       "vfl": 33,
       "openRouterId": null,
       "sources": [
@@ -891,16 +926,17 @@
         "lb_data": 43.4,
         "lb_lang": 46.9,
         "lb_instruct": 55.7
-      },
-      "slug": "gpt-5-nano-high"
+      }
     },
     {
       "id": "gpt-5-nano",
+      "slug": "gpt-5-nano",
       "name": "Gpt 5 Nano",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": null,
       "vfl": 34,
       "openRouterId": "openai/gpt-5-nano",
       "sources": [
@@ -915,16 +951,17 @@
         "lb_data": 44.3,
         "lb_lang": 47.7,
         "lb_instruct": 52
-      },
-      "slug": "gpt-5-nano"
+      }
     },
     {
       "id": "gpt-5-mini-minimal",
+      "slug": "gpt-5-mini-minimal",
       "name": "Gpt 5 Mini Minimal",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": null,
       "vfl": 35,
       "openRouterId": null,
       "sources": [
@@ -939,16 +976,17 @@
         "lb_data": 41.5,
         "lb_lang": 44.8,
         "lb_instruct": 20.8
-      },
-      "slug": "gpt-5-mini-minimal"
+      }
     },
     {
       "id": "gpt-5-mini-low",
-      "name": "Gpt 5 Mini Low",
+      "slug": "gpt-5-mini-low",
+      "name": "Gpt 5 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": "low",
       "vfl": 36,
       "openRouterId": null,
       "sources": [
@@ -963,16 +1001,17 @@
         "lb_data": 45,
         "lb_lang": 60.4,
         "lb_instruct": 50.7
-      },
-      "slug": "gpt-5-mini-low"
+      }
     },
     {
       "id": "gpt-5-mini-high",
-      "name": "Gpt 5 Mini High",
+      "slug": "gpt-5-mini-high",
+      "name": "Gpt 5 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": "high",
       "vfl": 37,
       "openRouterId": null,
       "sources": [
@@ -987,16 +1026,17 @@
         "lb_data": 55.2,
         "lb_lang": 75.5,
         "lb_instruct": 65.3
-      },
-      "slug": "gpt-5-mini-high"
+      }
     },
     {
       "id": "gpt-5-mini",
+      "slug": "gpt-5-mini",
       "name": "Gpt 5 Mini",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-07",
+      "effort": null,
       "vfl": 38,
       "openRouterId": "openai/gpt-5-mini",
       "sources": [
@@ -1011,16 +1051,17 @@
         "lb_data": 49.6,
         "lb_lang": 69.1,
         "lb_instruct": 64.2
-      },
-      "slug": "gpt-5-mini"
+      }
     },
     {
       "id": "gpt-oss-120b",
+      "slug": "gpt-oss-120b",
       "name": "Gpt Oss 120b",
       "family": "openai",
       "brand": "OpenAI",
       "type": "closed",
       "released": "2025-08-05",
+      "effort": null,
       "vfl": 39,
       "openRouterId": "openai/gpt-oss-120b",
       "sources": [
@@ -1035,18 +1076,19 @@
         "lb_data": 38.8,
         "lb_lang": 48.6,
         "lb_instruct": 50.3
-      },
-      "slug": "gpt-oss-120b"
+      }
     },
     {
       "id": "claude-opus-4-8-xhigh-effort",
-      "name": "Claude Opus 4 8 Xhigh Effort",
+      "slug": "claude-opus-4-8-xhigh-effort",
+      "name": "Claude Opus 4 8",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "xhigh",
       "vfl": 0,
-      "openRouterId": null,
+      "openRouterId": "anthropic/claude-opus-4.8",
       "sources": [
         "livebench"
       ],
@@ -1059,16 +1101,17 @@
         "lb_data": 78.3,
         "lb_lang": 81.4,
         "lb_instruct": 67.5
-      },
-      "slug": "claude-opus-4-8-xhigh-effort"
+      }
     },
     {
       "id": "claude-opus-4-8-medium-effort",
-      "name": "Claude Opus 4 8 Medium Effort",
+      "slug": "claude-opus-4-8-medium-effort",
+      "name": "Claude Opus 4 8",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "medium",
       "vfl": 1,
       "openRouterId": null,
       "sources": [
@@ -1083,16 +1126,17 @@
         "lb_data": 77.2,
         "lb_lang": 80.4,
         "lb_instruct": 58.1
-      },
-      "slug": "claude-opus-4-8-medium-effort"
+      }
     },
     {
       "id": "claude-opus-4-8-low-effort",
-      "name": "Claude Opus 4 8 Low Effort",
+      "slug": "claude-opus-4-8-low-effort",
+      "name": "Claude Opus 4 8",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "low",
       "vfl": 2,
       "openRouterId": null,
       "sources": [
@@ -1107,16 +1151,17 @@
         "lb_data": 76.4,
         "lb_lang": 77.3,
         "lb_instruct": 59.2
-      },
-      "slug": "claude-opus-4-8-low-effort"
+      }
     },
     {
       "id": "claude-opus-4-8-high-effort",
-      "name": "Claude Opus 4 8 High Effort",
+      "slug": "claude-opus-4-8-high-effort",
+      "name": "Claude Opus 4 8",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "high",
       "vfl": 3,
       "openRouterId": null,
       "sources": [
@@ -1131,18 +1176,19 @@
         "lb_data": 78,
         "lb_lang": 81.6,
         "lb_instruct": 63.4
-      },
-      "slug": "claude-opus-4-8-high-effort"
+      }
     },
     {
       "id": "claude-opus-4-7-xhigh-effort",
-      "name": "Claude Opus 4 7 Xhigh Effort",
+      "slug": "claude-opus-4-7-xhigh-effort",
+      "name": "Claude Opus 4 7",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "xhigh",
       "vfl": 4,
-      "openRouterId": null,
+      "openRouterId": "anthropic/claude-opus-4.7",
       "sources": [
         "livebench"
       ],
@@ -1155,16 +1201,17 @@
         "lb_data": 78.2,
         "lb_lang": 77.9,
         "lb_instruct": 59.4
-      },
-      "slug": "claude-opus-4-7-xhigh-effort"
+      }
     },
     {
       "id": "claude-opus-4-7-medium-effort",
-      "name": "Claude Opus 4 7 Medium Effort",
+      "slug": "claude-opus-4-7-medium-effort",
+      "name": "Claude Opus 4 7",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "medium",
       "vfl": 5,
       "openRouterId": null,
       "sources": [
@@ -1179,16 +1226,17 @@
         "lb_data": 75.7,
         "lb_lang": 76.5,
         "lb_instruct": 50.9
-      },
-      "slug": "claude-opus-4-7-medium-effort"
+      }
     },
     {
       "id": "claude-opus-4-7-low-effort",
-      "name": "Claude Opus 4 7 Low Effort",
+      "slug": "claude-opus-4-7-low-effort",
+      "name": "Claude Opus 4 7",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "low",
       "vfl": 6,
       "openRouterId": null,
       "sources": [
@@ -1203,16 +1251,17 @@
         "lb_data": 75.6,
         "lb_lang": 74.5,
         "lb_instruct": 46.1
-      },
-      "slug": "claude-opus-4-7-low-effort"
+      }
     },
     {
       "id": "claude-opus-4-7-high-effort",
-      "name": "Claude Opus 4 7 High Effort",
+      "slug": "claude-opus-4-7-high-effort",
+      "name": "Claude Opus 4 7",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-04-16",
+      "effort": "high",
       "vfl": 7,
       "openRouterId": null,
       "sources": [
@@ -1227,18 +1276,19 @@
         "lb_data": 77.3,
         "lb_lang": 74.5,
         "lb_instruct": 54.5
-      },
-      "slug": "claude-opus-4-7-high-effort"
+      }
     },
     {
       "id": "claude-sonnet-4-6-thinking-auto-medium-effort",
-      "name": "Claude Sonnet 4 6 Thinking Auto Medium Effort",
+      "slug": "claude-sonnet-4-6-thinking-auto-medium-effort",
+      "name": "Claude Sonnet 4 6",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-02-17",
+      "effort": "medium",
       "vfl": 8,
-      "openRouterId": null,
+      "openRouterId": "anthropic/claude-sonnet-4.6",
       "sources": [
         "livebench"
       ],
@@ -1251,16 +1301,17 @@
         "lb_data": 78,
         "lb_lang": 76.1,
         "lb_instruct": 63.2
-      },
-      "slug": "claude-sonnet-4-6-thinking-auto-medium-effort"
+      }
     },
     {
       "id": "claude-sonnet-4-6-thinking-auto-low-effort",
-      "name": "Claude Sonnet 4 6 Thinking Auto Low Effort",
+      "slug": "claude-sonnet-4-6-thinking-auto-low-effort",
+      "name": "Claude Sonnet 4 6",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-02-17",
+      "effort": "low",
       "vfl": 9,
       "openRouterId": null,
       "sources": [
@@ -1275,16 +1326,17 @@
         "lb_data": 74.6,
         "lb_lang": 71.4,
         "lb_instruct": 51.6
-      },
-      "slug": "claude-sonnet-4-6-thinking-auto-low-effort"
+      }
     },
     {
       "id": "claude-sonnet-4-6-thinking-auto-high-effort",
-      "name": "Claude Sonnet 4 6 Thinking Auto High Effort",
+      "slug": "claude-sonnet-4-6-thinking-auto-high-effort",
+      "name": "Claude Sonnet 4 6",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-02-17",
+      "effort": "high",
       "vfl": 10,
       "openRouterId": null,
       "sources": [
@@ -1299,18 +1351,19 @@
         "lb_data": 76.1,
         "lb_lang": 77.7,
         "lb_instruct": 63.9
-      },
-      "slug": "claude-sonnet-4-6-thinking-auto-high-effort"
+      }
     },
     {
       "id": "claude-opus-4-6-thinking-auto-high-effort",
-      "name": "Claude Opus 4 6 Thinking Auto High Effort",
+      "slug": "claude-opus-4-6-thinking-auto-high-effort",
+      "name": "Claude Opus 4 6",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2026-02-05",
+      "effort": "high",
       "vfl": 11,
-      "openRouterId": null,
+      "openRouterId": "anthropic/claude-opus-4.6",
       "sources": [
         "livebench"
       ],
@@ -1323,16 +1376,17 @@
         "lb_data": 69.9,
         "lb_lang": 83.3,
         "lb_instruct": 63.3
-      },
-      "slug": "claude-opus-4-6-thinking-auto-high-effort"
+      }
     },
     {
       "id": "claude-opus-4-5-20251101-thinking-64k-medium-effort",
-      "name": "Claude Opus 4 5 20251101 Thinking 64k Medium Effort",
+      "slug": "claude-opus-4-5-20251101-thinking-64k-medium-effort",
+      "name": "Claude Opus 4 5 20251101",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "medium",
       "vfl": 12,
       "openRouterId": null,
       "sources": [
@@ -1347,16 +1401,17 @@
         "lb_data": 72.3,
         "lb_lang": 80.3,
         "lb_instruct": 60.5
-      },
-      "slug": "claude-opus-4-5-20251101-thinking-64k-medium-effort"
+      }
     },
     {
       "id": "claude-opus-4-5-20251101-thinking-64k-low-effort",
-      "name": "Claude Opus 4 5 20251101 Thinking 64k Low Effort",
+      "slug": "claude-opus-4-5-20251101-thinking-64k-low-effort",
+      "name": "Claude Opus 4 5 20251101",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "low",
       "vfl": 13,
       "openRouterId": null,
       "sources": [
@@ -1371,18 +1426,19 @@
         "lb_data": 53,
         "lb_lang": 80.7,
         "lb_instruct": 50.8
-      },
-      "slug": "claude-opus-4-5-20251101-thinking-64k-low-effort"
+      }
     },
     {
       "id": "claude-opus-4-5-20251101-thinking-64k-high-effort",
-      "name": "Claude Opus 4 5 20251101 Thinking 64k High Effort",
+      "slug": "claude-opus-4-5-20251101-thinking-64k-high-effort",
+      "name": "Claude Opus 4 5 20251101",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "high",
       "vfl": 14,
-      "openRouterId": null,
+      "openRouterId": "anthropic/claude-opus-4.5",
       "sources": [
         "livebench"
       ],
@@ -1395,16 +1451,17 @@
         "lb_data": 74.4,
         "lb_lang": 81.3,
         "lb_instruct": 62.6
-      },
-      "slug": "claude-opus-4-5-20251101-thinking-64k-high-effort"
+      }
     },
     {
       "id": "claude-opus-4-5-20251101-medium-effort",
-      "name": "Claude Opus 4 5 20251101 Medium Effort",
+      "slug": "claude-opus-4-5-20251101-medium-effort",
+      "name": "Claude Opus 4 5 20251101",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "medium",
       "vfl": 15,
       "openRouterId": null,
       "sources": [
@@ -1419,16 +1476,17 @@
         "lb_data": 45.5,
         "lb_lang": 78.7,
         "lb_instruct": 28.1
-      },
-      "slug": "claude-opus-4-5-20251101-medium-effort"
+      }
     },
     {
       "id": "claude-opus-4-5-20251101-low-effort",
-      "name": "Claude Opus 4 5 20251101 Low Effort",
+      "slug": "claude-opus-4-5-20251101-low-effort",
+      "name": "Claude Opus 4 5 20251101",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "low",
       "vfl": 16,
       "openRouterId": null,
       "sources": [
@@ -1443,16 +1501,17 @@
         "lb_data": 44.1,
         "lb_lang": 77.2,
         "lb_instruct": 29
-      },
-      "slug": "claude-opus-4-5-20251101-low-effort"
+      }
     },
     {
       "id": "claude-opus-4-5-20251101-high-effort",
-      "name": "Claude Opus 4 5 20251101 High Effort",
+      "slug": "claude-opus-4-5-20251101-high-effort",
+      "name": "Claude Opus 4 5 20251101",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "high",
       "vfl": 17,
       "openRouterId": null,
       "sources": [
@@ -1467,16 +1526,17 @@
         "lb_data": 45.6,
         "lb_lang": 77.1,
         "lb_instruct": 26.6
-      },
-      "slug": "claude-opus-4-5-20251101-high-effort"
+      }
     },
     {
       "id": "claude-haiku-4-5-20251001-thinking-64k",
-      "name": "Claude Haiku 4 5 20251001 Thinking 64k",
+      "slug": "claude-haiku-4-5-20251001-thinking-64k",
+      "name": "Claude Haiku 4 5 20251001",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-10-01",
+      "effort": null,
       "vfl": 18,
       "openRouterId": null,
       "sources": [
@@ -1491,16 +1551,17 @@
         "lb_data": 59.3,
         "lb_lang": 66.4,
         "lb_instruct": 49.8
-      },
-      "slug": "claude-haiku-4-5-20251001-thinking-64k"
+      }
     },
     {
       "id": "claude-haiku-4-5-20251001",
-      "name": "Claude Haiku 4 5",
+      "slug": "claude-haiku-4-5-20251001",
+      "name": "Claude Haiku 4 5 20251001",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-10-01",
+      "effort": null,
       "vfl": 19,
       "openRouterId": null,
       "sources": [
@@ -1515,16 +1576,17 @@
         "lb_data": 45.1,
         "lb_lang": 57,
         "lb_instruct": 17.8
-      },
-      "slug": "claude-haiku-4-5"
+      }
     },
     {
       "id": "claude-sonnet-4-5-20250929-thinking-64k",
-      "name": "Claude Sonnet 4 5 20250929 Thinking 64k",
+      "slug": "claude-sonnet-4-5-20250929-thinking-64k",
+      "name": "Claude Sonnet 4 5 20250929",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-09-29",
+      "effort": null,
       "vfl": 20,
       "openRouterId": null,
       "sources": [
@@ -1539,16 +1601,17 @@
         "lb_data": 57,
         "lb_lang": 76.4,
         "lb_instruct": 53.4
-      },
-      "slug": "claude-sonnet-4-5-20250929-thinking-64k"
+      }
     },
     {
       "id": "claude-sonnet-4-5-20250929",
-      "name": "Claude Sonnet 4 5",
+      "slug": "claude-sonnet-4-5-20250929",
+      "name": "Claude Sonnet 4 5 20250929",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-09-29",
+      "effort": null,
       "vfl": 21,
       "openRouterId": null,
       "sources": [
@@ -1563,16 +1626,17 @@
         "lb_data": 47,
         "lb_lang": 76,
         "lb_instruct": 23.5
-      },
-      "slug": "claude-sonnet-4-5"
+      }
     },
     {
       "id": "claude-4-1-opus-20250805-thinking-32k",
-      "name": "Claude 4 1 Opus 20250805 Thinking 32k",
+      "slug": "claude-4-1-opus-20250805-thinking-32k",
+      "name": "Claude 4 1 Opus 20250805",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-08-05",
+      "effort": null,
       "vfl": 22,
       "openRouterId": null,
       "sources": [
@@ -1587,16 +1651,17 @@
         "lb_data": 49,
         "lb_lang": 72.8,
         "lb_instruct": 42.4
-      },
-      "slug": "claude-4-1-opus-20250805-thinking-32k"
+      }
     },
     {
       "id": "claude-4-1-opus-20250805-base",
-      "name": "Claude 4 1 Opus",
+      "slug": "claude-4-1-opus-20250805-base",
+      "name": "Claude 4 1 Opus 20250805 Base",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-08-05",
+      "effort": null,
       "vfl": 23,
       "openRouterId": null,
       "sources": [
@@ -1611,16 +1676,17 @@
         "lb_data": 45.4,
         "lb_lang": 76.8,
         "lb_instruct": 25.9
-      },
-      "slug": "claude-4-1-opus"
+      }
     },
     {
       "id": "claude-4-sonnet-20250514-thinking-64k",
-      "name": "Claude 4 Sonnet 20250514 Thinking 64k",
+      "slug": "claude-4-sonnet-20250514-thinking-64k",
+      "name": "Claude 4 Sonnet 20250514",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-05-14",
+      "effort": null,
       "vfl": 24,
       "openRouterId": null,
       "sources": [
@@ -1635,16 +1701,17 @@
         "lb_data": 54.6,
         "lb_lang": 72.9,
         "lb_instruct": 44.4
-      },
-      "slug": "claude-4-sonnet-20250514-thinking-64k"
+      }
     },
     {
       "id": "claude-4-sonnet-20250514-base",
-      "name": "Claude 4 Sonnet",
+      "slug": "claude-4-sonnet-20250514-base",
+      "name": "Claude 4 Sonnet 20250514 Base",
       "family": "anthropic",
       "brand": "Anthropic",
       "type": "closed",
       "released": "2025-05-14",
+      "effort": null,
       "vfl": 25,
       "openRouterId": null,
       "sources": [
@@ -1659,18 +1726,19 @@
         "lb_data": 44.1,
         "lb_lang": 71,
         "lb_instruct": 22.7
-      },
-      "slug": "claude-4-sonnet"
+      }
     },
     {
       "id": "gemini-3.5-flash-high",
-      "name": "Gemini 3.5 Flash High",
+      "slug": "gemini-35-flash-high",
+      "name": "Gemini 3.5 Flash",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2026-05-19",
+      "effort": "high",
       "vfl": 0,
-      "openRouterId": null,
+      "openRouterId": "google/gemini-3.5-flash",
       "sources": [
         "livebench"
       ],
@@ -1683,16 +1751,17 @@
         "lb_data": 64.9,
         "lb_lang": 84.6,
         "lb_instruct": 75.6
-      },
-      "slug": "gemini-35-flash-high"
+      }
     },
     {
       "id": "gemma-4-31b-it",
+      "slug": "gemma-4-31b-it",
       "name": "Gemma 4 31b",
       "family": "google",
       "brand": "Google",
       "type": "open",
       "released": "2026-04-02",
+      "effort": null,
       "vfl": 0,
       "openRouterId": "google/gemma-4-31b-it",
       "sources": [
@@ -1707,16 +1776,17 @@
         "lb_data": 58.8,
         "lb_lang": 71.3,
         "lb_instruct": 67.6
-      },
-      "slug": "gemma-4-31b"
+      }
     },
     {
       "id": "gemini-3-flash-preview-minimal",
+      "slug": "gemini-3-flash-preview-minimal",
       "name": "Gemini 3 Flash Preview Minimal",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-12-17",
+      "effort": null,
       "vfl": 1,
       "openRouterId": null,
       "sources": [
@@ -1731,16 +1801,17 @@
         "lb_data": 48.3,
         "lb_lang": 78.6,
         "lb_instruct": 28.3
-      },
-      "slug": "gemini-3-flash-preview-minimal"
+      }
     },
     {
       "id": "gemini-3-flash-preview-high",
-      "name": "Gemini 3 Flash Preview High",
+      "slug": "gemini-3-flash-preview-high",
+      "name": "Gemini 3 Flash Preview",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-12-17",
+      "effort": "high",
       "vfl": 2,
       "openRouterId": null,
       "sources": [
@@ -1755,16 +1826,17 @@
         "lb_data": 74.7,
         "lb_lang": 84.6,
         "lb_instruct": 74.9
-      },
-      "slug": "gemini-3-flash-preview-high"
+      }
     },
     {
       "id": "gemini-3-pro-preview-11-2025-low",
-      "name": "Gemini 3 Pro Preview 11 2025 Low",
+      "slug": "gemini-3-pro-preview-11-2025-low",
+      "name": "Gemini 3 Pro Preview 11 2025",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-11-18",
+      "effort": "low",
       "vfl": 3,
       "openRouterId": null,
       "sources": [
@@ -1779,16 +1851,17 @@
         "lb_data": 66.9,
         "lb_lang": 79.5,
         "lb_instruct": 26.9
-      },
-      "slug": "gemini-3-pro-preview-11-2025-low"
+      }
     },
     {
       "id": "gemini-3-pro-preview-11-2025-high",
-      "name": "Gemini 3 Pro Preview 11 2025 High",
+      "slug": "gemini-3-pro-preview-11-2025-high",
+      "name": "Gemini 3 Pro Preview 11 2025",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-11-18",
+      "effort": "high",
       "vfl": 4,
       "openRouterId": null,
       "sources": [
@@ -1803,18 +1876,19 @@
         "lb_data": 74.4,
         "lb_lang": 84.6,
         "lb_instruct": 65.9
-      },
-      "slug": "gemini-3-pro-preview-11-2025-high"
+      }
     },
     {
       "id": "gemini-3.1-pro-preview-high",
-      "name": "Gemini 3.1 Pro Preview High",
+      "slug": "gemini-31-pro-preview-high",
+      "name": "Gemini 3.1 Pro Preview",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "high",
       "vfl": 5,
-      "openRouterId": null,
+      "openRouterId": "google/gemini-3.1-pro-preview",
       "sources": [
         "livebench"
       ],
@@ -1827,16 +1901,17 @@
         "lb_data": 78.5,
         "lb_lang": 85.4,
         "lb_instruct": 79.1
-      },
-      "slug": "gemini-31-pro-preview-high"
+      }
     },
     {
       "id": "gemini-3.1-flash-lite-preview-high",
-      "name": "Gemini 3.1 Flash Lite Preview High",
+      "slug": "gemini-31-flash-lite-preview-high",
+      "name": "Gemini 3.1 Flash Lite Preview",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-11-01",
+      "effort": "high",
       "vfl": 6,
       "openRouterId": null,
       "sources": [
@@ -1851,16 +1926,17 @@
         "lb_data": 54.9,
         "lb_lang": 73.2,
         "lb_instruct": 68.7
-      },
-      "slug": "gemini-31-flash-lite-preview-high"
+      }
     },
     {
       "id": "gemini-2.5-flash-preview-09-2025-highthinking",
+      "slug": "gemini-25-flash-preview-09-2025-highthinking",
       "name": "Gemini 2.5 Flash Preview 09 2025 Highthinking",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-09-25",
+      "effort": null,
       "vfl": 7,
       "openRouterId": null,
       "sources": [
@@ -1875,16 +1951,17 @@
         "lb_data": 61,
         "lb_lang": 65.4,
         "lb_instruct": 27.7
-      },
-      "slug": "gemini-25-flash-preview-09-2025-highthinking"
+      }
     },
     {
       "id": "gemini-2.5-flash-lite-preview-09-2025-highthinking",
+      "slug": "gemini-25-flash-lite-preview-09-2025-highthinking",
       "name": "Gemini 2.5 Flash Lite Preview 09 2025 Highthinking",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-09-25",
+      "effort": null,
       "vfl": 8,
       "openRouterId": null,
       "sources": [
@@ -1899,16 +1976,17 @@
         "lb_data": 47.9,
         "lb_lang": 52.6,
         "lb_instruct": 28.1
-      },
-      "slug": "gemini-25-flash-lite-preview-09-2025-highthinking"
+      }
     },
     {
       "id": "gemini-2.5-flash-lite-highthinking",
+      "slug": "gemini-25-flash-lite-highthinking",
       "name": "Gemini 2.5 Flash Lite Highthinking",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-06-17",
+      "effort": null,
       "vfl": 9,
       "openRouterId": null,
       "sources": [
@@ -1923,16 +2001,17 @@
         "lb_data": 47,
         "lb_lang": 52,
         "lb_instruct": 23.1
-      },
-      "slug": "gemini-25-flash-lite-highthinking"
+      }
     },
     {
       "id": "gemini-2.5-pro-06-05-highthinking",
+      "slug": "gemini-25-pro-06-05-highthinking",
       "name": "Gemini 2.5 Pro 06 05 Highthinking",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-06-05",
+      "effort": null,
       "vfl": 10,
       "openRouterId": null,
       "sources": [
@@ -1947,16 +2026,17 @@
         "lb_data": 51.6,
         "lb_lang": 75.5,
         "lb_instruct": 33.1
-      },
-      "slug": "gemini-25-pro-06-05-highthinking"
+      }
     },
     {
       "id": "gemini-2.5-flash-06-05-highthinking",
+      "slug": "gemini-25-flash-06-05-highthinking",
       "name": "Gemini 2.5 Flash 06 05 Highthinking",
       "family": "google",
       "brand": "Google",
       "type": "closed",
       "released": "2025-06-05",
+      "effort": null,
       "vfl": 11,
       "openRouterId": null,
       "sources": [
@@ -1971,17 +2051,43 @@
         "lb_data": 47.3,
         "lb_lang": 62.3,
         "lb_instruct": 28.5
-      },
-      "slug": "gemini-25-flash-06-05-highthinking"
+      }
+    },
+    {
+      "id": "grok-build-0.1",
+      "slug": "grok-build-01",
+      "name": "Grok Build 0.1",
+      "family": "x-ai",
+      "brand": "xAI",
+      "type": "closed",
+      "released": "2026-05-20",
+      "effort": null,
+      "vfl": 0,
+      "openRouterId": "x-ai/grok-build-0.1",
+      "sources": [
+        "livebench"
+      ],
+      "scores": {
+        "lb_avg": 68.9,
+        "lb_coding": 65.4,
+        "lb_agentic": 53.3,
+        "lb_math": 78.4,
+        "lb_reasoning": 76.4,
+        "lb_data": 70.8,
+        "lb_lang": 72.5,
+        "lb_instruct": 65.2
+      }
     },
     {
       "id": "grok-4.3",
+      "slug": "grok-43",
       "name": "Grok 4.3",
       "family": "x-ai",
       "brand": "xAI",
       "type": "closed",
       "released": "2026-03-09",
-      "vfl": 0,
+      "effort": null,
+      "vfl": 1,
       "openRouterId": "x-ai/grok-4.3",
       "sources": [
         "livebench"
@@ -1995,17 +2101,18 @@
         "lb_data": 55.8,
         "lb_lang": 73.6,
         "lb_instruct": 62.8
-      },
-      "slug": "grok-43"
+      }
     },
     {
       "id": "grok-4.20-beta-0309-reasoning",
+      "slug": "grok-420-beta-0309-reasoning",
       "name": "Grok 4.20 Beta 0309 Reasoning",
       "family": "x-ai",
       "brand": "xAI",
       "type": "closed",
       "released": "2026-03-09",
-      "vfl": 1,
+      "effort": null,
+      "vfl": 2,
       "openRouterId": null,
       "sources": [
         "livebench"
@@ -2019,17 +2126,18 @@
         "lb_data": 62.9,
         "lb_lang": 77.7,
         "lb_instruct": 63.4
-      },
-      "slug": "grok-420-beta-0309-reasoning"
+      }
     },
     {
       "id": "grok-4.20-beta-0309-non-reasoning",
+      "slug": "grok-420-beta-0309-non-reasoning",
       "name": "Grok 4.20 Beta 0309 Non Reasoning",
       "family": "x-ai",
       "brand": "xAI",
       "type": "closed",
       "released": "2026-03-09",
-      "vfl": 2,
+      "effort": null,
+      "vfl": 3,
       "openRouterId": null,
       "sources": [
         "livebench"
@@ -2043,17 +2151,18 @@
         "lb_data": 43.5,
         "lb_lang": 42,
         "lb_instruct": 24.4
-      },
-      "slug": "grok-420-beta-0309-non-reasoning"
+      }
     },
     {
       "id": "grok-4-1-fast-reasoning",
+      "slug": "grok-4-1-fast-reasoning",
       "name": "Grok 4 1 Fast Reasoning",
       "family": "x-ai",
       "brand": "xAI",
       "type": "closed",
       "released": "2025-11-20",
-      "vfl": 3,
+      "effort": null,
+      "vfl": 4,
       "openRouterId": null,
       "sources": [
         "livebench"
@@ -2067,17 +2176,18 @@
         "lb_data": 52.2,
         "lb_lang": 74.3,
         "lb_instruct": 28.2
-      },
-      "slug": "grok-4-1-fast-reasoning"
+      }
     },
     {
       "id": "grok-4-1-fast-non-reasoning",
+      "slug": "grok-4-1-fast-non-reasoning",
       "name": "Grok 4 1 Fast Non Reasoning",
       "family": "x-ai",
       "brand": "xAI",
       "type": "closed",
       "released": "2025-11-20",
-      "vfl": 4,
+      "effort": null,
+      "vfl": 5,
       "openRouterId": null,
       "sources": [
         "livebench"
@@ -2091,17 +2201,18 @@
         "lb_data": 40.6,
         "lb_lang": 50,
         "lb_instruct": 17
-      },
-      "slug": "grok-4-1-fast-non-reasoning"
+      }
     },
     {
       "id": "grok-code-fast-1-0825",
+      "slug": "grok-code-fast-1-0825",
       "name": "Grok Code Fast 1 0825",
       "family": "x-ai",
       "brand": "xAI",
       "type": "closed",
       "released": "2025-08-26",
-      "vfl": 5,
+      "effort": null,
+      "vfl": 6,
       "openRouterId": null,
       "sources": [
         "livebench"
@@ -2115,17 +2226,18 @@
         "lb_data": 49,
         "lb_lang": 48.6,
         "lb_instruct": 22.3
-      },
-      "slug": "grok-code-fast-1-0825"
+      }
     },
     {
       "id": "grok-4-0709",
+      "slug": "grok-4-0709",
       "name": "Grok 4 0709",
       "family": "x-ai",
       "brand": "xAI",
       "type": "closed",
       "released": "2025-07-09",
-      "vfl": 6,
+      "effort": null,
+      "vfl": 7,
       "openRouterId": null,
       "sources": [
         "livebench"
@@ -2139,16 +2251,17 @@
         "lb_data": 63.4,
         "lb_lang": 76.4,
         "lb_instruct": 29.1
-      },
-      "slug": "grok-4-0709"
+      }
     },
     {
       "id": "devstral-2512",
+      "slug": "devstral-2512",
       "name": "Devstral 2512",
       "family": "mistralai",
       "brand": "Mistral AI",
       "type": "open",
       "released": "2025-12-08",
+      "effort": null,
       "vfl": 0,
       "openRouterId": "mistralai/devstral-2512",
       "sources": [
@@ -2163,16 +2276,17 @@
         "lb_data": 39.2,
         "lb_lang": 45.7,
         "lb_instruct": 13.5
-      },
-      "slug": "devstral-2512"
+      }
     },
     {
       "id": "qwen3.6-plus",
+      "slug": "qwen36-plus",
       "name": "Qwen3.6 Plus",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2026-04-02",
+      "effort": null,
       "vfl": 0,
       "openRouterId": "qwen/qwen3.6-plus",
       "sources": [
@@ -2187,16 +2301,17 @@
         "lb_data": 69.9,
         "lb_lang": 75,
         "lb_instruct": 58.4
-      },
-      "slug": "qwen36-plus"
+      }
     },
     {
       "id": "qwen3.6-flash",
+      "slug": "qwen36-flash",
       "name": "Qwen3.6 Flash",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2026-04-02",
+      "effort": null,
       "vfl": 1,
       "openRouterId": "qwen/qwen3.6-flash",
       "sources": [
@@ -2211,16 +2326,17 @@
         "lb_data": 58.8,
         "lb_lang": 63.1,
         "lb_instruct": 47.2
-      },
-      "slug": "qwen36-flash"
+      }
     },
     {
       "id": "qwen3.6-27b",
+      "slug": "qwen36-27b",
       "name": "Qwen3.6 27b",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2026-04-02",
+      "effort": null,
       "vfl": 2,
       "openRouterId": "qwen/qwen3.6-27b",
       "sources": [
@@ -2235,16 +2351,17 @@
         "lb_data": 70.4,
         "lb_lang": 63.3,
         "lb_instruct": 53.2
-      },
-      "slug": "qwen36-27b"
+      }
     },
     {
       "id": "qwen3.7-max",
+      "slug": "qwen37-max",
       "name": "Qwen3.7 Max",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2026-03-11",
+      "effort": null,
       "vfl": 3,
       "openRouterId": "qwen/qwen3.7-max",
       "sources": [
@@ -2259,16 +2376,17 @@
         "lb_data": 71.8,
         "lb_lang": 79.7,
         "lb_instruct": 74.1
-      },
-      "slug": "qwen37-max"
+      }
     },
     {
       "id": "qwen3-next-80b-a3b-thinking",
-      "name": "Qwen3 Next 80b A3b Thinking",
+      "slug": "qwen3-next-80b-a3b-thinking",
+      "name": "Qwen3 Next 80b A3b",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2025-09-06",
+      "effort": null,
       "vfl": 4,
       "openRouterId": "qwen/qwen3-next-80b-a3b-thinking",
       "sources": [
@@ -2283,16 +2401,17 @@
         "lb_data": 53.6,
         "lb_lang": 56.3,
         "lb_instruct": 41.6
-      },
-      "slug": "qwen3-next-80b-a3b-thinking"
+      }
     },
     {
       "id": "qwen3-next-80b-a3b-instruct",
+      "slug": "qwen3-next-80b-a3b-instruct",
       "name": "Qwen3 Next 80b A3b",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2025-09-06",
+      "effort": null,
       "vfl": 5,
       "openRouterId": "qwen/qwen3-next-80b-a3b-instruct",
       "sources": [
@@ -2307,16 +2426,17 @@
         "lb_data": 49.8,
         "lb_lang": 66.3,
         "lb_instruct": 19.2
-      },
-      "slug": "qwen3-next-80b-a3b"
+      }
     },
     {
       "id": "qwen3-235b-a22b-thinking-2507",
+      "slug": "qwen3-235b-a22b-thinking-2507",
       "name": "Qwen3 235b A22b Thinking 2507",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2025-07-25",
+      "effort": null,
       "vfl": 6,
       "openRouterId": "qwen/qwen3-235b-a22b-thinking-2507",
       "sources": [
@@ -2331,16 +2451,17 @@
         "lb_data": 52.2,
         "lb_lang": 69.5,
         "lb_instruct": 40.6
-      },
-      "slug": "qwen3-235b-a22b-thinking-2507"
+      }
     },
     {
       "id": "qwen3-235b-a22b-instruct-2507",
+      "slug": "qwen3-235b-a22b-instruct-2507",
       "name": "Qwen3 235b A22b Instruct 2507",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2025-07-21",
+      "effort": null,
       "vfl": 7,
       "openRouterId": null,
       "sources": [
@@ -2355,16 +2476,17 @@
         "lb_data": 44.7,
         "lb_lang": 66.1,
         "lb_instruct": 21.8
-      },
-      "slug": "qwen3-235b-a22b-instruct-2507"
+      }
     },
     {
       "id": "qwen3-32b-thinking",
-      "name": "Qwen3 32b Thinking",
+      "slug": "qwen3-32b-thinking",
+      "name": "Qwen3 32b",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2025-04-29",
+      "effort": null,
       "vfl": 8,
       "openRouterId": null,
       "sources": [
@@ -2379,16 +2501,17 @@
         "lb_data": 46.5,
         "lb_lang": 55.5,
         "lb_instruct": 17.8
-      },
-      "slug": "qwen3-32b-thinking"
+      }
     },
     {
       "id": "qwen3-30b-a3b-thinking",
-      "name": "Qwen3 30b A3b Thinking",
+      "slug": "qwen3-30b-a3b-thinking",
+      "name": "Qwen3 30b A3b",
       "family": "qwen",
       "brand": "Qwen",
       "type": "open",
       "released": "2025-04-29",
+      "effort": null,
       "vfl": 9,
       "openRouterId": null,
       "sources": [
@@ -2403,16 +2526,17 @@
         "lb_data": 44.9,
         "lb_lang": 54.5,
         "lb_instruct": 21.1
-      },
-      "slug": "qwen3-30b-a3b-thinking"
+      }
     },
     {
       "id": "deepseek-v4-pro",
+      "slug": "deepseek-v4-pro",
       "name": "Deepseek V4 Pro",
       "family": "deepseek",
       "brand": "DeepSeek",
       "type": "open",
       "released": "2026-04-24",
+      "effort": null,
       "vfl": 0,
       "openRouterId": "deepseek/deepseek-v4-pro",
       "sources": [
@@ -2427,16 +2551,17 @@
         "lb_data": 74.5,
         "lb_lang": 78.1,
         "lb_instruct": 62.4
-      },
-      "slug": "deepseek-v4-pro"
+      }
     },
     {
       "id": "deepseek-v4-flash",
+      "slug": "deepseek-v4-flash",
       "name": "Deepseek V4 Flash",
       "family": "deepseek",
       "brand": "DeepSeek",
       "type": "open",
       "released": "2026-04-24",
+      "effort": null,
       "vfl": 1,
       "openRouterId": "deepseek/deepseek-v4-flash",
       "sources": [
@@ -2451,16 +2576,17 @@
         "lb_data": 68,
         "lb_lang": 70.1,
         "lb_instruct": 63.2
-      },
-      "slug": "deepseek-v4-flash"
+      }
     },
     {
       "id": "deepseek-v3.2-thinking",
-      "name": "Deepseek V3.2 Thinking",
+      "slug": "deepseek-v32-thinking",
+      "name": "Deepseek",
       "family": "deepseek",
       "brand": "DeepSeek",
       "type": "open",
       "released": "2025-11-25",
+      "effort": null,
       "vfl": 2,
       "openRouterId": null,
       "sources": [
@@ -2475,16 +2601,17 @@
         "lb_data": 50,
         "lb_lang": 70.4,
         "lb_instruct": 48.2
-      },
-      "slug": "deepseek-v32-thinking"
+      }
     },
     {
       "id": "deepseek-v3.2",
+      "slug": "deepseek-v32",
       "name": "Deepseek",
       "family": "deepseek",
       "brand": "DeepSeek",
       "type": "open",
       "released": "2025-11-25",
+      "effort": null,
       "vfl": 3,
       "openRouterId": "deepseek/deepseek-v3.2",
       "sources": [
@@ -2499,16 +2626,17 @@
         "lb_data": 45,
         "lb_lang": 64.2,
         "lb_instruct": 23.1
-      },
-      "slug": "deepseek"
+      }
     },
     {
       "id": "deepseek-v3.2-exp-thinking",
-      "name": "Deepseek V3.2 Exp Thinking",
+      "slug": "deepseek-v32-exp-thinking",
+      "name": "Deepseek V3.2 Exp",
       "family": "deepseek",
       "brand": "DeepSeek",
       "type": "open",
       "released": "2025-10-17",
+      "effort": null,
       "vfl": 4,
       "openRouterId": null,
       "sources": [
@@ -2523,16 +2651,17 @@
         "lb_data": 51.5,
         "lb_lang": 71.1,
         "lb_instruct": 41.3
-      },
-      "slug": "deepseek-v32-exp-thinking"
+      }
     },
     {
       "id": "deepseek-v3.2-exp",
+      "slug": "deepseek-v32-exp",
       "name": "Deepseek V3.2 Exp",
       "family": "deepseek",
       "brand": "DeepSeek",
       "type": "open",
       "released": "2025-10-17",
+      "effort": null,
       "vfl": 5,
       "openRouterId": "deepseek/deepseek-v3.2-exp",
       "sources": [
@@ -2547,17 +2676,43 @@
         "lb_data": 44.2,
         "lb_lang": 65.6,
         "lb_instruct": 19.4
-      },
-      "slug": "deepseek-v32-exp"
+      }
+    },
+    {
+      "id": "nemotron-3-ultra-550b-a55b",
+      "slug": "nemotron-3-ultra-550b-a55b",
+      "name": "Nemotron 3 Ultra 550b A55b",
+      "family": "nvidia",
+      "brand": "NVIDIA",
+      "type": "open",
+      "released": "2026-06-04",
+      "effort": null,
+      "vfl": 0,
+      "openRouterId": "nvidia/nemotron-3-ultra-550b-a55b",
+      "sources": [
+        "livebench"
+      ],
+      "scores": {
+        "lb_avg": 51.8,
+        "lb_coding": 71.4,
+        "lb_agentic": 46.7,
+        "lb_math": 54.5,
+        "lb_reasoning": 37.6,
+        "lb_data": 42,
+        "lb_lang": 52.2,
+        "lb_instruct": 58.2
+      }
     },
     {
       "id": "nemotron-3-super-120b-a12b",
+      "slug": "nemotron-3-super-120b-a12b",
       "name": "Nemotron 3 Super 120b A12b",
       "family": "nvidia",
       "brand": "NVIDIA",
       "type": "open",
       "released": "2026-03-11",
-      "vfl": 0,
+      "effort": null,
+      "vfl": 1,
       "openRouterId": "nvidia/nemotron-3-super-120b-a12b",
       "sources": [
         "livebench"
@@ -2571,16 +2726,17 @@
         "lb_data": 21.2,
         "lb_lang": 30.1,
         "lb_instruct": 28.4
-      },
-      "slug": "nemotron-3-super-120b-a12b"
+      }
     },
     {
       "id": "kimi-k2.6-thinking",
-      "name": "Kimi K2.6 Thinking",
+      "slug": "kimi-k26-thinking",
+      "name": "Kimi K2.6",
       "family": "moonshotai",
       "brand": "Moonshot AI",
       "type": "open",
       "released": "2026-01-15",
+      "effort": null,
       "vfl": 0,
       "openRouterId": null,
       "sources": [
@@ -2595,16 +2751,17 @@
         "lb_data": 65.1,
         "lb_lang": 75.1,
         "lb_instruct": 64.4
-      },
-      "slug": "kimi-k26-thinking"
+      }
     },
     {
       "id": "kimi-k2-thinking",
-      "name": "Kimi K2 Thinking",
+      "slug": "kimi-k2-thinking",
+      "name": "Kimi K2",
       "family": "moonshotai",
       "brand": "Moonshot AI",
       "type": "open",
       "released": "2025-11-08",
+      "effort": null,
       "vfl": 1,
       "openRouterId": "moonshotai/kimi-k2-thinking",
       "sources": [
@@ -2619,16 +2776,17 @@
         "lb_data": 52.3,
         "lb_lang": 66.5,
         "lb_instruct": 62.1
-      },
-      "slug": "kimi-k2-thinking"
+      }
     },
     {
       "id": "kimi-k2.5-thinking",
-      "name": "Kimi K2.5 Thinking",
+      "slug": "kimi-k25-thinking",
+      "name": "Kimi K2.5",
       "family": "moonshotai",
       "brand": "Moonshot AI",
       "type": "open",
       "released": "2025-09-01",
+      "effort": null,
       "vfl": 2,
       "openRouterId": null,
       "sources": [
@@ -2643,16 +2801,17 @@
         "lb_data": 61.4,
         "lb_lang": 77.7,
         "lb_instruct": 57.4
-      },
-      "slug": "kimi-k25-thinking"
+      }
     },
     {
       "id": "kimi-k2-instruct",
+      "slug": "kimi-k2-instruct",
       "name": "Kimi K2",
       "family": "moonshotai",
       "brand": "Moonshot AI",
       "type": "open",
       "released": "2025-07-11",
+      "effort": null,
       "vfl": 3,
       "openRouterId": null,
       "sources": [
@@ -2667,16 +2826,17 @@
         "lb_data": 43.3,
         "lb_lang": 66.7,
         "lb_instruct": 20.4
-      },
-      "slug": "kimi-k2"
+      }
     },
     {
       "id": "glm-5v-turbo",
+      "slug": "glm-5v-turbo",
       "name": "Glm 5V Turbo",
       "family": "zhipuai",
       "brand": "Zhipu AI",
       "type": "open",
       "released": "2026-01-01",
+      "effort": null,
       "vfl": 0,
       "openRouterId": "z-ai/glm-5v-turbo",
       "sources": [
@@ -2691,16 +2851,17 @@
         "lb_data": 54.1,
         "lb_lang": 62.3,
         "lb_instruct": 27.2
-      },
-      "slug": "glm-5v-turbo"
+      }
     },
     {
       "id": "glm-5.1",
+      "slug": "glm-51",
       "name": "Glm 5.1",
       "family": "zhipuai",
       "brand": "Zhipu AI",
       "type": "open",
       "released": "2026-01-01",
+      "effort": null,
       "vfl": 1,
       "openRouterId": "z-ai/glm-5.1",
       "sources": [
@@ -2715,16 +2876,17 @@
         "lb_data": 63.2,
         "lb_lang": 71.8,
         "lb_instruct": 68.5
-      },
-      "slug": "glm-51"
+      }
     },
     {
       "id": "glm-4.6v",
+      "slug": "glm-46v",
       "name": "Glm 4.6v",
       "family": "zhipuai",
       "brand": "Zhipu AI",
       "type": "open",
       "released": "2025-12-08",
+      "effort": null,
       "vfl": 2,
       "openRouterId": "z-ai/glm-4.6v",
       "sources": [
@@ -2739,16 +2901,17 @@
         "lb_data": 46.4,
         "lb_lang": 49.7,
         "lb_instruct": 17.1
-      },
-      "slug": "glm-46v"
+      }
     },
     {
       "id": "glm-5",
+      "slug": "glm-5",
       "name": "Glm 5",
       "family": "zhipuai",
       "brand": "Zhipu AI",
       "type": "open",
       "released": "2025-12-01",
+      "effort": null,
       "vfl": 3,
       "openRouterId": "z-ai/glm-5",
       "sources": [
@@ -2763,16 +2926,17 @@
         "lb_data": 67.9,
         "lb_lang": 77.5,
         "lb_instruct": 55.4
-      },
-      "slug": "glm-5"
+      }
     },
     {
       "id": "glm-4.7",
+      "slug": "glm-47",
       "name": "Glm 4.7",
       "family": "zhipuai",
       "brand": "Zhipu AI",
       "type": "open",
       "released": "2025-10-01",
+      "effort": null,
       "vfl": 4,
       "openRouterId": "z-ai/glm-4.7",
       "sources": [
@@ -2787,16 +2951,17 @@
         "lb_data": 55.2,
         "lb_lang": 65.2,
         "lb_instruct": 35.7
-      },
-      "slug": "glm-47"
+      }
     },
     {
       "id": "glm-4.6",
+      "slug": "glm-46",
       "name": "Glm 4.6",
       "family": "zhipuai",
       "brand": "Zhipu AI",
       "type": "open",
       "released": "2025-09-01",
+      "effort": null,
       "vfl": 5,
       "openRouterId": "z-ai/glm-4.6",
       "sources": [
@@ -2811,17 +2976,43 @@
         "lb_data": 52,
         "lb_lang": 59,
         "lb_instruct": 26.2
-      },
-      "slug": "glm-46"
+      }
+    },
+    {
+      "id": "minimax-m3",
+      "slug": "minimax-m3",
+      "name": "Minimax M3",
+      "family": "minimax",
+      "brand": "MiniMax",
+      "type": "open",
+      "released": "2026-06-01",
+      "effort": null,
+      "vfl": 0,
+      "openRouterId": "minimax/minimax-m3",
+      "sources": [
+        "livebench"
+      ],
+      "scores": {
+        "lb_avg": 70,
+        "lb_coding": 68.2,
+        "lb_agentic": 60,
+        "lb_math": 76.9,
+        "lb_reasoning": 74.5,
+        "lb_data": 76.1,
+        "lb_lang": 76.8,
+        "lb_instruct": 57.5
+      }
     },
     {
       "id": "minimax-m2.7",
+      "slug": "minimax-m27",
       "name": "Minimax M2.7",
       "family": "minimax",
       "brand": "MiniMax",
       "type": "open",
-      "released": "2026-05-30",
-      "vfl": 0,
+      "released": "2026-03-18",
+      "effort": null,
+      "vfl": 1,
       "openRouterId": "minimax/minimax-m2.7",
       "sources": [
         "livebench"
@@ -2835,17 +3026,18 @@
         "lb_data": 56.3,
         "lb_lang": 66.8,
         "lb_instruct": 61.2
-      },
-      "slug": "minimax-m27"
+      }
     },
     {
       "id": "minimax-m2.5",
+      "slug": "minimax-m25",
       "name": "Minimax M2.5",
       "family": "minimax",
       "brand": "MiniMax",
       "type": "open",
-      "released": "2026-05-30",
-      "vfl": 1,
+      "released": "2026-02-12",
+      "effort": null,
+      "vfl": 2,
       "openRouterId": "minimax/minimax-m2.5",
       "sources": [
         "livebench"
@@ -2859,16 +3051,17 @@
         "lb_data": 49.6,
         "lb_lang": 55.1,
         "lb_instruct": 57.2
-      },
-      "slug": "minimax-m25"
+      }
     },
     {
       "id": "mimo-v2-pro",
+      "slug": "mimo-v2-pro",
       "name": "Mimo V2 Pro",
       "family": "xiaomi",
       "brand": "Xiaomi",
       "type": "open",
       "released": "2026-03-18",
+      "effort": null,
       "vfl": 0,
       "openRouterId": null,
       "sources": [
@@ -2883,16 +3076,17 @@
         "lb_data": 49.2,
         "lb_lang": 69.1,
         "lb_instruct": 43.3
-      },
-      "slug": "mimo-v2-pro"
+      }
     },
     {
       "id": "arcee-trinity-large-preview",
+      "slug": "arcee-trinity-large-preview",
       "name": "Arcee Trinity Large Preview",
       "family": "arcee",
       "brand": "Arcee AI",
       "type": "open",
       "released": "2025-12-01",
+      "effort": null,
       "vfl": 0,
       "openRouterId": null,
       "sources": [
@@ -2907,16 +3101,17 @@
         "lb_data": 40.3,
         "lb_lang": 42.1,
         "lb_instruct": 12.2
-      },
-      "slug": "arcee-trinity-large-preview"
+      }
     },
     {
       "id": "elephant-alpha",
+      "slug": "elephant-alpha",
       "name": "Elephant Alpha",
       "family": "openrouter",
       "brand": "OpenRouter",
       "type": "closed",
       "released": "2026-03-01",
+      "effort": null,
       "vfl": 0,
       "openRouterId": null,
       "sources": [
@@ -2931,8 +3126,7 @@
         "lb_data": 38.5,
         "lb_lang": 27.7,
         "lb_instruct": 29.7
-      },
-      "slug": "elephant-alpha"
+      }
     }
   ]
 }

@@ -470,6 +470,10 @@
           {#each releaseHoverLabel.models as m (m.id)}
             <div class="sel-tag">
               <span class="sel-name">{m.name}</span>
+              {#if m.effort}
+                <span class="effort-tag effort-{m.effort}">{m.effort}</span>
+              {/if}
+              <span class="sel-id" title={m.id}>({m.id})</span>
             </div>
           {/each}
         </div>
@@ -477,6 +481,10 @@
         <div class="header-title">
           {#if highlightedModel}
             {highlightedModel.name}
+            {#if highlightedModel.effort}
+              <span class="effort-badge effort-{highlightedModel.effort}">{highlightedModel.effort}</span>
+            {/if}
+            <span class="header-id">({highlightedModel.id})</span>
           {:else}
             {selectedModels[0]?.name}{selectedModels.length > 1 ? ', ...' : ''}
           {/if}
@@ -489,6 +497,10 @@
               onpointerleave={() => (pillHoverId = null)}
             >
               <span class="sel-name">{m.name}</span>
+              {#if m.effort}
+                <span class="effort-tag effort-{m.effort}">{m.effort}</span>
+              {/if}
+              <span class="sel-id" title={m.id}>({m.id})</span>
               <button class="sel-remove" onclick={(e) => onDeselectModel(e, m.id)} title="Remove from selection">✕</button>
             </div>
           {/each}
@@ -675,6 +687,14 @@
   .sel-tag:hover { border-color: #6366f1 !important; }
   .sel-tag.hovered { border-color: #6366f1 !important; background: #3a4060 !important; }
   .sel-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sel-id { font-size: 10px; color: #8892a4; margin-left: 2px; }
+  .header-id { font-size: 13px; font-weight: 400; color: #8892a4; margin-left: 8px; font-family: monospace; }
+  .effort-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: #22263a; color: #8892a4; margin-left: 6px; vertical-align: middle; }
+  .effort-tag { font-weight: 600; text-transform: uppercase; font-size: 9px; padding: 1px 4px; margin-left: 4px; border-radius: 3px; }
+  .effort-low { color: #4ade80; background: rgba(74,222,128,.1); }
+  .effort-medium { color: #fbbf24; background: rgba(251,191,36,.1); }
+  .effort-high { color: #f87171; background: rgba(248,113,113,.1); }
+  .effort-xhigh { color: #c084fc; background: rgba(192,132,252,.1); }
   .sel-remove {
     background: none; border: none; color: #8892a4; cursor: pointer;
     padding: 0 2px; font-size: 12px; display: flex; align-items: center; justify-content: center;

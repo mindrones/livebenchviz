@@ -1,13 +1,13 @@
 {
-  "fetched": "2026-05-31T16:49:39.047Z",
-  "bundle_url": "https://livebench.ai/static/js/main.d729d0a0.js",
+  "fetched": "2026-06-05T20:37:42.610Z",
+  "bundle_url": "local:src/Table/modelLinks.js",
   "models": {
     "arcee-trinity-large-preview": {
       "url": "https://openrouter.ai/arcee-ai/trinity-large-preview:free",
       "organization": "Arcee",
       "displayName": "Trinity Large Preview",
-      "version": "2025-12-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "chatgpt-4o-latest": {
       "url": "https://openai.com/index/hello-gpt-4o/",
@@ -118,8 +118,8 @@
       "url": "https://docs.cohere.com/docs/models",
       "organization": "Cohere",
       "displayName": "Command R",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2024-08",
+      "version_source": "bundle"
     },
     "command-r-plus": {
       "url": "https://docs.cohere.com/docs/models",
@@ -132,15 +132,15 @@
       "url": "https://cohere.com/blog/command-r-plus-microsoft-azure",
       "organization": "Cohere",
       "displayName": "Command R Plus",
-      "version": "2024-04-04",
-      "version_source": "page_meta"
+      "version": "2024-04",
+      "version_source": "bundle"
     },
     "command-r-plus-08-2024": {
       "url": "https://docs.cohere.com/docs/models",
       "organization": "Cohere",
       "displayName": "Command R Plus",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2024-08",
+      "version_source": "bundle"
     },
     "deepseek-coder-v2": {
       "url": "https://huggingface.co/deepseek-ai/DeepSeek-V2",
@@ -223,15 +223,15 @@
       "url": "https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-flash-001",
       "organization": "Google",
       "displayName": "Gemini 1.5 Flash",
-      "version": null,
-      "version_source": "unknown"
+      "version": "001",
+      "version_source": "bundle"
     },
     "gemini-1.5-flash-002": {
       "url": "https://developers.googleblog.com/en/updated-production-ready-gemini-models-reduced-15-pro-pricing-increased-rate-limits-and-more/",
       "organization": "Google",
       "displayName": "Gemini 1.5 Flash",
-      "version": "2024-09-24",
-      "version_source": "page_meta"
+      "version": "002",
+      "version_source": "bundle"
     },
     "gemini-1.5-flash-8b-exp-0827": {
       "url": "https://ai.google.dev/gemini-api/docs/models/experimental-models",
@@ -272,15 +272,15 @@
       "url": "https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001",
       "organization": "Google",
       "displayName": "Gemini 1.5 Pro",
-      "version": null,
-      "version_source": "unknown"
+      "version": "001",
+      "version_source": "bundle"
     },
     "gemini-1.5-pro-002": {
       "url": "https://developers.googleblog.com/en/updated-production-ready-gemini-models-reduced-15-pro-pricing-increased-rate-limits-and-more/",
       "organization": "Google",
       "displayName": "Gemini 1.5 Pro",
-      "version": "2024-09-24",
-      "version_source": "page_meta"
+      "version": "002",
+      "version_source": "bundle"
     },
     "gemini-1.5-pro-api-0514": {
       "url": "https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-flash-preview-0514",
@@ -314,15 +314,15 @@
       "url": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
       "organization": "Google",
       "displayName": "Gemini 2.0 Flash",
-      "version": "2025-02-05",
-      "version_source": "page_meta"
+      "version": "001",
+      "version_source": "bundle"
     },
     "gemini-2.0-flash-001": {
       "url": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
       "organization": "Google",
       "displayName": "Gemini 2.0 Flash",
-      "version": "2025-02-05",
-      "version_source": "page_meta"
+      "version": "001",
+      "version_source": "bundle"
     },
     "gemini-2.0-flash-thinking-exp-1219": {
       "url": "https://ai.google.dev/gemini-api/docs/thinking-mode",
@@ -450,6 +450,27 @@
       "version": "2025-08-07",
       "version_source": "bundle"
     },
+    "gpt-5-high": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 High",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
+    "gpt-5-low": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Low",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
+    "gpt-5-minimal": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Minimal",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
     "gpt-5-pro-2025-10-06": {
       "url": "https://openai.com/index/introducing-gpt-5/",
       "organization": "OpenAI",
@@ -471,10 +492,52 @@
       "version": "2025-08-07",
       "version_source": "bundle"
     },
+    "gpt-5-mini-high": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Mini High",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
+    "gpt-5-mini-low": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Mini Low",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
+    "gpt-5-mini-minimal": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Mini Minimal",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
     "gpt-5-nano": {
       "url": "https://openai.com/index/introducing-gpt-5/",
       "organization": "OpenAI",
       "displayName": "GPT-5 Nano",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
+    "gpt-5-nano-high": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Nano High",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
+    "gpt-5-nano-low": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Nano Low",
+      "version": "2025-08-07",
+      "version_source": "bundle"
+    },
+    "gpt-5-nano-minimal": {
+      "url": "https://openai.com/index/introducing-gpt-5/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5 Nano Minimal",
       "version": "2025-08-07",
       "version_source": "bundle"
     },
@@ -545,36 +608,36 @@
       "url": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407",
       "organization": "Mistral AI",
       "displayName": "Mistral Large",
-      "version": "2024-07-24",
-      "version_source": "hf_api"
+      "version": "2024-07",
+      "version_source": "bundle"
     },
     "mistral-large-2411": {
       "url": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2411",
       "organization": "Mistral AI",
       "displayName": "Mistral Large",
-      "version": "2024-11-14",
-      "version_source": "hf_api"
+      "version": "2024-11",
+      "version_source": "bundle"
     },
     "mistral-small-2402": {
       "url": "https://docs.mistral.ai/getting-started/models/",
       "organization": "Mistral AI",
       "displayName": "Mistral Small",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2024-02",
+      "version_source": "bundle"
     },
     "mistral-small-2409": {
       "url": "https://huggingface.co/mistralai/Mistral-Small-Instruct-2409",
       "organization": "Mistral AI",
       "displayName": "Mistral Small",
-      "version": "2024-09-17",
-      "version_source": "hf_api"
+      "version": "2024-09",
+      "version_source": "bundle"
     },
     "mistral-small-2501": {
       "url": "https://mistral.ai/en/news/mistral-small-3",
       "organization": "Mistral AI",
       "displayName": "Mistral Small",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2025-01",
+      "version_source": "bundle"
     },
     "mixtral-8x22b-instruct-v0.1": {
       "url": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1",
@@ -604,6 +667,20 @@
       "version": "2024-12-17",
       "version_source": "bundle"
     },
+    "o1-2024-12-17-high": {
+      "url": "https://openai.com/o1/",
+      "organization": "OpenAI",
+      "displayName": "o1 High",
+      "version": "2024-12-17",
+      "version_source": "bundle"
+    },
+    "o1-2024-12-17-low": {
+      "url": "https://openai.com/o1/",
+      "organization": "OpenAI",
+      "displayName": "o1 Low",
+      "version": "2024-12-17",
+      "version_source": "bundle"
+    },
     "o3-mini-2025-01-31": {
       "url": "https://openai.com/index/openai-o3-mini/",
       "organization": "OpenAI",
@@ -611,12 +688,33 @@
       "version": "2025-01-31",
       "version_source": "bundle"
     },
+    "o3-mini-2025-01-31-high": {
+      "url": "https://openai.com/index/openai-o3-mini/",
+      "organization": "OpenAI",
+      "displayName": "o3-Mini High",
+      "version": "2025-01-31",
+      "version_source": "bundle"
+    },
+    "o3-mini-2025-01-31-low": {
+      "url": "https://openai.com/index/openai-o3-mini/",
+      "organization": "OpenAI",
+      "displayName": "o3-Mini Low",
+      "version": "2025-01-31",
+      "version_source": "bundle"
+    },
+    "o3-mini-2025-01-31-medium": {
+      "url": "https://openai.com/index/openai-o3-mini/",
+      "organization": "OpenAI",
+      "displayName": "o3-Mini Medium",
+      "version": "2025-01-31",
+      "version_source": "bundle"
+    },
     "open-mistral-nemo": {
       "url": "https://huggingface.co/mistralai/Mistral-Nemo-Instruct-2407",
       "organization": "Mistral AI",
       "displayName": "Open Mistral Nemo",
-      "version": "2024-07-17",
-      "version_source": "hf_api"
+      "version": "2024-07",
+      "version_source": "bundle"
     },
     "phi-3-medium-128k-instruct": {
       "url": "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct",
@@ -713,8 +811,8 @@
       "url": "https://www.stepfun.com/#step2",
       "organization": "StepFun",
       "displayName": "Step 2 16K",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2024-11",
+      "version_source": "bundle"
     },
     "grok-beta": {
       "url": "https://x.ai/blog/api",
@@ -811,22 +909,22 @@
       "url": "https://developers.googleblog.com/en/start-building-with-the-gemini-2-0-flash-family/",
       "organization": "Google",
       "displayName": "Gemini 2.0 Flash Lite",
-      "version": "2025-02-25",
-      "version_source": "page_meta"
+      "version": "001",
+      "version_source": "bundle"
     },
     "gemini-2.0-flash-lite-001": {
       "url": "https://developers.googleblog.com/en/start-building-with-the-gemini-2-0-flash-family/",
       "organization": "Google",
       "displayName": "Gemini 2.0 Flash Lite",
-      "version": "2025-02-25",
-      "version_source": "page_meta"
+      "version": "001",
+      "version_source": "bundle"
     },
     "mistral-small-2503": {
       "url": "https://mistral.ai/news/mistral-small-3-1",
       "organization": "Mistral AI",
       "displayName": "Mistral Small",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2025-03",
+      "version_source": "bundle"
     },
     "gemma-3-27b-it": {
       "url": "https://blog.google/technology/developers/gemma-3/",
@@ -912,12 +1010,19 @@
       "version": "2025-03-13",
       "version_source": "bundle"
     },
+    "azerogpt": {
+      "url": "https://azero.soundai.com/#/dashboard",
+      "organization": "SoundAI",
+      "displayName": "AzeroGPT",
+      "version": null,
+      "version_source": "unknown"
+    },
     "command-a-03-2025": {
       "url": "https://cohere.com/blog/command-a",
       "organization": "Cohere",
       "displayName": "Command A",
-      "version": "2025-03-13",
-      "version_source": "page_meta"
+      "version": "2025-03",
+      "version_source": "bundle"
     },
     "llama-4-maverick-17b-128e-instruct": {
       "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
@@ -961,10 +1066,38 @@
       "version": "2025-04-16",
       "version_source": "bundle"
     },
+    "o3-2025-04-16-high": {
+      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "organization": "OpenAI",
+      "displayName": "o3 High",
+      "version": "2025-04-16",
+      "version_source": "bundle"
+    },
+    "o3-2025-04-16-medium": {
+      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "organization": "OpenAI",
+      "displayName": "o3 Medium",
+      "version": "2025-04-16",
+      "version_source": "bundle"
+    },
     "o4-mini-2025-04-16": {
       "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
       "organization": "OpenAI",
       "displayName": "o4-Mini",
+      "version": "2025-04-16",
+      "version_source": "bundle"
+    },
+    "o4-mini-2025-04-16-high": {
+      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "organization": "OpenAI",
+      "displayName": "o4-Mini High",
+      "version": "2025-04-16",
+      "version_source": "bundle"
+    },
+    "o4-mini-2025-04-16-medium": {
+      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
+      "organization": "OpenAI",
+      "displayName": "o4-Mini Medium",
       "version": "2025-04-16",
       "version_source": "bundle"
     },
@@ -1021,8 +1154,8 @@
       "url": "https://mistral.ai/news/mistral-medium-3",
       "organization": "Mistral AI",
       "displayName": "Mistral Medium 3",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2025-05",
+      "version_source": "bundle"
     },
     "gemini-2.5-flash-06-05-highthinking": {
       "url": "https://deepmind.google/models/gemini/flash/",
@@ -1182,36 +1315,36 @@
       "url": "https://z.ai/blog/glm-4.6",
       "organization": "Z.AI",
       "displayName": "GLM 4.6",
-      "version": "2025-09-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "glm-4.7": {
       "url": "https://z.ai/blog/glm-4.7",
       "organization": "Z.AI",
       "displayName": "GLM 4.7",
-      "version": "2025-10-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "glm-5": {
       "url": "https://z.ai/blog/glm-5",
       "organization": "Z.AI",
       "displayName": "GLM 5",
-      "version": "2025-12-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "glm-5.1": {
       "url": "https://z.ai/blog/glm-5.1",
       "organization": "Z.AI",
       "displayName": "GLM 5.1",
-      "version": "2026-01-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "glm-5v-turbo": {
       "url": "https://docs.z.ai/guides/vlm/glm-5v-turbo",
       "organization": "Z.AI",
       "displayName": "GLM 5V Turbo",
-      "version": "2026-01-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "glm-4.5-air": {
       "url": "https://z.ai/blog/glm-4.5",
@@ -1259,15 +1392,15 @@
       "url": "https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd&from=research.latest-advancements-list",
       "organization": "Alibaba",
       "displayName": "Qwen 3 Next 80B A3B Instruct",
-      "version": "2025-09-06",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "qwen3-next-80b-a3b-thinking": {
       "url": "https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd&from=research.latest-advancements-list",
       "organization": "Alibaba",
       "displayName": "Qwen 3 Next 80B A3B Thinking",
-      "version": "2025-09-06",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "grok-4-fast-non-reasoning": {
       "url": "https://docs.x.ai/docs/models/grok-4-fast-non-reasoning",
@@ -1364,8 +1497,8 @@
       "url": "https://www.minimax.io/news/minimax-m25",
       "organization": "Minimax",
       "displayName": "Minimax M2.5",
-      "version": "2026-05-30",
-      "version_source": "page_meta"
+      "version": null,
+      "version_source": "unknown"
     },
     "kimi-k2-thinking": {
       "url": "https://huggingface.co/moonshotai/Kimi-K2-Thinking",
@@ -1378,15 +1511,15 @@
       "url": "https://www.kimi.com/blog/kimi-k2-5.html",
       "organization": "Moonshot AI",
       "displayName": "Kimi K2.5 Thinking",
-      "version": "2025-09-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "kimi-k2.6-thinking": {
       "url": "https://www.kimi.com/blog/kimi-k2-6",
       "organization": "Moonshot AI",
       "displayName": "Kimi K2.6 Thinking",
-      "version": "2026-01-15",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "grok-4-fast-non-reasoning-2511": {
       "url": "https://docs.x.ai/docs/models/grok-4-fast-non-reasoning",
@@ -1406,6 +1539,27 @@
       "url": "https://openai.com/index/gpt-5-1/",
       "organization": "OpenAI",
       "displayName": "GPT-5.1",
+      "version": "2025-11-13",
+      "version_source": "bundle"
+    },
+    "gpt-5.1-2025-11-13-high": {
+      "url": "https://openai.com/index/gpt-5-1/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.1 High",
+      "version": "2025-11-13",
+      "version_source": "bundle"
+    },
+    "gpt-5.1-2025-11-13-low": {
+      "url": "https://openai.com/index/gpt-5-1/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.1 Low",
+      "version": "2025-11-13",
+      "version_source": "bundle"
+    },
+    "gpt-5.1-2025-11-13-medium": {
+      "url": "https://openai.com/index/gpt-5-1/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.1 Medium",
       "version": "2025-11-13",
       "version_source": "bundle"
     },
@@ -1434,6 +1588,20 @@
       "url": "https://blog.google/products/gemini/gemini-3/",
       "organization": "Google",
       "displayName": "Gemini 3 Pro Preview",
+      "version": "2025-11-18",
+      "version_source": "bundle"
+    },
+    "gemini-3-pro-preview-11-2025-high": {
+      "url": "https://blog.google/products/gemini/gemini-3/",
+      "organization": "Google",
+      "displayName": "Gemini 3 Pro Preview High",
+      "version": "2025-11-18",
+      "version_source": "bundle"
+    },
+    "gemini-3-pro-preview-11-2025-low": {
+      "url": "https://blog.google/products/gemini/gemini-3/",
+      "organization": "Google",
+      "displayName": "Gemini 3 Pro Preview Low",
       "version": "2025-11-18",
       "version_source": "bundle"
     },
@@ -1469,8 +1637,8 @@
       "url": "https://docs.x.ai/developers/models/grok-4.3",
       "organization": "xAI",
       "displayName": "Grok 4.3",
-      "version": "2026-03-09",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "claude-opus-4-5-20251101": {
       "url": "https://www.anthropic.com/news/claude-opus-4-5",
@@ -1479,10 +1647,52 @@
       "version": "2025-11-01",
       "version_source": "bundle"
     },
+    "claude-opus-4-5-20251101-high-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.5 Opus High Effort",
+      "version": "2025-11-01",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-5-20251101-low-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.5 Opus Low Effort",
+      "version": "2025-11-01",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-5-20251101-medium-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.5 Opus Medium Effort",
+      "version": "2025-11-01",
+      "version_source": "bundle"
+    },
     "claude-opus-4-5-20251101-thinking-64k": {
       "url": "https://www.anthropic.com/news/claude-opus-4-5",
       "organization": "Anthropic",
       "displayName": "Claude 4.5 Opus Thinking",
+      "version": "2025-11-01",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-5-20251101-thinking-64k-high-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.5 Opus Thinking High Effort",
+      "version": "2025-11-01",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-5-20251101-thinking-64k-low-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.5 Opus Thinking Low Effort",
+      "version": "2025-11-01",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-5-20251101-thinking-64k-medium-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.5 Opus Thinking Medium Effort",
       "version": "2025-11-01",
       "version_source": "bundle"
     },
@@ -1497,6 +1707,20 @@
       "url": "https://www.anthropic.com/news/claude-sonnet-4-6",
       "organization": "Anthropic",
       "displayName": "Claude 4.6 Sonnet Thinking High Effort",
+      "version": "2026-02-17",
+      "version_source": "bundle"
+    },
+    "claude-sonnet-4-6-thinking-auto-medium-effort": {
+      "url": "https://www.anthropic.com/news/claude-sonnet-4-6",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.6 Sonnet Thinking Medium Effort",
+      "version": "2026-02-17",
+      "version_source": "bundle"
+    },
+    "claude-sonnet-4-6-thinking-auto-low-effort": {
+      "url": "https://www.anthropic.com/news/claude-sonnet-4-6",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.6 Sonnet Thinking Low Effort",
       "version": "2026-02-17",
       "version_source": "bundle"
     },
@@ -1542,6 +1766,20 @@
       "version": "2025-11-25",
       "version_source": "bundle"
     },
+    "gpt-5.1-codex-max-high": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.1-codex-max",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.1 Codex Max High",
+      "version": "2025-11-25",
+      "version_source": "bundle"
+    },
+    "gpt-5.1-codex-max-xhigh": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.1-codex-max",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.1 Codex Max XHigh",
+      "version": "2025-11-25",
+      "version_source": "bundle"
+    },
     "devstral-2512": {
       "url": "https://mistral.ai/news/devstral-2-vibe-cli",
       "organization": "Mistral",
@@ -1560,6 +1798,27 @@
       "url": "https://openai.com/index/introducing-gpt-5-2/",
       "organization": "OpenAI",
       "displayName": "GPT-5.2",
+      "version": "2025-12-11",
+      "version_source": "bundle"
+    },
+    "gpt-5.2-2025-12-11-high": {
+      "url": "https://openai.com/index/introducing-gpt-5-2/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.2 High",
+      "version": "2025-12-11",
+      "version_source": "bundle"
+    },
+    "gpt-5.2-2025-12-11-medium": {
+      "url": "https://openai.com/index/introducing-gpt-5-2/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.2 Medium",
+      "version": "2025-12-11",
+      "version_source": "bundle"
+    },
+    "gpt-5.2-2025-12-11-low": {
+      "url": "https://openai.com/index/introducing-gpt-5-2/",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.2 Low",
       "version": "2025-12-11",
       "version_source": "bundle"
     },
@@ -1584,6 +1843,20 @@
       "version": "2025-12-17",
       "version_source": "bundle"
     },
+    "gemini-3-flash-preview-high": {
+      "url": "https://blog.google/products/gemini/gemini-3-flash/",
+      "organization": "Google",
+      "displayName": "Gemini 3 Flash Preview High",
+      "version": "2025-12-17",
+      "version_source": "bundle"
+    },
+    "gemini-3-flash-preview-minimal": {
+      "url": "https://blog.google/products/gemini/gemini-3-flash/",
+      "organization": "Google",
+      "displayName": "Gemini 3 Flash Preview Minimal",
+      "version": "2025-12-17",
+      "version_source": "bundle"
+    },
     "gemini-3.5-flash": {
       "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
       "organization": "Google",
@@ -1591,19 +1864,26 @@
       "version": "2026-05-19",
       "version_source": "bundle"
     },
+    "gemini-3.5-flash-high": {
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+      "organization": "Google",
+      "displayName": "Gemini 3.5 Flash High",
+      "version": "2026-05-19",
+      "version_source": "bundle"
+    },
     "gemini-3.1-pro-preview-high": {
       "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-pro-preview/",
       "organization": "Google",
       "displayName": "Gemini 3.1 Pro Preview High*",
-      "version": "2025-11-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "gemini-3.1-flash-lite-preview-high": {
       "url": "https://ai.google.dev/gemini-api/docs/models/gemini-3.1-flash-lite-preview",
       "organization": "Google",
       "displayName": "Gemini 3.1 Flash Lite Preview High",
-      "version": "2025-11-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "gpt-5.3-instant": {
       "url": "https://openai.com/index/gpt-5-3-instant/",
@@ -1619,10 +1899,38 @@
       "version": "2026-02-24",
       "version_source": "bundle"
     },
+    "gpt-5.3-codex-high": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.3-codex",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.3 Codex High",
+      "version": "2026-02-24",
+      "version_source": "bundle"
+    },
+    "gpt-5.3-codex-xhigh": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.3-codex",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.3 Codex xHigh",
+      "version": "2026-02-24",
+      "version_source": "bundle"
+    },
     "gpt-5.4": {
       "url": "https://platform.openai.com/docs/models/gpt-5.4",
       "organization": "OpenAI",
       "displayName": "GPT-5.4",
+      "version": "2026-03-05",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-high": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Thinking High Effort",
+      "version": "2026-03-05",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-xhigh": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Thinking xHigh Effort",
       "version": "2026-03-05",
       "version_source": "bundle"
     },
@@ -1633,6 +1941,34 @@
       "version": "2026-03-17",
       "version_source": "bundle"
     },
+    "gpt-5.4-mini-low": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Mini Low",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-mini-medium": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Mini Medium",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-mini-high": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Mini High",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-mini-xhigh": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Mini xHigh",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
     "gpt-5.4-nano": {
       "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
       "organization": "OpenAI",
@@ -1640,10 +1976,59 @@
       "version": "2026-03-17",
       "version_source": "bundle"
     },
+    "gpt-5.4-nano-low": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Nano Low",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-nano-medium": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Nano Medium",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-nano-high": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Nano High",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
+    "gpt-5.4-nano-xhigh": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.4 Nano xHigh",
+      "version": "2026-03-17",
+      "version_source": "bundle"
+    },
     "gpt-5.5": {
       "url": "https://platform.openai.com/docs/models/gpt-5.5",
       "organization": "OpenAI",
       "displayName": "GPT-5.5",
+      "version": "2026-04-23",
+      "version_source": "bundle"
+    },
+    "gpt-5.5-high": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.5",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.5 Thinking High Effort",
+      "version": "2026-04-23",
+      "version_source": "bundle"
+    },
+    "gpt-5.5-xhigh": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.5",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.5 Thinking xHigh Effort",
+      "version": "2026-04-23",
+      "version_source": "bundle"
+    },
+    "gpt-5.5-medium": {
+      "url": "https://platform.openai.com/docs/models/gpt-5.5",
+      "organization": "OpenAI",
+      "displayName": "GPT-5.5 Thinking Medium Effort",
       "version": "2026-04-23",
       "version_source": "bundle"
     },
@@ -1658,7 +2043,21 @@
       "url": "https://www.minimax.io/news/minimax-m27-en",
       "organization": "Minimax",
       "displayName": "Minimax M2.7",
-      "version": "2026-05-30",
+      "version": null,
+      "version_source": "unknown"
+    },
+    "minimax-m3": {
+      "url": "https://www.minimax.io/blog/minimax-m3",
+      "organization": "Minimax",
+      "displayName": "Minimax M3",
+      "version": null,
+      "version_source": "unknown"
+    },
+    "nemotron-3-ultra-550b-a55b": {
+      "url": "https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b",
+      "organization": "NVIDIA",
+      "displayName": "Nemotron 3 Ultra 550B A55B",
+      "version": "2026-06-04",
       "version_source": "page_meta"
     },
     "qwen3.6-plus": {
@@ -1672,22 +2071,22 @@
       "url": "https://qwen.ai/blog?id=qwen3.6-27b",
       "organization": "Alibaba",
       "displayName": "Qwen 3.6 27B",
-      "version": "2026-04-02",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "qwen3.6-flash": {
       "url": "https://openrouter.ai/qwen/qwen3.6-flash/",
       "organization": "Alibaba",
       "displayName": "Qwen 3.6 Flash",
-      "version": "2026-04-02",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "qwen3.7-max": {
       "url": "https://qwen.ai/blog?id=qwen3.7",
       "organization": "Alibaba",
       "displayName": "Qwen 3.7 Max",
-      "version": "2026-03-11",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "nemotron-3-super-120b-a12b": {
       "url": "https://openrouter.ai/nvidia/nemotron-3-super-120b-a12b:free",
@@ -1700,13 +2099,34 @@
       "url": "https://openrouter.ai/openrouter/elephant-alpha",
       "organization": "OpenRouter",
       "displayName": "Elephant Alpha",
-      "version": "2026-03-01",
-      "version_source": "manual"
+      "version": null,
+      "version_source": "unknown"
     },
     "claude-opus-4-7-high-effort": {
       "url": "https://www.anthropic.com/news/claude-opus-4-7",
       "organization": "Anthropic",
       "displayName": "Claude 4.7 Opus Thinking High Effort",
+      "version": "2026-04-16",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-7-low-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-7",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.7 Opus Thinking Low Effort",
+      "version": "2026-04-16",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-7-medium-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-7",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.7 Opus Thinking Medium Effort",
+      "version": "2026-04-16",
+      "version_source": "bundle"
+    },
+    "claude-opus-4-7-xhigh-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-7",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.7 Opus Thinking xHigh Effort",
       "version": "2026-04-16",
       "version_source": "bundle"
     },
@@ -1717,425 +2137,33 @@
       "version": "2026-04-16",
       "version_source": "bundle"
     },
-    "gpt-5-high": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-low": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-minimal": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-mini-high": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 Mini (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-mini-low": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 Mini (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-mini-minimal": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 Mini (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-nano-high": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 Nano (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-nano-low": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 Nano (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "gpt-5-nano-minimal": {
-      "url": "https://openai.com/index/introducing-gpt-5/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5 Nano (variant)",
-      "version": "2025-08-07",
-      "version_source": "bundle"
-    },
-    "o1-2024-12-17-high": {
-      "url": "https://openai.com/o1/",
-      "organization": "OpenAI",
-      "displayName": "o1 (variant)",
-      "version": "2024-12-17",
-      "version_source": "bundle"
-    },
-    "o1-2024-12-17-low": {
-      "url": "https://openai.com/o1/",
-      "organization": "OpenAI",
-      "displayName": "o1 (variant)",
-      "version": "2024-12-17",
-      "version_source": "bundle"
-    },
-    "o3-mini-2025-01-31-high": {
-      "url": "https://openai.com/index/openai-o3-mini/",
-      "organization": "OpenAI",
-      "displayName": "o3-Mini (variant)",
-      "version": "2025-01-31",
-      "version_source": "bundle"
-    },
-    "o3-mini-2025-01-31-low": {
-      "url": "https://openai.com/index/openai-o3-mini/",
-      "organization": "OpenAI",
-      "displayName": "o3-Mini (variant)",
-      "version": "2025-01-31",
-      "version_source": "bundle"
-    },
-    "o3-mini-2025-01-31-medium": {
-      "url": "https://openai.com/index/openai-o3-mini/",
-      "organization": "OpenAI",
-      "displayName": "o3-Mini (variant)",
-      "version": "2025-01-31",
-      "version_source": "bundle"
-    },
-    "o3-2025-04-16-high": {
-      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
-      "organization": "OpenAI",
-      "displayName": "o3 (variant)",
-      "version": "2025-04-16",
-      "version_source": "bundle"
-    },
-    "o3-2025-04-16-medium": {
-      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
-      "organization": "OpenAI",
-      "displayName": "o3 (variant)",
-      "version": "2025-04-16",
-      "version_source": "bundle"
-    },
-    "o4-mini-2025-04-16-high": {
-      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
-      "organization": "OpenAI",
-      "displayName": "o4-Mini (variant)",
-      "version": "2025-04-16",
-      "version_source": "bundle"
-    },
-    "o4-mini-2025-04-16-medium": {
-      "url": "https://openai.com/index/introducing-o3-and-o4-mini/",
-      "organization": "OpenAI",
-      "displayName": "o4-Mini (variant)",
-      "version": "2025-04-16",
-      "version_source": "bundle"
-    },
-    "gpt-5.1-2025-11-13-high": {
-      "url": "https://openai.com/index/gpt-5-1/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.1 (variant)",
-      "version": "2025-11-13",
-      "version_source": "bundle"
-    },
-    "gpt-5.1-2025-11-13-low": {
-      "url": "https://openai.com/index/gpt-5-1/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.1 (variant)",
-      "version": "2025-11-13",
-      "version_source": "bundle"
-    },
-    "gpt-5.1-2025-11-13-medium": {
-      "url": "https://openai.com/index/gpt-5-1/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.1 (variant)",
-      "version": "2025-11-13",
-      "version_source": "bundle"
-    },
-    "gemini-3-pro-preview-11-2025-high": {
-      "url": "https://blog.google/products/gemini/gemini-3/",
-      "organization": "Google",
-      "displayName": "Gemini 3 Pro Preview (variant)",
-      "version": "2025-11-18",
-      "version_source": "bundle"
-    },
-    "gemini-3-pro-preview-11-2025-low": {
-      "url": "https://blog.google/products/gemini/gemini-3/",
-      "organization": "Google",
-      "displayName": "Gemini 3 Pro Preview (variant)",
-      "version": "2025-11-18",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-5-20251101-high-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+    "claude-opus-4-8-low-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
       "organization": "Anthropic",
-      "displayName": "Claude 4.5 Opus (variant)",
-      "version": "2025-11-01",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-5-20251101-low-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-5",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.5 Opus (variant)",
-      "version": "2025-11-01",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-5-20251101-medium-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-5",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.5 Opus (variant)",
-      "version": "2025-11-01",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-5-20251101-thinking-64k-high-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-5",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.5 Opus Thinking (variant)",
-      "version": "2025-11-01",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-5-20251101-thinking-64k-low-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-5",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.5 Opus Thinking (variant)",
-      "version": "2025-11-01",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-5-20251101-thinking-64k-medium-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-5",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.5 Opus Thinking (variant)",
-      "version": "2025-11-01",
-      "version_source": "bundle"
-    },
-    "claude-sonnet-4-6-thinking-auto-medium-effort": {
-      "url": "https://www.anthropic.com/news/claude-sonnet-4-6",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.6 Sonnet Thinking High Effort (variant)",
-      "version": "2026-02-17",
-      "version_source": "bundle"
-    },
-    "claude-sonnet-4-6-thinking-auto-low-effort": {
-      "url": "https://www.anthropic.com/news/claude-sonnet-4-6",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.6 Sonnet Thinking High Effort (variant)",
-      "version": "2026-02-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.1-codex-max-high": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.1-codex-max",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.1 Codex Max (variant)",
-      "version": "2025-11-25",
-      "version_source": "bundle"
-    },
-    "gpt-5.1-codex-max-xhigh": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.1-codex-max",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.1 Codex Max (variant)",
-      "version": "2025-11-25",
-      "version_source": "bundle"
-    },
-    "gpt-5.2-2025-12-11-high": {
-      "url": "https://openai.com/index/introducing-gpt-5-2/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.2 (variant)",
-      "version": "2025-12-11",
-      "version_source": "bundle"
-    },
-    "gpt-5.2-2025-12-11-medium": {
-      "url": "https://openai.com/index/introducing-gpt-5-2/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.2 (variant)",
-      "version": "2025-12-11",
-      "version_source": "bundle"
-    },
-    "gpt-5.2-2025-12-11-low": {
-      "url": "https://openai.com/index/introducing-gpt-5-2/",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.2 (variant)",
-      "version": "2025-12-11",
-      "version_source": "bundle"
-    },
-    "gemini-3-flash-preview-high": {
-      "url": "https://blog.google/products/gemini/gemini-3-flash/",
-      "organization": "Google",
-      "displayName": "Gemini 3 Flash Preview (variant)",
-      "version": "2025-12-17",
-      "version_source": "bundle"
-    },
-    "gemini-3-flash-preview-minimal": {
-      "url": "https://blog.google/products/gemini/gemini-3-flash/",
-      "organization": "Google",
-      "displayName": "Gemini 3 Flash Preview (variant)",
-      "version": "2025-12-17",
-      "version_source": "bundle"
-    },
-    "gemini-3.5-flash-high": {
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
-      "organization": "Google",
-      "displayName": "Gemini 3.5 Flash (variant)",
-      "version": "2026-05-19",
-      "version_source": "bundle"
-    },
-    "gpt-5.3-codex-high": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.3-codex",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.3 Codex (variant)",
-      "version": "2026-02-24",
-      "version_source": "bundle"
-    },
-    "gpt-5.3-codex-xhigh": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.3-codex",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.3 Codex (variant)",
-      "version": "2026-02-24",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-high": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 (variant)",
-      "version": "2026-03-05",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-xhigh": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 (variant)",
-      "version": "2026-03-05",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-mini-low": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Mini (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-mini-medium": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Mini (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-mini-high": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Mini (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-mini-xhigh": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-mini",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Mini (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-nano-low": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Nano (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-nano-medium": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Nano (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-nano-high": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Nano (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.4-nano-xhigh": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.4-nano",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.4 Nano (variant)",
-      "version": "2026-03-17",
-      "version_source": "bundle"
-    },
-    "gpt-5.5-high": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.5",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.5 (variant)",
-      "version": "2026-04-23",
-      "version_source": "bundle"
-    },
-    "gpt-5.5-xhigh": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.5",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.5 (variant)",
-      "version": "2026-04-23",
-      "version_source": "bundle"
-    },
-    "gpt-5.5-medium": {
-      "url": "https://platform.openai.com/docs/models/gpt-5.5",
-      "organization": "OpenAI",
-      "displayName": "GPT-5.5 (variant)",
-      "version": "2026-04-23",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-7-low-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-7",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.7 Opus Thinking High Effort (variant)",
+      "displayName": "Claude 4.8 Opus Thinking Low Effort",
       "version": "2026-04-16",
       "version_source": "bundle"
     },
-    "claude-opus-4-7-medium-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-7",
+    "claude-opus-4-8-medium-effort": {
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
       "organization": "Anthropic",
-      "displayName": "Claude 4.7 Opus Thinking High Effort (variant)",
-      "version": "2026-04-16",
-      "version_source": "bundle"
-    },
-    "claude-opus-4-7-xhigh-effort": {
-      "url": "https://www.anthropic.com/news/claude-opus-4-7",
-      "organization": "Anthropic",
-      "displayName": "Claude 4.7 Opus Thinking High Effort (variant)",
+      "displayName": "Claude 4.8 Opus Thinking Medium Effort",
       "version": "2026-04-16",
       "version_source": "bundle"
     },
     "claude-opus-4-8-high-effort": {
-      "url": "",
-      "organization": "",
-      "displayName": "claude-opus-4-8-high-effort",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
+      "organization": "Anthropic",
+      "displayName": "Claude 4.8 Opus Thinking High Effort",
       "version": "2026-04-16",
-      "version_source": "manual"
+      "version_source": "bundle"
     },
-    "claude-opus-4-8-medium-effort": {
-      "url": "",
-      "organization": "",
-      "displayName": "claude-opus-4-8-medium-effort",
-      "version": "2026-04-16",
-      "version_source": "manual"
-    },
-    "claude-opus-4-8-low-effort": {
-      "url": "",
-      "organization": "",
-      "displayName": "claude-opus-4-8-low-effort",
-      "version": "2026-04-16",
-      "version_source": "manual"
+    "grok-build-0.1": {
+      "url": "https://x.ai/news/grok-build-0-1",
+      "organization": "xAI",
+      "displayName": "Grok Build 0.1",
+      "version": null,
+      "version_source": "unknown"
     }
   }
 }

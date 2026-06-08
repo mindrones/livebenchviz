@@ -19,10 +19,10 @@
  *       pnpm run fetch:lb-model-config -- --force   # re-scrape unresolved
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, unlinkSync } from 'fs';
 import { mkdir } from 'fs/promises';
 import path      from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { extractDate } from './shared/dateUtils.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -59,7 +59,6 @@ const SCRAPABLE_DOMAINS = new Set([
   'www.anthropic.com',   // Claude announcement posts have og:published_time
   'x.ai',               // Grok announcement posts
   'qwen.ai',            // Qwen blog (?id= param posts)
-  'www.minimax.io',
   'z.ai',
   'www.z.ai',
   'cohere.com',
@@ -163,62 +162,67 @@ async function dateFromPage(url: string): Promise<string | null> {
   } catch { return null; }
 }
 
-// ── Bundle: find current JS URL and extract model configs ─────────────────────
+// ── Local Repo: parse model configs from src/Table/modelLinks.js ──────────────
 async function fetchBundle(): Promise<{
   bundleUrl: string;
   configs: Record<string, Omit<ModelConfig, 'version_source'>>;
 }> {
-  console.log('🌐  Fetching livebench.ai to locate JS bundle …');
-  const htmlRes = await fetch('https://livebench.ai/', {
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; choosy-pipeline/1.0)' },
-    signal: AbortSignal.timeout(15_000),
-  });
-  if (!htmlRes.ok) throw new Error(`livebench.ai: HTTP ${htmlRes.status}`);
-  const html = await htmlRes.text();
-
-  const bundleMatch = html.match(/static\/js\/(main\.[a-f0-9]+\.js)/);
-  if (!bundleMatch) throw new Error('Could not locate JS bundle in livebench.ai HTML');
-  const bundleUrl = `https://livebench.ai/static/js/${bundleMatch[1]}`;
-  console.log(`    Bundle: ${bundleUrl}`);
-
-  const jsRes = await fetch(bundleUrl, {
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; choosy-pipeline/1.0)' },
-    signal: AbortSignal.timeout(30_000),
-  });
-  if (!jsRes.ok) throw new Error(`Bundle fetch: HTTP ${jsRes.status}`);
-  const js = await jsRes.text();
-  console.log(`    Downloaded ${(js.length / 1024).toFixed(0)} KB`);
+  const repoDir = path.join(__dirname, '..', 'livebench_repo');
+  const linksPath = path.join(repoDir, 'src', 'Table', 'modelLinks.js');
+  
+  if (!existsSync(linksPath)) {
+    throw new Error(`modelLinks.js not found at ${linksPath}. Did you run fetchLiveBench first?`);
+  }
+  
+  console.log(`📂  Reading local model configs from ${linksPath} …`);
+  const srcContent = readFileSync(linksPath, 'utf8');
+  
+  // Write content to a temp .mjs file so Node's dynamic import can execute it.
+  const tempMjsPath = path.join(__dirname, 'temp_modelLinks.mjs');
+  writeFileSync(tempMjsPath, srcContent, 'utf8');
+  
+  let modelLinks: any;
+  try {
+    const module = await import(pathToFileURL(tempMjsPath).toString());
+    modelLinks = module.modelLinks;
+  } finally {
+    try {
+      unlinkSync(tempMjsPath);
+    } catch { /* ignore */ }
+  }
 
   const configs: Record<string, Omit<ModelConfig, 'version_source'>> = {};
 
-  // Direct model entries
-  const re = /"([a-zA-Z0-9._/:\-]+)":\{url:"([^"]*)",organization:"([^"]*)",displayName:"([^"]*)"([^}]*)\}/g;
-  for (const m of js.matchAll(re)) {
-    const id = m[1];
-    if (id.length > 80) continue;
-    if (configs[id]) continue;
-    const verM = m[5].match(/version:"(\d{4}-\d{2}-\d{2})"/);
-    configs[id] = { url: m[2], organization: m[3], displayName: m[4], version: verM?.[1] ?? null };
-  }
+  for (const [id, info] of Object.entries(modelLinks)) {
+    const modelInfo = info as any;
+    configs[id] = {
+      url: modelInfo.url,
+      organization: modelInfo.organization,
+      displayName: modelInfo.displayName,
+      version: modelInfo.version ?? null,
+    };
 
-  // Expand variants → inherit base model's version
-  const variantRe = /"([a-zA-Z0-9._/:\-]+)":\{[^}]*?variants:\[(\{[^\]]+\})\]/g;
-  for (const m of js.matchAll(variantRe)) {
-    const baseConf = configs[m[1]];
-    if (!baseConf?.version) continue;
-    for (const rv of m[2].matchAll(/rawName:"([^"]+)"/g)) {
-      const varId = rv[1];
-      if (!configs[varId]) {
-        configs[varId] = { url: baseConf.url, organization: baseConf.organization, displayName: `${baseConf.displayName} (variant)`, version: baseConf.version };
-      } else if (!configs[varId].version) {
-        configs[varId].version = baseConf.version;
+    // Expand variants → inherit base model's version, organization, and url
+    if (modelInfo.variants && Array.isArray(modelInfo.variants)) {
+      for (const variant of modelInfo.variants) {
+        const varId = variant.rawName;
+        if (!configs[varId]) {
+          configs[varId] = {
+            url: modelInfo.url,
+            organization: modelInfo.organization,
+            displayName: variant.displayName || `${modelInfo.displayName} (variant)`,
+            version: modelInfo.version ?? null,
+          };
+        } else if (!configs[varId].version) {
+          configs[varId].version = modelInfo.version ?? null;
+        }
       }
     }
   }
 
   const withVer = Object.values(configs).filter(c => c.version).length;
   console.log(`    Parsed ${Object.keys(configs).length} model configs (${withVer} with version)`);
-  return { bundleUrl, configs };
+  return { bundleUrl: 'local:src/Table/modelLinks.js', configs };
 }
 
 // ── Concurrent resolver (max N parallel, polite per domain) ───────────────────

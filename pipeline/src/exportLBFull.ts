@@ -297,6 +297,10 @@ const LB_RELEASE_DATES_FALLBACK: Record<string, string> = {
   'claude-opus-4-8-high-effort':         '2026-04-16',
   'claude-opus-4-8-medium-effort':       '2026-04-16',
   'claude-opus-4-8-low-effort':          '2026-04-16',
+  // Minimax overrides (prevent dynamic scraping dates)
+  'minimax-m2.5':                        '2026-02-12',
+  'minimax-m2.7':                        '2026-03-18',
+  'minimax-m3':                          '2026-06-01',
 };
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -318,6 +322,7 @@ interface OutputModel {
   brand:        string;
   type:         'open' | 'closed';
   released:     string;
+  effort:       'low' | 'medium' | 'high' | 'xhigh' | null;
   vfl:          number;
   openRouterId:  string | null;
   sources:      string[];
@@ -338,6 +343,13 @@ function round1(v: number | undefined): number | null {
   return v != null && !isNaN(v) ? Math.round(v * 10) / 10 : null;
 }
 
+/** Extract standard thinking effort from the model ID. */
+function extractEffort(id: string): 'low' | 'medium' | 'high' | 'xhigh' | null {
+  const match = id.match(/-(low|medium|high|xhigh)(?:-effort)?$/i);
+  if (match) return match[1].toLowerCase() as 'low' | 'medium' | 'high' | 'xhigh';
+  return null;
+}
+
 /** Clean display name: check explicit table first; fall back to slug cleanup. */
 function cleanLBName(id: string): string {
   if (LB_DISPLAY_NAMES[id]) return LB_DISPLAY_NAMES[id];
@@ -345,8 +357,9 @@ function cleanLBName(id: string): string {
   let clean = id
     .replace(/[_]/g, '-')
     .replace(/:\w+$/, '')                          // strip :0 variants
-    .replace(/-\d{4}-\d{2}-\d{2}(-[a-z0-9-]+)?$/i, '')  // strip date suffix
-    .replace(/-\d{8}(-[a-z0-9]+)?$/i, '')          // strip YYYYMMDD suffix
+    .replace(/-(low|medium|high|xhigh)(?:-effort)?$/i, '') // strip effort suffix
+    .replace(/-thinking(?:-auto|-[\d]+k)?$/i, '')   // strip thinking auto/64k suffix
+    .replace(/-\d{4}-\d{2}-\d{2}(?:-[a-z0-9-]+)?$/i, '')  // strip date suffix (and anything after if matched by greedy fallback)
     .replace(/-(instruct|chat|it|hf)$/i, '')        // trailing -instruct etc.
     .replace(/-v[\d.]+$/i, '');                     // trailing -v0.1 etc.
 
@@ -360,14 +373,14 @@ function cleanLBName(id: string): string {
 }
 
 /** Get a release date for a LB model id.
- *  Priority: model-config cache → ID regex → OpenRouter created → static fallback table.
+ *  Priority: static fallback table (override) → model-config cache → ID regex → OpenRouter created.
  */
 function getLBDate(id: string, orCreated: number | null, configDates: Map<string, string>): string {
+  if (LB_RELEASE_DATES_FALLBACK[id]) return LB_RELEASE_DATES_FALLBACK[id];
   if (configDates.has(id)) return configDates.get(id)!;
   const fromId = extractDate(id);
   if (fromId) return fromId;
   if (orCreated) return unixToDate(orCreated);
-  if (LB_RELEASE_DATES_FALLBACK[id]) return LB_RELEASE_DATES_FALLBACK[id];
   return '2024-01-01';
 }
 
@@ -432,7 +445,8 @@ async function main() {
     const openRouterId = lbToOrId.get(lbm.id) ?? null;
     const created = openRouterId ? (orCreated.get(openRouterId) ?? null) : null;
 
-    const slug = createSlug(cleanLBName(lbm.id));
+    const effort = extractEffort(lbm.id);
+    const slug = createSlug(lbm.id);
 
     intermediate.push({
       id:       lbm.id,
@@ -442,6 +456,7 @@ async function main() {
       brand:    getBrand(family),
       type,
       released: getLBDate(lbm.id, created, configDates),
+      effort:   extractEffort(lbm.id),
       vfl:      0,  // computed below
       openRouterId,
       sources:  ['livebench'],

@@ -170,6 +170,23 @@ const EXPLICIT_MAP: Record<string, string | null> = {
   'Phi-3.5-mini-instruct':                null,
   'phi-3-mini-4k-instruct':               null,
   'phi-3-mini-128k-instruct':             null,
+
+  // New mappings for LiveBench 2026 models
+  'gpt-5.5-xhigh':                       'openai/gpt-5.5',
+  'gpt-5.5-high':                        'openai/gpt-5.5',
+  'gpt-5.4-xhigh':                       'openai/gpt-5.4',
+  'gpt-5.4-high':                        'openai/gpt-5.4',
+  'gpt-5.2-2025-12-11-high':             'openai/gpt-5.2',
+  'claude-opus-4-8-xhigh-effort':        'anthropic/claude-opus-4.8',
+  'claude-opus-4-8-high-effort':         'anthropic/claude-opus-4.8',
+  'claude-opus-4-7-xhigh-effort':        'anthropic/claude-opus-4.7',
+  'claude-opus-4-7-high-effort':         'anthropic/claude-opus-4.7',
+  'claude-opus-4-6-thinking-auto-high-effort': 'anthropic/claude-opus-4.6',
+  'claude-opus-4-5-20251101-thinking-64k-high-effort': 'anthropic/claude-opus-4.5',
+  'claude-sonnet-4-6-thinking-auto-high-effort': 'anthropic/claude-sonnet-4.6',
+  'claude-sonnet-4-6-thinking-auto-medium-effort': 'anthropic/claude-sonnet-4.6',
+  'gemini-3.1-pro-preview-high':         'google/gemini-3.1-pro-preview',
+  'gemini-3.5-flash-high':               'google/gemini-3.5-flash',
 };
 
 // ── No match — known to be absent from OpenRouter ─────────────────────────

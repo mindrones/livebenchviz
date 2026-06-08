@@ -1,5 +1,5 @@
 {
-  "generated": "2026-05-31T16:49:39.600Z",
+  "generated": "2026-06-05T20:37:37.181Z",
   "source": "livebench.github.io/public/table_2026_01_08.csv",
   "release": "2026_01_08",
   "categories": [
@@ -45,7 +45,7 @@
     "typos",
     "zebra_puzzle"
   ],
-  "n_models": 119,
+  "n_models": 122,
   "models": [
     {
       "id": "gpt-5.5-xhigh",
@@ -1488,6 +1488,46 @@
       "n_rows": 23
     },
     {
+      "id": "minimax-m3",
+      "scores": {
+        "reasoning": 74.5,
+        "coding": 68.2,
+        "agentic_coding": 60,
+        "mathematics": 76.9,
+        "data_analysis": 76.1,
+        "language": 76.8,
+        "instruction_following": 57.5,
+        "global_average": 70
+      },
+      "tasks": {
+        "AMPS_Hard": 75,
+        "code_completion": 67.4,
+        "code_generation": 69,
+        "connections": 96.3,
+        "consecutive_events": 84.6,
+        "integrals_with_game": 56,
+        "javascript": 55,
+        "logic_with_navigation": 66,
+        "math_comp": 91.2,
+        "olympiad": 85.6,
+        "paraphrase": 55.9,
+        "plot_unscrambling": 50.2,
+        "python": 75,
+        "simplify": 56.6,
+        "spatial": 94,
+        "story_generation": 63.6,
+        "summarize": 53.9,
+        "tablejoin": 45.8,
+        "tablereformat": 98,
+        "theory_of_mind": 76.9,
+        "typescript": 50,
+        "typos": 84,
+        "zebra_puzzle": 61
+      },
+      "n_categories": 7,
+      "n_rows": 23
+    },
+    {
       "id": "gpt-5.1-2025-11-13-medium",
       "scores": {
         "reasoning": 74,
@@ -1643,6 +1683,46 @@
         "typescript": 40,
         "typos": 78,
         "zebra_puzzle": 35.8
+      },
+      "n_categories": 7,
+      "n_rows": 23
+    },
+    {
+      "id": "grok-build-0.1",
+      "scores": {
+        "reasoning": 76.4,
+        "coding": 65.4,
+        "agentic_coding": 53.3,
+        "mathematics": 78.4,
+        "data_analysis": 70.8,
+        "language": 72.5,
+        "instruction_following": 65.2,
+        "global_average": 68.9
+      },
+      "tasks": {
+        "AMPS_Hard": 66,
+        "code_completion": 67.4,
+        "code_generation": 63.4,
+        "connections": 84,
+        "consecutive_events": 69.7,
+        "integrals_with_game": 66,
+        "javascript": 40,
+        "logic_with_navigation": 70,
+        "math_comp": 95.1,
+        "olympiad": 86.6,
+        "paraphrase": 58.4,
+        "plot_unscrambling": 53.4,
+        "python": 80,
+        "simplify": 62.6,
+        "spatial": 98,
+        "story_generation": 72.5,
+        "summarize": 67.4,
+        "tablejoin": 42.7,
+        "tablereformat": 100,
+        "theory_of_mind": 69.2,
+        "typescript": 40,
+        "typos": 80,
+        "zebra_puzzle": 68.3
       },
       "n_categories": 7,
       "n_rows": 23
@@ -3523,6 +3603,46 @@
         "typescript": 30,
         "typos": 66,
         "zebra_puzzle": 9
+      },
+      "n_categories": 7,
+      "n_rows": 23
+    },
+    {
+      "id": "nemotron-3-ultra-550b-a55b",
+      "scores": {
+        "reasoning": 37.6,
+        "coding": 71.4,
+        "agentic_coding": 46.7,
+        "mathematics": 54.5,
+        "data_analysis": 42,
+        "language": 52.2,
+        "instruction_following": 58.2,
+        "global_average": 51.8
+      },
+      "tasks": {
+        "AMPS_Hard": 73,
+        "code_completion": 65.2,
+        "code_generation": 77.5,
+        "connections": 48,
+        "consecutive_events": 0.4,
+        "integrals_with_game": 14,
+        "javascript": 45,
+        "logic_with_navigation": 26,
+        "math_comp": 81.4,
+        "olympiad": 49.7,
+        "paraphrase": 61.2,
+        "plot_unscrambling": 36.5,
+        "python": 75,
+        "simplify": 55.4,
+        "spatial": 66,
+        "story_generation": 61.1,
+        "summarize": 55.2,
+        "tablejoin": 27.6,
+        "tablereformat": 98,
+        "theory_of_mind": 51.9,
+        "typescript": 20,
+        "typos": 72,
+        "zebra_puzzle": 6.3
       },
       "n_categories": 7,
       "n_rows": 23

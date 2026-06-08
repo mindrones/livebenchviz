@@ -14,6 +14,7 @@ export interface Model {
   brand:        string;
   type:         'open' | 'closed';
   released:     string;           // ISO date YYYY-MM-DD
+  effort:       'low' | 'medium' | 'high' | 'xhigh' | null;
   vfl:          number;           // version-family rank: 0 = latest in its type-group
   openRouterId: string | null;    // OpenRouter model ID, null if not on OpenRouter
   sources:      string[];         // e.g. ['livebench'] or ['hf_leaderboard']

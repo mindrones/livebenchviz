@@ -8,3 +8,7 @@ test-results
 
 # gh-pages deployment cache
 website/node_modules/.cache/gh-pages
+
+# Cloned LiveBench data source
+/pipeline/livebench_repo
+

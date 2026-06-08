@@ -1,7 +1,67 @@
 {
-  "generated": "2026-05-31T16:49:41.111Z",
-  "n_models": 343,
+  "generated": "2026-06-08T11:47:45.223Z",
+  "n_models": 341,
   "models": [
+    {
+      "id": "nvidia/nemotron-3.5-content-safety:free",
+      "name": "NVIDIA: Nemotron 3.5 Content Safety (free)",
+      "created": 1780581864,
+      "context_length": 128000,
+      "pricing": {
+        "prompt": "0",
+        "completion": "0",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text+image->text"
+    },
+    {
+      "id": "nvidia/nemotron-3-ultra-550b-a55b:free",
+      "name": "NVIDIA: Nemotron 3 Ultra (free)",
+      "created": 1780551208,
+      "context_length": 1000000,
+      "pricing": {
+        "prompt": "0",
+        "completion": "0",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "nvidia/nemotron-3-ultra-550b-a55b",
+      "name": "NVIDIA: Nemotron 3 Ultra",
+      "created": 1780551208,
+      "context_length": 1000000,
+      "pricing": {
+        "prompt": "0.0000005",
+        "completion": "0.0000025",
+        "input_cache_read": "0.00000015"
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "qwen/qwen3.7-plus",
+      "name": "Qwen: Qwen3.7 Plus",
+      "created": 1780491783,
+      "context_length": 1000000,
+      "pricing": {
+        "prompt": "0.0000004",
+        "completion": "0.0000016",
+        "input_cache_read": "0.00000008"
+      },
+      "architecture_modality": "text+image->text"
+    },
+    {
+      "id": "minimax/minimax-m3",
+      "name": "MiniMax: MiniMax M3",
+      "created": 1780245374,
+      "context_length": 1048576,
+      "pricing": {
+        "prompt": "0.0000003",
+        "completion": "0.0000012",
+        "input_cache_read": "0.00000006"
+      },
+      "architecture_modality": "text+image+video->text"
+    },
     {
       "id": "stepfun/step-3.7-flash",
       "name": "StepFun: Step 3.7 Flash",
@@ -87,6 +147,18 @@
       "architecture_modality": "text+image+file->text"
     },
     {
+      "id": "openrouter/fusion",
+      "name": "OpenRouter: Fusion",
+      "created": 1778603606,
+      "context_length": 128000,
+      "pricing": {
+        "prompt": "-1",
+        "completion": "-1",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
       "id": "perceptron/perceptron-mk1",
       "name": "Perceptron: Perceptron Mk1",
       "created": 1778597029,
@@ -104,9 +176,9 @@
       "created": 1778247440,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.0000003",
-        "completion": "0.0000025",
-        "input_cache_read": "0.00000006"
+        "prompt": "0.000000075",
+        "completion": "0.000000625",
+        "input_cache_read": "0.000000015"
       },
       "architecture_modality": "text->text"
     },
@@ -260,9 +332,9 @@
       "created": 1777318428,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.000000684",
-        "completion": "0.00000342",
-        "input_cache_read": "0.000000144"
+        "prompt": "0.00000068",
+        "completion": "0.00000341",
+        "input_cache_read": "0.00000034"
       },
       "architecture_modality": "text+image->text"
     },
@@ -356,8 +428,8 @@
       "created": 1777255064,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000029",
-        "completion": "0.0000032",
+        "prompt": "0.000000289",
+        "completion": "0.0000024",
         "input_cache_read": null
       },
       "architecture_modality": "text+image+video->text"
@@ -524,9 +596,9 @@
       "created": 1776699402,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.000000684",
-        "completion": "0.00000342",
-        "input_cache_read": "0.000000144"
+        "prompt": "0.00000068",
+        "completion": "0.00000341",
+        "input_cache_read": "0.00000034"
       },
       "architecture_modality": "text+image->text"
     },
@@ -609,8 +681,8 @@
       "context_length": 262144,
       "pricing": {
         "prompt": "0.00000012",
-        "completion": "0.00000037",
-        "input_cache_read": null
+        "completion": "0.00000036",
+        "input_cache_read": "0.00000009"
       },
       "architecture_modality": "text+image+video->text"
     },
@@ -728,7 +800,7 @@
       "created": 1773836697,
       "context_length": 204800,
       "pricing": {
-        "prompt": "0.00000026",
+        "prompt": "0.000000279",
         "completion": "0.0000012",
         "input_cache_read": null
       },
@@ -824,7 +896,7 @@
       "created": 1773152396,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000004",
+        "prompt": "0.0000001",
         "completion": "0.00000015",
         "input_cache_read": null
       },
@@ -1153,6 +1225,18 @@
         "input_cache_read": "0.00000009"
       },
       "architecture_modality": "text+image->text"
+    },
+    {
+      "id": "upstage/solar-pro-3",
+      "name": "Upstage: Solar Pro 3",
+      "created": 1769481200,
+      "context_length": 128000,
+      "pricing": {
+        "prompt": "0.00000015",
+        "completion": "0.0000006",
+        "input_cache_read": "0.000000015"
+      },
+      "architecture_modality": "text->text"
     },
     {
       "id": "minimax/minimax-m2-her",
@@ -1544,9 +1628,9 @@
       "created": 1764594642,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.000000252",
-        "completion": "0.000000378",
-        "input_cache_read": "0.0000000252"
+        "prompt": "0.0000002288",
+        "completion": "0.0000003432",
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -1868,7 +1952,7 @@
       "created": 1760101395,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.0000001",
+        "prompt": "0.0000004",
         "completion": "0.0000004",
         "input_cache_read": null
       },
@@ -2235,18 +2319,6 @@
       "architecture_modality": "text+image+file->text"
     },
     {
-      "id": "baidu/ernie-4.5-vl-28b-a3b",
-      "name": "Baidu: ERNIE 4.5 VL 28B A3B",
-      "created": 1755032836,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.00000014",
-        "completion": "0.00000056",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text+image->text"
-    },
-    {
       "id": "z-ai/glm-4.5v",
       "name": "Z.ai: GLM 4.5V",
       "created": 1754922288,
@@ -2406,10 +2478,10 @@
       "id": "qwen/qwen3-30b-a3b-instruct-2507",
       "name": "Qwen: Qwen3 30B A3B Instruct 2507",
       "created": 1753806965,
-      "context_length": 262144,
+      "context_length": 131072,
       "pricing": {
-        "prompt": "0.00000009",
-        "completion": "0.0000003",
+        "prompt": "0.00000004815",
+        "completion": "0.00000019305",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -2528,7 +2600,7 @@
       "created": 1753119555,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.000000071",
+        "prompt": "0.00000009",
         "completion": "0.0000001",
         "input_cache_read": null
       },
@@ -2617,18 +2689,6 @@
         "input_cache_read": null
       },
       "architecture_modality": "text+image->text"
-    },
-    {
-      "id": "baidu/ernie-4.5-300b-a47b",
-      "name": "Baidu: ERNIE 4.5 300B A47B ",
-      "created": 1751300139,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.00000028",
-        "completion": "0.0000011",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
     },
     {
       "id": "mistralai/mistral-small-3.2-24b-instruct",
@@ -2775,18 +2835,6 @@
       "architecture_modality": "text+image+file+audio+video->text"
     },
     {
-      "id": "arcee-ai/spotlight",
-      "name": "Arcee AI: Spotlight",
-      "created": 1746481552,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.00000018",
-        "completion": "0.00000018",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text+image->text"
-    },
-    {
       "id": "arcee-ai/maestro-reasoning",
       "name": "Arcee AI: Maestro Reasoning",
       "created": 1746481269,
@@ -2840,8 +2888,8 @@
       "created": 1745878604,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.00000009",
-        "completion": "0.00000045",
+        "prompt": "0.00000012",
+        "completion": "0.0000005",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -2984,7 +3032,7 @@
       "created": 1743881519,
       "context_length": 10000000,
       "pricing": {
-        "prompt": "0.00000008",
+        "prompt": "0.0000001",
         "completion": "0.0000003",
         "input_cache_read": null
       },
@@ -3032,8 +3080,8 @@
       "created": 1741905510,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.00000004",
-        "completion": "0.00000008",
+        "prompt": "0.00000005",
+        "completion": "0.0000001",
         "input_cache_read": null
       },
       "architecture_modality": "text+image->text"
@@ -3044,8 +3092,8 @@
       "created": 1741902625,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.00000004",
-        "completion": "0.00000013",
+        "prompt": "0.00000005",
+        "completion": "0.00000015",
         "input_cache_read": null
       },
       "architecture_modality": "text+image->text"
@@ -3159,18 +3207,6 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "google/gemini-2.0-flash-lite-001",
-      "name": "Google: Gemini 2.0 Flash Lite",
-      "created": 1740506212,
-      "context_length": 1048576,
-      "pricing": {
-        "prompt": "0.000000075",
-        "completion": "0.0000003",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text+image+file+audio+video->text"
-    },
-    {
       "id": "mistralai/mistral-saba",
       "name": "Mistral: Saba",
       "created": 1739803239,
@@ -3205,18 +3241,6 @@
         "input_cache_read": "0.00000055"
       },
       "architecture_modality": "text+file->text"
-    },
-    {
-      "id": "google/gemini-2.0-flash-001",
-      "name": "Google: Gemini 2.0 Flash",
-      "created": 1738769413,
-      "context_length": 1048576,
-      "pricing": {
-        "prompt": "0.0000001",
-        "completion": "0.0000004",
-        "input_cache_read": "0.000000025"
-      },
-      "architecture_modality": "text+image+file+audio+video->text"
     },
     {
       "id": "aion-labs/aion-1.0",
@@ -3392,8 +3416,8 @@
       "created": 1735241320,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.0000002288",
-        "completion": "0.0000009144",
+        "prompt": "0.0000002002",
+        "completion": "0.0000008001",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -3615,18 +3639,6 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "meta-llama/llama-3.2-1b-instruct",
-      "name": "Meta: Llama 3.2 1B Instruct",
-      "created": 1727222400,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.000000027",
-        "completion": "0.000000201",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
       "id": "meta-llama/llama-3.2-3b-instruct:free",
       "name": "Meta: Llama 3.2 3B Instruct (free)",
       "created": 1727222400,
@@ -3651,13 +3663,25 @@
       "architecture_modality": "text->text"
     },
     {
+      "id": "meta-llama/llama-3.2-1b-instruct",
+      "name": "Meta: Llama 3.2 1B Instruct",
+      "created": 1727222400,
+      "context_length": 131072,
+      "pricing": {
+        "prompt": "0.000000027",
+        "completion": "0.000000201",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
       "id": "meta-llama/llama-3.2-11b-vision-instruct",
       "name": "Meta: Llama 3.2 11B Vision Instruct",
       "created": 1727222400,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.000000245",
-        "completion": "0.000000245",
+        "prompt": "0.000000345",
+        "completion": "0.000000345",
         "input_cache_read": null
       },
       "architecture_modality": "text+image->text"
@@ -3716,8 +3740,8 @@
       "created": 1723939200,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.0000003",
-        "completion": "0.0000003",
+        "prompt": "0.0000007",
+        "completion": "0.0000007",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -3771,6 +3795,18 @@
       "architecture_modality": "text+image+file->text"
     },
     {
+      "id": "meta-llama/llama-3.1-8b-instruct",
+      "name": "Meta: Llama 3.1 8B Instruct",
+      "created": 1721692800,
+      "context_length": 131072,
+      "pricing": {
+        "prompt": "0.00000002",
+        "completion": "0.00000003",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
       "id": "meta-llama/llama-3.1-70b-instruct",
       "name": "Meta: Llama 3.1 70B Instruct",
       "created": 1721692800,
@@ -3778,18 +3814,6 @@
       "pricing": {
         "prompt": "0.0000004",
         "completion": "0.0000004",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
-      "id": "meta-llama/llama-3.1-8b-instruct",
-      "name": "Meta: Llama 3.1 8B Instruct",
-      "created": 1721692800,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.00000002",
-        "completion": "0.00000005",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -3843,28 +3867,16 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "sao10k/l3-euryale-70b",
-      "name": "Sao10k: Llama 3 Euryale 70B v2.1",
-      "created": 1718668800,
-      "context_length": 8192,
+      "id": "openai/gpt-4o-2024-05-13",
+      "name": "OpenAI: GPT-4o (2024-05-13)",
+      "created": 1715558400,
+      "context_length": 128000,
       "pricing": {
-        "prompt": "0.00000148",
-        "completion": "0.00000148",
+        "prompt": "0.000005",
+        "completion": "0.000015",
         "input_cache_read": null
       },
-      "architecture_modality": "text->text"
-    },
-    {
-      "id": "nousresearch/hermes-2-pro-llama-3-8b",
-      "name": "NousResearch: Hermes 2 Pro - Llama-3 8B",
-      "created": 1716768000,
-      "context_length": 8192,
-      "pricing": {
-        "prompt": "0.00000014",
-        "completion": "0.00000014",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
+      "architecture_modality": "text+image+file->text"
     },
     {
       "id": "openai/gpt-4o",
@@ -3879,25 +3891,13 @@
       "architecture_modality": "text+image+file->text"
     },
     {
-      "id": "openai/gpt-4o-2024-05-13",
-      "name": "OpenAI: GPT-4o (2024-05-13)",
-      "created": 1715558400,
-      "context_length": 128000,
-      "pricing": {
-        "prompt": "0.000005",
-        "completion": "0.000015",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text+image+file->text"
-    },
-    {
       "id": "meta-llama/llama-3-8b-instruct",
       "name": "Meta: Llama 3 8B Instruct",
       "created": 1713398400,
       "context_length": 8192,
       "pricing": {
-        "prompt": "0.00000004",
-        "completion": "0.00000004",
+        "prompt": "0.00000014",
+        "completion": "0.00000014",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -3975,18 +3975,6 @@
       "architecture_modality": "text+file->text"
     },
     {
-      "id": "openai/gpt-3.5-turbo-0613",
-      "name": "OpenAI: GPT-3.5 Turbo (older v0613)",
-      "created": 1706140800,
-      "context_length": 4095,
-      "pricing": {
-        "prompt": "0.000001",
-        "completion": "0.000002",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
       "id": "openai/gpt-4-turbo-preview",
       "name": "OpenAI: GPT-4 Turbo Preview",
       "created": 1706140800,
@@ -3994,6 +3982,18 @@
       "pricing": {
         "prompt": "0.00001",
         "completion": "0.00003",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "openai/gpt-3.5-turbo-0613",
+      "name": "OpenAI: GPT-3.5 Turbo (older v0613)",
+      "created": 1706140800,
+      "context_length": 4095,
+      "pricing": {
+        "prompt": "0.000001",
+        "completion": "0.000002",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -4009,18 +4009,6 @@
         "input_cache_read": null
       },
       "architecture_modality": "text+image+file+audio+video->text+image"
-    },
-    {
-      "id": "openai/gpt-4-1106-preview",
-      "name": "OpenAI: GPT-4 Turbo (older v1106)",
-      "created": 1699228800,
-      "context_length": 128000,
-      "pricing": {
-        "prompt": "0.00001",
-        "completion": "0.00003",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
     },
     {
       "id": "openai/gpt-3.5-turbo-instruct",
@@ -4078,18 +4066,6 @@
       "pricing": {
         "prompt": "0.00000006",
         "completion": "0.00000006",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
-      "id": "openai/gpt-4-0314",
-      "name": "OpenAI: GPT-4 (older v0314)",
-      "created": 1685232000,
-      "context_length": 8191,
-      "pricing": {
-        "prompt": "0.00003",
-        "completion": "0.00006",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"

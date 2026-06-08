@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { ChartColumn, CircleQuestionMark, Funnel, TrendingUp } from '@lucide/svelte';
+  import { ChartColumn, CircleQuestionMark, Funnel, TrendingUp, GitFork } from '@lucide/svelte';
   import { SvelteSet } from 'svelte/reactivity';
   import { browser } from '$app/environment';
   import { replaceState, afterNavigate } from '$app/navigation';
+  import { base } from '$app/paths';
   import { breakpoints } from '$lib/stores/breakpoints.svelte';
   import { version } from '../../../package.json';
 
@@ -71,6 +72,7 @@
       selectedSlugs:   sp.getAll('sel'),
       brushes,
       tab:             sp.get('tab'),
+      eOff:            sp.get('eOff')?.split(',') ?? [],
     };
   }
   const url0 = readUrlParams();
@@ -90,6 +92,13 @@
   let showOpen         = $state<boolean>(url0?.showOpen        ?? true);
   let showClosed       = $state<boolean>(url0?.showClosed      ?? true);
   let latest2          = $state<boolean>(url0?.latest2         ?? false);
+  let showEffort       = $state<Record<string, boolean>>({
+    null:   !(url0?.eOff.includes('null')),
+    low:    !(url0?.eOff.includes('low')),
+    medium: !(url0?.eOff.includes('medium')),
+    high:   !(url0?.eOff.includes('high')),
+    xhigh:  !(url0?.eOff.includes('xhigh')),
+  });
   let groupByProvider  = $state<boolean>(url0?.groupByProvider ?? true);
   let sortBy           = $state<'count' | 'alpha' | 'category'>(url0?.sortBy ?? 'category');
   let selectedSortAxis = $state<string>(url0?.selectedSortAxis ?? 'lb_avg');
@@ -163,6 +172,7 @@
       ) return false;
       if (!showOpen   && m.type === 'open')   return false;
       if (!showClosed && m.type === 'closed') return false;
+      if (!showEffort[m.effort ?? 'null'])    return false;
       if (latest2     && m.vfl > 1)           return false;
       if (hidden.has(m.id))                   return false;
       if (!searchOk(m))                       return false;
@@ -192,6 +202,7 @@
           !(ollamaLocalOnly && inf?.ollamaLocal) &&
           !(otherSourceOnly && isOther)
         ) return false;
+        if (!showEffort[m.effort ?? 'null'])    return false;
         if (latest2     && m.vfl > 1)           return false;
         if (!searchOk(m))                       return false;
         if (brushStart && brushEnd) {
@@ -246,6 +257,10 @@
     if (sortBy === 'count')    sp.set('sortBy', 'count');
     if (sortBy === 'alpha')    sp.set('sortBy', 'name');
     if (sortBy === 'category' && selectedSortAxis && selectedSortAxis !== 'lb_avg') sp.set('sortAxis', selectedSortAxis);
+    
+    const eOff = ['null', 'low', 'medium', 'high', 'xhigh'].filter(k => !showEffort[k]);
+    if (eOff.length > 0) sp.set('eOff', eOff.join(','));
+
     if (searchQuery.trim())sp.set('searchText',  searchQuery.trim());
     if (selectedIds.size > 0) {
       selectedModels.forEach(m => sp.append('sel', m.slug));
@@ -303,6 +318,7 @@
     otherSourceOnly  = true;
     showOpen         = true;
     showClosed       = true;
+    showEffort       = { null: true, low: true, medium: true, high: true, xhigh: true };
     latest2          = false;
     groupByProvider  = true;
     hidden           = new SvelteSet();
@@ -340,6 +356,9 @@
           <h1>LLMs Benchmarks</h1>
           <div class="header-actions">
             <span class="app-version">{version}</span>
+            <a href="{base}/pipeline" class="pipeline-link" aria-label="Pipeline Data Flow">
+              <GitFork size={20} />
+            </a>
             <a href="https://github.com/mindrones/livebenchviz" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View on GitHub">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
@@ -409,6 +428,7 @@
             bind:settingsCollapsed={sidebarSettingsCollapsed}
             bind:showCitation
             bind:showClosed
+            bind:showEffort
             bind:showOpen
             bind:sortBy
             compact={true}
@@ -464,6 +484,10 @@
             <h1>LLMs Benchmarks</h1>
             <div class="header-actions">
               <span class="app-version">{version}</span>
+              <a href="{base}/pipeline" class="pipeline-link-btn" aria-label="Pipeline Data Flow">
+                <GitFork size={15} />
+                <span>Data Flow</span>
+              </a>
               <button class="help-link" onclick={() => (showHelp = true)} aria-label="How to use">
                 <CircleQuestionMark size={20} />
               </button>
@@ -545,6 +569,7 @@
         bind:selectedSortAxis
         bind:showCitation
         bind:showClosed
+        bind:showEffort
         bind:showOpen
         bind:sortBy
         generatedDate={bd.generated}
@@ -580,6 +605,27 @@
   .help-link:hover { color: #a5b4fc; background: #2e3250; }
   .github-link { color: #8892a4; display: flex; align-items: center; padding: 4px; border-radius: 6px; transition: color .2s, background .2s; }
   .github-link:hover { color: #c4b5fd; background: #2e3250; }
+  .pipeline-link { color: #8892a4; display: flex; align-items: center; padding: 4px; border-radius: 6px; transition: color .2s, background .2s; }
+  .pipeline-link:hover { color: #818cf8; background: #2e3250; }
+  .pipeline-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #8892a4;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #2e3250;
+    background: rgba(255,255,255,0.02);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .pipeline-link-btn:hover {
+    color: #818cf8;
+    background: #2e3250;
+    border-color: #4a5568;
+  }
   header p { color: #8892a4; font-size: 12px; margin-top: 3px; font-style: italic; }
   .hint-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; }
   .hint-chip { white-space: nowrap; }

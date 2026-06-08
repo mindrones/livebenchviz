@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-31T16:49:42.344Z",
-  "modelCount": 119,
+  "generated": "2026-06-08T11:47:46.645Z",
+  "modelCount": 122,
   "entries": {
     "gpt-5.5-xhigh": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "gpt-5.5-medium": {
       "ollamaCloud": false,
@@ -70,7 +70,7 @@
     "gpt-5.4-xhigh": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "gpt-5.4-high": {
       "ollamaCloud": false,
@@ -115,7 +115,7 @@
     "gpt-5.2-2025-12-11-high": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "gpt-5.1-codex-max-high": {
       "ollamaCloud": false,
@@ -198,14 +198,14 @@
       "openRouter": true
     },
     "gpt-oss-120b": {
-      "ollamaCloud": true,
-      "ollamaLocal": true,
+      "ollamaCloud": false,
+      "ollamaLocal": false,
       "openRouter": true
     },
     "claude-opus-4-8-xhigh-effort": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "claude-opus-4-8-medium-effort": {
       "ollamaCloud": false,
@@ -225,7 +225,7 @@
     "claude-opus-4-7-xhigh-effort": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "claude-opus-4-7-medium-effort": {
       "ollamaCloud": false,
@@ -245,7 +245,7 @@
     "claude-sonnet-4-6-thinking-auto-medium-effort": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "claude-sonnet-4-6-thinking-auto-low-effort": {
       "ollamaCloud": false,
@@ -260,7 +260,7 @@
     "claude-opus-4-6-thinking-auto-high-effort": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "claude-opus-4-5-20251101-thinking-64k-medium-effort": {
       "ollamaCloud": false,
@@ -275,7 +275,7 @@
     "claude-opus-4-5-20251101-thinking-64k-high-effort": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "claude-opus-4-5-20251101-medium-effort": {
       "ollamaCloud": false,
@@ -335,7 +335,7 @@
     "gemini-3.5-flash-high": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "gemma-4-31b-it": {
       "ollamaCloud": true,
@@ -365,7 +365,7 @@
     "gemini-3.1-pro-preview-high": {
       "ollamaCloud": false,
       "ollamaLocal": false,
-      "openRouter": false
+      "openRouter": true
     },
     "gemini-3.1-flash-lite-preview-high": {
       "ollamaCloud": false,
@@ -396,6 +396,11 @@
       "ollamaCloud": false,
       "ollamaLocal": false,
       "openRouter": false
+    },
+    "grok-build-0.1": {
+      "ollamaCloud": false,
+      "ollamaLocal": false,
+      "openRouter": true
     },
     "grok-4.3": {
       "ollamaCloud": false,
@@ -433,8 +438,8 @@
       "openRouter": false
     },
     "devstral-2512": {
-      "ollamaCloud": true,
-      "ollamaLocal": true,
+      "ollamaCloud": false,
+      "ollamaLocal": false,
       "openRouter": true
     },
     "qwen3.6-plus": {
@@ -458,33 +463,33 @@
       "openRouter": true
     },
     "qwen3-next-80b-a3b-thinking": {
-      "ollamaCloud": true,
-      "ollamaLocal": true,
+      "ollamaCloud": false,
+      "ollamaLocal": false,
       "openRouter": true
     },
     "qwen3-next-80b-a3b-instruct": {
-      "ollamaCloud": true,
-      "ollamaLocal": true,
+      "ollamaCloud": false,
+      "ollamaLocal": false,
       "openRouter": true
     },
     "qwen3-235b-a22b-thinking-2507": {
       "ollamaCloud": false,
-      "ollamaLocal": true,
+      "ollamaLocal": false,
       "openRouter": true
     },
     "qwen3-235b-a22b-instruct-2507": {
       "ollamaCloud": false,
-      "ollamaLocal": true,
+      "ollamaLocal": false,
       "openRouter": false
     },
     "qwen3-32b-thinking": {
       "ollamaCloud": false,
-      "ollamaLocal": true,
+      "ollamaLocal": false,
       "openRouter": false
     },
     "qwen3-30b-a3b-thinking": {
       "ollamaCloud": false,
-      "ollamaLocal": true,
+      "ollamaLocal": false,
       "openRouter": false
     },
     "deepseek-v4-pro": {
@@ -517,6 +522,11 @@
       "ollamaLocal": false,
       "openRouter": true
     },
+    "nemotron-3-ultra-550b-a55b": {
+      "ollamaCloud": false,
+      "ollamaLocal": false,
+      "openRouter": true
+    },
     "nemotron-3-super-120b-a12b": {
       "ollamaCloud": true,
       "ollamaLocal": true,
@@ -528,17 +538,17 @@
       "openRouter": false
     },
     "kimi-k2-thinking": {
-      "ollamaCloud": true,
+      "ollamaCloud": false,
       "ollamaLocal": false,
       "openRouter": true
     },
     "kimi-k2.5-thinking": {
-      "ollamaCloud": true,
+      "ollamaCloud": false,
       "ollamaLocal": false,
       "openRouter": false
     },
     "kimi-k2-instruct": {
-      "ollamaCloud": true,
+      "ollamaCloud": false,
       "ollamaLocal": false,
       "openRouter": false
     },
@@ -568,7 +578,12 @@
       "openRouter": true
     },
     "glm-4.6": {
-      "ollamaCloud": true,
+      "ollamaCloud": false,
+      "ollamaLocal": false,
+      "openRouter": true
+    },
+    "minimax-m3": {
+      "ollamaCloud": false,
       "ollamaLocal": false,
       "openRouter": true
     },

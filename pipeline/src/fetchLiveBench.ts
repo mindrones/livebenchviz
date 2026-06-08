@@ -16,10 +16,11 @@
  *       pnpm run fetch:livebench -- --force
  */
 
-import { writeFileSync, existsSync, readFileSync } from 'fs';
+import { writeFileSync, existsSync, readFileSync, copyFileSync, readdirSync } from 'fs';
 import { mkdir }  from 'fs/promises';
 import path       from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR   = path.join(__dirname, '..', 'out');
@@ -27,78 +28,92 @@ const OUT_FILE        = path.join(OUT_DIR, 'livebench.csv');
 const CATEGORIES_FILE = path.join(OUT_DIR, 'livebench_categories.json');
 const RELEASE_FILE    = path.join(OUT_DIR, 'livebench_release.txt');
 
-// GitHub Pages source for LiveBench leaderboard data.
-// The HF parquet (livebench/model_judgment) stopped updating after April 2025.
-const SITE_REPO = 'https://raw.githubusercontent.com/LiveBench/livebench.github.io/main/public';
-const TREE_API  = 'https://api.github.com/repos/LiveBench/livebench.github.io/git/trees/main?recursive=1';
+const REPO_DIR = path.join(__dirname, '..', 'livebench_repo');
+const SITE_REPO_URL = 'https://github.com/LiveBench/livebench.github.io.git';
 
-const force = process.argv.includes('--force');
-
-/** Fetch the directory listing and return the latest table_*.csv filename. */
-async function getLatestRelease(): Promise<string> {
-  const res = await fetch(TREE_API, {
-    headers: { 'User-Agent': 'choosy-pipeline/1.0' },
-    signal: AbortSignal.timeout(10_000),
-  });
-  if (!res.ok) throw new Error(`GitHub tree API: HTTP ${res.status}`);
-  const tree = await res.json() as { tree: Array<{ path: string }> };
-  const tables = tree.tree
-    .map(f => f.path)
-    .filter(p => /^public\/table_\d{4}_\d{2}_\d{2}\.csv$/.test(p))
-    .map(p => p.replace('public/table_', '').replace('.csv', ''))  // e.g. "2026_01_08"
+function getLatestReleaseFromRepo(repoDir: string): string {
+  const publicDir = path.join(repoDir, 'public');
+  const files = readdirSync(publicDir);
+  const tables = files
+    .filter(f => /^table_\d{4}_\d{2}_\d{2}\.csv$/.test(f))
+    .map(f => f.replace('table_', '').replace('.csv', ''))
     .sort();
-  if (!tables.length) throw new Error('No table_*.csv files found in livebench.github.io');
-  const latest = tables[tables.length - 1];
-  console.log(`    Available releases: ${tables.join(', ')}`);
-  return latest;
+  if (!tables.length) throw new Error('No table_*.csv files found in livebench_repo/public');
+  return tables[tables.length - 1];
 }
 
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
 
-  if (existsSync(OUT_FILE) && existsSync(CATEGORIES_FILE) && !force) {
-    const release = existsSync(RELEASE_FILE) ? readFileSync(RELEASE_FILE, 'utf8').trim() : '(unknown)';
-    const { size } = (await import('fs')).statSync(OUT_FILE);
-    console.log(`✅  Cached  →  ${OUT_FILE}  (${(size / 1024).toFixed(0)} KB, release ${release})`);
-    console.log('    Use --force to re-download.');
-    return;
+  let gitFailed = false;
+  if (!existsSync(REPO_DIR)) {
+    console.log(`📥  Cloning LiveBench repository to ${REPO_DIR} …`);
+    try {
+      execSync(`git clone ${SITE_REPO_URL} "${REPO_DIR}"`, { stdio: 'inherit' });
+      console.log('✅  Repository cloned successfully.');
+    } catch (e: any) {
+      console.error(`⚠️  Failed to clone repository: ${e.message}`);
+      gitFailed = true;
+    }
+  } else {
+    console.log(`📥  Updating LiveBench repository in ${REPO_DIR} …`);
+    try {
+      execSync(`git -C "${REPO_DIR}" pull`, { stdio: 'inherit' });
+      console.log('✅  Repository updated successfully.');
+    } catch (e: any) {
+      console.error(`⚠️  Failed to pull repository updates: ${e.message}`);
+      gitFailed = true;
+    }
   }
 
-  console.log('📥  Finding latest LiveBench release via GitHub API …');
-  const release = await getLatestRelease();
-  const csvUrl  = `${SITE_REPO}/table_${release}.csv`;
+  // If Git failed and we don't have the cached files/repo, we cannot proceed.
+  if (gitFailed && !existsSync(REPO_DIR) && (!existsSync(OUT_FILE) || !existsSync(CATEGORIES_FILE))) {
+    throw new Error('Git repository clone/pull failed, and no cached LiveBench files exist.');
+  }
 
-  console.log(`📥  Downloading LiveBench ${release} …`);
-  console.log(`    ${csvUrl}`);
+  let release: string;
+  if (gitFailed) {
+    if (existsSync(REPO_DIR)) {
+      release = getLatestReleaseFromRepo(REPO_DIR);
+    } else if (existsSync(RELEASE_FILE)) {
+      release = readFileSync(RELEASE_FILE, 'utf8').trim();
+    } else {
+      throw new Error('Unable to determine release date.');
+    }
+    console.log(`⚠️  Using local/cached files (release ${release}) due to git error.`);
+  } else {
+    release = getLatestReleaseFromRepo(REPO_DIR);
+  }
 
-  const res = await fetch(csvUrl, {
-    headers: { 'User-Agent': 'choosy-pipeline/1.0' },
-    signal: AbortSignal.timeout(20_000),
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+  const repoCsvPath = path.join(REPO_DIR, 'public', `table_${release}.csv`);
+  const repoCategoriesPath = path.join(REPO_DIR, 'public', `categories_${release}.json`);
 
-  const csv = await res.text();
-  const rows = csv.trim().split('\n').length - 1;  // minus header
+  // Copy local CSV to out/
+  if (existsSync(repoCsvPath)) {
+    copyFileSync(repoCsvPath, OUT_FILE);
+    const csvContent = readFileSync(OUT_FILE, 'utf8');
+    const rows = csvContent.trim().split('\n').length - 1;
+    writeFileSync(RELEASE_FILE, release, 'utf8');
+    console.log(`✅  Saved  →  ${OUT_FILE}  (${rows} models, release ${release}, ${(csvContent.length / 1024).toFixed(0)} KB)`);
+  } else {
+    if (!existsSync(OUT_FILE)) {
+      throw new Error(`CSV file not found at ${repoCsvPath}`);
+    }
+    console.log(`✅  Using existing  →  ${OUT_FILE}`);
+  }
 
-  writeFileSync(OUT_FILE, csv, 'utf8');
-  writeFileSync(RELEASE_FILE, release, 'utf8');
-  console.log(`✅  Saved  →  ${OUT_FILE}  (${rows} models, release ${release}, ${(csv.length / 1024).toFixed(0)} KB)`);
-  console.log(`    Note: ${release.replace(/_/g, '-')} is the benchmark question set release date,`);
-  console.log(`    not a model release date. LiveBench evaluates models against this question set.`);
-
-  // Fetch the matching categories JSON (same release date as the CSV)
-  const categoriesUrl = `${SITE_REPO}/categories_${release}.json`;
-  console.log(`\n📥  Downloading LiveBench categories ${release} …`);
-  console.log(`    ${categoriesUrl}`);
-  const catRes = await fetch(categoriesUrl, {
-    headers: { 'User-Agent': 'choosy-pipeline/1.0' },
-    signal: AbortSignal.timeout(10_000),
-  });
-  if (!catRes.ok) throw new Error(`Categories fetch: HTTP ${catRes.status} ${catRes.statusText}`);
-  const categoriesJson = await catRes.text();
-  writeFileSync(CATEGORIES_FILE, categoriesJson, 'utf8');
-  const categoryCount = Object.keys(JSON.parse(categoriesJson)).length;
-  console.log(`✅  Saved  →  ${CATEGORIES_FILE}  (${categoryCount} categories)`);
+  // Copy local categories JSON to out/
+  if (existsSync(repoCategoriesPath)) {
+    copyFileSync(repoCategoriesPath, CATEGORIES_FILE);
+    const categoriesJson = readFileSync(CATEGORIES_FILE, 'utf8');
+    const categoryCount = Object.keys(JSON.parse(categoriesJson)).length;
+    console.log(`✅  Saved  →  ${CATEGORIES_FILE}  (${categoryCount} categories)`);
+  } else {
+    if (!existsSync(CATEGORIES_FILE)) {
+      throw new Error(`Categories file not found at ${repoCategoriesPath}`);
+    }
+    console.log(`✅  Using existing  →  ${CATEGORIES_FILE}`);
+  }
 }
 
 main().catch(e => { console.error('❌', e.message); process.exit(1); });

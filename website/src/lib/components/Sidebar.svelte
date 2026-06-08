@@ -27,6 +27,7 @@
     selectedSortAxis: string;                         // $bindable – which axis drives category sort
     showCitation:     boolean;
     showClosed:       boolean;
+    showEffort:       Record<string, boolean>; // $bindable
     showOpen:         boolean;
     sortBy:           'count' | 'alpha' | 'category'; // $bindable – persisted by parent
     visibleIds:       Set<string>;        // models passing ALL filters incl. time brush
@@ -58,6 +59,7 @@
     selectedSortAxis = $bindable(),
     showCitation     = $bindable(),
     showClosed  = $bindable(),
+    showEffort  = $bindable(),
     showOpen    = $bindable(),
     sortBy           = $bindable(),
     settingsCollapsed = $bindable(false),
@@ -194,6 +196,15 @@
   const allSelected = $derived(
     models.filter(m => rowVisible(m)).every(m => !hidden.has(m.id))
   );
+
+  // ── Effort toggle ──
+  const allEffortsSelected = $derived(
+    ['null', 'low', 'medium', 'high', 'xhigh'].every(k => showEffort[k])
+  );
+  function toggleAllEfforts() {
+    const val = !allEffortsSelected;
+    for (const k of ['null', 'low', 'medium', 'high', 'xhigh']) showEffort[k] = val;
+  }
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -250,6 +261,24 @@
           {#if hasSearch}
             <button class="search-clr" onclick={() => (searchQuery = '')} title="Clear search">✕</button>
           {/if}
+        </div>
+      </div>
+
+      <!-- effort panel -->
+      <div class="filter-group effort-panel">
+        <div class="effort-header">
+          <span class="group-label">Thinking Effort</span>
+          <button class="text-btn" onclick={toggleAllEfforts}>
+            {allEffortsSelected ? 'Deselect all' : 'Select all'}
+          </button>
+        </div>
+        <div class="effort-grid">
+          {#each ['null', 'low', 'medium', 'high', 'xhigh'] as eff}
+            <label class="effort-chk">
+              <input type="checkbox" bind:checked={showEffort[eff]} />
+              <span class="effort-badge effort-{eff}">{eff === 'null' ? 'None' : eff}</span>
+            </label>
+          {/each}
         </div>
       </div>
 
@@ -319,16 +348,23 @@
                     checked={!hidden.has(m.id)}
                     onclick={(e) => { e.stopPropagation(); toggleModel(m.id, e.currentTarget.checked); }}
                   />
-                  <span class="model-name" title={m.name}>{m.name}</span>
-                  <span class="model-date">{m.released.slice(0, 7)}</span>
-                  {#if inferenceMap[m.id]?.ollamaLocal}
-                    <span class="tag ol" title={inferenceMap[m.id]?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
-                      Ol{inferenceMap[m.id]?.ollamaCloud ? '☁' : ''}
-                    </span>
-                  {/if}
-                  <span class="tag {m.type === 'open' ? 'oss' : 'api'}">
-                    {m.type === 'open' ? 'OW' : 'CW'}
-                  </span>
+                  <div class="model-col">
+                    <span class="model-name" title={m.id}>{m.name}</span>
+                    <div class="model-meta">
+                      <span class="model-date">{m.released.slice(0, 7)}</span>
+                      {#if m.effort}
+                        <span class="tag effort-tag effort-{m.effort}">{m.effort}</span>
+                      {/if}
+                      <span class="tag {m.type === 'open' ? 'oss' : 'api'}">
+                        {m.type === 'open' ? 'OW' : 'CW'}
+                      </span>
+                      {#if inferenceMap[m.id]?.ollamaLocal}
+                        <span class="tag ol" title={inferenceMap[m.id]?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
+                          Ol{inferenceMap[m.id]?.ollamaCloud ? '☁' : ''}
+                        </span>
+                      {/if}
+                    </div>
+                  </div>
                 </div>
               {/each}
             </div>
@@ -351,16 +387,23 @@
               onclick={(e) => { e.stopPropagation(); toggleModel(m.id, e.currentTarget.checked); }}
             />
             <span class="dot" style:background={familyColor(m.family)}></span>
-            <span class="model-name" title="{m.family}/{m.name}">{m.family}/{m.name}</span>
-            <span class="model-date">{m.released.slice(0, 7)}</span>
-            {#if inferenceMap[m.id]?.ollamaLocal}
-              <span class="tag ol" title={inferenceMap[m.id]?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
-                Ol{inferenceMap[m.id]?.ollamaCloud ? '☁' : ''}
-              </span>
-            {/if}
-            <span class="tag {m.type === 'open' ? 'oss' : 'api'}">
-              {m.type === 'open' ? 'OW' : 'CW'}
-            </span>
+            <div class="model-col">
+              <span class="model-name" title={m.id}>{m.family}/{m.name}</span>
+              <div class="model-meta">
+                <span class="model-date">{m.released.slice(0, 7)}</span>
+                {#if m.effort}
+                  <span class="tag effort-tag effort-{m.effort}">{m.effort}</span>
+                {/if}
+                <span class="tag {m.type === 'open' ? 'oss' : 'api'}">
+                  {m.type === 'open' ? 'OW' : 'CW'}
+                </span>
+                {#if inferenceMap[m.id]?.ollamaLocal}
+                  <span class="tag ol" title={inferenceMap[m.id]?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
+                    Ol{inferenceMap[m.id]?.ollamaCloud ? '☁' : ''}
+                  </span>
+                {/if}
+              </div>
+            </div>
           </div>
         {/each}
       </div>
@@ -440,6 +483,17 @@
   .filter-group label:hover { color: #e2e8f0; }
   .filter-group input { accent-color: #6366f1; width: 14px; height: 14px; cursor: pointer; }
 
+  .effort-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .text-btn { font-size: 10px; color: #6366f1; background: none; border: none; cursor: pointer; padding: 0; }
+  .text-btn:hover { color: #818cf8; text-decoration: underline; }
+  .effort-grid { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 4px; }
+  .effort-chk { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #8892a4; cursor: pointer; }
+  .effort-badge { padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; background: #22263a; color: #8892a4; }
+  .effort-low { color: #4ade80; background: rgba(74,222,128,.1); }
+  .effort-medium { color: #fbbf24; background: rgba(251,191,36,.1); }
+  .effort-high { color: #f87171; background: rgba(248,113,113,.1); }
+  .effort-xhigh { color: #c084fc; background: rgba(192,132,252,.1); }
+
   /* ── Tree (grouped) ── */
   .tree { flex: 1; overflow-y: auto; padding: 4px 0 12px; }
   .fam-row { display: flex; align-items: center; gap: 6px; padding: 5px 10px 5px 6px; cursor: pointer; user-select: none; }
@@ -457,21 +511,25 @@
   .flat-list { padding: 2px 0; }
 
   /* ── Model rows (shared grouped + flat) ── */
-  .model-row { display: flex; align-items: center; gap: 5px; padding: 3px 8px 3px 4px; border-radius: 4px; cursor: default; }
+  .model-row { display: flex; gap: 6px; padding: 4px 8px 4px 4px; border-radius: 4px; cursor: default; }
   .model-row.flat { padding-left: 6px; }
   .model-row:hover, .model-row.highlighted { background: #22263a; }
   .model-row.selected { background: rgba(99, 102, 241, 0.15); }
   .model-row.selected:hover, .model-row.selected.highlighted { background: rgba(99, 102, 241, 0.25); }
   .model-row.highlighted .model-name { color: #e2e8f0; }
   .model-row.selected .model-name { color: #fff; font-weight: 500; }
-  .model-row input { accent-color: #6366f1; width: 13px; height: 13px; cursor: pointer; flex-shrink: 0; }
-  .model-name { flex: 1; font-size: 13px; color: #8892a4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; }
+  .model-row input { accent-color: #6366f1; width: 13px; height: 13px; cursor: pointer; flex-shrink: 0; margin-top: 2px; }
+  .model-row .dot { margin-top: 4px; }
+  .model-col { display: flex; flex-direction: column; gap: 4px; flex: 1; overflow: hidden; }
+  .model-name { font-size: 13px; color: #8892a4; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; line-height: 1.1; }
   .model-row:hover .model-name { color: #e2e8f0; }
-  .model-date { font-size: 11px; color: #8892a4; flex-shrink: 0; }
-  .tag { font-size: 10px; padding: 1px 4px; border-radius: 2px; flex-shrink: 0; }
+  .model-meta { display: flex; align-items: center; justify-content: flex-end; gap: 5px; flex-wrap: wrap; }
+  .model-date { font-size: 11px; color: #8892a4; flex-shrink: 0; line-height: 1; }
+  .tag { font-size: 10px; padding: 1px 4px; border-radius: 2px; flex-shrink: 0; line-height: 1.2; }
   .tag.ol  { background: rgba(96,165,250,.12); color: #60a5fa; }
   .tag.oss { background: rgba(74,222,128,.12); color: #4ade80; }
   .tag.api { background: rgba(251,191,36,.12); color: #fbbf24; }
+  .effort-tag { font-weight: 600; text-transform: uppercase; font-size: 9px; padding: 1px 4px; border-radius: 3px; }
 
   /* ── Touch-friendly sizing on mobile ── */
   @media (max-width: 767px) {

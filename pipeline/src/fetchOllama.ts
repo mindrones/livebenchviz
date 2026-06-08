@@ -19,7 +19,7 @@
  * Run:  pnpm run fetch:ollama
  */
 
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync, readFileSync } from 'fs';
 import { parse }         from 'node-html-parser';
 import path              from 'path';
 import { fileURLToPath } from 'url';
@@ -83,7 +83,6 @@ async function scrapeSearchSlugs(filter?: 'cloud'): Promise<Set<string>> {
       if (slug && !slugs.has(slug)) { slugs.add(slug); added++; }
     }
     if (added === 0) break;
-    if (added === 0) break;   // no new slugs on this page → done
 
     process.stdout.write(`  page ${page}: +${added} slugs (${slugs.size} total)\n`);
   }
@@ -104,6 +103,26 @@ async function scrapeTagsForSlug(slug: string): Promise<string[]> {
 // ─── main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
+  let existingIndex: OllamaIndex | null = null;
+  if (existsSync(OUT_FILE)) {
+    try {
+      existingIndex = JSON.parse(readFileSync(OUT_FILE, 'utf8'));
+      console.log(`\n📦  Loaded existing cache with ${existingIndex.tags.length} tags`);
+    } catch(e) {
+      console.log(`\n⚠️  Failed to parse existing cache. Doing a full fresh scrape.`);
+    }
+  }
+
+  const knownTagsBySlug = new Map<string, OllamaTag[]>();
+  if (existingIndex) {
+    for (const tag of existingIndex.tags) {
+      if (!knownTagsBySlug.has(tag.slug)) {
+        knownTagsBySlug.set(tag.slug, []);
+      }
+      knownTagsBySlug.get(tag.slug)!.push(tag);
+    }
+  }
+
   console.log('\n📡  Scraping Ollama cloud slugs …');
   const cloudSlugs = await scrapeSearchSlugs('cloud');
   console.log(`   → ${cloudSlugs.size} cloud-capable slugs\n`);
@@ -119,6 +138,16 @@ async function main() {
   let i = 0;
   for (const slug of allSlugs) {
     i++;
+    
+    if (knownTagsBySlug.has(slug)) {
+      // Fast path: Reuse previously scraped tags for this slug
+      for (const tag of knownTagsBySlug.get(slug)!) {
+        allTags.push(tag);
+      }
+      continue;
+    }
+
+    // Slow path: Scrape tags from website
     await sleep(DELAY);
     process.stdout.write(`  [${i}/${allSlugs.size}] ${slug} … `);
 
@@ -164,6 +193,7 @@ async function main() {
   console.log(`\n✅  Ollama catalogue  →  ${OUT_FILE}`);
   console.log(`   Slugs: ${allSlugs.size}   Tags: ${allTags.length}`);
   console.log(`   isOllamaLocal: ${localCount}   isOllamaCloud: ${cloudCount}`);
+  console.log(`   (Note: To force a full refresh of known tags, delete out/ollama.json and run dvc repro)`);
 }
 
 main().catch(e => { console.error('❌', e.message); process.exit(1); });
