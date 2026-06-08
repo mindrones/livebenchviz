@@ -13,15 +13,17 @@
 | 7 | `livebench_scores.json` + `livebench_normalized.json` + `openrouter_models.json` | `exportLBFull` | `benchmark_lb.json` |
 | 8 | `ollama.json` + `benchmark_lb.json` | `exportInference` | `inference.json` |
 | 9 | `benchmark_lb.json`, `inference.json` | `copyToWebsite` | `website/static/*.json` |
+| 10 | `dvc.yaml` | `generateLayout` | `website/static/pipeline_graph.json` |
 
-One command runs everything:
+**Architecture Note:** The execution order and caching of these steps is declaratively managed by **DVC** (`dvc.yaml`). We use DVC purely as a DAG orchestrator (`cache: false` on outputs), meaning the generated data files remain tracked by standard Git to enable seamless deployments.
+
+One command runs the entire pipeline intelligently (skipping unchanged steps):
 
 ```bash
-pnpm run all
+dvc repro
 ```
 
-(`pnpm run all:skip-ollama` reuses a cached `out/ollama.json` and skips the
-Ollama scrape.)
+*(Alternatively, `pnpm run all` serves as an alias to `dvc repro`)*
 
 ## Step by step
 
@@ -143,11 +145,70 @@ Copies `out/benchmark_lb.json` and `out/inference.json` → `website/static/`.
 
 **Output:** `website/static/benchmark_lb.json`, `website/static/inference.json`
 
+### 10 · Generate Pipeline Graph (`generateLayout.ts`)
+
+Parses the `dvc.yaml` file to dynamically determine the dependencies between all data sources, scripts, and output files. Uses `dagre` to statically compute a visual directed acyclic graph (DAG) layout with X/Y coordinates.
+
+The Svelte frontend fetches this static JSON to draw the pipeline diagram, guaranteeing it perfectly mirrors the backend backend execution structure without requiring client-side layout calculation.
+
+**Output:** `website/static/pipeline_graph.json`
+
+## DVC Optimizations & Incremental Caching
+
+The pipeline is designed to be completely autonomous and heavily optimized using DVC's native features. Instead of manually running `skip-*` scripts, DVC intelligently manages what needs to run based on file hashes and explicit configurations.
+
+1. **Autonomous Polling (`always_changed: true`)**
+   - The `fetchLiveBench` and `fetchOpenRouter` stages are configured to run *every time* you invoke `dvc repro`.
+   - They poll their respective APIs/Repos. If the downloaded data is identical to the previous run (e.g. no new LiveBench release), DVC detects that the file hash hasn't changed and **gracefully halts**, skipping all downstream processing.
+
+2. **Incremental State Caching (`persist: true`)**
+   - The `fetchOllama` and `fetchLiveBenchModelConfig` stages maintain an internal state (e.g. `out/ollama.json` and `out/livebench_model_config.json`).
+   - By declaring these outputs with `persist: true` in `dvc.yaml`, DVC does not delete them before running the script.
+   - The scripts are written to read these existing files on startup, allowing them to instantly skip slow HTTP/Scraping requests for models they have already processed in the past. They only perform network requests for newly discovered slugs.
+
+3. **Dependency Triggers (`deps`)**
+   - `fetchOllama` and `fetchLiveBenchModelConfig` explicitly depend on `out/livebench.csv`.
+   - This means even though they have local caches, they are only triggered to run when DVC detects that the core LiveBench dataset has actually changed.
+
+To force a full, fresh run of an incremental stage (e.g. to completely re-scrape Ollama), simply delete its output file (`rm out/ollama.json`) and run `dvc repro`.
+
 ## The `openRouterId` field and the OpenRouter toggle
 
 Every model has `openRouterId: string | null`. The dashboard's "OpenRouter only"
 checkbox filters client-side to `openRouterId !== null` — no second file or network
 request is involved.
+
+## Metadata Resolution Fallbacks
+
+Here is the exact precedence order the pipeline uses to resolve metadata, clean up names, determine open-weight status, and establish release dates.
+
+* **Model Release Date**: The date (YYYY-MM-DD) when a model was officially launched or announced by its creator. Used for chronological sorting, timeline filtering, and calculating the versions-from-latest (`vfl`) ranking.
+  1. `modelLinks.js` (unminified source config): Checks the `version` field. This is the most authoritative date provided directly by the LiveBench website maintainers.
+  2. Announcement URL regex: If the date is encoded directly in the announcement URL path (e.g., `/blog/2025-06-02-title` or `/news1226`), extracts it directly.
+  3. Hugging Face API: For models with Hugging Face links, calls the `/api/models/{org}/{id}` endpoint to get the repository's `createdAt` date. Highly accurate for open-weights.
+  4. Model ID regex: Parses dates embedded in the model slug/ID (e.g., extracting `2024-12-17` from `o1-2024-12-17-high`).
+  5. Page Meta-Tag Scraping: Fetches the announcement URL and parses HTML metadata tags (`og:published_time` or `datePublished`).
+  6. OpenRouter API: Converted from the `created` timestamp in `openrouter_models.json`. Serves as a fallback for API models, though it represents catalog integration date and can be slightly delayed.
+  7. Manual Override: Checks `LB_RELEASE_DATES_FALLBACK` in `exportLBFull.ts` for legacy, obscure, or unscrapable models.
+  8. Default Fallback: Defaults to `'2024-01-01'` if no other date can be resolved.
+
+* **Model Family and Brand Name**: The provider family identifier (e.g., `openai`, `google`, `meta-llama`) and its clean display brand name (e.g., `OpenAI`, `Google`, `Meta`). Used for grouping and sorting.
+  1. Exact Match overrides: Hardcoded exact slug mappings in `providerMeta.ts` (e.g., `o1` ➔ `openai`, `azerogpt` ➔ `other`).
+  2. Regex Prefix Rules: Matches prefix patterns case-insensitively in `providerMeta.ts` (e.g., `gpt-`/`chatgpt-` ➔ `openai`, `gemini-` ➔ `google`, `qwq-`/`qwen-` ➔ `qwen`).
+  3. Brand Name Mapping: Maps the parsed family slug to a display name in the `BRAND_NAMES` lookup.
+  4. Fallback Brand Cleanup: Title-cases the family name (e.g., `some-provider` ➔ `Some Provider`).
+
+* **Open-Weight Status (`type` = `'open' | 'closed'`)**: Indicates if a model's weights are publicly available for local download/execution, or if it is a commercial API-only model.
+  1. Provider-level checks: Any model belonging to a family in `OPEN_PROVIDERS` (e.g., `meta-llama`, `deepseek`, `qwen`, `microsoft`) is marked as `'open'`.
+  2. Sub-provider rules: Google models starting with `gemma` or `pali` are marked as `'open'`, while `gemini` or `learnlm` are marked as `'closed'`.
+  3. Model ID keyword matches: Checks if keywords like `llama`, `gemma`, `mixtral`, `openweight`, or `nemotron` are in the ID.
+  4. Default Fallback: Marked as `'closed'` for known closed-source providers, otherwise defaults to `'open'`.
+
+* **OpenRouter Linkage (`openRouterId`)**: The canonical OpenRouter ID (e.g., `openai/gpt-4o`) linked to the LiveBench model. Used to populate catalog prices and enable the "OpenRouter only" toggle.
+  1. Explicit Exclusion: Set to `null` if the model ID is explicitly listed in `NOT_ON_OPENROUTER` or mapped to `null` in `EXPLICIT_MAP`.
+  2. Explicit Mapping: Checks `EXPLICIT_MAP` in `normalizeModelIds.ts` for manually curated mappings.
+  3. Case-Insensitive Slug Match: Checks if the model ID matches an OpenRouter slug (e.g., `sonar-pro` matches `perplexity/sonar-pro`).
+  4. Provider Heuristics: Prepends known provider prefixes (e.g., `openai/` + `gpt-4o`) and checks if the resulting ID exists in the OpenRouter API catalog list.
 
 ## Diagnostic tool
 

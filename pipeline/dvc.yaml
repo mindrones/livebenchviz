@@ -1,0 +1,290 @@
+stages:
+  fetchLiveBench:
+    always_changed: true
+    cmd: pnpm exec tsx src/fetchLiveBench.ts
+    deps:
+      - src/fetchLiveBench.ts
+    outs:
+      - out/livebench.csv:
+          cache: false
+          meta:
+            title: out/livebench.csv
+            description: Local cached copy of raw LiveBench model scores table, copied from the cloned repository.
+            schema:
+              - field: model
+                type: string
+                desc: Raw model identification slug
+              - field: task
+                type: string
+                desc: LiveBench task evaluation name
+              - field: score
+                type: float
+                desc: Raw fractional score (0 to 1)
+      - out/livebench_categories.json:
+          cache: false
+          meta:
+            title: out/livebench_categories.json
+            description: Maps individual LiveBench tasks (e.g., AMPS_Hard) into global categories (e.g., mathematics).
+            schema:
+              - field: "[category]"
+                type: "string[]"
+                desc: Array of tasks representing this benchmark category
+      - out/livebench_release.txt:
+          cache: false
+    meta:
+      title: fetchLiveBench.ts
+      description: Clones the LiveBench repository to local directory `pipeline/livebench_repo` (or runs `git pull` if already cloned), detects the latest release tables, and copies them to the cache directory.
+      details:
+        - label: Clone Destination
+          value: pipeline/livebench_repo/
+      sources:
+        - id: livebench-github
+          title: LiveBench GitHub Pages Repository
+          description: The official LiveBench website public Git repository which holds current and historical leaderboard scores and task mapping tables.
+          details:
+            - label: Repository URL
+              value: https://github.com/LiveBench/livebench.github.io
+              isLink: true
+            - label: Access Method
+              value: Local Git Clone & updates via Git Pull
+            - label: Files Read
+              value: public/table_*.csv, public/categories_*.json
+
+  processLiveBench:
+    cmd: pnpm exec tsx src/processLiveBench.ts
+    deps:
+      - src/processLiveBench.ts
+      - out/livebench.csv
+      - out/livebench_categories.json
+    outs:
+      - out/livebench_scores.json:
+          cache: false
+          meta:
+            title: out/livebench_scores.json
+            description: Structured benchmark scores containing aggregated category results for all models.
+            schema:
+              - field: model_id
+                type: string
+                desc: LiveBench model identification key
+              - field: global_average
+                type: float
+                desc: Mean average score across all 7 axes
+              - field: coding
+                type: float
+                desc: Aggregated code category score
+              - field: mathematics
+                type: float
+                desc: Aggregated math category score
+    meta:
+      title: processLiveBench.ts
+      description: Reads the cached scores CSV, parses scores, groups them into the 7 official categories, computes overall average, and writes the structured result.
+
+  fetchLiveBenchModelConfig:
+    cmd: pnpm exec tsx src/fetchLiveBenchModelConfig.ts
+    deps:
+      - src/fetchLiveBenchModelConfig.ts
+      - out/livebench.csv
+    outs:
+      - out/livebench_model_config.json:
+          cache: false
+          persist: true
+          meta:
+            title: out/livebench_model_config.json
+            description: Cache database containing model release dates and source URLs.
+            schema:
+              - field: model_id
+                type: string
+                desc: Key identifier
+              - field: released
+                type: string
+                desc: Launch date in YYYY-MM-DD format
+              - field: announcement
+                type: string
+                desc: URL of announcement post/blog
+    meta:
+      title: fetchLiveBenchModelConfig.ts
+      description: Resolves exact model launch/announcement dates by cycling through an prioritized fallback list metadata configs -> blog URL regex -> HuggingFace creation API -> OpenRouter creation.
+      sources:
+        - id: huggingface-api
+          title: Hugging Face API Catalog
+          description: The Hugging Face Model Hub API. Queried to check specific repository metadata and fetch exact repository creation timestamps for open-weight models.
+          details:
+            - label: API Endpoint
+              value: https://huggingface.co/api/models/{model_id}
+              isLink: true
+            - label: Primary Field Resolved
+              value: createdAt
+            - label: Authentication
+              value: Optional (rate-limited by IP)
+
+  fetchOpenRouter:
+    always_changed: true
+    cmd: pnpm exec tsx src/fetchOpenRouter.ts
+    deps:
+      - src/fetchOpenRouter.ts
+    outs:
+      - out/openrouter_models.json:
+          cache: false
+          meta:
+            title: out/openrouter_models.json
+            description: Cache catalog of all active OpenRouter endpoint models.
+            schema:
+              - field: id
+                type: string
+                desc: Canonical OpenRouter ID
+              - field: name
+                type: string
+                desc: Human-friendly display name
+              - field: created
+                type: integer
+                desc: Creation epoch timestamp
+              - field: pricing
+                type: object
+                desc: Token cost details (input/output/context)
+    meta:
+      title: fetchOpenRouter.ts
+      description: Downloads the entire active catalog of models from OpenRouter and caches it locally as a static JSON file.
+      sources:
+        - id: openrouter-api
+          title: OpenRouter Models API Catalog
+          description: The official catalog endpoint of openrouter.ai which lists pricing, context length limits, and creation dates of all active API models.
+          details:
+            - label: API Endpoint
+              value: https://openrouter.ai/api/v1/models
+              isLink: true
+
+  normalizeModelIds:
+    cmd: pnpm exec tsx src/normalizeModelIds.ts
+    deps:
+      - src/normalizeModelIds.ts
+      - out/livebench_scores.json
+      - out/openrouter_models.json
+    outs:
+      - out/livebench_normalized.json:
+          cache: false
+          meta:
+            title: out/livebench_normalized.json
+            description: Mappings between LiveBench model ID strings and OpenRouter catalog IDs.
+            schema:
+              - field: livebench_id
+                type: string
+                desc: Canonical LiveBench model key
+              - field: openrouter_id
+                type: string | null
+                desc: Linked OpenRouter endpoint ID
+    meta:
+      title: normalizeModelIds.ts
+      description: Performs name normalizations to link LiveBench models to their matching OpenRouter API IDs. Evaluates exact matches, manual overrides, and provider prefix rules.
+
+  fetchOllama:
+    cmd: pnpm exec tsx src/fetchOllama.ts
+    deps:
+      - src/fetchOllama.ts
+      - out/livebench.csv
+    outs:
+      - out/ollama.json:
+          cache: false
+          persist: true
+          meta:
+            title: out/ollama.json
+            description: Cache catalog of Ollama-supported models with library categories.
+            schema:
+              - field: slug
+                type: string
+                desc: Ollama repository model slug
+              - field: isOllamaLocal
+                type: boolean
+                desc: Can be downloaded locally via Ollama
+              - field: isOllamaCloud
+                type: boolean
+                desc: Supported in Ollama Cloud hosting
+    meta:
+      title: fetchOllama.ts
+      description: Scrapes model pages from Ollama.com library to verify local and cloud tags and build the availability database.
+      sources:
+        - id: ollama-library
+          title: Ollama Library Catalog
+          description: The ollama.com library catalog scrape source, used to audit all official local models pullable via "ollama pull".
+          details:
+            - label: Website Target
+              value: https://ollama.com/library
+              isLink: true
+            - label: Technique
+              value: HTML Scrape & Regex Extraction
+
+  exportLBFull:
+    cmd: pnpm exec tsx src/exportLBFull.ts
+    deps:
+      - src/exportLBFull.ts
+      - out/livebench_scores.json
+      - out/livebench_normalized.json
+      - out/openrouter_models.json
+      - out/livebench_model_config.json
+    outs:
+      - out/benchmark_lb.json:
+          cache: false
+          meta:
+            title: out/benchmark_lb.json
+            description: The compiled master database of LiveBench models with scores, launch dates, versions-from-latest rankings, and catalog keys.
+            schema:
+              - field: generated
+                type: string
+                desc: Database build timestamp
+              - field: models
+                type: array
+                desc: Full array of models with nested scores, name, and family properties
+    meta:
+      title: exportLBFull.ts
+      description: Merges scores, normalized IDs, OpenRouter model data, and release dates into the unified database file. Cleans up family brands, open-weight categories, and computes ranks.
+
+  exportInference:
+    cmd: pnpm exec tsx src/exportInference.ts
+    deps:
+      - src/exportInference.ts
+      - out/ollama.json
+      - out/benchmark_lb.json
+    outs:
+      - out/inference.json:
+          cache: false
+          meta:
+            title: out/inference.json
+            description: Mapping directory from model ID to boolean inference availability status.
+            schema:
+              - field: "[model_id]"
+                type: object
+                desc: Nested booleans openRouter, ollamaLocal, ollamaCloud
+    meta:
+      title: exportInference.ts
+      description: Builds the inference availability matrix. Cross-references the benchmark models against OpenRouter IDs and scraped Ollama catalog tags.
+
+  copyToWebsite:
+    cmd: pnpm exec tsx src/copyToWebsite.ts
+    deps:
+      - src/copyToWebsite.ts
+      - out/benchmark_lb.json
+      - out/inference.json
+    outs:
+      - ../website/static/benchmark_lb.json:
+          cache: false
+          meta:
+            title: static/benchmark_lb.json
+            description: Static website copy of the complete models benchmark database. Fetched on layout load.
+      - ../website/static/inference.json:
+          cache: false
+          meta:
+            title: static/inference.json
+            description: Static website copy of the models inference availability matrix.
+    meta:
+      title: copyToWebsite.ts
+      description: Copies compile-ready JSON assets from the pipeline cache directory directly to the SvelteKit frontend static resources folder.
+
+  generateLayout:
+    cmd: pnpm exec tsx src/generateLayout.ts
+    deps:
+      - src/generateLayout.ts
+    outs:
+      - ../website/static/pipeline_graph.json:
+          cache: false
+    meta:
+      title: generateLayout.ts
+      description: Generates the visual DAG layout used in the SvelteKit pipeline dashboard.

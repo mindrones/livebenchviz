@@ -1,0 +1,190 @@
+schema: '2.0'
+stages:
+  fetchLiveBench:
+    cmd: pnpm exec tsx src/fetchLiveBench.ts
+    deps:
+    - path: src/fetchLiveBench.ts
+      hash: md5
+      md5: 5cbde1733a1af0b5e13647126f16bdc0
+      size: 4900
+    outs:
+    - path: out/livebench.csv
+      hash: md5
+      md5: 78a8bef8731ccb32f1276bf033cacfc0
+      size: 20113
+    - path: out/livebench_categories.json
+      hash: md5
+      md5: 039552ac5fc27e5ee89538fafa0aa0aa
+      size: 725
+    - path: out/livebench_release.txt
+      hash: md5
+      md5: 2455eac50faf5e56fcdcaa3f20f142c5
+      size: 10
+  processLiveBench:
+    cmd: pnpm exec tsx src/processLiveBench.ts
+    deps:
+    - path: out/livebench.csv
+      hash: md5
+      md5: 78a8bef8731ccb32f1276bf033cacfc0
+      size: 20113
+    - path: out/livebench_categories.json
+      hash: md5
+      md5: 039552ac5fc27e5ee89538fafa0aa0aa
+      size: 725
+    - path: src/processLiveBench.ts
+      hash: md5
+      md5: 2d35dc43485a97ccdf4561cd12de96fe
+      size: 7784
+    outs:
+    - path: out/livebench_scores.json
+      hash: md5
+      md5: 6ccb630287b0443dc5505f6f419446a1
+      size: 128785
+  fetchLiveBenchModelConfig:
+    cmd: pnpm exec tsx src/fetchLiveBenchModelConfig.ts
+    deps:
+    - path: out/livebench.csv
+      hash: md5
+      md5: 78a8bef8731ccb32f1276bf033cacfc0
+      size: 20113
+    - path: src/fetchLiveBenchModelConfig.ts
+      hash: md5
+      md5: 8c707b2d3dbad64cb26f121c916cc966
+      size: 14483
+    outs:
+    - path: out/livebench_model_config.json
+      hash: md5
+      md5: 2f8b4cf2afdc83d7646b1c427d5929f4
+      size: 75722
+  fetchOpenRouter:
+    cmd: pnpm exec tsx src/fetchOpenRouter.ts
+    deps:
+    - path: src/fetchOpenRouter.ts
+      hash: md5
+      md5: 69a8274b9794769ea629973095e27838
+      size: 2603
+    outs:
+    - path: out/openrouter_models.json
+      hash: md5
+      md5: 7a44e67705b157a20c2495b4ce99ef91
+      size: 114345
+  normalizeModelIds:
+    cmd: pnpm exec tsx src/normalizeModelIds.ts
+    deps:
+    - path: out/livebench_scores.json
+      hash: md5
+      md5: 6ccb630287b0443dc5505f6f419446a1
+      size: 128785
+    - path: out/openrouter_models.json
+      hash: md5
+      md5: 7a44e67705b157a20c2495b4ce99ef91
+      size: 114345
+    - path: src/normalizeModelIds.ts
+      hash: md5
+      md5: 9293ffeb60966f289480cb08f0ebc9c9
+      size: 18363
+    outs:
+    - path: out/livebench_normalized.json
+      hash: md5
+      md5: c6a5e88e16f35a4506afc949d705cf45
+      size: 130826
+  fetchOllama:
+    cmd: pnpm exec tsx src/fetchOllama.ts
+    deps:
+    - path: out/livebench.csv
+      hash: md5
+      md5: 78a8bef8731ccb32f1276bf033cacfc0
+      size: 20113
+    - path: src/fetchOllama.ts
+      hash: md5
+      md5: 004f5b77e54b4d4b4e030efaac16aefa
+      size: 6969
+    outs:
+    - path: out/ollama.json
+      hash: md5
+      md5: 4a2a9aba4270074155ed8947b79de9d0
+      size: 35033
+  exportLBFull:
+    cmd: pnpm exec tsx src/exportLBFull.ts
+    deps:
+    - path: out/livebench_model_config.json
+      hash: md5
+      md5: 2f8b4cf2afdc83d7646b1c427d5929f4
+      size: 75722
+    - path: out/livebench_normalized.json
+      hash: md5
+      md5: c6a5e88e16f35a4506afc949d705cf45
+      size: 130826
+    - path: out/livebench_scores.json
+      hash: md5
+      md5: 6ccb630287b0443dc5505f6f419446a1
+      size: 128785
+    - path: out/openrouter_models.json
+      hash: md5
+      md5: 7a44e67705b157a20c2495b4ce99ef91
+      size: 114345
+    - path: src/exportLBFull.ts
+      hash: md5
+      md5: 792e5e0f71e11007a7ba35ff794b47de
+      size: 26629
+    outs:
+    - path: out/benchmark_lb.json
+      hash: md5
+      md5: d389d19a196bfa5172006de5c8330401
+      size: 74442
+  exportInference:
+    cmd: pnpm exec tsx src/exportInference.ts
+    deps:
+    - path: out/benchmark_lb.json
+      hash: md5
+      md5: d389d19a196bfa5172006de5c8330401
+      size: 74442
+    - path: out/ollama.json
+      hash: md5
+      md5: 4a2a9aba4270074155ed8947b79de9d0
+      size: 35033
+    - path: src/exportInference.ts
+      hash: md5
+      md5: b9ed775847dd2260becf5a7ad503a4bc
+      size: 4445
+    outs:
+    - path: out/inference.json
+      hash: md5
+      md5: 3c2e878bf9bd57764c050cec346bc02d
+      size: 14853
+  copyToWebsite:
+    cmd: pnpm exec tsx src/copyToWebsite.ts
+    deps:
+    - path: out/benchmark_lb.json
+      hash: md5
+      md5: d389d19a196bfa5172006de5c8330401
+      size: 74442
+    - path: out/inference.json
+      hash: md5
+      md5: 3c2e878bf9bd57764c050cec346bc02d
+      size: 14853
+    - path: src/copyToWebsite.ts
+      hash: md5
+      md5: 4efd49143447af099ea2ed4fa27aeecb
+      size: 2155
+    outs:
+    - path: ../website/static/benchmark_lb.json
+      hash: md5
+      md5: d389d19a196bfa5172006de5c8330401
+      size: 74442
+    - path: ../website/static/inference.json
+      hash: md5
+      md5: 3c2e878bf9bd57764c050cec346bc02d
+      size: 14853
+  generateLayout:
+    cmd: pnpm exec tsx src/generateLayout.ts
+    deps:
+    - path: src/generateLayout.ts
+      hash: md5
+      md5: 6356d28152e61caf8a5b3b5972705947
+      size: 4523
+    outs:
+    - path: ../website/static/pipeline_graph.json
+      hash: md5
+      md5: 7a0ef39cbfe1ab7391d100a137881a2d
+      size: 25549

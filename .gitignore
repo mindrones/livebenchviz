@@ -12,3 +12,6 @@ website/node_modules/.cache/gh-pages
 # Cloned LiveBench data source
 /pipeline/livebench_repo
 
+# Logs
+website/check*.log
+

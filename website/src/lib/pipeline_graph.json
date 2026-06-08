@@ -1,0 +1,804 @@
+{
+  "nodes": [
+    {
+      "id": "fetchLiveBench",
+      "type": "script",
+      "data": {
+        "label": "fetchLiveBench.ts",
+        "description": "Clones the LiveBench repository to local directory `pipeline/livebench_repo` (or runs `git pull` if already cloned), detects the latest release tables, and copies them to the cache directory.",
+        "details": [
+          {
+            "label": "Clone Destination",
+            "value": "pipeline/livebench_repo/"
+          }
+        ],
+        "runCommand": "pnpm exec tsx src/fetchLiveBench.ts"
+      },
+      "position": {
+        "x": 220,
+        "y": 200
+      }
+    },
+    {
+      "id": "livebench-github",
+      "type": "source",
+      "data": {
+        "label": "LiveBench GitHub Pages Repository",
+        "description": "The official LiveBench website public Git repository which holds current and historical leaderboard scores and task mapping tables.",
+        "details": [
+          {
+            "label": "Repository URL",
+            "value": "https://github.com/LiveBench/livebench.github.io",
+            "isLink": true
+          },
+          {
+            "label": "Access Method",
+            "value": "Local Git Clone & updates via Git Pull"
+          },
+          {
+            "label": "Files Read",
+            "value": "public/table_*.csv, public/categories_*.json"
+          }
+        ]
+      },
+      "position": {
+        "x": 220,
+        "y": 40
+      }
+    },
+    {
+      "id": "out/livebench.csv",
+      "type": "file",
+      "data": {
+        "label": "out/livebench.csv",
+        "description": "Local cached copy of raw LiveBench model scores table, copied from the cloned repository.",
+        "schema": [
+          {
+            "field": "model",
+            "type": "string",
+            "desc": "Raw model identification slug"
+          },
+          {
+            "field": "task",
+            "type": "string",
+            "desc": "LiveBench task evaluation name"
+          },
+          {
+            "field": "score",
+            "type": "float",
+            "desc": "Raw fractional score (0 to 1)"
+          }
+        ]
+      },
+      "position": {
+        "x": 220,
+        "y": 360
+      }
+    },
+    {
+      "id": "out/livebench_categories.json",
+      "type": "file",
+      "data": {
+        "label": "out/livebench_categories.json",
+        "description": "Maps individual LiveBench tasks (e.g., AMPS_Hard) into global categories (e.g., mathematics).",
+        "schema": [
+          {
+            "field": "[category]",
+            "type": "string[]",
+            "desc": "Array of tasks representing this benchmark category"
+          }
+        ]
+      },
+      "position": {
+        "x": 560,
+        "y": 360
+      }
+    },
+    {
+      "id": "out/livebench_release.txt",
+      "type": "file",
+      "data": {
+        "label": "out/livebench_release.txt"
+      },
+      "position": {
+        "x": 1440,
+        "y": 1960
+      }
+    },
+    {
+      "id": "processLiveBench",
+      "type": "script",
+      "data": {
+        "label": "processLiveBench.ts",
+        "description": "Reads the cached scores CSV, parses scores, groups them into the 7 official categories, computes overall average, and writes the structured result.",
+        "runCommand": "pnpm exec tsx src/processLiveBench.ts"
+      },
+      "position": {
+        "x": 540,
+        "y": 520
+      }
+    },
+    {
+      "id": "out/livebench_scores.json",
+      "type": "file",
+      "data": {
+        "label": "out/livebench_scores.json",
+        "description": "Structured benchmark scores containing aggregated category results for all models.",
+        "schema": [
+          {
+            "field": "model_id",
+            "type": "string",
+            "desc": "LiveBench model identification key"
+          },
+          {
+            "field": "global_average",
+            "type": "float",
+            "desc": "Mean average score across all 7 axes"
+          },
+          {
+            "field": "coding",
+            "type": "float",
+            "desc": "Aggregated code category score"
+          },
+          {
+            "field": "mathematics",
+            "type": "float",
+            "desc": "Aggregated math category score"
+          }
+        ]
+      },
+      "position": {
+        "x": 540,
+        "y": 680
+      }
+    },
+    {
+      "id": "fetchLiveBenchModelConfig",
+      "type": "script",
+      "data": {
+        "label": "fetchLiveBenchModelConfig.ts",
+        "description": "Resolves exact model launch/announcement dates by cycling through an prioritized fallback list metadata configs -> blog URL regex -> HuggingFace creation API -> OpenRouter creation.",
+        "runCommand": "pnpm exec tsx src/fetchLiveBenchModelConfig.ts"
+      },
+      "position": {
+        "x": 1240,
+        "y": 840
+      }
+    },
+    {
+      "id": "huggingface-api",
+      "type": "source",
+      "data": {
+        "label": "Hugging Face API Catalog",
+        "description": "The Hugging Face Model Hub API. Queried to check specific repository metadata and fetch exact repository creation timestamps for open-weight models.",
+        "details": [
+          {
+            "label": "API Endpoint",
+            "value": "https://huggingface.co/api/models/{model_id}",
+            "isLink": true
+          },
+          {
+            "label": "Primary Field Resolved",
+            "value": "createdAt"
+          },
+          {
+            "label": "Authentication",
+            "value": "Optional (rate-limited by IP)"
+          }
+        ]
+      },
+      "position": {
+        "x": 1240,
+        "y": 680
+      }
+    },
+    {
+      "id": "out/livebench_model_config.json",
+      "type": "file",
+      "data": {
+        "label": "out/livebench_model_config.json",
+        "description": "Cache database containing model release dates and source URLs.",
+        "schema": [
+          {
+            "field": "model_id",
+            "type": "string",
+            "desc": "Key identifier"
+          },
+          {
+            "field": "released",
+            "type": "string",
+            "desc": "Launch date in YYYY-MM-DD format"
+          },
+          {
+            "field": "announcement",
+            "type": "string",
+            "desc": "URL of announcement post/blog"
+          }
+        ]
+      },
+      "position": {
+        "x": 1240,
+        "y": 1000
+      }
+    },
+    {
+      "id": "fetchOpenRouter",
+      "type": "script",
+      "data": {
+        "label": "fetchOpenRouter.ts",
+        "description": "Downloads the entire active catalog of models from OpenRouter and caches it locally as a static JSON file.",
+        "runCommand": "pnpm exec tsx src/fetchOpenRouter.ts"
+      },
+      "position": {
+        "x": 900,
+        "y": 520
+      }
+    },
+    {
+      "id": "openrouter-api",
+      "type": "source",
+      "data": {
+        "label": "OpenRouter Models API Catalog",
+        "description": "The official catalog endpoint of openrouter.ai which lists pricing, context length limits, and creation dates of all active API models.",
+        "details": [
+          {
+            "label": "API Endpoint",
+            "value": "https://openrouter.ai/api/v1/models",
+            "isLink": true
+          }
+        ]
+      },
+      "position": {
+        "x": 900,
+        "y": 360
+      }
+    },
+    {
+      "id": "out/openrouter_models.json",
+      "type": "file",
+      "data": {
+        "label": "out/openrouter_models.json",
+        "description": "Cache catalog of all active OpenRouter endpoint models.",
+        "schema": [
+          {
+            "field": "id",
+            "type": "string",
+            "desc": "Canonical OpenRouter ID"
+          },
+          {
+            "field": "name",
+            "type": "string",
+            "desc": "Human-friendly display name"
+          },
+          {
+            "field": "created",
+            "type": "integer",
+            "desc": "Creation epoch timestamp"
+          },
+          {
+            "field": "pricing",
+            "type": "object",
+            "desc": "Token cost details (input/output/context)"
+          }
+        ]
+      },
+      "position": {
+        "x": 900,
+        "y": 680
+      }
+    },
+    {
+      "id": "normalizeModelIds",
+      "type": "script",
+      "data": {
+        "label": "normalizeModelIds.ts",
+        "description": "Performs name normalizations to link LiveBench models to their matching OpenRouter API IDs. Evaluates exact matches, manual overrides, and provider prefix rules.",
+        "runCommand": "pnpm exec tsx src/normalizeModelIds.ts"
+      },
+      "position": {
+        "x": 760,
+        "y": 840
+      }
+    },
+    {
+      "id": "out/livebench_normalized.json",
+      "type": "file",
+      "data": {
+        "label": "out/livebench_normalized.json",
+        "description": "Mappings between LiveBench model ID strings and OpenRouter catalog IDs.",
+        "schema": [
+          {
+            "field": "livebench_id",
+            "type": "string",
+            "desc": "Canonical LiveBench model key"
+          },
+          {
+            "field": "openrouter_id",
+            "type": "string | null",
+            "desc": "Linked OpenRouter endpoint ID"
+          }
+        ]
+      },
+      "position": {
+        "x": 760,
+        "y": 1000
+      }
+    },
+    {
+      "id": "fetchOllama",
+      "type": "script",
+      "data": {
+        "label": "fetchOllama.ts",
+        "description": "Scrapes model pages from Ollama.com library to verify local and cloud tags and build the availability database.",
+        "runCommand": "pnpm exec tsx src/fetchOllama.ts"
+      },
+      "position": {
+        "x": 40,
+        "y": 1160
+      }
+    },
+    {
+      "id": "ollama-library",
+      "type": "source",
+      "data": {
+        "label": "Ollama Library Catalog",
+        "description": "The ollama.com library catalog scrape source, used to audit all official local models pullable via \"ollama pull\".",
+        "details": [
+          {
+            "label": "Website Target",
+            "value": "https://ollama.com/library",
+            "isLink": true
+          },
+          {
+            "label": "Technique",
+            "value": "HTML Scrape & Regex Extraction"
+          }
+        ]
+      },
+      "position": {
+        "x": 40,
+        "y": 1000
+      }
+    },
+    {
+      "id": "out/ollama.json",
+      "type": "file",
+      "data": {
+        "label": "out/ollama.json",
+        "description": "Cache catalog of Ollama-supported models with library categories.",
+        "schema": [
+          {
+            "field": "slug",
+            "type": "string",
+            "desc": "Ollama repository model slug"
+          },
+          {
+            "field": "isOllamaLocal",
+            "type": "boolean",
+            "desc": "Can be downloaded locally via Ollama"
+          },
+          {
+            "field": "isOllamaCloud",
+            "type": "boolean",
+            "desc": "Supported in Ollama Cloud hosting"
+          }
+        ]
+      },
+      "position": {
+        "x": 40,
+        "y": 1320
+      }
+    },
+    {
+      "id": "exportLBFull",
+      "type": "script",
+      "data": {
+        "label": "exportLBFull.ts",
+        "description": "Merges scores, normalized IDs, OpenRouter model data, and release dates into the unified database file. Cleans up family brands, open-weight categories, and computes ranks.",
+        "runCommand": "pnpm exec tsx src/exportLBFull.ts"
+      },
+      "position": {
+        "x": 760,
+        "y": 1160
+      }
+    },
+    {
+      "id": "out/benchmark_lb.json",
+      "type": "file",
+      "data": {
+        "label": "out/benchmark_lb.json",
+        "description": "The compiled master database of LiveBench models with scores, launch dates, versions-from-latest rankings, and catalog keys.",
+        "schema": [
+          {
+            "field": "generated",
+            "type": "string",
+            "desc": "Database build timestamp"
+          },
+          {
+            "field": "models",
+            "type": "array",
+            "desc": "Full array of models with nested scores, name, and family properties"
+          }
+        ]
+      },
+      "position": {
+        "x": 760,
+        "y": 1320
+      }
+    },
+    {
+      "id": "exportInference",
+      "type": "script",
+      "data": {
+        "label": "exportInference.ts",
+        "description": "Builds the inference availability matrix. Cross-references the benchmark models against OpenRouter IDs and scraped Ollama catalog tags.",
+        "runCommand": "pnpm exec tsx src/exportInference.ts"
+      },
+      "position": {
+        "x": 1260,
+        "y": 1480
+      }
+    },
+    {
+      "id": "out/inference.json",
+      "type": "file",
+      "data": {
+        "label": "out/inference.json",
+        "description": "Mapping directory from model ID to boolean inference availability status.",
+        "schema": [
+          {
+            "field": "[model_id]",
+            "type": "object",
+            "desc": "Nested booleans openRouter, ollamaLocal, ollamaCloud"
+          }
+        ]
+      },
+      "position": {
+        "x": 1260,
+        "y": 1640
+      }
+    },
+    {
+      "id": "copyToWebsite",
+      "type": "script",
+      "data": {
+        "label": "copyToWebsite.ts",
+        "description": "Copies compile-ready JSON assets from the pipeline cache directory directly to the SvelteKit frontend static resources folder.",
+        "runCommand": "pnpm exec tsx src/copyToWebsite.ts"
+      },
+      "position": {
+        "x": 760,
+        "y": 1800
+      }
+    },
+    {
+      "id": "../website/static/benchmark_lb.json",
+      "type": "file",
+      "data": {
+        "label": "static/benchmark_lb.json",
+        "description": "Static website copy of the complete models benchmark database. Fetched on layout load."
+      },
+      "position": {
+        "x": 760,
+        "y": 1960
+      }
+    },
+    {
+      "id": "../website/static/inference.json",
+      "type": "file",
+      "data": {
+        "label": "static/inference.json",
+        "description": "Static website copy of the models inference availability matrix."
+      },
+      "position": {
+        "x": 1100,
+        "y": 1960
+      }
+    },
+    {
+      "id": "generateLayout",
+      "type": "script",
+      "data": {
+        "label": "generateLayout.ts",
+        "description": "Generates the visual DAG layout used in the SvelteKit pipeline dashboard.",
+        "runCommand": "pnpm exec tsx src/generateLayout.ts"
+      },
+      "position": {
+        "x": 1780,
+        "y": 1800
+      }
+    },
+    {
+      "id": "../website/static/pipeline_graph.json",
+      "type": "file",
+      "data": {
+        "label": "../website/static/pipeline_graph.json"
+      },
+      "position": {
+        "x": 1780,
+        "y": 1960
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-livebench-github-fetchLiveBench",
+      "source": "livebench-github",
+      "target": "fetchLiveBench",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-fetchLiveBench-out/livebench.csv",
+      "source": "fetchLiveBench",
+      "target": "out/livebench.csv",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-fetchLiveBench-out/livebench_categories.json",
+      "source": "fetchLiveBench",
+      "target": "out/livebench_categories.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-fetchLiveBench-out/livebench_release.txt",
+      "source": "fetchLiveBench",
+      "target": "out/livebench_release.txt",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench.csv-processLiveBench",
+      "source": "out/livebench.csv",
+      "target": "processLiveBench",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench_categories.json-processLiveBench",
+      "source": "out/livebench_categories.json",
+      "target": "processLiveBench",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-processLiveBench-out/livebench_scores.json",
+      "source": "processLiveBench",
+      "target": "out/livebench_scores.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-huggingface-api-fetchLiveBenchModelConfig",
+      "source": "huggingface-api",
+      "target": "fetchLiveBenchModelConfig",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench.csv-fetchLiveBenchModelConfig",
+      "source": "out/livebench.csv",
+      "target": "fetchLiveBenchModelConfig",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-fetchLiveBenchModelConfig-out/livebench_model_config.json",
+      "source": "fetchLiveBenchModelConfig",
+      "target": "out/livebench_model_config.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-openrouter-api-fetchOpenRouter",
+      "source": "openrouter-api",
+      "target": "fetchOpenRouter",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-fetchOpenRouter-out/openrouter_models.json",
+      "source": "fetchOpenRouter",
+      "target": "out/openrouter_models.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench_scores.json-normalizeModelIds",
+      "source": "out/livebench_scores.json",
+      "target": "normalizeModelIds",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/openrouter_models.json-normalizeModelIds",
+      "source": "out/openrouter_models.json",
+      "target": "normalizeModelIds",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-normalizeModelIds-out/livebench_normalized.json",
+      "source": "normalizeModelIds",
+      "target": "out/livebench_normalized.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-ollama-library-fetchOllama",
+      "source": "ollama-library",
+      "target": "fetchOllama",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench.csv-fetchOllama",
+      "source": "out/livebench.csv",
+      "target": "fetchOllama",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-fetchOllama-out/ollama.json",
+      "source": "fetchOllama",
+      "target": "out/ollama.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench_scores.json-exportLBFull",
+      "source": "out/livebench_scores.json",
+      "target": "exportLBFull",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench_normalized.json-exportLBFull",
+      "source": "out/livebench_normalized.json",
+      "target": "exportLBFull",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/openrouter_models.json-exportLBFull",
+      "source": "out/openrouter_models.json",
+      "target": "exportLBFull",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/livebench_model_config.json-exportLBFull",
+      "source": "out/livebench_model_config.json",
+      "target": "exportLBFull",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-exportLBFull-out/benchmark_lb.json",
+      "source": "exportLBFull",
+      "target": "out/benchmark_lb.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/ollama.json-exportInference",
+      "source": "out/ollama.json",
+      "target": "exportInference",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/benchmark_lb.json-exportInference",
+      "source": "out/benchmark_lb.json",
+      "target": "exportInference",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-exportInference-out/inference.json",
+      "source": "exportInference",
+      "target": "out/inference.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/benchmark_lb.json-copyToWebsite",
+      "source": "out/benchmark_lb.json",
+      "target": "copyToWebsite",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-out/inference.json-copyToWebsite",
+      "source": "out/inference.json",
+      "target": "copyToWebsite",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-copyToWebsite-../website/static/benchmark_lb.json",
+      "source": "copyToWebsite",
+      "target": "../website/static/benchmark_lb.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-copyToWebsite-../website/static/inference.json",
+      "source": "copyToWebsite",
+      "target": "../website/static/inference.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
+      "id": "e-generateLayout-../website/static/pipeline_graph.json",
+      "source": "generateLayout",
+      "target": "../website/static/pipeline_graph.json",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    }
+  ]
+}
