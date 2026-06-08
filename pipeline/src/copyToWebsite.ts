@@ -11,6 +11,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import crypto from 'crypto';
 
 const __dirname  = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR    = path.join(__dirname, '..', 'out');
@@ -70,6 +71,21 @@ async function main() {
   }
 
   console.log(`\n   Copied: ${copied}  Skipped: ${skipped}`);
+
+  // Generate data-hash.json
+  const mainFile = path.join(DEST_DIR, 'benchmark_lb.json');
+  if (existsSync(mainFile)) {
+    const data = readFileSync(mainFile, 'utf8');
+    const hash = crypto.createHash('md5').update(data).digest('hex');
+    const hashData = {
+      hash,
+      updatedAt: new Date().toISOString()
+    };
+    const hashPath = path.join(DEST_DIR, 'data-hash.json');
+    writeFileSync(hashPath, JSON.stringify(hashData, null, 2), 'utf8');
+    console.log(`✅  Generated data-hash.json (hash: ${hash})`);
+  }
 }
 
 main().catch(e => { console.error('❌', e.message); process.exit(1); });
+

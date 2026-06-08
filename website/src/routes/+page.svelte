@@ -1,34 +1,46 @@
 <script lang="ts">
-  import { ChartColumn, CircleQuestionMark, Funnel, TrendingUp, GitFork } from '@lucide/svelte';
-  import { SvelteSet } from 'svelte/reactivity';
-  import { browser } from '$app/environment';
-  import { replaceState, afterNavigate } from '$app/navigation';
-  import { base } from '$app/paths';
-  import { breakpoints } from '$lib/stores/breakpoints.svelte';
-  import { version } from '../../../package.json';
+  import {
+    ChartColumn,
+    CircleQuestionMark,
+    Funnel,
+    TrendingUp,
+    GitFork,
+  } from "@lucide/svelte";
+  import { SvelteSet } from "svelte/reactivity";
 
-  import Sidebar            from '$lib/components/Sidebar.svelte';
-  import ParallelCoords     from '$lib/components/ParallelCoords.svelte';
-  import Timeline           from '$lib/components/Timeline.svelte';
-  import CitationModal      from '$lib/components/CitationModal.svelte';
-  import HelpModal          from '$lib/components/HelpModal.svelte';
-  import MobileHelpPanel    from '$lib/components/MobileHelpPanel.svelte';
-  import MobileStatsPanel   from '$lib/components/MobileStatsPanel.svelte';
-  import { familyColor, AXIS_ABBREV, AXIS_CATEGORY_NAMES } from '$lib/colors';
-  import type { BenchmarkData, InferenceMap } from '$lib/types';
-  import type { LayoutData } from './$types';
+  import { browser } from "$app/environment";
+  import { replaceState, afterNavigate } from "$app/navigation";
+  import { base } from "$app/paths";
+
+  import { breakpoints } from "$lib/stores/breakpoints.svelte";
+  import { version } from "../../../package.json";
+
+  import Sidebar from "$lib/components/Sidebar.svelte";
+  import ParallelCoords from "$lib/components/ParallelCoords.svelte";
+  import Timeline from "$lib/components/Timeline.svelte";
+  import CitationModal from "$lib/components/CitationModal.svelte";
+  import HelpModal from "$lib/components/HelpModal.svelte";
+  import MobileHelpPanel from "$lib/components/MobileHelpPanel.svelte";
+  import MobileStatsPanel from "$lib/components/MobileStatsPanel.svelte";
+  import NotificationBell from "$lib/components/NotificationBell.svelte";
+
+  import { familyColor, AXIS_ABBREV, AXIS_CATEGORY_NAMES } from "$lib/colors";
+  import type { BenchmarkData, InferenceMap } from "$lib/types";
+  import type { LayoutData } from "./$types";
 
   // Data loaded by +layout.ts (default: lb_full). Reactive reloads in $effect below.
   let { data }: { data: LayoutData } = $props();
 
   let mounted = $state(false);
-  afterNavigate(() => { mounted = true; });
+  afterNavigate(() => {
+    mounted = true;
+  });
 
   // ── Local benchmark data state (drives everything in this page) ─────────────
   let benchmarkData = $state<BenchmarkData | null>(data.benchmarkData ?? null);
-  let inferenceMap  = $state<InferenceMap>(data.inferenceMap ?? {});
-  let loadError     = $state<string | null>(data.error ?? null);
-  let loadingData   = $state(false);
+  let inferenceMap = $state<InferenceMap>(data.inferenceMap ?? {});
+  let loadError = $state<string | null>(data.error ?? null);
+  let loadingData = $state(false);
 
   // ── Dataset axes come from the loaded JSON's `benchmarks` record ─────────
 
@@ -55,24 +67,28 @@
 
     return {
       // inference group (default true — write =0 when off)
-      openRouterOnly:  sp.get('or')        !== '0',
-      ollamaCloudOnly: sp.get('oc')        !== '0',
-      ollamaLocalOnly: sp.get('ol')        !== '0',
-      otherSourceOnly: sp.get('os')        !== '0',
+      openRouterOnly: sp.get("or") !== "0",
+      ollamaCloudOnly: sp.get("oc") !== "0",
+      ollamaLocalOnly: sp.get("ol") !== "0",
+      otherSourceOnly: sp.get("os") !== "0",
       // display group
-      showOpen:        sp.get('showOss')   !== 'false',   // keep legacy key
-      showClosed:      sp.get('showClosed')!== 'false',   // keep legacy key
-      latest2:         sp.get('latest2')  === '1',
-      groupByProvider: sp.get('group')    !== '0',
-      sortBy:          (sp.get('sortBy') === 'name' ? 'alpha' : sp.get('sortBy') === 'count' ? 'count' : 'category') as 'count' | 'alpha' | 'category',
-      selectedSortAxis: sp.get('sortAxis') ?? 'lb_avg',
-      searchQuery:     sp.get('searchText') ?? '',
-      brushStart:      sp.has('from') ? new Date(sp.get('from')!) : null,
-      brushEnd:        sp.has('to')   ? new Date(sp.get('to')!)   : null,
-      selectedSlugs:   sp.getAll('sel'),
+      showOpen: sp.get("showOss") !== "false", // keep legacy key
+      showClosed: sp.get("showClosed") !== "false", // keep legacy key
+      latest2: sp.get("latest2") === "1",
+      groupByProvider: sp.get("group") !== "0",
+      sortBy: (sp.get("sortBy") === "name"
+        ? "alpha"
+        : sp.get("sortBy") === "count"
+          ? "count"
+          : "category") as "count" | "alpha" | "category",
+      selectedSortAxis: sp.get("sortAxis") ?? "lb_avg",
+      searchQuery: sp.get("searchText") ?? "",
+      brushStart: sp.has("from") ? new Date(sp.get("from")!) : null,
+      brushEnd: sp.has("to") ? new Date(sp.get("to")!) : null,
+      selectedSlugs: sp.getAll("sel"),
       brushes,
-      tab:             sp.get('tab'),
-      eOff:            sp.get('eOff')?.split(',') ?? [],
+      tab: sp.get("tab"),
+      eOff: sp.get("eOff")?.split(",") ?? [],
     };
   }
   const url0 = readUrlParams();
@@ -84,54 +100,60 @@
   // All persisted state lives in the URL (see readUrlParams above).
   // In-session-only state (hidden, expandedFamilies, axisOrder) resets on reload.
   // Inference group (default true):
-  let openRouterOnly   = $state<boolean>(url0?.openRouterOnly  ?? true);
-  let ollamaCloudOnly  = $state<boolean>(url0?.ollamaCloudOnly ?? true);
-  let ollamaLocalOnly  = $state<boolean>(url0?.ollamaLocalOnly ?? true);
-  let otherSourceOnly  = $state<boolean>(url0?.otherSourceOnly ?? true);
+  let openRouterOnly = $state<boolean>(url0?.openRouterOnly ?? true);
+  let ollamaCloudOnly = $state<boolean>(url0?.ollamaCloudOnly ?? true);
+  let ollamaLocalOnly = $state<boolean>(url0?.ollamaLocalOnly ?? true);
+  let otherSourceOnly = $state<boolean>(url0?.otherSourceOnly ?? true);
   // Display group:
-  let showOpen         = $state<boolean>(url0?.showOpen        ?? true);
-  let showClosed       = $state<boolean>(url0?.showClosed      ?? true);
-  let latest2          = $state<boolean>(url0?.latest2         ?? false);
-  let showEffort       = $state<Record<string, boolean>>({
-    null:   !(url0?.eOff.includes('null')),
-    low:    !(url0?.eOff.includes('low')),
-    medium: !(url0?.eOff.includes('medium')),
-    high:   !(url0?.eOff.includes('high')),
-    xhigh:  !(url0?.eOff.includes('xhigh')),
+  let showOpen = $state<boolean>(url0?.showOpen ?? true);
+  let showClosed = $state<boolean>(url0?.showClosed ?? true);
+  let latest2 = $state<boolean>(url0?.latest2 ?? false);
+  let showEffort = $state<Record<string, boolean>>({
+    null: !url0?.eOff.includes("null"),
+    low: !url0?.eOff.includes("low"),
+    medium: !url0?.eOff.includes("medium"),
+    high: !url0?.eOff.includes("high"),
+    xhigh: !url0?.eOff.includes("xhigh"),
   });
-  let groupByProvider  = $state<boolean>(url0?.groupByProvider ?? true);
-  let sortBy           = $state<'count' | 'alpha' | 'category'>(url0?.sortBy ?? 'category');
-  let selectedSortAxis = $state<string>(url0?.selectedSortAxis ?? 'lb_avg');
-  let searchQuery      = $state<string>(url0?.searchQuery  ?? '');
-  let brushStart       = $state<Date | null>(url0?.brushStart ?? null);
-  let brushEnd         = $state<Date | null>(url0?.brushEnd   ?? null);
+  let groupByProvider = $state<boolean>(url0?.groupByProvider ?? true);
+  let sortBy = $state<"count" | "alpha" | "category">(
+    url0?.sortBy ?? "category",
+  );
+  let selectedSortAxis = $state<string>(url0?.selectedSortAxis ?? "lb_avg");
+  let searchQuery = $state<string>(url0?.searchQuery ?? "");
+  let brushStart = $state<Date | null>(url0?.brushStart ?? null);
+  let brushEnd = $state<Date | null>(url0?.brushEnd ?? null);
   // In-session only (axisOrder is user-reorder; axisBrushes IS persisted to URL):
-  let hidden           = $state(new SvelteSet<string>());
+  let hidden = $state(new SvelteSet<string>());
   let expandedFamilies = $state<Record<string, boolean>>({});
-  let axisOrder        = $state<string[]>([]);
-  let axisBrushes      = $state<Record<string, [number, number]>>(initialBrushes);
-  let highlightedId    = $state<string | null>(null);
-  let selectedIds      = $state(new SvelteSet<string>());
+  let axisOrder = $state<string[]>([]);
+  let axisBrushes = $state<Record<string, [number, number]>>(initialBrushes);
+  let highlightedId = $state<string | null>(null);
+  let selectedIds = $state(new SvelteSet<string>());
   let userClearedSelection = $state(false); // Track explicit clear to prevent URL re-restoration
   let parallelBrushIds = $state<Set<string> | null>(null);
-  let releaseHoverIds  = $state<Set<string> | null>(null);
-  let showCitation     = $state(false);
-  let showHelp         = $state(false);
+  let releaseHoverIds = $state<Set<string> | null>(null);
+  let showCitation = $state(false);
+  let showHelp = $state(false);
   let sidebarSettingsCollapsed = $state(false);
 
   // ── Mobile navigation state ────────────────────────────────────────────
-  type MobileTab = 'filter' | 'chart' | 'stats' | 'help';
-  const validTabs: MobileTab[] = ['filter', 'chart', 'stats', 'help'];
-  let activeTab: MobileTab = $state(url0?.tab && validTabs.includes(url0.tab as MobileTab) ? (url0.tab as MobileTab) : 'chart');
+  type MobileTab = "filter" | "chart" | "stats" | "help";
+  const validTabs: MobileTab[] = ["filter", "chart", "stats", "help"];
+  let activeTab: MobileTab = $state(
+    url0?.tab && validTabs.includes(url0.tab as MobileTab)
+      ? (url0.tab as MobileTab)
+      : "chart",
+  );
 
   // ─── Reactive dataset loading ─────────────────────────────────────────────
   // Data is loaded once by +layout.ts.  No reload on openRouterOnly change —
   // the filter is applied reactively in visibleModels / visibleIds below.
 
   // ─── Data ────────────────────────────────────────────────────────────────
-  const bd          = $derived(benchmarkData);
+  const bd = $derived(benchmarkData);
   const allBenchmarks = $derived(bd ? Object.values(bd.benchmarks) : []);
-  const allModels   = $derived(bd?.models ?? []);
+  const allModels = $derived(bd?.models ?? []);
   const familyOrder = $derived(bd?.familyOrder ?? []);
 
   // All axes come from the loaded JSON — pricing absent from static datasets.
@@ -140,20 +162,22 @@
 
   // Ensure axisOrder is always valid when data loads OR dataset changes
   $effect(() => {
-    const keys = activeBenchmarks.map(b => b.key);
+    const keys = activeBenchmarks.map((b) => b.key);
     if (!keys.length) return;
-    const valid = axisOrder.filter(k => keys.includes(k));
-    const missing = keys.filter(k => !valid.includes(k));
+    const valid = axisOrder.filter((k) => keys.includes(k));
+    const missing = keys.filter((k) => !valid.includes(k));
     if (valid.length !== keys.length || missing.length) {
       axisOrder = [...missing, ...valid]; // new axes go first
     }
   });
 
   // ─── Search filter (lifted from Sidebar so the chart reacts too) ──────────
-  function searchOk(m: typeof allModels[number]): boolean {
+  function searchOk(m: (typeof allModels)[number]): boolean {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return true;
-    return m.family.toLowerCase().includes(q) || m.name.toLowerCase().includes(q);
+    return (
+      m.family.toLowerCase().includes(q) || m.name.toLowerCase().includes(q)
+    );
   }
 
   // ─── Visible models (ALL filters: type, hidden, inference, latest2, openRouterOnly, time brush, search) ──
@@ -161,83 +185,114 @@
   // own brush dimming internally. Applying it here would feed back into the chart's model
   // list and cause an infinite update cycle.
   const visibleModels = $derived(
-    allModels.filter(m => {
+    allModels.filter((m) => {
       const inf = inferenceMap[m.id];
-      const isOther = !inf?.openRouter && !inf?.ollamaCloud && !inf?.ollamaLocal;
+      const isOther =
+        !inf?.openRouter && !inf?.ollamaCloud && !inf?.ollamaLocal;
       if (
-        !(openRouterOnly  && inf?.openRouter) &&
+        !(openRouterOnly && inf?.openRouter) &&
         !(ollamaCloudOnly && inf?.ollamaCloud) &&
         !(ollamaLocalOnly && inf?.ollamaLocal) &&
         !(otherSourceOnly && isOther)
-      ) return false;
-      if (!showOpen   && m.type === 'open')   return false;
-      if (!showClosed && m.type === 'closed') return false;
-      if (!showEffort[m.effort ?? 'null'])    return false;
-      if (latest2     && m.vfl > 1)           return false;
-      if (hidden.has(m.id))                   return false;
-      if (!searchOk(m))                       return false;
+      )
+        return false;
+      if (!showOpen && m.type === "open") return false;
+      if (!showClosed && m.type === "closed") return false;
+      if (!showEffort[m.effort ?? "null"]) return false;
+      if (latest2 && m.vfl > 1) return false;
+      if (hidden.has(m.id)) return false;
+      if (!searchOk(m)) return false;
       if (brushStart && brushEnd) {
         const d = new Date(m.released);
-        if (d < brushStart || d > brushEnd)   return false;
+        if (d < brushStart || d > brushEnd) return false;
       }
       return true;
-    })
+    }),
   );
 
   // ids of curves actually rendered in the chart — lets Timeline snap release-time
   // hover only to dates that have a visible curve.
-  const chartIds = $derived(new Set(visibleModels.map(m => m.id)));
+  const chartIds = $derived(new Set(visibleModels.map((m) => m.id)));
 
   // visibleIds: all models that pass ALL filters (including brushes, search) even if not hidden-unchecked.
   // Used by Sidebar to decide which families/rows to display.
   // parallelBrushIds IS applied here — it filters the sidebar without affecting the chart's model list.
   const visibleIds = $derived.by(() => {
     return new Set<string>(
-      allModels.filter(m => {
-        const inf = inferenceMap[m.id];
-        const isOther = !inf?.openRouter && !inf?.ollamaCloud && !inf?.ollamaLocal;
-        if (
-          !(openRouterOnly  && inf?.openRouter) &&
-          !(ollamaCloudOnly && inf?.ollamaCloud) &&
-          !(ollamaLocalOnly && inf?.ollamaLocal) &&
-          !(otherSourceOnly && isOther)
-        ) return false;
-        if (!showEffort[m.effort ?? 'null'])    return false;
-        if (latest2     && m.vfl > 1)           return false;
-        if (!searchOk(m))                       return false;
-        if (brushStart && brushEnd) {
-          const d = new Date(m.released);
-          if (d < brushStart || d > brushEnd) return false;
-        }
-        if (parallelBrushIds && !parallelBrushIds.has(m.id)) return false;
-        return true;
-      }).map(m => m.id)
+      allModels
+        .filter((m) => {
+          const inf = inferenceMap[m.id];
+          const isOther =
+            !inf?.openRouter && !inf?.ollamaCloud && !inf?.ollamaLocal;
+          if (
+            !(openRouterOnly && inf?.openRouter) &&
+            !(ollamaCloudOnly && inf?.ollamaCloud) &&
+            !(ollamaLocalOnly && inf?.ollamaLocal) &&
+            !(otherSourceOnly && isOther)
+          )
+            return false;
+          if (!showEffort[m.effort ?? "null"]) return false;
+          if (latest2 && m.vfl > 1) return false;
+          if (!searchOk(m)) return false;
+          if (brushStart && brushEnd) {
+            const d = new Date(m.released);
+            if (d < brushStart || d > brushEnd) return false;
+          }
+          if (parallelBrushIds && !parallelBrushIds.has(m.id)) return false;
+          return true;
+        })
+        .map((m) => m.id),
     );
   });
 
   // ─── Stats ───────────────────────────────────────────────────────────────
   function topScore(key: string) {
-    return [...visibleModels].filter(m => m.scores[key] != null)
-      .sort((a,b) => (b.scores[key]??0)-(a.scores[key]??0))[0];
+    return [...visibleModels]
+      .filter((m) => m.scores[key] != null)
+      .sort((a, b) => (b.scores[key] ?? 0) - (a.scores[key] ?? 0))[0];
   }
   const stats = $derived.by(() => [
-    { label:'Visible',     value: `${visibleModels.length}/${allModels.length}`, sub: 'models' },
-    { label:'Families',    value: String(new Set(visibleModels.map(m=>m.family)).size), sub: 'series' },
-    { label:'Top Overall', value: (topScore('lb_avg')?.scores['lb_avg']??'—')+'%',        sub: topScore('lb_avg')?.name ?? '' },
-    { label:'Top Coding',  value: (topScore('lb_coding')?.scores['lb_coding']??'—')+'%',  sub: topScore('lb_coding')?.name ?? '' },
-    { label:'Top Math',    value: (topScore('lb_math')?.scores['lb_math']??'—')+'%',      sub: topScore('lb_math')?.name ?? '' },
+    {
+      label: "Visible",
+      value: `${visibleModels.length}/${allModels.length}`,
+      sub: "models",
+    },
+    {
+      label: "Families",
+      value: String(new Set(visibleModels.map((m) => m.family)).size),
+      sub: "series",
+    },
+    {
+      label: "Top Overall",
+      value: (topScore("lb_avg")?.scores["lb_avg"] ?? "—") + "%",
+      sub: topScore("lb_avg")?.name ?? "",
+    },
+    {
+      label: "Top Coding",
+      value: (topScore("lb_coding")?.scores["lb_coding"] ?? "—") + "%",
+      sub: topScore("lb_coding")?.name ?? "",
+    },
+    {
+      label: "Top Math",
+      value: (topScore("lb_math")?.scores["lb_math"] ?? "—") + "%",
+      sub: topScore("lb_math")?.name ?? "",
+    },
   ]);
 
   const legendFamilies = $derived(
-    familyOrder.filter(f => visibleModels.some(m => m.family === f))
+    familyOrder.filter((f) => visibleModels.some((m) => m.family === f)),
   );
 
   // Category legend items for the parallel-coords axes
   const categoryLegend = $derived.by(() => {
-    const keys = activeBenchmarks.map(b => b.key);
+    const keys = activeBenchmarks.map((b) => b.key);
     return keys
-      .filter(k => AXIS_ABBREV[k])
-      .map(k => ({ key: k, abbrev: AXIS_ABBREV[k] ?? k, name: AXIS_CATEGORY_NAMES[k] ?? k }));
+      .filter((k) => AXIS_ABBREV[k])
+      .map((k) => ({
+        key: k,
+        abbrev: AXIS_ABBREV[k] ?? k,
+        name: AXIS_CATEGORY_NAMES[k] ?? k,
+      }));
   });
 
   // ─── URL sync (all persisted settings) ──────────────────────────────────
@@ -245,34 +300,43 @@
     if (!browser || !mounted) return;
     const sp = new URLSearchParams();
     // Inference group — write only non-defaults (default = true → write =0 when off)
-    if (!openRouterOnly)   sp.set('or',          '0');
-    if (!ollamaCloudOnly)  sp.set('oc',          '0');
-    if (!ollamaLocalOnly)  sp.set('ol',          '0');
-    if (!otherSourceOnly)  sp.set('os',          '0');
+    if (!openRouterOnly) sp.set("or", "0");
+    if (!ollamaCloudOnly) sp.set("oc", "0");
+    if (!ollamaLocalOnly) sp.set("ol", "0");
+    if (!otherSourceOnly) sp.set("os", "0");
     // Display group
-    if (!showOpen)         sp.set('showOss',     'false');
-    if (!showClosed)       sp.set('showClosed',  'false');
-    if (latest2)           sp.set('latest2',     '1');
-    if (!groupByProvider)  sp.set('group',       '0');
-    if (sortBy === 'count')    sp.set('sortBy', 'count');
-    if (sortBy === 'alpha')    sp.set('sortBy', 'name');
-    if (sortBy === 'category' && selectedSortAxis && selectedSortAxis !== 'lb_avg') sp.set('sortAxis', selectedSortAxis);
-    
-    const eOff = ['null', 'low', 'medium', 'high', 'xhigh'].filter(k => !showEffort[k]);
-    if (eOff.length > 0) sp.set('eOff', eOff.join(','));
+    if (!showOpen) sp.set("showOss", "false");
+    if (!showClosed) sp.set("showClosed", "false");
+    if (latest2) sp.set("latest2", "1");
+    if (!groupByProvider) sp.set("group", "0");
+    if (sortBy === "count") sp.set("sortBy", "count");
+    if (sortBy === "alpha") sp.set("sortBy", "name");
+    if (
+      sortBy === "category" &&
+      selectedSortAxis &&
+      selectedSortAxis !== "lb_avg"
+    )
+      sp.set("sortAxis", selectedSortAxis);
 
-    if (searchQuery.trim())sp.set('searchText',  searchQuery.trim());
+    const eOff = ["null", "low", "medium", "high", "xhigh"].filter(
+      (k) => !showEffort[k],
+    );
+    if (eOff.length > 0) sp.set("eOff", eOff.join(","));
+
+    if (searchQuery.trim()) sp.set("searchText", searchQuery.trim());
     if (selectedIds.size > 0) {
-      selectedModels.forEach(m => sp.append('sel', m.slug));
+      selectedModels.forEach((m) => sp.append("sel", m.slug));
     }
-    if (brushStart && isFinite(brushStart.getTime())) sp.set('from', brushStart.toISOString().slice(0, 10));
-    if (brushEnd   && isFinite(brushEnd.getTime()))   sp.set('to',   brushEnd.toISOString().slice(0, 10));
+    if (brushStart && isFinite(brushStart.getTime()))
+      sp.set("from", brushStart.toISOString().slice(0, 10));
+    if (brushEnd && isFinite(brushEnd.getTime()))
+      sp.set("to", brushEnd.toISOString().slice(0, 10));
     // Axis brushes — each as its own param: key=lo-hi (e.g. lb_math=79.7-91.2)
     for (const [key, [lo, hi]] of Object.entries(axisBrushes)) {
-      sp.set(key, `${Math.round(lo*10)/10}-${Math.round(hi*10)/10}`);
+      sp.set(key, `${Math.round(lo * 10) / 10}-${Math.round(hi * 10) / 10}`);
     }
     // Mobile tab — only persist on mobile viewport to keep URLs clean on desktop
-    if (breakpoints.isMobile && activeTab !== 'chart') sp.set('tab', activeTab);
+    if (breakpoints.isMobile && activeTab !== "chart") sp.set("tab", activeTab);
     const qs = sp.toString();
     replaceState(qs ? `?${qs}` : window.location.pathname, {});
   });
@@ -281,9 +345,14 @@
   // Restore canonical IDs from slugs in URL params once data is ready
   // Only restore if user hasn't explicitly cleared the selection
   $effect(() => {
-    if (url0?.selectedSlugs.length && allModels.length && selectedIds.size === 0 && !userClearedSelection) {
+    if (
+      url0?.selectedSlugs.length &&
+      allModels.length &&
+      selectedIds.size === 0 &&
+      !userClearedSelection
+    ) {
       for (const slug of url0.selectedSlugs) {
-        const match = allModels.find(m => m.slug === slug);
+        const match = allModels.find((m) => m.slug === slug);
         if (match) selectedIds.add(match.id);
       }
     }
@@ -304,7 +373,7 @@
   }
 
   const selectedModels = $derived(
-    allModels.filter(m => selectedIds.has(m.id))
+    allModels.filter((m) => selectedIds.has(m.id)),
   );
 
   // Breakpoint detection lives in $lib/stores/breakpoints.svelte
@@ -312,26 +381,32 @@
 
   // ─── Reset ───────────────────────────────────────────────────────────────
   function resetAll() {
-    openRouterOnly   = true;
-    ollamaCloudOnly  = true;
-    ollamaLocalOnly  = true;
-    otherSourceOnly  = true;
-    showOpen         = true;
-    showClosed       = true;
-    showEffort       = { null: true, low: true, medium: true, high: true, xhigh: true };
-    latest2          = false;
-    groupByProvider  = true;
-    hidden           = new SvelteSet();
+    openRouterOnly = true;
+    ollamaCloudOnly = true;
+    ollamaLocalOnly = true;
+    otherSourceOnly = true;
+    showOpen = true;
+    showClosed = true;
+    showEffort = {
+      null: true,
+      low: true,
+      medium: true,
+      high: true,
+      xhigh: true,
+    };
+    latest2 = false;
+    groupByProvider = true;
+    hidden = new SvelteSet();
     selectedIds.clear();
-    brushStart       = null;
-    brushEnd         = null;
-    axisBrushes      = {};
+    brushStart = null;
+    brushEnd = null;
+    axisBrushes = {};
     expandedFamilies = {};
-    axisOrder        = activeBenchmarks.map(b => b.key);
-    sortBy           = 'category';
-    selectedSortAxis = 'lb_avg';
-    groupByProvider  = true;
-    searchQuery      = '';
+    axisOrder = activeBenchmarks.map((b) => b.key);
+    sortBy = "category";
+    selectedSortAxis = "lb_avg";
+    groupByProvider = true;
+    searchQuery = "";
   }
 </script>
 
@@ -344,10 +419,11 @@
         <code>node fetch_benchmarks.js</code>
       </div>
     </div>
-
   {:else if loadingData || !bd}
-    <div class="loading"><div class="spin"></div><span>Loading…</span></div>
-
+    <div class="loading">
+      <div class="spin"></div>
+      <span>Loading…</span>
+    </div>
   {:else}
     {#if breakpoints.isMobile}
       <!-- ══════════════ MOBILE LAYOUT ══════════════ -->
@@ -356,12 +432,35 @@
           <h1>LLMs Benchmarks</h1>
           <div class="header-actions">
             <span class="app-version">{version}</span>
-            <a href="{base}/pipeline" class="pipeline-link" aria-label="Pipeline Data Flow">
+            <NotificationBell />
+            <a
+              href="{base}/pipeline"
+              class="pipeline-link"
+              aria-label="Pipeline Data Flow"
+            >
               <GitFork size={20} />
             </a>
-            <a href="https://github.com/mindrones/livebenchviz" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View on GitHub">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+            <a
+              href="https://github.com/mindrones/livebenchviz"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="github-link"
+              aria-label="View on GitHub"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                ></path>
                 <path d="M9 18c-4.51 2-5-2-7-2"></path>
               </svg>
             </a>
@@ -370,11 +469,13 @@
       </header>
 
       <div class="mobile-content">
-        {#if activeTab === 'chart'}
+        {#if activeTab === "chart"}
           {#if !breakpoints.isXl}
             <div class="legend category-legend">
               {#each categoryLegend as item (item.key)}
-                <span class="category-pill"><span class="category-abbr">{item.abbrev}</span> = {item.name}</span>
+                <span class="category-pill"
+                  ><span class="category-abbr">{item.abbrev}</span> = {item.name}</span
+                >
               {/each}
             </div>
           {/if}
@@ -399,15 +500,14 @@
           </section>
 
           <Timeline
-						{chartIds}
-						isMobile={breakpoints.isMobile}
-						bind:brushEnd
-						bind:brushStart
-						bind:releaseHoverIds
-						models={allModels}
-					/>
-
-        {:else if activeTab === 'filter'}
+            {chartIds}
+            isMobile={breakpoints.isMobile}
+            bind:brushEnd
+            bind:brushStart
+            bind:releaseHoverIds
+            models={allModels}
+          />
+        {:else if activeTab === "filter"}
           <Sidebar
             {familyOrder}
             {hidden}
@@ -437,45 +537,55 @@
             onReset={resetAll}
             onToggleSelection={toggleSelection}
           />
-
-        {:else if activeTab === 'stats'}
+        {:else if activeTab === "stats"}
           <div class="legend stats-legend">
             {#each legendFamilies as fam}
               <span class="legend-pill" style:color={familyColor(fam)}>
-                <span class="legend-dot" style:background={familyColor(fam)}></span>{fam}
+                <span class="legend-dot" style:background={familyColor(fam)}
+                ></span>{fam}
               </span>
             {/each}
           </div>
           <MobileStatsPanel {stats} />
-
-        {:else if activeTab === 'help'}
+        {:else if activeTab === "help"}
           <MobileHelpPanel />
         {/if}
       </div>
 
       <nav class="mobile-nav">
-        <button class="nav-btn" class:active={activeTab === 'filter'}
-          onclick={() => activeTab = 'filter'}>
+        <button
+          class="nav-btn"
+          class:active={activeTab === "filter"}
+          onclick={() => (activeTab = "filter")}
+        >
           <Funnel size={20} />
           <span>Filter</span>
         </button>
-        <button class="nav-btn" class:active={activeTab === 'chart'}
-          onclick={() => activeTab = 'chart'}>
+        <button
+          class="nav-btn"
+          class:active={activeTab === "chart"}
+          onclick={() => (activeTab = "chart")}
+        >
           <ChartColumn size={20} />
           <span>Chart</span>
         </button>
-        <button class="nav-btn" class:active={activeTab === 'stats'}
-          onclick={() => activeTab = 'stats'}>
+        <button
+          class="nav-btn"
+          class:active={activeTab === "stats"}
+          onclick={() => (activeTab = "stats")}
+        >
           <TrendingUp size={20} />
           <span>Stats</span>
         </button>
-        <button class="nav-btn" class:active={activeTab === 'help'}
-          onclick={() => activeTab = 'help'}>
+        <button
+          class="nav-btn"
+          class:active={activeTab === "help"}
+          onclick={() => (activeTab = "help")}
+        >
           <CircleQuestionMark size={20} />
           <span>Help</span>
         </button>
       </nav>
-
     {:else}
       <!-- ══════════════ DESKTOP LAYOUT (unchanged) ══════════════ -->
       <main>
@@ -484,16 +594,43 @@
             <h1>LLMs Benchmarks</h1>
             <div class="header-actions">
               <span class="app-version">{version}</span>
-              <a href="{base}/pipeline" class="pipeline-link-btn" aria-label="Pipeline Data Flow">
+              <NotificationBell />
+              <a
+                href="{base}/pipeline"
+                class="pipeline-link-btn"
+                aria-label="Pipeline Data Flow"
+              >
                 <GitFork size={15} />
                 <span>Data Flow</span>
               </a>
-              <button class="help-link" onclick={() => (showHelp = true)} aria-label="How to use">
+              <button
+                class="help-link"
+                onclick={() => (showHelp = true)}
+                aria-label="How to use"
+              >
                 <CircleQuestionMark size={20} />
               </button>
-              <a href="https://github.com/mindrones/livebenchviz" target="_blank" rel="noopener noreferrer" class="github-link" aria-label="View on GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+              <a
+                href="https://github.com/mindrones/livebenchviz"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="github-link"
+                aria-label="View on GitHub"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+                  ></path>
                   <path d="M9 18c-4.51 2-5-2-7-2"></path>
                 </svg>
               </a>
@@ -514,7 +651,9 @@
         {#if !breakpoints.isXl}
           <div class="legend category-legend">
             {#each categoryLegend as item (item.key)}
-              <span class="category-pill"><span class="category-abbr">{item.abbrev}</span> = {item.name}</span>
+              <span class="category-pill"
+                ><span class="category-abbr">{item.abbrev}</span> = {item.name}</span
+              >
             {/each}
           </div>
         {/if}
@@ -539,13 +678,13 @@
         </section>
 
         <Timeline
-					{chartIds}
-					isMobile={breakpoints.isMobile}
-					bind:brushEnd
-					bind:brushStart
-					bind:releaseHoverIds
-					models={allModels}
-				/>
+          {chartIds}
+          isMobile={breakpoints.isMobile}
+          bind:brushEnd
+          bind:brushStart
+          bind:releaseHoverIds
+          models={allModels}
+        />
       </main>
 
       <Sidebar
@@ -577,35 +716,162 @@
       />
     {/if}
 
-    <CitationModal show={showCitation} onclose={() => showCitation = false} />
-    <HelpModal show={showHelp} onclose={() => showHelp = false} />
+    <CitationModal show={showCitation} onclose={() => (showCitation = false)} />
+    <HelpModal show={showHelp} onclose={() => (showHelp = false)} />
   {/if}
 </div>
 
 <style>
-  .app { display: flex; height: 100dvh; overflow: hidden; background: #0f1117; }
-  .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; flex: 1; color: #8892a4; }
-  .spin { width: 36px; height: 36px; border: 3px solid #2e3250; border-top-color: #6366f1; border-radius: 50%; animation: spin .8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .error-wrap { flex: 1; display: flex; align-items: center; justify-content: center; }
-  .error-box { background: #1a1d27; border: 1px solid #ef4444; border-radius: 10px; padding: 24px 28px; max-width: 500px; }
-  .error-box h3 { color: #ef4444; font-size: 16px; margin-bottom: 8px; }
-  .error-box p  { color: #8892a4; font-size: 13px; line-height: 1.6; }
-  .error-box code { display: block; background: #22263a; border: 1px solid #2e3250; border-radius: 6px; padding: 10px 14px; margin-top: 10px; font-family: monospace; font-size: 13px; color: #e2e8f0; }
+  .app {
+    display: flex;
+    height: 100dvh;
+    overflow: hidden;
+    background: #0f1117;
+  }
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex: 1;
+    color: #8892a4;
+  }
+  .spin {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #2e3250;
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .error-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .error-box {
+    background: #1a1d27;
+    border: 1px solid #ef4444;
+    border-radius: 10px;
+    padding: 24px 28px;
+    max-width: 500px;
+  }
+  .error-box h3 {
+    color: #ef4444;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .error-box p {
+    color: #8892a4;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .error-box code {
+    display: block;
+    background: #22263a;
+    border: 1px solid #2e3250;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-family: monospace;
+    font-size: 13px;
+    color: #e2e8f0;
+  }
 
-  main { flex: 1; overflow-y: auto; padding: 18px 24px 0; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 18px 24px 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+  }
 
-  header { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; gap: 0; }
-  .header-title { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-  h1 { font-size: 20px; font-weight: 800; background: linear-gradient(135deg,#818cf8,#6366f1,#a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-  .header-actions { display: flex; align-items: center; gap: 6px; }
-  .app-version { font-size: 12px; color: #8892a4; font-weight: 600; }
-  .help-link { color: #8892a4; display: flex; align-items: center; padding: 4px; border-radius: 6px; transition: color .2s, background .2s; background: none; border: none; cursor: pointer; }
-  .help-link:hover { color: #a5b4fc; background: #2e3250; }
-  .github-link { color: #8892a4; display: flex; align-items: center; padding: 4px; border-radius: 6px; transition: color .2s, background .2s; }
-  .github-link:hover { color: #c4b5fd; background: #2e3250; }
-  .pipeline-link { color: #8892a4; display: flex; align-items: center; padding: 4px; border-radius: 6px; transition: color .2s, background .2s; }
-  .pipeline-link:hover { color: #818cf8; background: #2e3250; }
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    gap: 0;
+  }
+  .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  h1 {
+    font-size: 20px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .app-version {
+    font-size: 12px;
+    color: #8892a4;
+    font-weight: 600;
+  }
+  .help-link {
+    color: #8892a4;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    transition:
+      color 0.2s,
+      background 0.2s;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .help-link:hover {
+    color: #a5b4fc;
+    background: #2e3250;
+  }
+  .github-link {
+    color: #8892a4;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+  .github-link:hover {
+    color: #c4b5fd;
+    background: #2e3250;
+  }
+  .pipeline-link {
+    color: #8892a4;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 6px;
+    transition:
+      color 0.2s,
+      background 0.2s;
+  }
+  .pipeline-link:hover {
+    color: #818cf8;
+    background: #2e3250;
+  }
   .pipeline-link-btn {
     display: inline-flex;
     align-items: center;
@@ -616,7 +882,7 @@
     padding: 4px 8px;
     border-radius: 6px;
     border: 1px solid #2e3250;
-    background: rgba(255,255,255,0.02);
+    background: rgba(255, 255, 255, 0.02);
     text-decoration: none;
     transition: all 0.2s;
   }
@@ -626,61 +892,171 @@
     border-color: #4a5568;
   }
 
+  #stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .stat {
+    background: #1a1d27;
+    border: 1px solid #2e3250;
+    border-radius: 7px;
+    padding: 8px 12px;
+    flex: 1;
+    min-width: 88px;
+  }
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #8892a4;
+  }
+  .stat-value {
+    font-size: 17px;
+    font-weight: 800;
+  }
+  .stat-sub {
+    font-size: 10px;
+    color: #8892a4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-  #stats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-  .stat { background: #1a1d27; border: 1px solid #2e3250; border-radius: 7px; padding: 8px 12px; flex: 1; min-width: 88px; }
-  .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: .06em; color: #8892a4; }
-  .stat-value { font-size: 17px; font-weight: 800; }
-  .stat-sub   { font-size: 10px; color: #8892a4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+    padding: 6px 10px;
+    background: #1a1d27;
+    border: 1px solid #2e3250;
+    border-radius: 7px;
+  }
+  .legend-pill {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+  }
+  .legend-pill:hover {
+    border-color: currentColor;
+  }
+  .legend-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
 
-  .legend { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; padding: 6px 10px; background: #1a1d27; border: 1px solid #2e3250; border-radius: 7px; }
-  .legend-pill { display: flex; align-items: center; gap: 3px; font-size: 11px; padding: 2px 7px; border-radius: 10px; border: 1px solid transparent; }
-  .legend-pill:hover { border-color: currentColor; }
-  .legend-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .stats-legend {
+    margin: 0 16px 10px 16px;
+  }
 
-  .stats-legend { margin: 0 16px 10px 16px; }
+  .category-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin-bottom: 8px;
+    padding: 6px 10px;
+    background: #1a1d27;
+    border: 1px solid #2e3250;
+    border-radius: 7px;
+  }
+  .category-pill {
+    font-size: 11px;
+    color: #c4cad8;
+    padding: 2px 0;
+  }
+  .category-abbr {
+    font-weight: 700;
+    color: #a5b4fc;
+    margin-right: 2px;
+  }
 
-  .category-legend { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-bottom: 8px; padding: 6px 10px; background: #1a1d27; border: 1px solid #2e3250; border-radius: 7px; }
-  .category-pill { font-size: 11px; color: #c4cad8; padding: 2px 0; }
-  .category-abbr { font-weight: 700; color: #a5b4fc; margin-right: 2px; }
-
-  .chart-section { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .chart-section {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
 
   /* ── Mobile layout ─────────────────────────────────────────────────── */
-  .app.mobile { flex-direction: column; }
+  .app.mobile {
+    flex-direction: column;
+  }
 
   .mobile-header {
-    display: flex; flex-direction: column; align-items: flex-start;
-    padding: 10px 14px 6px; flex-shrink: 0; background: #0f1117;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 14px 6px;
+    flex-shrink: 0;
+    background: #0f1117;
   }
-  .mobile-header .header-title { display: flex; align-items: center; justify-content: space-between; width: 100%; }
-  .mobile-header h1 { font-size: 17px; }
+  .mobile-header .header-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .mobile-header h1 {
+    font-size: 17px;
+  }
 
   .mobile-content {
-    flex: 1; overflow-y: auto; overflow-x: hidden;
-    display: flex; flex-direction: column;
-    min-height: 0; background: #0f1117;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    background: #0f1117;
     touch-action: pan-y;
     padding: 0 10px;
   }
 
   .mobile-nav {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    background: #1a1d27; border-top: 1px solid #2e3250;
-    flex-shrink: 0; padding-bottom: env(safe-area-inset-bottom);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #1a1d27;
+    border-top: 1px solid #2e3250;
+    flex-shrink: 0;
+    padding-bottom: env(safe-area-inset-bottom);
   }
   .nav-btn {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 2px; padding: 8px 0; background: transparent; border: none;
-    color: #8892a4; cursor: pointer; transition: all .15s;
-    font-size: 11px; font-family: 'Inter', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 8px 0;
+    background: transparent;
+    border: none;
+    color: #8892a4;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 11px;
+    font-family: "Inter", system-ui, sans-serif;
   }
-  .nav-btn:active { transform: scale(0.95); }
+  .nav-btn:active {
+    transform: scale(0.95);
+  }
   .nav-btn.active {
     color: #818cf8;
-    background: rgba(129,140,248,.08);
+    background: rgba(129, 140, 248, 0.08);
     box-shadow: inset 0 2px 0 #6366f1;
   }
-  .nav-btn:hover { color: #a5b4fc; }
-  .nav-btn span { font-size: 10px; letter-spacing: .02em; }
+  .nav-btn:hover {
+    color: #a5b4fc;
+  }
+  .nav-btn span {
+    font-size: 10px;
+    letter-spacing: 0.02em;
+  }
 </style>

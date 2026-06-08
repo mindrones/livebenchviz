@@ -51,10 +51,87 @@ self.addEventListener('fetch', (event) => {
         return cached || networkFetch;
       })
     );
-  } else {
+    } else {
     // Cache-first / Fallback-to-network for app shell files
     event.respondWith(
       caches.match(request).then((cached) => cached || fetch(request))
     );
   }
 });
+
+// 4. Periodic Sync & Update Check logic
+async function checkForUpdates() {
+  try {
+    const basePath = self.location.pathname.substring(0, self.location.pathname.lastIndexOf('/'));
+    const hashUrl = `${self.location.origin}${basePath}/data-hash.json?t=${Date.now()}`;
+    const targetUrl = `${self.location.origin}${basePath}/`;
+
+    const res = await fetch(hashUrl, { cache: 'no-store' });
+    if (!res.ok) return;
+    const latest = await res.json();
+
+    const cache = await caches.open('livebench-notification-cache');
+    const cachedResponse = await cache.match('data-hash-version');
+
+    let isNew = false;
+    if (cachedResponse) {
+      const oldData = await cachedResponse.json();
+      if (oldData.hash && oldData.hash !== latest.hash) {
+        isNew = true;
+      }
+    } else {
+      // First run: silently seed the cache
+      await cache.put('data-hash-version', new Response(JSON.stringify(latest)));
+      return;
+    }
+
+    // Update the cached version
+    await cache.put('data-hash-version', new Response(JSON.stringify(latest)));
+
+    if (isNew) {
+      self.registration.showNotification('LLM Benchmark Dashboard Updated', {
+        body: 'New benchmark data has been added! Tap to view the latest scores.',
+        icon: `${basePath}/icon-192x192.png`,
+        badge: `${basePath}/favicon.ico`,
+        tag: 'livebench-data-update',
+        data: { url: targetUrl }
+      });
+    }
+  } catch (err) {
+    console.error('Error checking for updates in background:', err);
+  }
+}
+
+// Listen for Periodic Background Sync trigger
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'update-check') {
+    event.waitUntil(checkForUpdates());
+  }
+});
+
+// Handle notification click (focus existing tab or open new tab)
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const urlToOpen = event.notification.data?.url || '/livebenchviz/';
+
+  event.waitUntil(
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((windowClients) => {
+      for (const client of windowClients) {
+        if (client.url === urlToOpen && 'focus' in client) {
+          return client.focus();
+        }
+      }
+      if (self.clients.openWindow) {
+        return self.clients.openWindow(urlToOpen);
+      }
+    })
+  );
+});
+
+// Allow manual trigger from client page for debugging
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'CHECK_FOR_UPDATES') {
+    event.waitUntil(checkForUpdates());
+  }
+});
+
