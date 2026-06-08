@@ -499,7 +499,6 @@
               </a>
             </div>
           </div>
-          <p class="hint-row"><span class="hint-chip pointer-fine-only">hover/click a curve to toggle models</span><span class="hint-chip">drag axis labels to reorder</span><span class="hint-chip">brush axes to filter</span></p>
         </header>
 
         <div id="stats">
@@ -626,11 +625,7 @@
     background: #2e3250;
     border-color: #4a5568;
   }
-  header p { color: #8892a4; font-size: 12px; margin-top: 3px; font-style: italic; }
-  .hint-row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; }
-  .hint-chip { white-space: nowrap; }
-  .pointer-fine-only { display: none; }
-  @media (pointer: fine) { .pointer-fine-only { display: inline; } }
+
 
   #stats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
   .stat { background: #1a1d27; border: 1px solid #2e3250; border-radius: 7px; padding: 8px 12px; flex: 1; min-width: 88px; }
