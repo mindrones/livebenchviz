@@ -94,9 +94,14 @@
   <body data-sveltekit-preload-data="off">
     <div style="display: contents">%sveltekit.body%</div>
     <script>
+      // Automatically refresh page to apply updates when a new service worker takes control
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('%sveltekit.assets%/sw.js', { scope: '/livebenchviz/' });
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
         });
       }
     </script>

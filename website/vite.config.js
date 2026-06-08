@@ -3,31 +3,35 @@ import tailwindcss from '@tailwindcss/vite';
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import crypto from 'crypto';
 
-const rootPkg = JSON.parse(readFileSync(resolve(__dirname, '../package.json'), 'utf-8'));
-const appVersion = rootPkg.version;
+function getDataHash() {
+  try {
+    const data1 = readFileSync(resolve(__dirname, 'static/benchmark_lb.json'));
+    const data2 = readFileSync(resolve(__dirname, 'static/inference.json'));
+    const hash = crypto.createHash('md5');
+    hash.update(data1);
+    hash.update(data2);
+    return hash.digest('hex').slice(0, 8);
+  } catch (e) {
+    return 'initial';
+  }
+}
 
-// Replaces __SW_VERSION__ in the built sw.js with the actual package.json version.
-// sw.js is a static file so it bypasses Vite's transform pipeline — we patch it post-build.
-function swVersionPlugin() {
-  return {
-    name: 'sw-version',
-    closeBundle() {
-      const swPath = resolve(__dirname, 'build/sw.js');
-      try {
-        const code = readFileSync(swPath, 'utf-8');
-        writeFileSync(swPath, code.replace(/__SW_VERSION__/g, appVersion));
-      } catch {
-        // Not a production build (e.g. dev mode) — skip
-      }
-    },
-  };
+// Write the data version file dynamically
+const dataHash = getDataHash();
+try {
+  writeFileSync(
+    resolve(__dirname, 'src/lib/data-version.js'),
+    `export const DATA_VERSION = '${dataHash}';\n`
+  );
+} catch (e) {
+  console.error('Failed to write data-version.js:', e);
 }
 
 export default defineConfig({
   plugins: [
     tailwindcss(),
     sveltekit(),
-    swVersionPlugin(),
   ]
 });
