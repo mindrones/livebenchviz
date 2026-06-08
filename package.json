@@ -10,7 +10,8 @@
 		"deploy:only": "gh-pages -d website/build --nojekyll --no-history",
 		"dev": "pnpm --filter website run dev",
 		"fetch-data": "pnpm --filter pipeline run build:data",
-		"pipeline": "pnpm --filter pipeline run all"
+		"pipeline": "pnpm --filter pipeline run all",
+		"prepare": "git config core.hooksPath .githooks || true"
 	},
-	"version": "1.4.0"
+	"version": "1.4.1"
 }
