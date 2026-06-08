@@ -473,7 +473,6 @@
               {#if m.effort}
                 <span class="effort-tag effort-{m.effort}">{m.effort}</span>
               {/if}
-              <span class="sel-id" title={m.id}>({m.id})</span>
             </div>
           {/each}
         </div>
@@ -500,7 +499,6 @@
               {#if m.effort}
                 <span class="effort-tag effort-{m.effort}">{m.effort}</span>
               {/if}
-              <span class="sel-id" title={m.id}>({m.id})</span>
               <button class="sel-remove" onclick={(e) => onDeselectModel(e, m.id)} title="Remove from selection">✕</button>
             </div>
           {/each}
