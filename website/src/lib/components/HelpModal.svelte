@@ -100,8 +100,8 @@
   .modal {
     position: fixed; z-index: 1000; user-select: none;
     background: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 12px;
-    width: 480px; max-width: 92vw; box-shadow: 0 8px 32px rgba(0,0,0,.45),
-    0 0 0 1px rgba(99,102,241,.08);
+    width: 480px; max-width: 92vw; box-shadow: 0 8px 32px color-mix(in srgb, var(--color-border-focus) 45%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--color-accent) 8%, transparent);
     display: flex; flex-direction: column;
   }
   .modal-header {
@@ -115,14 +115,14 @@
     transition: color .15s; flex-shrink: 0;
   }
   .drag-grip.dragging { color: var(--color-accent-light); }
-  .modal-header:hover .drag-grip { color: #6b7280; }
+  .modal-header:hover .drag-grip { color: var(--color-text-muted); }
   .panel-title {
     font-size: 14px; font-weight: 700; color: var(--color-text-primary); flex: 1;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     pointer-events: none; margin: 0;
   }
   .nav-info {
-    font-size: 11px; color: #6b7280; font-variant-numeric: tabular-nums;
+    font-size: 11px; color: var(--color-text-muted); font-variant-numeric: tabular-nums;
     pointer-events: none; flex-shrink: 0;
   }
   .nav-btn {

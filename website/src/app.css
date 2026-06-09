@@ -18,6 +18,18 @@
   --color-closed:        var(--app-closed);
   --color-olama:         var(--app-olama);
   --color-error:         var(--app-error);
+
+  /* Computed alpha overlays */
+  --color-bg-toast:             color-mix(in srgb, var(--color-bg-elevated) 85%, transparent);
+  --color-overlay:              color-mix(in srgb, var(--color-bg-primary) 65%, transparent);
+  --color-text-alpha:           color-mix(in srgb, var(--color-text-primary) 10%, transparent);
+  --color-accent-alpha:         color-mix(in srgb, var(--color-accent) 15%, transparent);
+  --color-accent-alpha-hover:   color-mix(in srgb, var(--color-accent) 25%, transparent);
+  --color-accent-violet-alpha:  color-mix(in srgb, var(--color-accent-violet) 15%, transparent);
+  --color-open-alpha:           color-mix(in srgb, var(--color-open) 15%, transparent);
+  --color-closed-alpha:         color-mix(in srgb, var(--color-closed) 15%, transparent);
+  --color-error-alpha:          color-mix(in srgb, var(--color-error) 15%, transparent);
+  --color-olama-alpha:          color-mix(in srgb, var(--color-olama) 15%, transparent);
 }
 
 @layer base {

@@ -49,13 +49,13 @@
     align-items: center;
     width: max-content;
     max-width: 90vw;
-    background: rgba(26, 29, 39, 0.85);
+    background: var(--color-bg-toast);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(59, 130, 246, 0.35);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
     box-shadow: 
       0 10px 30px -10px rgba(0, 0, 0, 0.5),
-      0 1px 3px rgba(59, 130, 246, 0.1),
+      0 1px 3px color-mix(in srgb, var(--color-accent) 10%, transparent),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     padding: 10px 14px;
@@ -68,7 +68,7 @@
     left: 10%;
     width: 80%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent) 80%, transparent), transparent);
   }
 
   .banner-content {
@@ -90,8 +90,8 @@
   .banner-badge {
     font-size: 9px;
     font-weight: 800;
-    background: rgba(59, 130, 246, 0.15);
-    border: 1px solid rgba(59, 130, 246, 0.4);
+    background: var(--color-accent-alpha);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
     color: var(--color-accent-light);
     padding: 2px 6px;
     border-radius: 6px;
@@ -116,7 +116,7 @@
     align-items: center;
     gap: 6px;
     background: var(--color-accent);
-    color: #ffffff;
+    color: var(--color-bg-primary);
     border: none;
     border-radius: 8px;
     padding: 6px 12px;
@@ -124,12 +124,12 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+    box-shadow: 0 2px 8px var(--color-accent-alpha-hover);
   }
 
   .btn-refresh:hover {
     background: var(--color-accent-light);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent) 35%, transparent);
     transform: translateY(-1px);
   }
 
@@ -160,7 +160,7 @@
 
   .btn-close:hover {
     color: var(--color-text-primary);
-    background: rgba(255, 255, 255, 0.05);
+    background: color-mix(in srgb, var(--color-text-primary) 5%, transparent);
   }
 
   /* Responsive layout adjustment for smaller viewports */

@@ -333,8 +333,8 @@
         <rect width={containerW} height={TRACK_H} fill="var(--color-bg-surface)" />
 
         <!-- Dim mask outside brush -->
-        <rect x={ML}  y={0} width={bx0 - ML}               height={TRACK_H} fill="rgba(0,0,0,.52)" />
-        <rect x={bx1} y={0} width={containerW - MR - bx1}  height={TRACK_H} fill="rgba(0,0,0,.52)" />
+        <rect x={ML}  y={0} width={bx0 - ML}               height={TRACK_H} fill="var(--color-bg-primary)" opacity="0.6" />
+        <rect x={bx1} y={0} width={containerW - MR - bx1}  height={TRACK_H} fill="var(--color-bg-primary)" opacity="0.6" />
 
         <!-- Model release ticks — one per model, colored by family -->
         {#each allModels as m (m.id)}
@@ -377,12 +377,12 @@
         {#if hoverReleaseX != null}
           <line
             x1={hoverReleaseX} y1={0} x2={hoverReleaseX} y2={TRACK_H}
-            stroke="#ef4444" stroke-width={1} opacity={0.55}
+            stroke="var(--color-error)" stroke-width={1} opacity={0.55}
             pointer-events="none"
           />
           <polygon
             points="{hoverReleaseX - 5},0 {hoverReleaseX + 5},0 {hoverReleaseX},8"
-            fill="#ef4444"
+            fill="var(--color-error)"
             pointer-events="none"
           />
         {/if}
@@ -391,7 +391,7 @@
         {#each yearTicks as tick}
           {@const tx = timeScale(tick)}
           <line x1={tx} y1={TRACK_H} x2={tx} y2={TRACK_H + 5} stroke="var(--color-border)" />
-          <text x={tx} y={SVG_H - 2} text-anchor="middle" fill="#6b7280" font-size={10}>
+          <text x={tx} y={SVG_H - 2} text-anchor="middle" fill="var(--color-text-muted)" font-size={10}>
             {tick.getFullYear()}
           </text>
         {/each}
@@ -416,7 +416,7 @@
     border: 1px solid var(--color-border); background: transparent; color: var(--color-text-muted); cursor: pointer;
   }
   .tl-btn:hover { border-color: var(--color-accent); color: var(--color-text-primary); }
-  .tl-btn.active { background: rgba(99,102,241,.18); border-color: var(--color-accent); color: var(--color-accent-light); }
+  .tl-btn.active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); border-color: var(--color-accent); color: var(--color-accent-light); }
 
   /* ── Touch-friendly sizing on mobile ── */
   @media (max-width: 767px) {
@@ -434,5 +434,5 @@
     margin: 2px 0 4px;
     min-height: 16px;
   }
-  .tl-hover-date { color: #f87171; font-weight: 600; }
+  .tl-hover-date { color: var(--color-error); font-weight: 600; }
 </style>

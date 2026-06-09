@@ -430,11 +430,11 @@
   }
   .citation { font-size: 13px; color: var(--color-text-primary); display: flex; align-items: center; gap: 8px; }
   .livebench-btn { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--color-text-primary); background: transparent; border: 1px solid var(--color-text-primary); border-radius: 4px; padding: 2px 7px; cursor: pointer; transition: all .15s; }
-  .livebench-btn:hover { background: rgba(255,255,255,.1); border-color: #ffffff; }
+  .livebench-btn:hover { background: var(--color-text-alpha); border-color: var(--color-text-primary); }
   .collapse-btn { padding: 4px; background: transparent; border: none; color: var(--color-text-muted); cursor: pointer; transition: color .15s; display: flex; align-items: center; justify-content: center; }
   .collapse-btn:hover { color: var(--color-text-primary); }
   .reset-btn { font-size: 12px; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--color-text-primary); background: transparent; color: var(--color-text-primary); cursor: pointer; transition: all .15s; }
-  .reset-btn:hover { background: rgba(255,255,255,.1); border-color: #ffffff; }
+  .reset-btn:hover { background: var(--color-text-alpha); border-color: var(--color-text-primary); }
 
   .settings-scroll {
     flex-shrink: 0;
@@ -466,16 +466,16 @@
   }
   .search-clr:hover { color: var(--color-text-primary); }
 
-  .sort-btn.active { border-color: var(--color-accent-light); color: var(--color-accent-light); background: rgba(129,140,248,.12); }
+  .sort-btn.active { border-color: var(--color-accent-light); color: var(--color-accent-light); background: color-mix(in srgb, var(--color-accent-light) 12%, transparent); }
   .sort-hint {
-    padding: 3px 10px 5px; font-size: 11px; color: #f97316;
+    padding: 3px 10px 5px; font-size: 11px; color: var(--color-closed);
     background: var(--color-bg-elevated); border-bottom: 1px solid var(--color-border); text-align: center; flex-shrink: 0;
   }
 
   .type-row { display: flex; gap: 1px; padding: 7px 10px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-hover); flex-shrink: 0; }
   .type-btn { flex: 1; padding: 6px 4px; border-radius: 5px; border: 1px solid var(--color-border); background: transparent; color: var(--color-text-muted); font-size: 13px; cursor: pointer; text-align: center; }
-  .type-btn.on-open   { border-color: var(--color-open); color: var(--color-open); background: color-mix(in srgb, var(--color-open) 15%, transparent); }
-  .type-btn.on-closed { border-color: var(--color-closed); color: var(--color-closed); background: color-mix(in srgb, var(--color-closed) 15%, transparent); }
+  .type-btn.on-open   { border-color: var(--color-open); color: var(--color-open); background: var(--color-open-alpha); }
+  .type-btn.on-closed { border-color: var(--color-closed); color: var(--color-closed); background: var(--color-closed-alpha); }
 
   .filter-group { padding: 6px 14px 8px; border-bottom: 1px solid var(--color-border); display: flex; flex-direction: column; gap: 4px; flex-shrink: 0; }
   .group-label  { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--color-text-faint); margin-bottom: 2px; }
@@ -489,10 +489,10 @@
   .effort-grid { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 4px; }
   .effort-chk { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-muted); cursor: pointer; }
   .effort-badge { padding: 2px 6px; border-radius: 4px; font-size: 10px; font-weight: 600; text-transform: uppercase; background: var(--color-bg-hover); color: var(--color-text-muted); }
-  .effort-low { color: var(--color-open); background: color-mix(in srgb, var(--color-open) 15%, transparent); }
-  .effort-medium { color: var(--color-closed); background: color-mix(in srgb, var(--color-closed) 15%, transparent); }
-  .effort-high { color: var(--color-error); background: color-mix(in srgb, var(--color-error) 15%, transparent); }
-  .effort-xhigh { color: #c084fc; background: rgba(192,132,252,.1); }
+  .effort-low { color: var(--color-open); background: var(--color-open-alpha); }
+  .effort-medium { color: var(--color-closed); background: var(--color-closed-alpha); }
+  .effort-high { color: var(--color-error); background: var(--color-error-alpha); }
+  .effort-xhigh { color: var(--color-accent-violet); background: var(--color-accent-violet-alpha); }
 
   /* ── Tree (grouped) ── */
   .tree { flex: 1; overflow-y: auto; padding: 4px 0 12px; }
@@ -514,10 +514,10 @@
   .model-row { display: flex; gap: 6px; padding: 4px 8px 4px 4px; border-radius: 4px; cursor: default; }
   .model-row.flat { padding-left: 6px; }
   .model-row:hover, .model-row.highlighted { background: var(--color-bg-hover); }
-  .model-row.selected { background: rgba(59, 130, 246, 0.15); }
-  .model-row.selected:hover, .model-row.selected.highlighted { background: rgba(59, 130, 246, 0.25); }
+  .model-row.selected { background: var(--color-accent-alpha); }
+  .model-row.selected:hover, .model-row.selected.highlighted { background: var(--color-accent-alpha-hover); }
   .model-row.highlighted .model-name { color: var(--color-text-primary); }
-  .model-row.selected .model-name { color: #fff; font-weight: 500; }
+  .model-row.selected .model-name { color: var(--color-text-primary); font-weight: 500; }
   .model-row input { accent-color: var(--color-accent); width: 13px; height: 13px; cursor: pointer; flex-shrink: 0; margin-top: 2px; }
   .model-row .dot { margin-top: 4px; }
   .model-col { display: flex; flex-direction: column; gap: 4px; flex: 1; overflow: hidden; }
@@ -526,9 +526,9 @@
   .model-meta { display: flex; align-items: center; justify-content: flex-end; gap: 5px; flex-wrap: wrap; }
   .model-date { font-size: 11px; color: var(--color-text-muted); flex-shrink: 0; line-height: 1; }
   .tag { font-size: 10px; padding: 1px 4px; border-radius: 2px; flex-shrink: 0; line-height: 1.2; }
-  .tag.ol  { background: color-mix(in srgb, var(--color-olama) 15%, transparent); color: var(--color-olama); }
-  .tag.oss { background: color-mix(in srgb, var(--color-open) 15%, transparent); color: var(--color-open); }
-  .tag.api { background: color-mix(in srgb, var(--color-closed) 15%, transparent); color: var(--color-closed); }
+  .tag.ol  { background: var(--color-olama-alpha); color: var(--color-olama); }
+  .tag.oss { background: var(--color-open-alpha); color: var(--color-open); }
+  .tag.api { background: var(--color-closed-alpha); color: var(--color-closed); }
   .effort-tag { font-weight: 600; text-transform: uppercase; font-size: 9px; padding: 1px 4px; border-radius: 3px; }
 
   /* ── Touch-friendly sizing on mobile ── */

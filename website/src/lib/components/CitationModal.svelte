@@ -44,13 +44,13 @@
 
 <style>
   .overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,.65);
+    position: fixed; inset: 0; background: var(--color-overlay);
     display: flex; align-items: center; justify-content: center; z-index: 1000;
   }
   .modal {
     background: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 12px;
     width: 560px; max-width: 90vw; max-height: 80vh; overflow-y: auto;
-    box-shadow: 0 16px 48px rgba(0,0,0,.5);
+    box-shadow: 0 16px 48px color-mix(in srgb, var(--color-border-focus) 50%, transparent);
   }
   .modal-header {
     display: flex; align-items: center; justify-content: space-between;

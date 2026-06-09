@@ -37,7 +37,7 @@
 
 <style>
   .node-wrapper {
-    background: color-mix(in srgb, var(--color-bg-elevated) 85%, transparent);
+    background: var(--color-bg-toast);
     border: 1px solid var(--color-border);
     border-radius: 10px;
     padding: 12px 14px;

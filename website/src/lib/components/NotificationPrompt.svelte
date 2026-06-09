@@ -85,7 +85,7 @@
     bottom: 24px;
     right: 24px;
     width: 320px;
-    background: rgba(26, 29, 39, 0.9);
+    background: color-mix(in srgb, var(--color-bg-elevated) 90%, transparent);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid var(--color-border);
@@ -103,7 +103,7 @@
   }
 
   .notification-prompt:hover {
-    border-color: rgba(59, 130, 246, 0.5);
+    border-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
   }
 
   .prompt-glow {
@@ -112,7 +112,7 @@
     right: 0;
     width: 120px;
     height: 120px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--color-accent) 12%, transparent) 0%, transparent 70%);
     pointer-events: none;
   }
 
@@ -127,8 +127,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(59, 130, 246, 0.1);
-    border: 1px solid rgba(59, 130, 246, 0.2);
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
     color: var(--color-accent-light);
     padding: 6px;
     border-radius: 8px;
@@ -171,7 +171,7 @@
 
   .btn-close:hover {
     color: var(--color-text-primary);
-    background: rgba(255, 255, 255, 0.05);
+    background: color-mix(in srgb, var(--color-text-primary) 5%, transparent);
   }
 
   .prompt-body {
@@ -202,12 +202,12 @@
 
   .btn-dismiss:hover {
     color: var(--color-text-primary);
-    background: rgba(255, 255, 255, 0.03);
+    background: color-mix(in srgb, var(--color-text-primary) 3%, transparent);
   }
 
   .btn-subscribe {
     background: var(--color-accent);
-    color: #ffffff;
+    color: var(--color-bg-primary);
     border: none;
     border-radius: 8px;
     padding: 6px 14px;
@@ -215,12 +215,12 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--color-accent) 20%, transparent);
   }
 
   .btn-subscribe:hover {
     background: var(--color-accent-light);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent) 30%, transparent);
     transform: translateY(-1px);
   }
 

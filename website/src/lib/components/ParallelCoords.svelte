@@ -689,10 +689,10 @@
   .header-id { font-size: 13px; font-weight: 400; color: var(--color-text-muted); margin-left: 8px; font-family: monospace; }
   .effort-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: var(--color-bg-hover); color: var(--color-text-muted); margin-left: 6px; vertical-align: middle; }
   .effort-tag { font-weight: 600; text-transform: uppercase; font-size: 9px; padding: 1px 4px; margin-left: 4px; border-radius: 3px; }
-  .effort-low { color: var(--color-open); background: color-mix(in srgb, var(--color-open) 15%, transparent); }
-  .effort-medium { color: var(--color-closed); background: color-mix(in srgb, var(--color-closed) 15%, transparent); }
-  .effort-high { color: var(--color-error); background: color-mix(in srgb, var(--color-error) 15%, transparent); }
-  .effort-xhigh { color: var(--color-accent-violet); background: color-mix(in srgb, var(--color-accent-violet) 15%, transparent); }
+  .effort-low { color: var(--color-open); background: var(--color-open-alpha); }
+  .effort-medium { color: var(--color-closed); background: var(--color-closed-alpha); }
+  .effort-high { color: var(--color-error); background: var(--color-error-alpha); }
+  .effort-xhigh { color: var(--color-accent-violet); background: var(--color-accent-violet-alpha); }
   .sel-remove {
     background: none; border: none; color: var(--color-text-muted); cursor: pointer;
     padding: 0 2px; font-size: 12px; display: flex; align-items: center; justify-content: center;

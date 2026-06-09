@@ -109,7 +109,7 @@
   }
 
   .bell-btn {
-    background: rgba(255, 255, 255, 0.02);
+    background: color-mix(in srgb, var(--color-text-primary) 2%, transparent);
     border: 1px solid var(--color-border);
     color: var(--color-text-muted);
     border-radius: 6px;
@@ -135,19 +135,19 @@
 
   .bell-btn.active {
     color: var(--color-accent-light);
-    border-color: rgba(59, 130, 246, 0.4);
-    background: rgba(59, 130, 246, 0.08);
+    border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+    background: color-mix(in srgb, var(--color-accent) 8%, transparent);
   }
 
   .bell-btn.active:hover {
     color: var(--color-accent-light);
-    background: rgba(59, 130, 246, 0.15);
+    background: var(--color-accent-alpha);
   }
 
   .bell-btn.blocked {
-    color: #ef4444;
-    border-color: rgba(239, 68, 68, 0.2);
-    background: rgba(239, 68, 68, 0.03);
+    color: var(--color-error);
+    border-color: color-mix(in srgb, var(--color-error) 20%, transparent);
+    background: color-mix(in srgb, var(--color-error) 3%, transparent);
   }
 
   .bell-btn.checking {
@@ -197,7 +197,7 @@
     border-radius: 8px;
     padding: 8px 12px;
     z-index: 1000;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-border-focus) 40%, transparent);
     pointer-events: none;
     animation: fadeIn 0.15s ease-out;
   }
