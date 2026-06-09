@@ -44,21 +44,23 @@
   let activeYears  = $state(0);        // 0 = All
   let activeMonths = $state(0);        // 0 = inactive
 
-  // ── Date bounds — derived from all models, padded 3 months ──
-  const minDate = $derived.by(() => {
+  // ── Date bounds — derived from all models ──
+  const baseBounds = $derived.by(() => {
     if (!allModels.length) return null;
     const times = allModels.map(m => new Date(m.released).getTime()).filter(t => isFinite(t));
     if (!times.length) return null;
-    const d = new Date(Math.min(...times));
-    return new Date(d.getFullYear(), d.getMonth() - 3, 1);
+    return { min: Math.min(...times), max: Math.max(...times) };
   });
-  const maxDate = $derived.by(() => {
-    if (!allModels.length) return null;
-    const times = allModels.map(m => new Date(m.released).getTime()).filter(t => isFinite(t));
-    if (!times.length) return null;
-    const d = new Date(Math.max(...times));
-    return new Date(d.getFullYear(), d.getMonth() + 4, 1);
+
+  const timePaddingMs = $derived.by(() => {
+    if (!baseBounds || containerW <= 0) return 14 * 86400000;
+    const span = baseBounds.max - baseBounds.min || 86400000;
+    const pxWidth = containerW - ML - MR;
+    return (span / Math.max(10, pxWidth)) * 14; // 14px padding to safely clear the handle width
   });
+
+  const minDate = $derived(baseBounds ? new Date(baseBounds.min - timePaddingMs) : null);
+  const maxDate = $derived(baseBounds ? new Date(baseBounds.max + timePaddingMs) : null);
 
   // Initialise brush to full range once bounds are known
   $effect(() => {
@@ -328,7 +330,7 @@
         onpointerleave={clearReleaseHover}
       >
         <!-- Background -->
-        <rect width={containerW} height={TRACK_H} fill="#1a1d27" />
+        <rect width={containerW} height={TRACK_H} fill="var(--color-bg-surface)" />
 
         <!-- Dim mask outside brush -->
         <rect x={ML}  y={0} width={bx0 - ML}               height={TRACK_H} fill="rgba(0,0,0,.52)" />
@@ -352,7 +354,7 @@
         <rect
           x={bx0 + 1} y={1.5}
           width={Math.max(0, bx1 - bx0 - 2)} height={TRACK_H - 3}
-          fill="none" stroke="#6366f1" stroke-width={1.5} rx={2}
+          fill="none" stroke="var(--color-accent)" stroke-width={1.5} rx={2}
           pointer-events="none"
         />
 
@@ -360,14 +362,14 @@
         <rect
           x={bx0 - 3} y={8}
           width={6} height={TRACK_H - 16}
-          fill="#6366f1" rx={2}
+          fill="var(--color-accent)" rx={2}
           style="cursor: ew-resize"
         />
         <!-- Right drag handle -->
         <rect
           x={bx1 - 3} y={8}
           width={6} height={TRACK_H - 16}
-          fill="#6366f1" rx={2}
+          fill="var(--color-accent)" rx={2}
           style="cursor: ew-resize"
         />
 
@@ -388,7 +390,7 @@
         <!-- Year axis labels — positions from D3 ticks, rendered by Svelte -->
         {#each yearTicks as tick}
           {@const tx = timeScale(tick)}
-          <line x1={tx} y1={TRACK_H} x2={tx} y2={TRACK_H + 5} stroke="#2e3250" />
+          <line x1={tx} y1={TRACK_H} x2={tx} y2={TRACK_H + 5} stroke="var(--color-border)" />
           <text x={tx} y={SVG_H - 2} text-anchor="middle" fill="#6b7280" font-size={10}>
             {tick.getFullYear()}
           </text>
@@ -406,15 +408,15 @@
   }
   .tl-title {
     font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: .06em; color: #8892a4;
+    letter-spacing: .06em; color: var(--color-text-muted);
   }
   .tl-btns { display: flex; gap: 4px; margin-left: auto; }
   .tl-btn {
     font-size: 11px; padding: 3px 9px; border-radius: 4px;
-    border: 1px solid #2e3250; background: transparent; color: #8892a4; cursor: pointer;
+    border: 1px solid var(--color-border); background: transparent; color: var(--color-text-muted); cursor: pointer;
   }
-  .tl-btn:hover { border-color: #6366f1; color: #e2e8f0; }
-  .tl-btn.active { background: rgba(99,102,241,.18); border-color: #6366f1; color: #818cf8; }
+  .tl-btn:hover { border-color: var(--color-accent); color: var(--color-text-primary); }
+  .tl-btn.active { background: rgba(99,102,241,.18); border-color: var(--color-accent); color: var(--color-accent-light); }
 
   /* ── Touch-friendly sizing on mobile ── */
   @media (max-width: 767px) {
@@ -427,7 +429,7 @@
   .tl-range {
     text-align: center;
     font-size: 11px;
-    color: #a5b4fc;
+    color: var(--color-accent-light);
     letter-spacing: .03em;
     margin: 2px 0 4px;
     min-height: 16px;
