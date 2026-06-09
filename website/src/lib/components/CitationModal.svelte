@@ -48,35 +48,35 @@
     display: flex; align-items: center; justify-content: center; z-index: 1000;
   }
   .modal {
-    background: #1a1d27; border: 1px solid #2e3250; border-radius: 12px;
+    background: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 12px;
     width: 560px; max-width: 90vw; max-height: 80vh; overflow-y: auto;
     box-shadow: 0 16px 48px rgba(0,0,0,.5);
   }
   .modal-header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 20px; border-bottom: 1px solid #2e3250;
+    padding: 16px 20px; border-bottom: 1px solid var(--color-border);
   }
   .modal-header h2 {
     display: flex; align-items: center; gap: 8px;
-    font-size: 16px; font-weight: 700; color: #e2e8f0;
+    font-size: 16px; font-weight: 700; color: var(--color-text-primary);
   }
   .close-btn {
-    background: transparent; border: 1px solid #2e3250; border-radius: 5px;
-    color: #8892a4; font-size: 14px; padding: 4px 8px; cursor: pointer;
+    background: transparent; border: 1px solid var(--color-border); border-radius: 5px;
+    color: var(--color-text-muted); font-size: 14px; padding: 4px 8px; cursor: pointer;
   }
-  .close-btn:hover { color: #e2e8f0; border-color: #6366f1; }
+  .close-btn:hover { color: var(--color-text-primary); border-color: var(--color-accent); }
   .modal-body { padding: 16px 20px 20px; }
   .modal-body p { margin-bottom: 12px; }
   .modal-body a {
-    color: #818cf8; text-decoration: none; font-weight: 600; font-size: 14px;
+    color: var(--color-accent-light); text-decoration: none; font-weight: 600; font-size: 14px;
   }
   .modal-body a:hover { text-decoration: underline; }
   .modal-body pre {
-    background: #141620; border: 1px solid #2e3250; border-radius: 8px;
+    background: var(--color-bg-input); border: 1px solid var(--color-border); border-radius: 8px;
     padding: 14px 16px; overflow-x: auto; margin: 0;
   }
   .modal-body code {
     font-family: 'SF Mono', 'Fira Code', 'Fira Mono', monospace;
-    font-size: 12px; line-height: 1.6; color: #a5b4fc;
+    font-size: 12px; line-height: 1.6; color: var(--color-accent-light);
   }
 </style>

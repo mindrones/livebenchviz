@@ -278,11 +278,11 @@
     if (releaseHoverIds && releaseHoverIds.has(m.id)) return highlightedId === m.id ? 2.6 : 1.9;
 
     // If hovering a specific selection pill
-    if (pillHoverId && m.id === pillHoverId) return 2.8;
+    if (pillHoverId && m.id === pillHoverId) return 3.2;
 
-    if (selectedIds.has(m.id)) return highlightedId === m.id ? 2.8 : 1.8;
-    if (!brushPassIds) return highlightedId === m.id ? 2.6 : 1.1;
-    return brushPassIds.has(m.id) ? (highlightedId === m.id ? 2.6 : 1.4) : 0.6;
+    if (selectedIds.has(m.id)) return highlightedId === m.id ? 3.2 : 2.2;
+    if (!brushPassIds) return highlightedId === m.id ? 3.0 : 1.4;
+    return brushPassIds.has(m.id) ? (highlightedId === m.id ? 3.0 : 1.6) : 0.8;
   }
 
   // ── Brush drag ──
@@ -463,7 +463,7 @@
     <!-- ── HTML header: hint or model name + selected tags ── -->
     <div class="chart-header" bind:clientHeight={headerH}>
       {#if releaseHoverLabel}
-        <div class="header-title" style="color: #f87171;">
+        <div class="header-title" style="color: var(--color-error);">
           ▾ {releaseHoverLabel.date} · {releaseHoverLabel.count} model{releaseHoverLabel.count === 1 ? '' : 's'}
         </div>
         <div class="selected-tags">
@@ -540,13 +540,13 @@
 
           <g transform="translate({x},0)" opacity={dragKey===key ? 0.7 : 1}>
             <!-- Axis line -->
-            <line x1={0} y1={0} x2={0} y2={innerH} stroke="#2e3250" stroke-width={1.5}
+            <line x1={0} y1={0} x2={0} y2={innerH} stroke="var(--color-border)" stroke-width={1.5}
               pointer-events="none" />
 
             <!-- Performance: label + ticks ABOVE -->
               {#each PERF_TICKS as tick}
                 {@const ty = yScales[key](tick)}
-                <line x1={-5} y1={ty} x2={5} y2={ty} stroke="#3a4060" pointer-events="none" />
+                <line x1={-5} y1={ty} x2={5} y2={ty} stroke="var(--color-border)" pointer-events="none" />
                 <text x={-9} y={ty} text-anchor="end" dominant-baseline="middle"
                   fill="#4b5563" font-size={9} pointer-events="none">{tick}%</text>
               {/each}
@@ -571,12 +571,12 @@
               <!-- Visual label (no pointer events — overlay rect handles interaction) -->
               <text x={0} y={-14} text-anchor="middle" font-size={isXl ? 12 : 13} font-weight={600} pointer-events="none">
                 <tspan
-                  fill="#8892a4"
+                  fill="var(--color-text-muted)"
                   font-size={11} font-weight={400}
                   style="user-select:none"
                 >⠿</tspan><tspan
                   dx={5}
-                  fill={sortBy === 'category' && key === selectedSortAxis ? '#f97316' : '#c4cad8'}
+                  fill={sortBy === 'category' && key === selectedSortAxis ? '#f97316' : 'var(--color-text-primary)'}
                   style="user-select:none"
                 >{isXl ? bench.label : (AXIS_ABBREV[key] ?? bench.label)}</tspan>
               </text>
@@ -589,13 +589,13 @@
               <rect x={-18} y={bTop} width={36} height={bH}
                 fill="rgba(99,102,241,0.28)" pointer-events="none" />
               <rect x={-14} y={bTop-4} width={28} height={8} rx={2}
-                fill="#6366f1" pointer-events="none" />
+                fill="var(--color-accent)" pointer-events="none" />
               <rect x={-14} y={bBot-4} width={28} height={8} rx={2}
-                fill="#6366f1" pointer-events="none" />
-              <text x={22} y={bTop+4} fill="#a5b4fc" font-size={9} pointer-events="none">
+                fill="var(--color-accent)" pointer-events="none" />
+              <text x={22} y={bTop+4} fill="var(--color-accent-light)" font-size={9} pointer-events="none">
                 {isPerf ? brush[1].toFixed(0)+'%' : '$'+brush[1].toFixed(2)}
               </text>
-              <text x={22} y={bBot+4} fill="#a5b4fc" font-size={9} pointer-events="none">
+              <text x={22} y={bBot+4} fill="var(--color-accent-light)" font-size={9} pointer-events="none">
                 {isPerf ? brush[0].toFixed(0)+'%' : '$'+brush[0].toFixed(2)}
               </text>
             {/if}
@@ -629,7 +629,7 @@
           {@const d = modelPath(m)}
           {#if d}
             <path {d} fill="none"
-              stroke={selectedIds.has(m.id) ? 'white' : familyColor(m.family)}
+              stroke={selectedIds.has(m.id) ? 'var(--color-text-primary)' : familyColor(m.family)}
               stroke-width={lineWidth(m)}
               opacity={lineOpacity(m)}
               pointer-events="none"
@@ -641,12 +641,12 @@
         {#if highlightedModel}
           {@const hd = modelPath(highlightedModel)}
           {#if hd}
-            <path d={hd} fill="none" stroke="white" stroke-width={2.8} pointer-events="none" />
+            <path d={hd} fill="none" stroke="var(--color-text-primary)" stroke-width={2.8} pointer-events="none" />
             {#each highlightedLabels as item (item.key)}
-              <circle cx={item.x} cy={item.y} r={4} fill="white" pointer-events="none" />
+              <circle cx={item.x} cy={item.y} r={4} fill="var(--color-text-primary)" pointer-events="none" />
               <text x={item.x} y={item.labelY} text-anchor="middle" dominant-baseline="middle"
-                fill="white" font-size={22} font-weight={700}
-                stroke="#000" stroke-width={3} stroke-opacity={0.6} paint-order="stroke"
+                fill="var(--color-text-primary)" font-size={22} font-weight={700}
+                stroke="var(--color-bg-primary)" stroke-width={3} stroke-opacity={0.8} paint-order="stroke"
                 font-family="Inter,system-ui,sans-serif" pointer-events="none"
               >{item.label}{item.isPerf ? '%' : ''}</text>
             {/each}
@@ -670,7 +670,7 @@
   }
   .header-title {
     font-size: 18px; font-weight: 700; font-family: Inter, system-ui, sans-serif;
-    color: #e2e8f0;
+    color: var(--color-text-primary);
   }
   .selected-tags {
     display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
@@ -678,37 +678,37 @@
   }
   .sel-tag {
     display: flex; align-items: center; gap: 4px;
-    background: #2e3250; color: #e2e8f0; font-size: 11px;
+    background: var(--color-border); color: var(--color-text-primary); font-size: 11px;
     padding: 2px 6px; border-radius: 4px;
-    border: 1px solid #3a4060; cursor: default; transition: border-color 0.1s;
+    border: 1px solid var(--color-border); cursor: default; transition: border-color 0.1s;
   }
-  .sel-tag:hover { border-color: #6366f1 !important; }
-  .sel-tag.hovered { border-color: #6366f1 !important; background: #3a4060 !important; }
+  .sel-tag:hover { border-color: var(--color-accent) !important; }
+  .sel-tag.hovered { border-color: var(--color-accent) !important; background: var(--color-border) !important; }
   .sel-name { max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .sel-id { font-size: 10px; color: #8892a4; margin-left: 2px; }
-  .header-id { font-size: 13px; font-weight: 400; color: #8892a4; margin-left: 8px; font-family: monospace; }
-  .effort-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: #22263a; color: #8892a4; margin-left: 6px; vertical-align: middle; }
+  .sel-id { font-size: 10px; color: var(--color-text-muted); margin-left: 2px; }
+  .header-id { font-size: 13px; font-weight: 400; color: var(--color-text-muted); margin-left: 8px; font-family: monospace; }
+  .effort-badge { padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; background: var(--color-bg-hover); color: var(--color-text-muted); margin-left: 6px; vertical-align: middle; }
   .effort-tag { font-weight: 600; text-transform: uppercase; font-size: 9px; padding: 1px 4px; margin-left: 4px; border-radius: 3px; }
-  .effort-low { color: #4ade80; background: rgba(74,222,128,.1); }
-  .effort-medium { color: #fbbf24; background: rgba(251,191,36,.1); }
-  .effort-high { color: #f87171; background: rgba(248,113,113,.1); }
-  .effort-xhigh { color: #c084fc; background: rgba(192,132,252,.1); }
+  .effort-low { color: var(--color-open); background: color-mix(in srgb, var(--color-open) 15%, transparent); }
+  .effort-medium { color: var(--color-closed); background: color-mix(in srgb, var(--color-closed) 15%, transparent); }
+  .effort-high { color: var(--color-error); background: color-mix(in srgb, var(--color-error) 15%, transparent); }
+  .effort-xhigh { color: var(--color-accent-violet); background: color-mix(in srgb, var(--color-accent-violet) 15%, transparent); }
   .sel-remove {
-    background: none; border: none; color: #8892a4; cursor: pointer;
+    background: none; border: none; color: var(--color-text-muted); cursor: pointer;
     padding: 0 2px; font-size: 12px; display: flex; align-items: center; justify-content: center;
   }
-  .sel-remove:hover { color: #f87171; }
+  .sel-remove:hover { color: var(--color-error); }
   .clear-btn {
-    background: transparent; border: 1px solid #f8717155; color: #f87171;
+    background: transparent; border: 1px solid var(--color-error)55; color: var(--color-error);
     font-size: 10px; padding: 2px 6px; border-radius: 4px; cursor: pointer;
   }
-  .clear-btn:hover { border-color: #f87171; }
+  .clear-btn:hover { border-color: var(--color-error); }
 
   .hint-row {
     display: flex; flex-wrap: wrap; gap: 4px 14px;
     align-items: center; justify-content: center;
     font-style: italic; font-family: Inter, system-ui, sans-serif;
-    color: #3a4060; padding: 8px 12px 0;
+    color: var(--color-text-muted); padding: 8px 12px 0;
   }
   .hint-chip { white-space: nowrap; }
   .pointer-fine-only { display: none; }

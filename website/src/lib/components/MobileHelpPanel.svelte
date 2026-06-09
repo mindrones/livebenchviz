@@ -28,19 +28,19 @@
     height: 100%;
     overflow-y: auto;
     padding: 12px 16px 32px;
-    background: var(--color-bg-primary, #0f1117);
+    background: var(--color-bg-primary, var(--color-bg-primary));
   }
 
   .help-header {
     padding-bottom: 12px;
-    border-bottom: 1px solid #2e3250;
+    border-bottom: 1px solid var(--color-border);
     margin-bottom: 16px;
   }
 
   .help-header h2 {
     font-size: 18px;
     font-weight: 700;
-    color: #e2e8f0;
+    color: var(--color-text-primary);
     margin: 0;
   }
 
@@ -51,8 +51,8 @@
   }
 
   .help-item {
-    background: #1a1d27;
-    border: 1px solid #2e3250;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 12px 14px;
   }
@@ -60,14 +60,14 @@
   .help-item h3 {
     font-size: 14px;
     font-weight: 600;
-    color: #818cf8;
+    color: var(--color-accent-light);
     margin: 0 0 6px;
   }
 
   .help-item p {
     font-size: 13px;
     line-height: 1.6;
-    color: #c4cad8;
+    color: var(--color-text-primary);
     margin: 0;
   }
 </style>

@@ -99,25 +99,25 @@
 <style>
   .modal {
     position: fixed; z-index: 1000; user-select: none;
-    background: #1a1d27; border: 1px solid #2e3250; border-radius: 12px;
+    background: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: 12px;
     width: 480px; max-width: 92vw; box-shadow: 0 8px 32px rgba(0,0,0,.45),
     0 0 0 1px rgba(99,102,241,.08);
     display: flex; flex-direction: column;
   }
   .modal-header {
     display: flex; align-items: center; gap: 6px;
-    padding: 8px 14px; border-bottom: 1px solid #2e3250;
+    padding: 8px 14px; border-bottom: 1px solid var(--color-border);
     cursor: grab; touch-action: none;
   }
   .modal-header:active { cursor: grabbing; }
   .drag-grip {
-    display: flex; align-items: center; color: #4a5568;
+    display: flex; align-items: center; color: var(--color-text-faint);
     transition: color .15s; flex-shrink: 0;
   }
-  .drag-grip.dragging { color: #818cf8; }
+  .drag-grip.dragging { color: var(--color-accent-light); }
   .modal-header:hover .drag-grip { color: #6b7280; }
   .panel-title {
-    font-size: 14px; font-weight: 700; color: #e2e8f0; flex: 1;
+    font-size: 14px; font-weight: 700; color: var(--color-text-primary); flex: 1;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     pointer-events: none; margin: 0;
   }
@@ -126,39 +126,39 @@
     pointer-events: none; flex-shrink: 0;
   }
   .nav-btn {
-    background: transparent; border: 1px solid #2e3250; border-radius: 4px;
-    color: #8892a4; cursor: pointer; padding: 3px 5px; display: flex;
+    background: transparent; border: 1px solid var(--color-border); border-radius: 4px;
+    color: var(--color-text-muted); cursor: pointer; padding: 3px 5px; display: flex;
     align-items: center; justify-content: center; transition: all .15s;
     flex-shrink: 0;
   }
-  .nav-btn:hover:not(:disabled) { color: #e2e8f0; border-color: #6366f1; }
+  .nav-btn:hover:not(:disabled) { color: var(--color-text-primary); border-color: var(--color-accent); }
   .nav-btn:disabled { opacity: .3; cursor: default; }
   .close-btn {
-    background: transparent; border: 1px solid #2e3250; border-radius: 4px;
-    color: #8892a4; cursor: pointer; padding: 3px 5px; display: flex;
+    background: transparent; border: 1px solid var(--color-border); border-radius: 4px;
+    color: var(--color-text-muted); cursor: pointer; padding: 3px 5px; display: flex;
     align-items: center; justify-content: center; transition: color .15s, border-color .15s;
     flex-shrink: 0;
   }
-  .close-btn:hover { color: #e2e8f0; border-color: #6366f1; }
+  .close-btn:hover { color: var(--color-text-primary); border-color: var(--color-accent); }
 
   .modal-body {
     padding: 14px 18px 18px; user-select: text;
   }
   .panel-body {
-    font-size: 13px; line-height: 1.65; color: #c4cad8; margin: 0;
+    font-size: 13px; line-height: 1.65; color: var(--color-text-primary); margin: 0;
   }
 
   .modal-footer {
     display: flex; align-items: center; gap: 6px; justify-content: center;
-    padding: 6px 14px 10px; border-top: 1px solid #2e3250;
+    padding: 6px 14px 10px; border-top: 1px solid var(--color-border);
   }
   kbd {
     display: inline-flex; align-items: center; justify-content: center;
     min-width: 22px; height: 20px; padding: 0 4px;
-    background: #141620; border: 1px solid #3a4060; border-radius: 3px;
-    font-family: inherit; font-size: 11px; color: #8892a4;
+    background: var(--color-bg-input); border: 1px solid var(--color-border); border-radius: 3px;
+    font-family: inherit; font-size: 11px; color: var(--color-text-muted);
   }
   .footer-hint {
-    font-size: 11px; color: #4a5568;
+    font-size: 11px; color: var(--color-text-faint);
   }
 </style>

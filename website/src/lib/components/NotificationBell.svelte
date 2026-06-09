@@ -110,8 +110,8 @@
 
   .bell-btn {
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid #2e3250;
-    color: #8892a4;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
     border-radius: 6px;
     padding: 6px;
     display: flex;
@@ -123,9 +123,9 @@
   }
 
   .bell-btn:hover {
-    color: #a5b4fc;
-    background: #2e3250;
-    border-color: #4a5568;
+    color: var(--color-accent-light);
+    background: var(--color-border);
+    border-color: var(--color-text-faint);
     transform: translateY(-1px);
   }
 
@@ -134,14 +134,14 @@
   }
 
   .bell-btn.active {
-    color: #818cf8;
-    border-color: rgba(99, 102, 241, 0.4);
-    background: rgba(99, 102, 241, 0.08);
+    color: var(--color-accent-light);
+    border-color: rgba(59, 130, 246, 0.4);
+    background: rgba(59, 130, 246, 0.08);
   }
 
   .bell-btn.active:hover {
-    color: #a5b4fc;
-    background: rgba(99, 102, 241, 0.15);
+    color: var(--color-accent-light);
+    background: rgba(59, 130, 246, 0.15);
   }
 
   .bell-btn.blocked {
@@ -160,9 +160,9 @@
     right: 2px;
     width: 6px;
     height: 6px;
-    background-color: #6366f1;
+    background-color: var(--color-accent);
     border-radius: 50%;
-    box-shadow: 0 0 6px #6366f1;
+    box-shadow: 0 0 6px var(--color-accent);
   }
 
   @keyframes pulse {
@@ -192,8 +192,8 @@
     right: 50%;
     transform: translateX(50%);
     width: 200px;
-    background: #1a1d27;
-    border: 1px solid #2e3250;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
     border-radius: 8px;
     padding: 8px 12px;
     z-index: 1000;
@@ -209,19 +209,19 @@
     transform: translateX(-50%);
     border-width: 6px;
     border-style: solid;
-    border-color: transparent transparent #2e3250 transparent;
+    border-color: transparent transparent var(--color-border) transparent;
   }
 
   .tooltip-title {
     font-size: 11px;
     font-weight: 700;
-    color: #e2e8f0;
+    color: var(--color-text-primary);
     margin-bottom: 3px;
   }
 
   .tooltip-body {
     font-size: 10px;
-    color: #8892a4;
+    color: var(--color-text-muted);
     line-height: 1.4;
   }
 

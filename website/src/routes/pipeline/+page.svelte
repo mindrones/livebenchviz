@@ -1,34 +1,37 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { base } from '$app/paths';
-  import { SvelteFlow, Controls, Background, MiniMap } from '@xyflow/svelte';
-  import '@xyflow/svelte/dist/style.css';
-  import { 
-    ArrowLeft, 
-    Database, 
-    Terminal, 
-    FileText, 
-    Clock, 
+  import { onMount } from "svelte";
+  import { base } from "$app/paths";
+  import { SvelteFlow, Controls, Background, MiniMap } from "@xyflow/svelte";
+  import "@xyflow/svelte/dist/style.css";
+  import {
+    ArrowLeft,
+    Database,
+    Terminal,
+    FileText,
+    Clock,
     ExternalLink,
-    HelpCircle
-  } from '@lucide/svelte';
+    HelpCircle,
+  } from "@lucide/svelte";
 
-  import pipelineGraph from '$lib/pipeline_graph.json';
+  import pipelineGraph from "$lib/pipeline_graph.json";
 
   // Import custom nodes
-  import SourceNode from '$lib/components/pipeline/SourceNode.svelte';
-  import ScriptNode from '$lib/components/pipeline/ScriptNode.svelte';
-  import FileNode from '$lib/components/pipeline/FileNode.svelte';
+  import SourceNode from "$lib/components/pipeline/SourceNode.svelte";
+  import ScriptNode from "$lib/components/pipeline/ScriptNode.svelte";
+  import FileNode from "$lib/components/pipeline/FileNode.svelte";
+  import ThemeToggle from "$lib/components/ThemeToggle.svelte";
+  import { theme } from "$lib/stores/theme.svelte";
+
   const nodeTypes = {
     source: SourceNode,
     script: ScriptNode,
-    file: FileNode
+    file: FileNode,
   };
 
   // State
   let selectedNodeId = $state<string | null>(null);
   let hoveredNodeId = $state<string | null>(null);
-  
+
   let highlightedNodes = $state(new Set<string>());
   let highlightedEdges = $state(new Set<string>());
 
@@ -51,7 +54,7 @@
     let queue = [nodeId];
     while (queue.length > 0) {
       const current = queue.shift()!;
-      const incomingEdges = edges.filter(e => e.target === current);
+      const incomingEdges = edges.filter((e) => e.target === current);
       for (const edge of incomingEdges) {
         if (!edgesToHighlight.has(edge.id)) {
           edgesToHighlight.add(edge.id);
@@ -65,7 +68,7 @@
     queue = [nodeId];
     while (queue.length > 0) {
       const current = queue.shift()!;
-      const outgoingEdges = edges.filter(e => e.source === current);
+      const outgoingEdges = edges.filter((e) => e.source === current);
       for (const edge of outgoingEdges) {
         if (!edgesToHighlight.has(edge.id)) {
           edgesToHighlight.add(edge.id);
@@ -89,20 +92,24 @@
   $effect(() => {
     const activeId = hoveredNodeId || selectedNodeId;
     let nodesChanged = false;
-    
-    const nextNodes = nodes.map(node => {
-      const isHighlighted = highlightedNodes.has(node.id) || activeId === node.id;
+
+    const nextNodes = nodes.map((node) => {
+      const isHighlighted =
+        highlightedNodes.has(node.id) || activeId === node.id;
       const isSelected = selectedNodeId === node.id;
-      
-      if (node.data?.highlighted !== isHighlighted || node.data?.selected !== isSelected) {
+
+      if (
+        node.data?.highlighted !== isHighlighted ||
+        node.data?.selected !== isSelected
+      ) {
         nodesChanged = true;
         return {
           ...node,
           data: {
             ...node.data,
             highlighted: isHighlighted,
-            selected: isSelected
-          }
+            selected: isSelected,
+          },
         };
       }
       return node;
@@ -116,11 +123,15 @@
   // Dynamically calculate the closest handles for edges based on current node positions
   $effect(() => {
     // Read coordinates of all nodes to register dependency
-    const nodeCoords = nodes.map(n => ({ id: n.id, x: n.position?.x || 0, y: n.position?.y || 0 }));
-    const nodeMap = new Map(nodeCoords.map(c => [c.id, c]));
+    const nodeCoords = nodes.map((n) => ({
+      id: n.id,
+      x: n.position?.x || 0,
+      y: n.position?.y || 0,
+    }));
+    const nodeMap = new Map(nodeCoords.map((c) => [c.id, c]));
 
-    const sources = ['bottom-source', 'right-source'];
-    const targets = ['top-target', 'left-target'];
+    const sources = ["bottom-source", "right-source"];
+    const targets = ["top-target", "left-target"];
 
     for (let i = 0; i < edges.length; i++) {
       const edge = edges[i];
@@ -128,18 +139,24 @@
       const targetNode = nodeMap.get(edge.target);
 
       if (sourceNode && targetNode) {
-        let bestSource = 'bottom-source';
-        let bestTarget = 'top-target';
+        let bestSource = "bottom-source";
+        let bestTarget = "top-target";
         let minScore = Infinity;
 
         // Try all valid handle combinations and find the one that flows downstream
         for (const s of sources) {
           for (const t of targets) {
             // Node dimensions are 220px width, ~80px height
-            const sx = sourceNode.x + 110 + (s === 'left-source' ? -110 : s === 'right-source' ? 110 : 0);
-            const sy = sourceNode.y + 40 + (s === 'bottom-source' ? 40 : 0);
-            const tx = targetNode.x + 110 + (t === 'left-target' ? -110 : t === 'right-target' ? 110 : 0);
-            const ty = targetNode.y + 40 + (t === 'top-target' ? -40 : 0);
+            const sx =
+              sourceNode.x +
+              110 +
+              (s === "left-source" ? -110 : s === "right-source" ? 110 : 0);
+            const sy = sourceNode.y + 40 + (s === "bottom-source" ? 40 : 0);
+            const tx =
+              targetNode.x +
+              110 +
+              (t === "left-target" ? -110 : t === "right-target" ? 110 : 0);
+            const ty = targetNode.y + 40 + (t === "top-target" ? -40 : 0);
 
             const dx = tx - sx;
             const dy = ty - sy;
@@ -166,7 +183,10 @@
           }
         }
 
-        if (edge.sourceHandle !== bestSource || edge.targetHandle !== bestTarget) {
+        if (
+          edge.sourceHandle !== bestSource ||
+          edge.targetHandle !== bestTarget
+        ) {
           edges[i].sourceHandle = bestSource;
           edges[i].targetHandle = bestTarget;
         }
@@ -180,9 +200,9 @@
       const isHighlighted = highlightedEdges.has(edges[i].id);
       if (edges[i].animated !== isHighlighted) {
         edges[i].animated = isHighlighted;
-        edges[i].style = isHighlighted 
-          ? 'stroke: #a78bfa; stroke-width: 3px; filter: drop-shadow(0px 0px 4px rgba(167, 139, 250, 0.6)); transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s, filter 0.3s;'
-          : 'stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s, filter 0.3s;';
+        edges[i].style = isHighlighted
+          ? "stroke: var(--color-accent-violet); stroke-width: 3px; filter: drop-shadow(0px 0px 4px rgba(167, 139, 250, 0.6)); transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s, filter 0.3s;"
+          : "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s, filter 0.3s;";
       }
     }
   });
@@ -190,7 +210,7 @@
   // Inspector details
   const activeInspectorData = $derived.by(() => {
     if (!selectedNodeId) return null;
-    const node = nodes.find(n => n.id === selectedNodeId);
+    const node = nodes.find((n) => n.id === selectedNodeId);
     if (!node) return null;
     return {
       type: node.type,
@@ -199,24 +219,35 @@
       details: node.data.details,
       schema: node.data.schema,
       runCommand: node.data.runCommand,
-      duration: node.data.duration
+      duration: node.data.duration,
     };
   });
-  
+
   const scriptInputs = $derived(
-    (selectedNodeId && activeInspectorData?.type === 'script' 
-      ? edges.filter(e => e.target === selectedNodeId).map(e => nodes.find(n => n.id === e.source)).filter(Boolean)
-      : []) as any[]
+    (selectedNodeId && activeInspectorData?.type === "script"
+      ? edges
+          .filter((e) => e.target === selectedNodeId)
+          .map((e) => nodes.find((n) => n.id === e.source))
+          .filter(Boolean)
+      : []) as any[],
   );
-  
+
   const scriptOutputs = $derived(
-    (selectedNodeId && activeInspectorData?.type === 'script' 
-      ? edges.filter(e => e.source === selectedNodeId).map(e => nodes.find(n => n.id === e.target)).filter(Boolean)
-      : []) as any[]
+    (selectedNodeId && activeInspectorData?.type === "script"
+      ? edges
+          .filter((e) => e.source === selectedNodeId)
+          .map((e) => nodes.find((n) => n.id === e.target))
+          .filter(Boolean)
+      : []) as any[],
   );
 
-
-  function handleNodeClick({ event, node }: { event: MouseEvent | TouchEvent; node: any }) {
+  function handleNodeClick({
+    event,
+    node,
+  }: {
+    event: MouseEvent | TouchEvent;
+    node: any;
+  }) {
     const clickedNodeId = node.id;
     if (selectedNodeId === clickedNodeId) {
       selectedNodeId = null;
@@ -229,16 +260,28 @@
     selectedNodeId = null;
   }
 
-  function handleNodePointerEnter({ event, node }: { event: PointerEvent; node: any }) {
+  function handleNodePointerEnter({
+    event,
+    node,
+  }: {
+    event: PointerEvent;
+    node: any;
+  }) {
     hoveredNodeId = node.id;
   }
 
-  function handleNodePointerLeave({ event, node }: { event: PointerEvent; node: any }) {
+  function handleNodePointerLeave({
+    event,
+    node,
+  }: {
+    event: PointerEvent;
+    node: any;
+  }) {
     hoveredNodeId = null;
   }
 
   function handleNodeDragStop() {
-    nodes = nodes.map(n => ({ ...n, selected: false }));
+    nodes = nodes.map((n) => ({ ...n, selected: false }));
   }
 
   function handleFlowInit(instance: any) {
@@ -273,17 +316,21 @@
         <span class="legend-dot script-dot"></span><span>Scripts</span>
         <span class="legend-dot file-dot"></span><span>Files</span>
       </div>
+      <ThemeToggle />
     </div>
   </header>
 
   <!-- Flow Area -->
   <div class="flow-layout">
-    <div class="flow-viewport" class:has-active={!!(hoveredNodeId || selectedNodeId)}>
+    <div
+      class="flow-viewport"
+      class:has-active={!!(hoveredNodeId || selectedNodeId)}
+    >
       <SvelteFlow
-        bind:nodes={nodes}
-        bind:edges={edges}
+        bind:nodes
+        bind:edges
         {nodeTypes}
-        colorMode="dark"
+        colorMode={theme.isDark ? "dark" : "light"}
         panOnDrag={true}
         selectionOnDrag={false}
         panOnScroll={true}
@@ -294,10 +341,25 @@
         onnodepointerleave={handleNodePointerLeave}
         onnodedragstop={handleNodeDragStop}
       >
-        <Background bgColor="var(--bg-base)" patternColor="var(--bg-pattern)" gap={24} size={1.5} />
-        <div style="position: absolute; bottom: 15px; left: 15px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; z-index: 5;">
-          <Controls orientation="horizontal" showLock={false} style="margin: 0; position: static;" />
-          <MiniMap style="background: var(--bg-surface); border: 1px solid var(--border-base); border-radius: 8px; margin: 0; position: static;" pannable zoomable />
+        <Background
+          bgColor="var(--bg-base)"
+          patternColor="var(--bg-pattern)"
+          gap={24}
+          size={1.5}
+        />
+        <div
+          style="position: absolute; bottom: 15px; left: 15px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; z-index: 5;"
+        >
+          <Controls
+            orientation="horizontal"
+            showLock={false}
+            style="margin: 0; position: static;"
+          />
+          <MiniMap
+            style="background: var(--bg-surface); border: 1px solid var(--border-base); border-radius: 8px; margin: 0; position: static;"
+            pannable
+            zoomable
+          />
         </div>
       </SvelteFlow>
     </div>
@@ -306,19 +368,27 @@
     <aside class="metadata-inspector" class:open={!!activeInspectorData}>
       {#if activeInspectorData}
         <div class="inspector-header">
-          <div class="inspector-badge" class:source={activeInspectorData.type === 'source'} class:script={activeInspectorData.type === 'script'} class:file={activeInspectorData.type === 'file'}>
-            {#if activeInspectorData.type === 'source'}
+          <div
+            class="inspector-badge"
+            class:source={activeInspectorData.type === "source"}
+            class:script={activeInspectorData.type === "script"}
+            class:file={activeInspectorData.type === "file"}
+          >
+            {#if activeInspectorData.type === "source"}
               <Database size={12} />
               <span>API</span>
-            {:else if activeInspectorData.type === 'script'}
+            {:else if activeInspectorData.type === "script"}
               <Terminal size={12} />
               <span>SCRIPT</span>
-            {:else if activeInspectorData.type === 'file'}
+            {:else if activeInspectorData.type === "file"}
               <FileText size={12} />
               <span>FILE</span>
             {/if}
           </div>
-          <button class="close-inspector-btn" onclick={() => selectedNodeId = null}>&times;</button>
+          <button
+            class="close-inspector-btn"
+            onclick={() => (selectedNodeId = null)}>&times;</button
+          >
         </div>
 
         <div class="inspector-body">
@@ -350,7 +420,12 @@
                   <div class="property-row">
                     <span class="prop-label">{detail.label}</span>
                     {#if detail.isLink}
-                      <a href={detail.value} target="_blank" rel="noopener noreferrer" class="prop-value link">
+                      <a
+                        href={detail.value}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="prop-value link"
+                      >
                         <span>{detail.value}</span>
                         <ExternalLink size={10} />
                       </a>
@@ -364,13 +439,15 @@
           {/if}
 
           <!-- Script Inputs/Outputs -->
-          {#if activeInspectorData.type === 'script'}
+          {#if activeInspectorData.type === "script"}
             <div class="inspector-section">
               <h3>Inputs</h3>
               <div class="properties-list">
                 {#each scriptInputs as input}
                   <div class="property-row">
-                    <span class="prop-value font-mono">{input?.data?.label}</span>
+                    <span class="prop-value font-mono"
+                      >{input?.data?.label}</span
+                    >
                   </div>
                 {:else}
                   <div class="property-row">
@@ -384,7 +461,11 @@
               <h3>Script</h3>
               <div class="properties-list">
                 <div class="property-row">
-                  <span class="prop-value font-mono">{activeInspectorData.details?.find((d: any) => d.label === 'Script Location')?.value || activeInspectorData.title}</span>
+                  <span class="prop-value font-mono"
+                    >{activeInspectorData.details?.find(
+                      (d: any) => d.label === "Script Location",
+                    )?.value || activeInspectorData.title}</span
+                  >
                 </div>
               </div>
             </div>
@@ -394,7 +475,9 @@
               <div class="properties-list">
                 {#each scriptOutputs as output}
                   <div class="property-row">
-                    <span class="prop-value font-mono">{output?.data?.label}</span>
+                    <span class="prop-value font-mono"
+                      >{output?.data?.label}</span
+                    >
                   </div>
                 {:else}
                   <div class="property-row">
@@ -409,7 +492,9 @@
           {#if activeInspectorData.schema && activeInspectorData.schema.length > 0}
             <div class="inspector-section">
               <h3>Schema Fields</h3>
-              {#if activeInspectorData.details?.find((d: any) => d.label === 'Format')?.value?.includes('Array')}
+              {#if activeInspectorData.details
+                ?.find((d: any) => d.label === "Format")
+                ?.value?.includes("Array")}
                 <div class="schema-array-label">Array of:</div>
               {/if}
               <div class="schema-table">
@@ -430,7 +515,10 @@
         <div class="empty-inspector">
           <HelpCircle size={36} class="help-icon" />
           <h3>No Node Selected</h3>
-          <p>Click any step in the pipeline flow to view details, parameters, file schemas, or execution commands.</p>
+          <p>
+            Click any step in the pipeline flow to view details, parameters,
+            file schemas, or execution commands.
+          </p>
         </div>
       {/if}
     </aside>
@@ -439,28 +527,57 @@
 
 <style>
   :global(:root) {
-    --bg-base: #0f1117;
-    --bg-surface: #12141d;
-    --bg-surface-hover: #22263a;
-    --bg-pattern: #1f2235;
-    
-    --border-base: #2e3250;
-    --border-hover: #4a5568;
-    
-    --text-primary: #e2e8f0;
-    --text-secondary: #8892a4;
-    --text-tertiary: #4a5568;
-    
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f1f5f9;
+    --bg-pattern: var(--color-text-primary);
+
+    --border-base: var(--color-text-primary);
+    --border-hover: #cbd5e1;
+
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-tertiary: #94a3b8;
+
+    --color-source: #3b82f6;
+    --color-source-light: #2563eb;
+    --color-source-bg: rgba(59, 130, 246, 0.1);
+    --color-source-border: rgba(59, 130, 246, 0.3);
+
+    --color-script: #10b981;
+    --color-script-light: #059669;
+    --color-script-bg: rgba(16, 185, 129, 0.1);
+    --color-script-border: rgba(16, 185, 129, 0.3);
+
+    --color-file: #f59e0b;
+    --color-file-light: #d97706;
+    --color-file-bg: rgba(245, 158, 11, 0.1);
+    --color-file-border: rgba(245, 158, 11, 0.3);
+  }
+
+  :global(:root.dark) {
+    --bg-base: #0a0a0a;
+    --bg-surface: #121212;
+    --bg-surface-hover: #262626;
+    --bg-pattern: #1a1a1a;
+
+    --border-base: #262626;
+    --border-hover: #404040;
+
+    --text-primary: #e5e5e5;
+    --text-secondary: #a3a3a3;
+    --text-tertiary: #737373;
+
     --color-source: #3b82f6;
     --color-source-light: #60a5fa;
     --color-source-bg: rgba(59, 130, 246, 0.08);
     --color-source-border: rgba(59, 130, 246, 0.2);
-    
+
     --color-script: #10b981;
     --color-script-light: #34d399;
     --color-script-bg: rgba(16, 185, 129, 0.08);
     --color-script-border: rgba(16, 185, 129, 0.2);
-    
+
     --color-file: #f59e0b;
     --color-file-light: #fbbf24;
     --color-file-bg: rgba(245, 158, 11, 0.08);
@@ -531,6 +648,12 @@
     margin: 0;
   }
 
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
   .legend-indicator {
     display: flex;
     align-items: center;
@@ -545,9 +668,15 @@
     border-radius: 50%;
   }
 
-  .source-dot { background: var(--color-source); }
-  .script-dot { background: var(--color-script); }
-  .file-dot { background: var(--color-file); }
+  .source-dot {
+    background: var(--color-source);
+  }
+  .script-dot {
+    background: var(--color-script);
+  }
+  .file-dot {
+    background: var(--color-file);
+  }
 
   .flow-layout {
     display: flex;
@@ -562,7 +691,9 @@
     height: 100%;
   }
 
-  :global(.flow-viewport.has-active .node-wrapper:not(.highlighted):not(.selected)) {
+  :global(
+      .flow-viewport.has-active .node-wrapper:not(.highlighted):not(.selected)
+    ) {
     opacity: 0.4;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -647,9 +778,21 @@
     font-weight: 700;
   }
 
-  .inspector-badge.source { background: var(--color-source-bg); border: 1px solid var(--color-source-border); color: var(--color-source-light); }
-  .inspector-badge.script { background: var(--color-script-bg); border: 1px solid var(--color-script-border); color: var(--color-script-light); }
-  .inspector-badge.file { background: var(--color-file-bg); border: 1px solid var(--color-file-border); color: var(--color-file-light); }
+  .inspector-badge.source {
+    background: var(--color-source-bg);
+    border: 1px solid var(--color-source-border);
+    color: var(--color-source-light);
+  }
+  .inspector-badge.script {
+    background: var(--color-script-bg);
+    border: 1px solid var(--color-script-border);
+    color: var(--color-script-light);
+  }
+  .inspector-badge.file {
+    background: var(--color-file-bg);
+    border: 1px solid var(--color-file-border);
+    color: var(--color-file-light);
+  }
 
   .close-inspector-btn {
     background: none;

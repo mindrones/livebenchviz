@@ -23,6 +23,7 @@
   import MobileHelpPanel from "$lib/components/MobileHelpPanel.svelte";
   import MobileStatsPanel from "$lib/components/MobileStatsPanel.svelte";
   import NotificationBell from "$lib/components/NotificationBell.svelte";
+  import ThemeToggle from "$lib/components/ThemeToggle.svelte";
 
   import { familyColor, AXIS_ABBREV, AXIS_CATEGORY_NAMES } from "$lib/colors";
   import type { BenchmarkData, InferenceMap } from "$lib/types";
@@ -432,6 +433,7 @@
           <h1>LLMs Benchmarks</h1>
           <div class="header-actions">
             <span class="app-version">{version}</span>
+            <ThemeToggle />
             <NotificationBell />
             <a
               href="{base}/pipeline"
@@ -594,6 +596,7 @@
             <h1>LLMs Benchmarks</h1>
             <div class="header-actions">
               <span class="app-version">{version}</span>
+              <ThemeToggle />
               <NotificationBell />
               <a
                 href="{base}/pipeline"
@@ -726,7 +729,7 @@
     display: flex;
     height: 100dvh;
     overflow: hidden;
-    background: #0f1117;
+    background: var(--color-bg-primary);
   }
   .loading {
     display: flex;
@@ -735,13 +738,13 @@
     justify-content: center;
     gap: 16px;
     flex: 1;
-    color: #8892a4;
+    color: var(--color-text-muted);
   }
   .spin {
     width: 36px;
     height: 36px;
-    border: 3px solid #2e3250;
-    border-top-color: #6366f1;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-accent);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
@@ -757,7 +760,7 @@
     justify-content: center;
   }
   .error-box {
-    background: #1a1d27;
+    background: var(--color-bg-surface);
     border: 1px solid #ef4444;
     border-radius: 10px;
     padding: 24px 28px;
@@ -769,20 +772,20 @@
     margin-bottom: 8px;
   }
   .error-box p {
-    color: #8892a4;
+    color: var(--color-text-muted);
     font-size: 13px;
     line-height: 1.6;
   }
   .error-box code {
     display: block;
-    background: #22263a;
-    border: 1px solid #2e3250;
+    background: var(--color-bg-hover);
+    border: 1px solid var(--color-border);
     border-radius: 6px;
     padding: 10px 14px;
     margin-top: 10px;
     font-family: monospace;
     font-size: 13px;
-    color: #e2e8f0;
+    color: var(--color-text-primary);
   }
 
   main {
@@ -812,7 +815,7 @@
   h1 {
     font-size: 20px;
     font-weight: 800;
-    background: linear-gradient(135deg, #818cf8, #6366f1, #a78bfa);
+    background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent), var(--color-accent-violet));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -824,11 +827,11 @@
   }
   .app-version {
     font-size: 12px;
-    color: #8892a4;
+    color: var(--color-text-muted);
     font-weight: 600;
   }
   .help-link {
-    color: #8892a4;
+    color: var(--color-text-muted);
     display: flex;
     align-items: center;
     padding: 4px;
@@ -841,11 +844,11 @@
     cursor: pointer;
   }
   .help-link:hover {
-    color: #a5b4fc;
-    background: #2e3250;
+    color: var(--color-accent-light);
+    background: var(--color-border);
   }
   .github-link {
-    color: #8892a4;
+    color: var(--color-text-muted);
     display: flex;
     align-items: center;
     padding: 4px;
@@ -855,11 +858,11 @@
       background 0.2s;
   }
   .github-link:hover {
-    color: #c4b5fd;
-    background: #2e3250;
+    color: var(--color-accent-violet);
+    background: var(--color-border);
   }
   .pipeline-link {
-    color: #8892a4;
+    color: var(--color-text-muted);
     display: flex;
     align-items: center;
     padding: 4px;
@@ -869,27 +872,27 @@
       background 0.2s;
   }
   .pipeline-link:hover {
-    color: #818cf8;
-    background: #2e3250;
+    color: var(--color-accent-light);
+    background: var(--color-border);
   }
   .pipeline-link-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: #8892a4;
+    color: var(--color-text-muted);
     font-size: 12px;
     font-weight: 600;
     padding: 4px 8px;
     border-radius: 6px;
-    border: 1px solid #2e3250;
+    border: 1px solid var(--color-border);
     background: rgba(255, 255, 255, 0.02);
     text-decoration: none;
     transition: all 0.2s;
   }
   .pipeline-link-btn:hover {
-    color: #818cf8;
-    background: #2e3250;
-    border-color: #4a5568;
+    color: var(--color-accent-light);
+    background: var(--color-border);
+    border-color: var(--color-text-faint);
   }
 
   #stats {
@@ -899,8 +902,8 @@
     margin-bottom: 10px;
   }
   .stat {
-    background: #1a1d27;
-    border: 1px solid #2e3250;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
     border-radius: 7px;
     padding: 8px 12px;
     flex: 1;
@@ -910,7 +913,7 @@
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: #8892a4;
+    color: var(--color-text-muted);
   }
   .stat-value {
     font-size: 17px;
@@ -918,7 +921,7 @@
   }
   .stat-sub {
     font-size: 10px;
-    color: #8892a4;
+    color: var(--color-text-muted);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -930,8 +933,8 @@
     gap: 4px;
     margin-bottom: 8px;
     padding: 6px 10px;
-    background: #1a1d27;
-    border: 1px solid #2e3250;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
     border-radius: 7px;
   }
   .legend-pill {
@@ -963,18 +966,18 @@
     gap: 4px 10px;
     margin-bottom: 8px;
     padding: 6px 10px;
-    background: #1a1d27;
-    border: 1px solid #2e3250;
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
     border-radius: 7px;
   }
   .category-pill {
     font-size: 11px;
-    color: #c4cad8;
+    color: var(--color-text-primary);
     padding: 2px 0;
   }
   .category-abbr {
     font-weight: 700;
-    color: #a5b4fc;
+    color: var(--color-accent-light);
     margin-right: 2px;
   }
 
@@ -997,7 +1000,7 @@
     align-items: flex-start;
     padding: 10px 14px 6px;
     flex-shrink: 0;
-    background: #0f1117;
+    background: var(--color-bg-primary);
   }
   .mobile-header .header-title {
     display: flex;
@@ -1016,7 +1019,7 @@
     display: flex;
     flex-direction: column;
     min-height: 0;
-    background: #0f1117;
+    background: var(--color-bg-primary);
     touch-action: pan-y;
     padding: 0 10px;
   }
@@ -1024,8 +1027,8 @@
   .mobile-nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    background: #1a1d27;
-    border-top: 1px solid #2e3250;
+    background: var(--color-bg-surface);
+    border-top: 1px solid var(--color-border);
     flex-shrink: 0;
     padding-bottom: env(safe-area-inset-bottom);
   }
@@ -1038,7 +1041,7 @@
     padding: 8px 0;
     background: transparent;
     border: none;
-    color: #8892a4;
+    color: var(--color-text-muted);
     cursor: pointer;
     transition: all 0.15s;
     font-size: 11px;
@@ -1048,12 +1051,12 @@
     transform: scale(0.95);
   }
   .nav-btn.active {
-    color: #818cf8;
+    color: var(--color-accent-light);
     background: rgba(129, 140, 248, 0.08);
-    box-shadow: inset 0 2px 0 #6366f1;
+    box-shadow: inset 0 2px 0 var(--color-accent);
   }
   .nav-btn:hover {
-    color: #a5b4fc;
+    color: var(--color-accent-light);
   }
   .nav-btn span {
     font-size: 10px;

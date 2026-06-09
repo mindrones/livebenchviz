@@ -52,10 +52,10 @@
     background: rgba(26, 29, 39, 0.85);
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
-    border: 1px solid rgba(99, 102, 241, 0.35);
+    border: 1px solid rgba(59, 130, 246, 0.35);
     box-shadow: 
       0 10px 30px -10px rgba(0, 0, 0, 0.5),
-      0 1px 3px rgba(99, 102, 241, 0.1),
+      0 1px 3px rgba(59, 130, 246, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     padding: 10px 14px;
@@ -68,7 +68,7 @@
     left: 10%;
     width: 80%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.8), transparent);
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.8), transparent);
   }
 
   .banner-content {
@@ -84,15 +84,15 @@
     gap: 10px;
     font-size: 13px;
     font-weight: 500;
-    color: #e2e8f0;
+    color: var(--color-text-primary);
   }
 
   .banner-badge {
     font-size: 9px;
     font-weight: 800;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid rgba(99, 102, 241, 0.4);
-    color: #818cf8;
+    background: rgba(59, 130, 246, 0.15);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    color: var(--color-accent-light);
     padding: 2px 6px;
     border-radius: 6px;
     letter-spacing: 0.05em;
@@ -115,7 +115,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: #6366f1;
+    background: var(--color-accent);
     color: #ffffff;
     border: none;
     border-radius: 8px;
@@ -124,12 +124,12 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 2px 8px rgba(99, 102, 241, 0.25);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
   }
 
   .btn-refresh:hover {
-    background: #818cf8;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
+    background: var(--color-accent-light);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
     transform: translateY(-1px);
   }
 
@@ -148,7 +148,7 @@
   .btn-close {
     background: transparent;
     border: none;
-    color: #8892a4;
+    color: var(--color-text-muted);
     cursor: pointer;
     padding: 4px;
     border-radius: 6px;
@@ -159,7 +159,7 @@
   }
 
   .btn-close:hover {
-    color: #e2e8f0;
+    color: var(--color-text-primary);
     background: rgba(255, 255, 255, 0.05);
   }
 

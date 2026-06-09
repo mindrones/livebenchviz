@@ -1,24 +1,65 @@
 @import "tailwindcss";
 
 @theme {
-  /* Map the existing dark palette so Tailwind tokens match component <style> blocks */
-  --color-bg-primary:    #0f1117;
-  --color-bg-surface:    #1a1d27;
-  --color-bg-elevated:   #1e2130;
-  --color-bg-hover:      #22263a;
-  --color-bg-input:      #141620;
-  --color-border:        #2e3250;
-  --color-border-focus:  #6366f1;
-  --color-text-primary:  #e2e8f0;
-  --color-text-muted:    #8892a4;
-  --color-text-faint:    #4a5568;
-  --color-accent:        #6366f1;
-  --color-accent-light:  #818cf8;
-  --color-accent-violet: #a78bfa;
-  --color-open:          #4ade80;
-  --color-closed:        #fbbf24;
-  --color-olama:         #60a5fa;
-  --color-error:         #ef4444;
+  --color-bg-primary:    var(--app-bg-primary);
+  --color-bg-surface:    var(--app-bg-surface);
+  --color-bg-elevated:   var(--app-bg-elevated);
+  --color-bg-hover:      var(--app-bg-hover);
+  --color-bg-input:      var(--app-bg-input);
+  --color-border:        var(--app-border);
+  --color-border-focus:  var(--app-border-focus);
+  --color-text-primary:  var(--app-text-primary);
+  --color-text-muted:    var(--app-text-muted);
+  --color-text-faint:    var(--app-text-faint);
+  --color-accent:        var(--app-accent);
+  --color-accent-light:  var(--app-accent-light);
+  --color-accent-violet: var(--app-accent-violet);
+  --color-open:          var(--app-open);
+  --color-closed:        var(--app-closed);
+  --color-olama:         var(--app-olama);
+  --color-error:         var(--app-error);
+}
+
+@layer base {
+  :root {
+    --app-bg-primary:    #f8fafc;
+    --app-bg-surface:    #ffffff;
+    --app-bg-elevated:   #f1f5f9;
+    --app-bg-hover:      #e2e8f0;
+    --app-bg-input:      #ffffff;
+    --app-border:        #e2e8f0;
+    --app-border-focus:  #0a0a0a;
+    --app-text-primary:  #0a0a0a;
+    --app-text-muted:    #64748b;
+    --app-text-faint:    #94a3b8;
+    --app-accent:        #0a0a0a;
+    --app-accent-light:  #262626;
+    --app-accent-violet: #1a1a1a;
+    --app-open:          #16a34a;
+    --app-closed:        #d97706;
+    --app-olama:         #3b82f6;
+    --app-error:         #ef4444;
+  }
+
+  :root.dark {
+    --app-bg-primary:    #0a0a0a;
+    --app-bg-surface:    #121212;
+    --app-bg-elevated:   #1a1a1a;
+    --app-bg-hover:      #262626;
+    --app-bg-input:      #121212;
+    --app-border:        #262626;
+    --app-border-focus:  #f8fafc;
+    --app-text-primary:  #e5e5e5;
+    --app-text-muted:    #a3a3a3;
+    --app-text-faint:    #737373;
+    --app-accent:        #f8fafc;
+    --app-accent-light:  #cbd5e1;
+    --app-accent-violet: #e2e8f0;
+    --app-open:          #4ade80;
+    --app-closed:        #fbbf24;
+    --app-olama:         #60a5fa;
+    --app-error:         #ef4444;
+  }
 }
 
 @layer base {

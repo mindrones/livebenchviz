@@ -7,7 +7,7 @@
     <meta name="description" content="Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates." />
     <link rel="canonical" href="https://mindrones.github.io/livebenchviz/" />
     <meta name="robots" content="index, follow" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- ─── Open Graph (Facebook, LinkedIn, Pinterest, Slack, Discord, iMessage, WhatsApp, Telegram, Reddit, Mastodon, Threads, Bluesky) ─── -->
     <meta property="og:type" content="website" />
@@ -74,7 +74,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <!-- ─── Browser chrome / theme ─── -->
-    <meta name="theme-color" content="#0f1117" />
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/x-icon" href="%sveltekit.assets%/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/icon-180x180.png">
     <link rel="icon" type="image/png" sizes="192x192" href="%sveltekit.assets%/icon-192x192.png">
@@ -90,6 +91,19 @@
       rel="stylesheet"
     />
     %sveltekit.head%
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('app-theme');
+          var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch(e) {}
+      })();
+    </script>
   </head>
   <body data-sveltekit-preload-data="off">
     <div style="display: contents">%sveltekit.body%</div>
