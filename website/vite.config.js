@@ -8,10 +8,8 @@ import crypto from 'crypto';
 function getDataHash() {
   try {
     const data1 = readFileSync(resolve(__dirname, 'static/benchmark_lb.json'));
-    const data2 = readFileSync(resolve(__dirname, 'static/inference.json'));
     const hash = crypto.createHash('md5');
     hash.update(data1);
-    hash.update(data2);
     return hash.digest('hex').slice(0, 8);
   } catch (e) {
     return 'initial';

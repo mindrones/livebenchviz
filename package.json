@@ -13,5 +13,5 @@
 		"pipeline": "pnpm --filter pipeline run all",
 		"prepare": "git config core.hooksPath .githooks || true"
 	},
-	"version": "1.5.1"
+	"version": "1.5.2"
 }

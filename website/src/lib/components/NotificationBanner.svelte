@@ -1,11 +1,14 @@
 <script lang="ts">
-  import { RefreshCw, X } from '@lucide/svelte';
-  import { serviceWorkerState, dismissUpdateBanner } from '$lib/notifications.svelte';
-  import { fade, fly } from 'svelte/transition';
+  import { RefreshCw, X } from "@lucide/svelte";
+  import {
+    serviceWorkerState,
+    dismissUpdateBanner,
+  } from "$lib/notifications.svelte";
+  import { fade, fly } from "svelte/transition";
 </script>
 
 {#if serviceWorkerState.showInAppBanner}
-  <div 
+  <div
     class="notification-banner"
     in:fly={{ y: -50, duration: 400 }}
     out:fade={{ duration: 200 }}
@@ -15,19 +18,25 @@
     <div class="banner-content">
       <div class="banner-text">
         <span class="banner-badge">UPDATE</span>
-        <span class="banner-message">New benchmark data has been added!</span>
+        <span class="banner-message">
+          {#if serviceWorkerState.hasNewModels}
+            New models have been added!
+          {:else}
+            Benchmark data has been updated.
+          {/if}
+        </span>
       </div>
       <div class="banner-actions">
-        <button 
-          class="btn-refresh" 
+        <button
+          class="btn-refresh"
           onclick={() => dismissUpdateBanner(true)}
           aria-label="Refresh application to see new data"
         >
           <RefreshCw size={14} class="spin-hover" />
           <span>Refresh</span>
         </button>
-        <button 
-          class="btn-close" 
+        <button
+          class="btn-close"
           onclick={() => dismissUpdateBanner(false)}
           aria-label="Close notification"
         >
@@ -53,7 +62,7 @@
     backdrop-filter: blur(16px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     border: 1px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
-    box-shadow: 
+    box-shadow:
       0 10px 30px -10px rgba(0, 0, 0, 0.5),
       0 1px 3px color-mix(in srgb, var(--color-accent) 10%, transparent),
       inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -68,7 +77,12 @@
     left: 10%;
     width: 80%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--color-accent) 80%, transparent), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--color-accent) 80%, transparent),
+      transparent
+    );
   }
 
   .banner-content {
@@ -129,7 +143,8 @@
 
   .btn-refresh:hover {
     background: var(--color-accent-light);
-    box-shadow: 0 4px 12px color-mix(in srgb, var(--color-accent) 35%, transparent);
+    box-shadow: 0 4px 12px
+      color-mix(in srgb, var(--color-accent) 35%, transparent);
     transform: translateY(-1px);
   }
 

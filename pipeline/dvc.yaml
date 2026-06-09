@@ -220,6 +220,7 @@ stages:
       - out/livebench_normalized.json
       - out/openrouter_models.json
       - out/livebench_model_config.json
+      - out/ollama.json
     outs:
       - out/benchmark_lb.json:
           cache: false
@@ -233,57 +234,25 @@ stages:
               - field: models
                 type: array
                 desc: Full array of models with nested scores, name, and family properties
-    meta:
-      title: exportLBFull.ts
-      description: Merges scores, normalized IDs, OpenRouter model data, and release dates into the unified database file. Cleans up family brands, open-weight categories, and computes ranks.
-
-  exportInference:
-    cmd: pnpm exec tsx src/exportInference.ts
-    deps:
-      - src/exportInference.ts
-      - out/ollama.json
-      - out/benchmark_lb.json
-    outs:
-      - out/inference.json:
-          cache: false
-          meta:
-            title: out/inference.json
-            description: Mapping directory from model ID to boolean inference availability status.
-            schema:
-              - field: "[model_id]"
-                type: object
-                desc: Nested booleans openRouter, ollamaLocal, ollamaCloud
-    meta:
-      title: exportInference.ts
-      description: Builds the inference availability matrix. Cross-references the benchmark models against OpenRouter IDs and scraped Ollama catalog tags.
-
-  copyToWebsite:
-    cmd: pnpm exec tsx src/copyToWebsite.ts
-    deps:
-      - src/copyToWebsite.ts
-      - out/benchmark_lb.json
-      - out/inference.json
-    outs:
       - ../website/static/benchmark_lb.json:
           cache: false
           meta:
             title: static/benchmark_lb.json
             description: Static website copy of the complete models benchmark database. Fetched on layout load.
-      - ../website/static/inference.json:
+      - ../website/static/data-hash.json:
           cache: false
           meta:
-            title: static/inference.json
-            description: Static website copy of the models inference availability matrix.
+            title: static/data-hash.json
+            description: MD5 hash of benchmark_lb.json (excluding the generated timestamp) to detect data changes.
     meta:
-      title: copyToWebsite.ts
-      description: Copies compile-ready JSON assets from the pipeline cache directory directly to the SvelteKit frontend static resources folder.
-
+      title: exportLBFull.ts
+      description: Merges scores, normalized IDs, OpenRouter model data, inference availability, and release dates into the unified database file. Writes final files directly to website static folder.
   generateLayout:
     cmd: pnpm exec tsx src/generateLayout.ts
     deps:
       - src/generateLayout.ts
     outs:
-      - ../website/static/pipeline_graph.json:
+      - ../website/src/lib/pipeline_graph.json:
           cache: false
     meta:
       title: generateLayout.ts

@@ -13,12 +13,13 @@
  * Run:  pnpm run export:lb
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import slugify from 'slugify';
+import crypto from 'crypto';
 
-import { getProviderForLBId, getBrand, FAMILY_PRIORITY } from './shared/providerMeta.js';
+import { getProviderForLBId, getBrand, FAMILY_PRIORITY, LB_OLLAMA_MAP } from './shared/providerMeta.js';
 import { extractDate, unixToDate }                       from './shared/dateUtils.js';
 import { computeVfl }                                    from './shared/vflUtils.js';
 
@@ -315,8 +316,23 @@ interface LBNormData  { models: LBNormModel[] }
 interface ORModel     { id: string; created: number }
 interface ORData      { models: ORModel[] }
 
+interface OllamaTag {
+  name:          string;
+  slug:          string;
+  tag:           string;
+  isOllamaLocal: boolean;
+  isOllamaCloud: boolean;
+}
+interface OllamaIndex { tags: OllamaTag[] }
+export interface InferenceEntry {
+  ollamaCloud: boolean;
+  ollamaLocal: boolean;
+  openRouter:  boolean;
+}
+
 interface OutputModel {
   id:           string;  // native LB id
+  slug:         string;
   name:         string;
   family:       string;
   brand:        string;
@@ -325,6 +341,7 @@ interface OutputModel {
   effort:       'low' | 'medium' | 'high' | 'xhigh' | null;
   vfl:          number;
   openRouterId:  string | null;
+  inference:    InferenceEntry;
   sources:      string[];
   scores:   {
     lb_avg:       number | null;
@@ -425,6 +442,21 @@ async function main() {
     console.warn('⚠️  livebench_model_config.json missing — run: pnpm run fetch:lb-model-config');
   }
 
+  // Load ollama.json
+  const ollamaPath = path.join(OUT_DIR, 'ollama.json');
+  const slugLocal = new Set<string>();
+  const slugCloud = new Set<string>();
+  if (existsSync(ollamaPath)) {
+    const ollamaData = JSON.parse(readFileSync(ollamaPath, 'utf8')) as OllamaIndex;
+    for (const t of ollamaData.tags) {
+      if (t.isOllamaLocal) slugLocal.add(t.slug);
+      if (t.isOllamaCloud) slugCloud.add(t.slug);
+    }
+    console.log(`    Loaded ${ollamaData.tags.length} tags from ollama.json`);
+  } else {
+    console.warn('⚠️  ollama.json missing — run: pnpm run fetch:ollama');
+  }
+
   // Build lookup: LB id → OpenRouter id (from normalized file)
   const lbToOrId = new Map<string, string>();
   for (const m of norm.models) {
@@ -448,6 +480,22 @@ async function main() {
     const effort = extractEffort(lbm.id);
     const slug = createSlug(lbm.id);
 
+    const ollamaTag = LB_OLLAMA_MAP[lbm.id];
+    let ollamaLocal = false;
+    let ollamaCloud = false;
+
+    if (ollamaTag) {
+      const ollamaSlug = ollamaTag.includes(':') ? ollamaTag.split(':')[0] : ollamaTag;
+      ollamaLocal = slugLocal.has(ollamaSlug);
+      ollamaCloud = slugCloud.has(ollamaSlug);
+    }
+
+    const inference: InferenceEntry = {
+      ollamaCloud,
+      ollamaLocal,
+      openRouter: openRouterId !== null,
+    };
+
     intermediate.push({
       id:       lbm.id,
       slug,
@@ -459,6 +507,7 @@ async function main() {
       effort:   extractEffort(lbm.id),
       vfl:      0,  // computed below
       openRouterId,
+      inference,
       sources:  ['livebench'],
       scores: {
         lb_avg:       round1(lbm.scores['global_average']),
@@ -501,7 +550,25 @@ async function main() {
   };
 
   const outFile = path.join(OUT_DIR, 'benchmark_lb.json');
-  writeFileSync(outFile, JSON.stringify(output, null, 2), 'utf8');
+  const webFile = path.join(__dirname, '..', '..', 'website', 'static', 'benchmark_lb.json');
+  
+  const outputString = JSON.stringify(output, null, 2);
+  writeFileSync(outFile, outputString, 'utf8');
+  
+  const webDir = path.dirname(webFile);
+  if (!existsSync(webDir)) mkdirSync(webDir, { recursive: true });
+  writeFileSync(webFile, outputString, 'utf8');
+
+  // Generate data-hash.json
+  const { generated, ...hashDataObj } = output;
+  const hash = crypto.createHash('md5').update(JSON.stringify(hashDataObj)).digest('hex');
+  const hashData = {
+    hash,
+    updatedAt: new Date().toISOString(),
+    modelCount: output.models.length
+  };
+  const hashFile = path.join(webDir, 'data-hash.json');
+  writeFileSync(hashFile, JSON.stringify(hashData, null, 2), 'utf8');
 
   // ── Summary ────────────────────────────────────────────────────────────────
   const withOpenRouterId = models.filter(m => m.openRouterId).length;

@@ -1,7 +1,19 @@
 {
-  "generated": "2026-06-08T11:47:45.223Z",
+  "generated": "2026-06-09T09:43:35.313Z",
   "n_models": 341,
   "models": [
+    {
+      "id": "nex-agi/nex-n2-pro:free",
+      "name": "Nex AGI: Nex-N2-Pro (free)",
+      "created": 1780937140,
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0",
+        "completion": "0",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text+image->text"
+    },
     {
       "id": "nvidia/nemotron-3.5-content-safety:free",
       "name": "NVIDIA: Nemotron 3.5 Content Safety (free)",
@@ -1501,18 +1513,6 @@
         "input_cache_read": "0.00000005"
       },
       "architecture_modality": "text+image+video->text"
-    },
-    {
-      "id": "nex-agi/deepseek-v3.1-nex-n1",
-      "name": "Nex AGI: DeepSeek V3.1 Nex N1",
-      "created": 1765204393,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.000000135",
-        "completion": "0.0000005",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
     },
     {
       "id": "essentialai/rnj-1-instruct",

@@ -4,14 +4,7 @@
   import { fade, fly } from 'svelte/transition';
   import { browser } from '$app/environment';
 
-  let dismissed = $state(false);
-
-  // Read dismissal state from localStorage on mount
-  $effect(() => {
-    if (browser) {
-      dismissed = localStorage.getItem('livebench_notifications_prompt_dismissed') === 'true';
-    }
-  });
+  let dismissed = $state(browser ? localStorage.getItem('livebench_notifications_prompt_dismissed') === 'true' : false);
 
   async function handleSubscribe() {
     const granted = await requestNotificationPermission();

@@ -15,7 +15,7 @@
         "runCommand": "pnpm exec tsx src/fetchLiveBench.ts"
       },
       "position": {
-        "x": 220,
+        "x": 40,
         "y": 200
       }
     },
@@ -42,7 +42,7 @@
         ]
       },
       "position": {
-        "x": 220,
+        "x": 40,
         "y": 40
       }
     },
@@ -71,7 +71,7 @@
         ]
       },
       "position": {
-        "x": 220,
+        "x": 720,
         "y": 360
       }
     },
@@ -90,7 +90,7 @@
         ]
       },
       "position": {
-        "x": 560,
+        "x": 40,
         "y": 360
       }
     },
@@ -101,8 +101,8 @@
         "label": "out/livebench_release.txt"
       },
       "position": {
-        "x": 1440,
-        "y": 1960
+        "x": 2100,
+        "y": 1320
       }
     },
     {
@@ -114,7 +114,7 @@
         "runCommand": "pnpm exec tsx src/processLiveBench.ts"
       },
       "position": {
-        "x": 540,
+        "x": 720,
         "y": 520
       }
     },
@@ -148,7 +148,7 @@
         ]
       },
       "position": {
-        "x": 540,
+        "x": 720,
         "y": 680
       }
     },
@@ -161,7 +161,7 @@
         "runCommand": "pnpm exec tsx src/fetchLiveBenchModelConfig.ts"
       },
       "position": {
-        "x": 1240,
+        "x": 1540,
         "y": 840
       }
     },
@@ -188,7 +188,7 @@
         ]
       },
       "position": {
-        "x": 1240,
+        "x": 1540,
         "y": 680
       }
     },
@@ -217,7 +217,7 @@
         ]
       },
       "position": {
-        "x": 1240,
+        "x": 1540,
         "y": 1000
       }
     },
@@ -230,7 +230,7 @@
         "runCommand": "pnpm exec tsx src/fetchOpenRouter.ts"
       },
       "position": {
-        "x": 900,
+        "x": 1060,
         "y": 520
       }
     },
@@ -249,7 +249,7 @@
         ]
       },
       "position": {
-        "x": 900,
+        "x": 380,
         "y": 360
       }
     },
@@ -283,7 +283,7 @@
         ]
       },
       "position": {
-        "x": 900,
+        "x": 1060,
         "y": 680
       }
     },
@@ -296,7 +296,7 @@
         "runCommand": "pnpm exec tsx src/normalizeModelIds.ts"
       },
       "position": {
-        "x": 760,
+        "x": 900,
         "y": 840
       }
     },
@@ -320,7 +320,7 @@
         ]
       },
       "position": {
-        "x": 760,
+        "x": 900,
         "y": 1000
       }
     },
@@ -333,8 +333,8 @@
         "runCommand": "pnpm exec tsx src/fetchOllama.ts"
       },
       "position": {
-        "x": 40,
-        "y": 1160
+        "x": 1900,
+        "y": 840
       }
     },
     {
@@ -356,8 +356,8 @@
         ]
       },
       "position": {
-        "x": 40,
-        "y": 1000
+        "x": 1900,
+        "y": 680
       }
     },
     {
@@ -385,8 +385,8 @@
         ]
       },
       "position": {
-        "x": 40,
-        "y": 1320
+        "x": 1900,
+        "y": 1000
       }
     },
     {
@@ -394,11 +394,11 @@
       "type": "script",
       "data": {
         "label": "exportLBFull.ts",
-        "description": "Merges scores, normalized IDs, OpenRouter model data, and release dates into the unified database file. Cleans up family brands, open-weight categories, and computes ranks.",
+        "description": "Merges scores, normalized IDs, OpenRouter model data, inference availability, and release dates into the unified database file. Writes final files directly to website static folder.",
         "runCommand": "pnpm exec tsx src/exportLBFull.ts"
       },
       "position": {
-        "x": 760,
+        "x": 1080,
         "y": 1160
       }
     },
@@ -422,53 +422,8 @@
         ]
       },
       "position": {
-        "x": 760,
+        "x": 1080,
         "y": 1320
-      }
-    },
-    {
-      "id": "exportInference",
-      "type": "script",
-      "data": {
-        "label": "exportInference.ts",
-        "description": "Builds the inference availability matrix. Cross-references the benchmark models against OpenRouter IDs and scraped Ollama catalog tags.",
-        "runCommand": "pnpm exec tsx src/exportInference.ts"
-      },
-      "position": {
-        "x": 1260,
-        "y": 1480
-      }
-    },
-    {
-      "id": "out/inference.json",
-      "type": "file",
-      "data": {
-        "label": "out/inference.json",
-        "description": "Mapping directory from model ID to boolean inference availability status.",
-        "schema": [
-          {
-            "field": "[model_id]",
-            "type": "object",
-            "desc": "Nested booleans openRouter, ollamaLocal, ollamaCloud"
-          }
-        ]
-      },
-      "position": {
-        "x": 1260,
-        "y": 1640
-      }
-    },
-    {
-      "id": "copyToWebsite",
-      "type": "script",
-      "data": {
-        "label": "copyToWebsite.ts",
-        "description": "Copies compile-ready JSON assets from the pipeline cache directory directly to the SvelteKit frontend static resources folder.",
-        "runCommand": "pnpm exec tsx src/copyToWebsite.ts"
-      },
-      "position": {
-        "x": 760,
-        "y": 1800
       }
     },
     {
@@ -479,20 +434,20 @@
         "description": "Static website copy of the complete models benchmark database. Fetched on layout load."
       },
       "position": {
-        "x": 760,
-        "y": 1960
+        "x": 1420,
+        "y": 1320
       }
     },
     {
-      "id": "../website/static/inference.json",
+      "id": "../website/static/data-hash.json",
       "type": "file",
       "data": {
-        "label": "static/inference.json",
-        "description": "Static website copy of the models inference availability matrix."
+        "label": "static/data-hash.json",
+        "description": "MD5 hash of benchmark_lb.json (excluding the generated timestamp) to detect data changes."
       },
       "position": {
-        "x": 1100,
-        "y": 1960
+        "x": 1760,
+        "y": 1320
       }
     },
     {
@@ -504,19 +459,19 @@
         "runCommand": "pnpm exec tsx src/generateLayout.ts"
       },
       "position": {
-        "x": 1780,
-        "y": 1800
+        "x": 2440,
+        "y": 1160
       }
     },
     {
-      "id": "../website/static/pipeline_graph.json",
+      "id": "../website/src/lib/pipeline_graph.json",
       "type": "file",
       "data": {
-        "label": "../website/static/pipeline_graph.json"
+        "label": "../website/src/lib/pipeline_graph.json"
       },
       "position": {
-        "x": 1780,
-        "y": 1960
+        "x": 2440,
+        "y": 1320
       }
     }
   ],
@@ -720,6 +675,15 @@
       "selectable": false
     },
     {
+      "id": "e-out/ollama.json-exportLBFull",
+      "source": "out/ollama.json",
+      "target": "exportLBFull",
+      "type": "default",
+      "animated": false,
+      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
+      "selectable": false
+    },
+    {
       "id": "e-exportLBFull-out/benchmark_lb.json",
       "source": "exportLBFull",
       "target": "out/benchmark_lb.json",
@@ -729,53 +693,8 @@
       "selectable": false
     },
     {
-      "id": "e-out/ollama.json-exportInference",
-      "source": "out/ollama.json",
-      "target": "exportInference",
-      "type": "default",
-      "animated": false,
-      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
-      "selectable": false
-    },
-    {
-      "id": "e-out/benchmark_lb.json-exportInference",
-      "source": "out/benchmark_lb.json",
-      "target": "exportInference",
-      "type": "default",
-      "animated": false,
-      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
-      "selectable": false
-    },
-    {
-      "id": "e-exportInference-out/inference.json",
-      "source": "exportInference",
-      "target": "out/inference.json",
-      "type": "default",
-      "animated": false,
-      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
-      "selectable": false
-    },
-    {
-      "id": "e-out/benchmark_lb.json-copyToWebsite",
-      "source": "out/benchmark_lb.json",
-      "target": "copyToWebsite",
-      "type": "default",
-      "animated": false,
-      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
-      "selectable": false
-    },
-    {
-      "id": "e-out/inference.json-copyToWebsite",
-      "source": "out/inference.json",
-      "target": "copyToWebsite",
-      "type": "default",
-      "animated": false,
-      "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
-      "selectable": false
-    },
-    {
-      "id": "e-copyToWebsite-../website/static/benchmark_lb.json",
-      "source": "copyToWebsite",
+      "id": "e-exportLBFull-../website/static/benchmark_lb.json",
+      "source": "exportLBFull",
       "target": "../website/static/benchmark_lb.json",
       "type": "default",
       "animated": false,
@@ -783,18 +702,18 @@
       "selectable": false
     },
     {
-      "id": "e-copyToWebsite-../website/static/inference.json",
-      "source": "copyToWebsite",
-      "target": "../website/static/inference.json",
+      "id": "e-exportLBFull-../website/static/data-hash.json",
+      "source": "exportLBFull",
+      "target": "../website/static/data-hash.json",
       "type": "default",
       "animated": false,
       "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",
       "selectable": false
     },
     {
-      "id": "e-generateLayout-../website/static/pipeline_graph.json",
+      "id": "e-generateLayout-../website/src/lib/pipeline_graph.json",
       "source": "generateLayout",
-      "target": "../website/static/pipeline_graph.json",
+      "target": "../website/src/lib/pipeline_graph.json",
       "type": "default",
       "animated": false,
       "style": "stroke: #525c7a; stroke-width: 2px; opacity: 0.7; transition: stroke 0.3s, stroke-width 0.3s, opacity 0.3s;",

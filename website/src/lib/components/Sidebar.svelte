@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Info, ChevronDown, ChevronUp } from '@lucide/svelte';
 
-  import type { Model, InferenceMap, Benchmark } from '$lib/types';
+  import type { Model, Benchmark } from '$lib/types';
   import { familyColor } from '$lib/colors';
   import { SvelteSet } from 'svelte/reactivity';
 
@@ -15,7 +15,6 @@
     selectedIds:      Set<string>;
     onToggleSelection: (id: string) => void;
     highlightedId:    string | null;                  // $bindable – hover sync with chart
-    inferenceMap:     InferenceMap;       // per-model inference availability
     latest2:          boolean;
     models:           Model[];
     ollamaCloudOnly:  boolean;
@@ -40,7 +39,6 @@
 		hidden,
     selectedIds,
     onToggleSelection,
-		inferenceMap,
 		visibleIds,
     benchmarks,
     compact           = $bindable(false),
@@ -90,7 +88,7 @@
     return (showOpen || m.type !== 'open') && (showClosed || m.type !== 'closed');
   }
   function rowVisible(m: Model): boolean {
-    const inf     = inferenceMap[m.id];
+    const inf     = m.inference;
     const isOther = !inf?.openRouter && !inf?.ollamaCloud && !inf?.ollamaLocal;
     const inferenceOk =
       (openRouterOnly  && !!inf?.openRouter)  ||
@@ -358,9 +356,9 @@
                       <span class="tag {m.type === 'open' ? 'oss' : 'api'}">
                         {m.type === 'open' ? 'OW' : 'CW'}
                       </span>
-                      {#if inferenceMap[m.id]?.ollamaLocal}
-                        <span class="tag ol" title={inferenceMap[m.id]?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
-                          Ol{inferenceMap[m.id]?.ollamaCloud ? '☁' : ''}
+                      {#if m.inference?.ollamaLocal}
+                        <span class="tag ol" title={m.inference?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
+                          Ol{m.inference?.ollamaCloud ? '☁' : ''}
                         </span>
                       {/if}
                     </div>
@@ -397,9 +395,9 @@
                 <span class="tag {m.type === 'open' ? 'oss' : 'api'}">
                   {m.type === 'open' ? 'OW' : 'CW'}
                 </span>
-                {#if inferenceMap[m.id]?.ollamaLocal}
-                  <span class="tag ol" title={inferenceMap[m.id]?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
-                    Ol{inferenceMap[m.id]?.ollamaCloud ? '☁' : ''}
+                {#if m.inference?.ollamaLocal}
+                  <span class="tag ol" title={m.inference?.ollamaCloud ? 'Ollama local + cloud' : 'Ollama local only'}>
+                    Ol{m.inference?.ollamaCloud ? '☁' : ''}
                   </span>
                 {/if}
               </div>

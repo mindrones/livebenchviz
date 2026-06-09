@@ -66,8 +66,8 @@ stages:
     outs:
     - path: out/openrouter_models.json
       hash: md5
-      md5: 7a44e67705b157a20c2495b4ce99ef91
-      size: 114345
+      md5: 2bdb368a88ebb74be62626ab6dd4be6b
+      size: 114325
   normalizeModelIds:
     cmd: pnpm exec tsx src/normalizeModelIds.ts
     deps:
@@ -77,8 +77,8 @@ stages:
       size: 128785
     - path: out/openrouter_models.json
       hash: md5
-      md5: 7a44e67705b157a20c2495b4ce99ef91
-      size: 114345
+      md5: 2bdb368a88ebb74be62626ab6dd4be6b
+      size: 114325
     - path: src/normalizeModelIds.ts
       hash: md5
       md5: 9293ffeb60966f289480cb08f0ebc9c9
@@ -86,7 +86,7 @@ stages:
     outs:
     - path: out/livebench_normalized.json
       hash: md5
-      md5: c6a5e88e16f35a4506afc949d705cf45
+      md5: c778128e19bb955fbc975c6168667eb0
       size: 130826
   fetchOllama:
     cmd: pnpm exec tsx src/fetchOllama.ts
@@ -113,31 +113,43 @@ stages:
       size: 75722
     - path: out/livebench_normalized.json
       hash: md5
-      md5: c6a5e88e16f35a4506afc949d705cf45
+      md5: c778128e19bb955fbc975c6168667eb0
       size: 130826
     - path: out/livebench_scores.json
       hash: md5
       md5: 6ccb630287b0443dc5505f6f419446a1
       size: 128785
+    - path: out/ollama.json
+      hash: md5
+      md5: 4a2a9aba4270074155ed8947b79de9d0
+      size: 35033
     - path: out/openrouter_models.json
       hash: md5
-      md5: 7a44e67705b157a20c2495b4ce99ef91
-      size: 114345
+      md5: 2bdb368a88ebb74be62626ab6dd4be6b
+      size: 114325
     - path: src/exportLBFull.ts
       hash: md5
-      md5: 792e5e0f71e11007a7ba35ff794b47de
-      size: 26629
+      md5: 58abf72613ffcb32beef8b39a829ca52
+      size: 28795
     outs:
+    - path: ../website/static/benchmark_lb.json
+      hash: md5
+      md5: 917c4a97108835ef7cf1dc52f6b777eb
+      size: 88776
+    - path: ../website/static/data-hash.json
+      hash: md5
+      md5: c890aae1e3f58f1de9092f31220838fb
+      size: 112
     - path: out/benchmark_lb.json
       hash: md5
-      md5: d389d19a196bfa5172006de5c8330401
-      size: 74442
+      md5: 917c4a97108835ef7cf1dc52f6b777eb
+      size: 88776
   exportInference:
     cmd: pnpm exec tsx src/exportInference.ts
     deps:
     - path: out/benchmark_lb.json
       hash: md5
-      md5: d389d19a196bfa5172006de5c8330401
+      md5: a48961e4ff93bafe5c9b2fe6e134a9f9
       size: 74442
     - path: out/ollama.json
       hash: md5
@@ -150,41 +162,41 @@ stages:
     outs:
     - path: out/inference.json
       hash: md5
-      md5: 3c2e878bf9bd57764c050cec346bc02d
+      md5: 8b57dd2fb8a6ea9cffa35f96518eb56e
       size: 14853
   copyToWebsite:
     cmd: pnpm exec tsx src/copyToWebsite.ts
     deps:
     - path: out/benchmark_lb.json
       hash: md5
-      md5: d389d19a196bfa5172006de5c8330401
+      md5: a48961e4ff93bafe5c9b2fe6e134a9f9
       size: 74442
     - path: out/inference.json
       hash: md5
-      md5: 3c2e878bf9bd57764c050cec346bc02d
+      md5: 8b57dd2fb8a6ea9cffa35f96518eb56e
       size: 14853
     - path: src/copyToWebsite.ts
       hash: md5
-      md5: 4efd49143447af099ea2ed4fa27aeecb
-      size: 2155
+      md5: 885cc00d1e4c1d04adec6a71777ae525
+      size: 2711
     outs:
     - path: ../website/static/benchmark_lb.json
       hash: md5
-      md5: d389d19a196bfa5172006de5c8330401
+      md5: a48961e4ff93bafe5c9b2fe6e134a9f9
       size: 74442
     - path: ../website/static/inference.json
       hash: md5
-      md5: 3c2e878bf9bd57764c050cec346bc02d
+      md5: 8b57dd2fb8a6ea9cffa35f96518eb56e
       size: 14853
   generateLayout:
     cmd: pnpm exec tsx src/generateLayout.ts
     deps:
     - path: src/generateLayout.ts
       hash: md5
-      md5: 6356d28152e61caf8a5b3b5972705947
+      md5: 5a1b931a5b6752e54ef98965b16a63e8
       size: 4523
     outs:
-    - path: ../website/static/pipeline_graph.json
+    - path: ../website/src/lib/pipeline_graph.json
       hash: md5
-      md5: 7a0ef39cbfe1ab7391d100a137881a2d
-      size: 25549
+      md5: b9b30d2d6c9af8963379ba3c7d7101e5
+      size: 22903

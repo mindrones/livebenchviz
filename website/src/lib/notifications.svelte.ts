@@ -8,6 +8,8 @@ export const serviceWorkerState = $state({
   periodicSyncRegistered: false,
   updateAvailable: false,
   latestHash: '',
+  latestCount: 0,
+  hasNewModels: false,
   showInAppBanner: false
 });
 
@@ -101,14 +103,20 @@ export async function checkUpdatesInApp() {
     const latest = await res.json();
     
     const lastSeenHash = localStorage.getItem('livebench_last_seen_hash');
+    const lastSeenCount = parseInt(localStorage.getItem('livebench_last_seen_count') || '0', 10);
     
     if (lastSeenHash && lastSeenHash !== latest.hash) {
       serviceWorkerState.updateAvailable = true;
       serviceWorkerState.latestHash = latest.hash;
+      serviceWorkerState.latestCount = latest.modelCount || 0;
+      serviceWorkerState.hasNewModels = serviceWorkerState.latestCount > lastSeenCount;
       serviceWorkerState.showInAppBanner = true;
     } else if (!lastSeenHash) {
       // First-time visit, save the current hash silently
       localStorage.setItem('livebench_last_seen_hash', latest.hash);
+      if (latest.modelCount) {
+        localStorage.setItem('livebench_last_seen_count', latest.modelCount.toString());
+      }
       
       // Also write it to livebench-notification-cache to keep SW aligned
       try {
@@ -126,6 +134,9 @@ export async function checkUpdatesInApp() {
 export function dismissUpdateBanner(accept: boolean) {
   if (accept && serviceWorkerState.latestHash) {
     localStorage.setItem('livebench_last_seen_hash', serviceWorkerState.latestHash);
+    if (serviceWorkerState.latestCount > 0) {
+      localStorage.setItem('livebench_last_seen_count', serviceWorkerState.latestCount.toString());
+    }
     window.location.reload();
   } else {
     serviceWorkerState.showInAppBanner = false;

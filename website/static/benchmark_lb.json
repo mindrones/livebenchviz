@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-08T11:47:46.187Z",
+  "generated": "2026-06-09T09:43:36.856Z",
   "dataset": "lb",
   "openRouterOnly": false,
   "modelCount": 122,
@@ -89,6 +89,11 @@
       "effort": "xhigh",
       "vfl": 0,
       "openRouterId": "openai/gpt-5.5",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -114,6 +119,11 @@
       "effort": "medium",
       "vfl": 1,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -139,6 +149,11 @@
       "effort": "high",
       "vfl": 2,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -164,6 +179,11 @@
       "effort": "xhigh",
       "vfl": 3,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -189,6 +209,11 @@
       "effort": "medium",
       "vfl": 4,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -214,6 +239,11 @@
       "effort": "low",
       "vfl": 5,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -239,6 +269,11 @@
       "effort": "high",
       "vfl": 6,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -264,6 +299,11 @@
       "effort": null,
       "vfl": 7,
       "openRouterId": "openai/gpt-5.4-nano",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -289,6 +329,11 @@
       "effort": "xhigh",
       "vfl": 8,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -314,6 +359,11 @@
       "effort": "medium",
       "vfl": 9,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -339,6 +389,11 @@
       "effort": "low",
       "vfl": 10,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -364,6 +419,11 @@
       "effort": "high",
       "vfl": 11,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -389,6 +449,11 @@
       "effort": null,
       "vfl": 12,
       "openRouterId": "openai/gpt-5.4-mini",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -414,6 +479,11 @@
       "effort": "xhigh",
       "vfl": 13,
       "openRouterId": "openai/gpt-5.4",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -439,6 +509,11 @@
       "effort": "high",
       "vfl": 14,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -464,6 +539,11 @@
       "effort": null,
       "vfl": 15,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -489,6 +569,11 @@
       "effort": "xhigh",
       "vfl": 16,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -514,6 +599,11 @@
       "effort": "high",
       "vfl": 17,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -539,6 +629,11 @@
       "effort": null,
       "vfl": 18,
       "openRouterId": "openai/gpt-5.2-codex",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -564,6 +659,11 @@
       "effort": null,
       "vfl": 19,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -589,6 +689,11 @@
       "effort": "medium",
       "vfl": 20,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -614,6 +719,11 @@
       "effort": "low",
       "vfl": 21,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -639,6 +749,11 @@
       "effort": "high",
       "vfl": 22,
       "openRouterId": "openai/gpt-5.2",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -664,6 +779,11 @@
       "effort": "high",
       "vfl": 23,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -689,6 +809,11 @@
       "effort": null,
       "vfl": 24,
       "openRouterId": "openai/gpt-5.1-codex-max",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -714,6 +839,11 @@
       "effort": null,
       "vfl": 25,
       "openRouterId": "openai/gpt-5.1-codex-mini",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -739,6 +869,11 @@
       "effort": null,
       "vfl": 26,
       "openRouterId": "openai/gpt-5.1-codex",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -764,6 +899,11 @@
       "effort": null,
       "vfl": 27,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -789,6 +929,11 @@
       "effort": "medium",
       "vfl": 28,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -814,6 +959,11 @@
       "effort": "low",
       "vfl": 29,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -839,6 +989,11 @@
       "effort": "high",
       "vfl": 30,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -864,6 +1019,11 @@
       "effort": null,
       "vfl": 31,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -889,6 +1049,11 @@
       "effort": "low",
       "vfl": 32,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -914,6 +1079,11 @@
       "effort": "high",
       "vfl": 33,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -939,6 +1109,11 @@
       "effort": null,
       "vfl": 34,
       "openRouterId": "openai/gpt-5-nano",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -964,6 +1139,11 @@
       "effort": null,
       "vfl": 35,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -989,6 +1169,11 @@
       "effort": "low",
       "vfl": 36,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1014,6 +1199,11 @@
       "effort": "high",
       "vfl": 37,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1039,6 +1229,11 @@
       "effort": null,
       "vfl": 38,
       "openRouterId": "openai/gpt-5-mini",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1064,6 +1259,11 @@
       "effort": null,
       "vfl": 39,
       "openRouterId": "openai/gpt-oss-120b",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1089,6 +1289,11 @@
       "effort": "xhigh",
       "vfl": 0,
       "openRouterId": "anthropic/claude-opus-4.8",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1114,6 +1319,11 @@
       "effort": "medium",
       "vfl": 1,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1139,6 +1349,11 @@
       "effort": "low",
       "vfl": 2,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1164,6 +1379,11 @@
       "effort": "high",
       "vfl": 3,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1189,6 +1409,11 @@
       "effort": "xhigh",
       "vfl": 4,
       "openRouterId": "anthropic/claude-opus-4.7",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1214,6 +1439,11 @@
       "effort": "medium",
       "vfl": 5,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1239,6 +1469,11 @@
       "effort": "low",
       "vfl": 6,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1264,6 +1499,11 @@
       "effort": "high",
       "vfl": 7,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1289,6 +1529,11 @@
       "effort": "medium",
       "vfl": 8,
       "openRouterId": "anthropic/claude-sonnet-4.6",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1314,6 +1559,11 @@
       "effort": "low",
       "vfl": 9,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1339,6 +1589,11 @@
       "effort": "high",
       "vfl": 10,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1364,6 +1619,11 @@
       "effort": "high",
       "vfl": 11,
       "openRouterId": "anthropic/claude-opus-4.6",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1389,6 +1649,11 @@
       "effort": "medium",
       "vfl": 12,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1414,6 +1679,11 @@
       "effort": "low",
       "vfl": 13,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1439,6 +1709,11 @@
       "effort": "high",
       "vfl": 14,
       "openRouterId": "anthropic/claude-opus-4.5",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1464,6 +1739,11 @@
       "effort": "medium",
       "vfl": 15,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1489,6 +1769,11 @@
       "effort": "low",
       "vfl": 16,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1514,6 +1799,11 @@
       "effort": "high",
       "vfl": 17,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1539,6 +1829,11 @@
       "effort": null,
       "vfl": 18,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1564,6 +1859,11 @@
       "effort": null,
       "vfl": 19,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1589,6 +1889,11 @@
       "effort": null,
       "vfl": 20,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1614,6 +1919,11 @@
       "effort": null,
       "vfl": 21,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1639,6 +1949,11 @@
       "effort": null,
       "vfl": 22,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1664,6 +1979,11 @@
       "effort": null,
       "vfl": 23,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1689,6 +2009,11 @@
       "effort": null,
       "vfl": 24,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1714,6 +2039,11 @@
       "effort": null,
       "vfl": 25,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1739,6 +2069,11 @@
       "effort": "high",
       "vfl": 0,
       "openRouterId": "google/gemini-3.5-flash",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1764,6 +2099,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "google/gemma-4-31b-it",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": true,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1789,6 +2129,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1814,6 +2159,11 @@
       "effort": "high",
       "vfl": 2,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1839,6 +2189,11 @@
       "effort": "low",
       "vfl": 3,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1864,6 +2219,11 @@
       "effort": "high",
       "vfl": 4,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1889,6 +2249,11 @@
       "effort": "high",
       "vfl": 5,
       "openRouterId": "google/gemini-3.1-pro-preview",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -1914,6 +2279,11 @@
       "effort": "high",
       "vfl": 6,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1939,6 +2309,11 @@
       "effort": null,
       "vfl": 7,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1964,6 +2339,11 @@
       "effort": null,
       "vfl": 8,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -1989,6 +2369,11 @@
       "effort": null,
       "vfl": 9,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2014,6 +2399,11 @@
       "effort": null,
       "vfl": 10,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2039,6 +2429,11 @@
       "effort": null,
       "vfl": 11,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2064,6 +2459,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "x-ai/grok-build-0.1",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2089,6 +2489,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": "x-ai/grok-4.3",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2114,6 +2519,11 @@
       "effort": null,
       "vfl": 2,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2139,6 +2549,11 @@
       "effort": null,
       "vfl": 3,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2164,6 +2579,11 @@
       "effort": null,
       "vfl": 4,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2189,6 +2609,11 @@
       "effort": null,
       "vfl": 5,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2214,6 +2639,11 @@
       "effort": null,
       "vfl": 6,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2239,6 +2669,11 @@
       "effort": null,
       "vfl": 7,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2264,6 +2699,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "mistralai/devstral-2512",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2289,6 +2729,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "qwen/qwen3.6-plus",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2314,6 +2759,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": "qwen/qwen3.6-flash",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2339,6 +2789,11 @@
       "effort": null,
       "vfl": 2,
       "openRouterId": "qwen/qwen3.6-27b",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2364,6 +2819,11 @@
       "effort": null,
       "vfl": 3,
       "openRouterId": "qwen/qwen3.7-max",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2389,6 +2849,11 @@
       "effort": null,
       "vfl": 4,
       "openRouterId": "qwen/qwen3-next-80b-a3b-thinking",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2414,6 +2879,11 @@
       "effort": null,
       "vfl": 5,
       "openRouterId": "qwen/qwen3-next-80b-a3b-instruct",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2439,6 +2909,11 @@
       "effort": null,
       "vfl": 6,
       "openRouterId": "qwen/qwen3-235b-a22b-thinking-2507",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2464,6 +2939,11 @@
       "effort": null,
       "vfl": 7,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2489,6 +2969,11 @@
       "effort": null,
       "vfl": 8,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2514,6 +2999,11 @@
       "effort": null,
       "vfl": 9,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2539,6 +3029,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "deepseek/deepseek-v4-pro",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2564,6 +3059,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": "deepseek/deepseek-v4-flash",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2589,6 +3089,11 @@
       "effort": null,
       "vfl": 2,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2614,6 +3119,11 @@
       "effort": null,
       "vfl": 3,
       "openRouterId": "deepseek/deepseek-v3.2",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2639,6 +3149,11 @@
       "effort": null,
       "vfl": 4,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2664,6 +3179,11 @@
       "effort": null,
       "vfl": 5,
       "openRouterId": "deepseek/deepseek-v3.2-exp",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2689,6 +3209,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "nvidia/nemotron-3-ultra-550b-a55b",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2714,6 +3239,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": "nvidia/nemotron-3-super-120b-a12b",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": true,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2739,6 +3269,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2764,6 +3299,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": "moonshotai/kimi-k2-thinking",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2789,6 +3329,11 @@
       "effort": null,
       "vfl": 2,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2814,6 +3359,11 @@
       "effort": null,
       "vfl": 3,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -2839,6 +3389,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "z-ai/glm-5v-turbo",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2864,6 +3419,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": "z-ai/glm-5.1",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2889,6 +3449,11 @@
       "effort": null,
       "vfl": 2,
       "openRouterId": "z-ai/glm-4.6v",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2914,6 +3479,11 @@
       "effort": null,
       "vfl": 3,
       "openRouterId": "z-ai/glm-5",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2939,6 +3509,11 @@
       "effort": null,
       "vfl": 4,
       "openRouterId": "z-ai/glm-4.7",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2964,6 +3539,11 @@
       "effort": null,
       "vfl": 5,
       "openRouterId": "z-ai/glm-4.6",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -2989,6 +3569,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": "minimax/minimax-m3",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -3014,6 +3599,11 @@
       "effort": null,
       "vfl": 1,
       "openRouterId": "minimax/minimax-m2.7",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -3039,6 +3629,11 @@
       "effort": null,
       "vfl": 2,
       "openRouterId": "minimax/minimax-m2.5",
+      "inference": {
+        "ollamaCloud": true,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
       "sources": [
         "livebench"
       ],
@@ -3064,6 +3659,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -3089,6 +3689,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],
@@ -3114,6 +3719,11 @@
       "effort": null,
       "vfl": 0,
       "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
       "sources": [
         "livebench"
       ],

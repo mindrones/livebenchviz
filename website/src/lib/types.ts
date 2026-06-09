@@ -17,6 +17,7 @@ export interface Model {
   effort:       'low' | 'medium' | 'high' | 'xhigh' | null;
   vfl:          number;           // version-family rank: 0 = latest in its type-group
   openRouterId: string | null;    // OpenRouter model ID, null if not on OpenRouter
+  inference?:   InferenceEntry;   // Inference availability
   sources:      string[];         // e.g. ['livebench'] or ['hf_leaderboard']
   scores:       Record<string, number | null | undefined>;
 }

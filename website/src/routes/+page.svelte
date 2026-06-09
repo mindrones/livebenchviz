@@ -26,7 +26,7 @@
   import ThemeToggle from "$lib/components/ThemeToggle.svelte";
 
   import { familyColor, AXIS_ABBREV, AXIS_CATEGORY_NAMES } from "$lib/colors";
-  import type { BenchmarkData, InferenceMap } from "$lib/types";
+  import type { BenchmarkData } from "$lib/types";
   import type { LayoutData } from "./$types";
 
   // Data loaded by +layout.ts (default: lb_full). Reactive reloads in $effect below.
@@ -39,7 +39,6 @@
 
   // ── Local benchmark data state (drives everything in this page) ─────────────
   let benchmarkData = $state<BenchmarkData | null>(data.benchmarkData ?? null);
-  let inferenceMap = $state<InferenceMap>(data.inferenceMap ?? {});
   let loadError = $state<string | null>(data.error ?? null);
   let loadingData = $state(false);
 
@@ -187,7 +186,7 @@
   // list and cause an infinite update cycle.
   const visibleModels = $derived(
     allModels.filter((m) => {
-      const inf = inferenceMap[m.id];
+      const inf = m.inference;
       const isOther =
         !inf?.openRouter && !inf?.ollamaCloud && !inf?.ollamaLocal;
       if (
@@ -222,7 +221,7 @@
     return new Set<string>(
       allModels
         .filter((m) => {
-          const inf = inferenceMap[m.id];
+          const inf = m.inference;
           const isOther =
             !inf?.openRouter && !inf?.ollamaCloud && !inf?.ollamaLocal;
           if (
@@ -513,7 +512,6 @@
           <Sidebar
             {familyOrder}
             {hidden}
-            {inferenceMap}
             {selectedIds}
             {visibleIds}
             benchmarks={allBenchmarks}
@@ -695,7 +693,6 @@
         {hidden}
         {selectedIds}
         onToggleSelection={toggleSelection}
-        {inferenceMap}
         {visibleIds}
         benchmarks={allBenchmarks}
         bind:expandedFamilies
