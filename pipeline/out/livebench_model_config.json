@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-06-05T20:37:42.610Z",
+  "fetched": "2026-06-10T07:09:29.804Z",
   "bundle_url": "local:src/Table/modelLinks.js",
   "models": {
     "arcee-trinity-large-preview": {
@@ -2164,6 +2164,20 @@
       "displayName": "Grok Build 0.1",
       "version": null,
       "version_source": "unknown"
+    },
+    "claude-fable-5-xhigh-effort": {
+      "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+      "organization": "Anthropic",
+      "displayName": "Claude Fable 5 Thinking xHigh Effort",
+      "version": "2026-06-09",
+      "version_source": "bundle"
+    },
+    "claude-fable-5-high-effort": {
+      "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+      "organization": "Anthropic",
+      "displayName": "Claude Fable 5 Thinking High Effort",
+      "version": "2026-06-09",
+      "version_source": "bundle"
     }
   }
 }

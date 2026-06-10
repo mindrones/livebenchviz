@@ -28,6 +28,10 @@ try {
 }
 
 export default defineConfig({
+  server: {
+    port: 5200,
+    strictPort: true
+  },
   plugins: [
     tailwindcss(),
     sveltekit(),

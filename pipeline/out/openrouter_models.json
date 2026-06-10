@@ -1,7 +1,31 @@
 {
-  "generated": "2026-06-09T09:43:35.313Z",
-  "n_models": 341,
+  "generated": "2026-06-10T07:10:18.802Z",
+  "n_models": 339,
   "models": [
+    {
+      "id": "~anthropic/claude-fable-latest",
+      "name": "Anthropic: Claude Fable Latest",
+      "created": 1781029944,
+      "context_length": 1000000,
+      "pricing": {
+        "prompt": "0.00001",
+        "completion": "0.00005",
+        "input_cache_read": "0.000001"
+      },
+      "architecture_modality": "text+image+file->text"
+    },
+    {
+      "id": "anthropic/claude-fable-5",
+      "name": "Anthropic: Claude Fable 5",
+      "created": 1781007515,
+      "context_length": 1000000,
+      "pricing": {
+        "prompt": "0.00001",
+        "completion": "0.00005",
+        "input_cache_read": "0.000001"
+      },
+      "architecture_modality": "text+image+file->text"
+    },
     {
       "id": "nex-agi/nex-n2-pro:free",
       "name": "Nex AGI: Nex-N2-Pro (free)",
@@ -711,18 +735,6 @@
       "architecture_modality": "text+image+video->text"
     },
     {
-      "id": "z-ai/glm-5v-turbo",
-      "name": "Z.ai: GLM 5V Turbo",
-      "created": 1775061458,
-      "context_length": 202752,
-      "pricing": {
-        "prompt": "0.0000012",
-        "completion": "0.000004",
-        "input_cache_read": "0.00000024"
-      },
-      "architecture_modality": "text+image+video->text"
-    },
-    {
       "id": "arcee-ai/trinity-large-thinking",
       "name": "Arcee AI: Trinity Large Thinking",
       "created": 1775058318,
@@ -812,9 +824,9 @@
       "created": 1773836697,
       "context_length": 204800,
       "pricing": {
-        "prompt": "0.000000279",
-        "completion": "0.0000012",
-        "input_cache_read": null
+        "prompt": "0.00000027",
+        "completion": "0.00000108",
+        "input_cache_read": "0.000000054"
       },
       "architecture_modality": "text->text"
     },
@@ -858,7 +870,7 @@
       "id": "z-ai/glm-5-turbo",
       "name": "Z.ai: GLM 5 Turbo",
       "created": 1773583573,
-      "context_length": 202752,
+      "context_length": 262144,
       "pricing": {
         "prompt": "0.0000012",
         "completion": "0.000004",
@@ -1149,8 +1161,8 @@
       "context_length": 204800,
       "pricing": {
         "prompt": "0.00000015",
-        "completion": "0.00000115",
-        "input_cache_read": null
+        "completion": "0.0000009",
+        "input_cache_read": "0.00000005"
       },
       "architecture_modality": "text->text"
     },
@@ -1232,9 +1244,9 @@
       "created": 1769487076,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.0000004",
-        "completion": "0.0000019",
-        "input_cache_read": "0.00000009"
+        "prompt": "0.00000035",
+        "completion": "0.00000189",
+        "input_cache_read": null
       },
       "architecture_modality": "text+image->text"
     },
@@ -1510,7 +1522,7 @@
       "pricing": {
         "prompt": "0.0000003",
         "completion": "0.0000009",
-        "input_cache_read": "0.00000005"
+        "input_cache_read": "0.000000055"
       },
       "architecture_modality": "text+image+video->text"
     },
@@ -2499,18 +2511,6 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "z-ai/glm-4.5-air:free",
-      "name": "Z.ai: GLM 4.5 Air (free)",
-      "created": 1753471258,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0",
-        "completion": "0",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
       "id": "z-ai/glm-4.5-air",
       "name": "Z.ai: GLM 4.5 Air",
       "created": 1753471258,
@@ -2531,18 +2531,6 @@
         "prompt": "0.0000001",
         "completion": "0.0000001",
         "input_cache_read": "0.0000001"
-      },
-      "architecture_modality": "text->text"
-    },
-    {
-      "id": "z-ai/glm-4-32b",
-      "name": "Z.ai: GLM 4 32B ",
-      "created": 1753376617,
-      "context_length": 128000,
-      "pricing": {
-        "prompt": "0.0000001",
-        "completion": "0.0000001",
-        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -2833,18 +2821,6 @@
         "input_cache_read": "0.000000125"
       },
       "architecture_modality": "text+image+file+audio+video->text"
-    },
-    {
-      "id": "arcee-ai/maestro-reasoning",
-      "name": "Arcee AI: Maestro Reasoning",
-      "created": 1746481269,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.0000009",
-        "completion": "0.0000033",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
     },
     {
       "id": "arcee-ai/virtuoso-large",

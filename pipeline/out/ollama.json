@@ -1,16 +1,9 @@
 {
-  "fetched": "2026-06-05T20:38:23.789Z",
+  "fetched": "2026-06-10T07:09:45.103Z",
   "source": "https://ollama.com",
-  "tagCount": 218,
-  "slugCount": 26,
+  "tagCount": 283,
+  "slugCount": 27,
   "tags": [
-    {
-      "name": "deepseek-v3.2:cloud",
-      "slug": "deepseek-v3.2",
-      "tag": "cloud",
-      "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
     {
       "name": "deepseek-v4-flash:cloud",
       "slug": "deepseek-v4-flash",
@@ -23,48 +16,6 @@
       "slug": "deepseek-v4-pro",
       "tag": "cloud",
       "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "devstral-small-2:24b",
-      "slug": "devstral-small-2",
-      "tag": "24b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "devstral-small-2:24b-cloud",
-      "slug": "devstral-small-2",
-      "tag": "24b-cloud",
-      "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "devstral-small-2:24b-instruct-2512-fp16",
-      "slug": "devstral-small-2",
-      "tag": "24b-instruct-2512-fp16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "devstral-small-2:24b-instruct-2512-q4_K_M",
-      "slug": "devstral-small-2",
-      "tag": "24b-instruct-2512-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "devstral-small-2:24b-instruct-2512-q8_0",
-      "slug": "devstral-small-2",
-      "tag": "24b-instruct-2512-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "devstral-small-2:latest",
-      "slug": "devstral-small-2",
-      "tag": "latest",
-      "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
@@ -453,6 +404,48 @@
       "isOllamaCloud": false
     },
     {
+      "name": "gpt-oss:120b",
+      "slug": "gpt-oss",
+      "tag": "120b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "gpt-oss:120b-cloud",
+      "slug": "gpt-oss",
+      "tag": "120b-cloud",
+      "isOllamaLocal": false,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "gpt-oss:20b",
+      "slug": "gpt-oss",
+      "tag": "20b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "gpt-oss:20b-cloud",
+      "slug": "gpt-oss",
+      "tag": "20b-cloud",
+      "isOllamaLocal": false,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "gpt-oss:latest",
+      "slug": "gpt-oss",
+      "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "kimi-k2.5:cloud",
+      "slug": "kimi-k2.5",
+      "tag": "cloud",
+      "isOllamaLocal": false,
+      "isOllamaCloud": true
+    },
+    {
       "name": "kimi-k2.6:cloud",
       "slug": "kimi-k2.6",
       "tag": "cloud",
@@ -533,6 +526,97 @@
       "name": "lfm2.5:latest",
       "slug": "lfm2.5",
       "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:1b",
+      "slug": "minicpm-v4.6",
+      "tag": "1b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:f16",
+      "slug": "minicpm-v4.6",
+      "tag": "f16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:latest",
+      "slug": "minicpm-v4.6",
+      "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q4_0",
+      "slug": "minicpm-v4.6",
+      "tag": "q4_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q4_1",
+      "slug": "minicpm-v4.6",
+      "tag": "q4_1",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q4_K_M",
+      "slug": "minicpm-v4.6",
+      "tag": "q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q4_K_S",
+      "slug": "minicpm-v4.6",
+      "tag": "q4_K_S",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q5_0",
+      "slug": "minicpm-v4.6",
+      "tag": "q5_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q5_1",
+      "slug": "minicpm-v4.6",
+      "tag": "q5_1",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q5_K_M",
+      "slug": "minicpm-v4.6",
+      "tag": "q5_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q5_K_S",
+      "slug": "minicpm-v4.6",
+      "tag": "q5_K_S",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q6_K",
+      "slug": "minicpm-v4.6",
+      "tag": "q6_K",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.6:q8_0",
+      "slug": "minicpm-v4.6",
+      "tag": "q8_0",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
@@ -736,6 +820,419 @@
       "name": "qwen3-coder-next:q8_0",
       "slug": "qwen3-coder-next",
       "tag": "q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b",
+      "slug": "qwen3-vl",
+      "tag": "235b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-instruct",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-instruct",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-instruct-bf16",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-instruct-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-instruct-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-instruct-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-instruct-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-instruct-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-thinking",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-thinking",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-thinking-bf16",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-thinking-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-thinking-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-thinking-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-a22b-thinking-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "235b-a22b-thinking-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-cloud",
+      "slug": "qwen3-vl",
+      "tag": "235b-cloud",
+      "isOllamaLocal": false,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:235b-instruct-cloud",
+      "slug": "qwen3-vl",
+      "tag": "235b-instruct-cloud",
+      "isOllamaLocal": false,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b",
+      "slug": "qwen3-vl",
+      "tag": "2b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-instruct",
+      "slug": "qwen3-vl",
+      "tag": "2b-instruct",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-instruct-bf16",
+      "slug": "qwen3-vl",
+      "tag": "2b-instruct-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-instruct-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "2b-instruct-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-instruct-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "2b-instruct-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-thinking",
+      "slug": "qwen3-vl",
+      "tag": "2b-thinking",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-thinking-bf16",
+      "slug": "qwen3-vl",
+      "tag": "2b-thinking-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-thinking-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "2b-thinking-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:2b-thinking-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "2b-thinking-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b",
+      "slug": "qwen3-vl",
+      "tag": "30b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-instruct",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-instruct",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-instruct-bf16",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-instruct-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-instruct-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-instruct-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-instruct-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-instruct-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-thinking",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-thinking",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-thinking-bf16",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-thinking-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-thinking-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-thinking-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:30b-a3b-thinking-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "30b-a3b-thinking-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b",
+      "slug": "qwen3-vl",
+      "tag": "32b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-instruct",
+      "slug": "qwen3-vl",
+      "tag": "32b-instruct",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-instruct-bf16",
+      "slug": "qwen3-vl",
+      "tag": "32b-instruct-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-instruct-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "32b-instruct-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-instruct-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "32b-instruct-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-thinking",
+      "slug": "qwen3-vl",
+      "tag": "32b-thinking",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-thinking-bf16",
+      "slug": "qwen3-vl",
+      "tag": "32b-thinking-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-thinking-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "32b-thinking-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:32b-thinking-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "32b-thinking-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b",
+      "slug": "qwen3-vl",
+      "tag": "4b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-instruct",
+      "slug": "qwen3-vl",
+      "tag": "4b-instruct",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-instruct-bf16",
+      "slug": "qwen3-vl",
+      "tag": "4b-instruct-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-instruct-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "4b-instruct-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-instruct-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "4b-instruct-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-thinking",
+      "slug": "qwen3-vl",
+      "tag": "4b-thinking",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-thinking-bf16",
+      "slug": "qwen3-vl",
+      "tag": "4b-thinking-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-thinking-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "4b-thinking-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:4b-thinking-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "4b-thinking-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b",
+      "slug": "qwen3-vl",
+      "tag": "8b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-instruct",
+      "slug": "qwen3-vl",
+      "tag": "8b-instruct",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-instruct-bf16",
+      "slug": "qwen3-vl",
+      "tag": "8b-instruct-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-instruct-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "8b-instruct-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-instruct-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "8b-instruct-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-thinking",
+      "slug": "qwen3-vl",
+      "tag": "8b-thinking",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-thinking-bf16",
+      "slug": "qwen3-vl",
+      "tag": "8b-thinking-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-thinking-q4_K_M",
+      "slug": "qwen3-vl",
+      "tag": "8b-thinking-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:8b-thinking-q8_0",
+      "slug": "qwen3-vl",
+      "tag": "8b-thinking-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": true
+    },
+    {
+      "name": "qwen3-vl:latest",
+      "slug": "qwen3-vl",
+      "tag": "latest",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
@@ -1396,48 +1893,6 @@
       "tag": "latest",
       "isOllamaLocal": true,
       "isOllamaCloud": false
-    },
-    {
-      "name": "rnj-1:8b",
-      "slug": "rnj-1",
-      "tag": "8b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "rnj-1:8b-cloud",
-      "slug": "rnj-1",
-      "tag": "8b-cloud",
-      "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "rnj-1:8b-instruct-fp16",
-      "slug": "rnj-1",
-      "tag": "8b-instruct-fp16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "rnj-1:8b-instruct-q4_K_M",
-      "slug": "rnj-1",
-      "tag": "8b-instruct-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "rnj-1:8b-instruct-q8_0",
-      "slug": "rnj-1",
-      "tag": "8b-instruct-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "rnj-1:latest",
-      "slug": "rnj-1",
-      "tag": "latest",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
     },
     {
       "name": "translategemma:12b",

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-05T20:37:37.181Z",
+  "generated": "2026-06-10T07:09:17.081Z",
   "source": "livebench.github.io/public/table_2026_01_08.csv",
   "release": "2026_01_08",
   "categories": [
@@ -45,7 +45,7 @@
     "typos",
     "zebra_puzzle"
   ],
-  "n_models": 122,
+  "n_models": 124,
   "models": [
     {
       "id": "gpt-5.5-xhigh",
@@ -163,6 +163,46 @@
         "typescript": 55,
         "typos": 82,
         "zebra_puzzle": 85.3
+      },
+      "n_categories": 7,
+      "n_rows": 23
+    },
+    {
+      "id": "claude-fable-5-xhigh-effort",
+      "scores": {
+        "reasoning": 87.3,
+        "coding": 78.6,
+        "agentic_coding": 60,
+        "mathematics": 93.9,
+        "data_analysis": 80,
+        "language": 88.5,
+        "instruction_following": 60,
+        "global_average": 78.3
+      },
+      "tasks": {
+        "AMPS_Hard": 98,
+        "code_completion": 78.3,
+        "code_generation": 78.9,
+        "connections": 99.3,
+        "consecutive_events": 90.4,
+        "integrals_with_game": 91,
+        "javascript": 30,
+        "logic_with_navigation": 74,
+        "math_comp": 95.1,
+        "olympiad": 91.5,
+        "paraphrase": 58.7,
+        "plot_unscrambling": 78.1,
+        "python": 95,
+        "simplify": 50.5,
+        "spatial": 100,
+        "story_generation": 58.7,
+        "summarize": 71.9,
+        "tablejoin": 53.6,
+        "tablereformat": 96.1,
+        "theory_of_mind": 75,
+        "typescript": 55,
+        "typos": 88,
+        "zebra_puzzle": 100
       },
       "n_categories": 7,
       "n_rows": 23
@@ -443,6 +483,46 @@
         "typescript": 55,
         "typos": 72,
         "zebra_puzzle": 96
+      },
+      "n_categories": 7,
+      "n_rows": 23
+    },
+    {
+      "id": "claude-fable-5-high-effort",
+      "scores": {
+        "reasoning": 86.3,
+        "coding": 76.4,
+        "agentic_coding": 51.7,
+        "mathematics": 91.3,
+        "data_analysis": 80.3,
+        "language": 86.3,
+        "instruction_following": 56.1,
+        "global_average": 75.5
+      },
+      "tasks": {
+        "AMPS_Hard": 99,
+        "code_completion": 73.9,
+        "code_generation": 78.9,
+        "connections": 99.3,
+        "consecutive_events": 90.8,
+        "integrals_with_game": 80,
+        "javascript": 35,
+        "logic_with_navigation": 72,
+        "math_comp": 94.1,
+        "olympiad": 92.2,
+        "paraphrase": 50.7,
+        "plot_unscrambling": 73.5,
+        "python": 70,
+        "simplify": 53.6,
+        "spatial": 100,
+        "story_generation": 53.3,
+        "summarize": 66.8,
+        "tablejoin": 53.9,
+        "tablereformat": 96.1,
+        "theory_of_mind": 73.1,
+        "typescript": 50,
+        "typos": 86,
+        "zebra_puzzle": 100
       },
       "n_categories": 7,
       "n_rows": 23

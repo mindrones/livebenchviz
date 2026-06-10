@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-09T09:43:35.784Z",
+  "generated": "2026-06-10T07:10:19.284Z",
   "categories": [
     "reasoning",
     "coding",
@@ -10,11 +10,11 @@
     "instruction_following"
   ],
   "summary": {
-    "total_lb_models": 122,
+    "total_lb_models": 124,
     "skipped_not_on_openrouter": 0,
-    "matched_to_openrouter": 46,
-    "unmatched": 71,
-    "full_coverage_and_matched": 46
+    "matched_to_openrouter": 45,
+    "unmatched": 74,
+    "full_coverage_and_matched": 45
   },
   "models": [
     {
@@ -1572,48 +1572,6 @@
       "match_type": "matched"
     },
     {
-      "id": "glm-5v-turbo",
-      "scores": {
-        "reasoning": 56.1,
-        "coding": 73.9,
-        "agentic_coding": 3.3,
-        "mathematics": 70.4,
-        "data_analysis": 54.1,
-        "language": 62.3,
-        "instruction_following": 27.2,
-        "global_average": 49.6
-      },
-      "tasks": {
-        "AMPS_Hard": 98.8,
-        "code_completion": 71.7,
-        "code_generation": 76.1,
-        "connections": 86,
-        "consecutive_events": 20.9,
-        "integrals_with_game": 13,
-        "javascript": 0,
-        "logic_with_navigation": 60,
-        "math_comp": 85.3,
-        "olympiad": 84.5,
-        "paraphrase": 22.8,
-        "plot_unscrambling": 46.8,
-        "python": 10,
-        "simplify": 25.9,
-        "spatial": 94,
-        "story_generation": 28.4,
-        "summarize": 31.7,
-        "tablejoin": 43.5,
-        "tablereformat": 98,
-        "theory_of_mind": 51.9,
-        "typescript": 0,
-        "typos": 54,
-        "zebra_puzzle": 18.5
-      },
-      "n_categories": 7,
-      "n_rows": 23,
-      "openRouterId": "z-ai/glm-5v-turbo",
-      "match_type": "matched"
-    },
-    {
       "id": "gpt-5-nano",
       "scores": {
         "reasoning": 35.5,
@@ -1945,6 +1903,90 @@
       "n_rows": 23,
       "openRouterId": "openai/gpt-5.4-nano",
       "match_type": "matched"
+    },
+    {
+      "id": "claude-fable-5-xhigh-effort",
+      "scores": {
+        "reasoning": 87.3,
+        "coding": 78.6,
+        "agentic_coding": 60,
+        "mathematics": 93.9,
+        "data_analysis": 80,
+        "language": 88.5,
+        "instruction_following": 60,
+        "global_average": 78.3
+      },
+      "tasks": {
+        "AMPS_Hard": 98,
+        "code_completion": 78.3,
+        "code_generation": 78.9,
+        "connections": 99.3,
+        "consecutive_events": 90.4,
+        "integrals_with_game": 91,
+        "javascript": 30,
+        "logic_with_navigation": 74,
+        "math_comp": 95.1,
+        "olympiad": 91.5,
+        "paraphrase": 58.7,
+        "plot_unscrambling": 78.1,
+        "python": 95,
+        "simplify": 50.5,
+        "spatial": 100,
+        "story_generation": 58.7,
+        "summarize": 71.9,
+        "tablejoin": 53.6,
+        "tablereformat": 96.1,
+        "theory_of_mind": 75,
+        "typescript": 55,
+        "typos": 88,
+        "zebra_puzzle": 100
+      },
+      "n_categories": 7,
+      "n_rows": 23,
+      "openRouterId": null,
+      "match_type": "no_match"
+    },
+    {
+      "id": "claude-fable-5-high-effort",
+      "scores": {
+        "reasoning": 86.3,
+        "coding": 76.4,
+        "agentic_coding": 51.7,
+        "mathematics": 91.3,
+        "data_analysis": 80.3,
+        "language": 86.3,
+        "instruction_following": 56.1,
+        "global_average": 75.5
+      },
+      "tasks": {
+        "AMPS_Hard": 99,
+        "code_completion": 73.9,
+        "code_generation": 78.9,
+        "connections": 99.3,
+        "consecutive_events": 90.8,
+        "integrals_with_game": 80,
+        "javascript": 35,
+        "logic_with_navigation": 72,
+        "math_comp": 94.1,
+        "olympiad": 92.2,
+        "paraphrase": 50.7,
+        "plot_unscrambling": 73.5,
+        "python": 70,
+        "simplify": 53.6,
+        "spatial": 100,
+        "story_generation": 53.3,
+        "summarize": 66.8,
+        "tablejoin": 53.9,
+        "tablereformat": 96.1,
+        "theory_of_mind": 73.1,
+        "typescript": 50,
+        "typos": 86,
+        "zebra_puzzle": 100
+      },
+      "n_categories": 7,
+      "n_rows": 23,
+      "openRouterId": null,
+      "match_type": "no_match"
     },
     {
       "id": "claude-opus-4-8-medium-effort",
@@ -4082,6 +4124,48 @@
         "typescript": 25,
         "typos": 84,
         "zebra_puzzle": 13
+      },
+      "n_categories": 7,
+      "n_rows": 23,
+      "openRouterId": null,
+      "match_type": "no_match"
+    },
+    {
+      "id": "glm-5v-turbo",
+      "scores": {
+        "reasoning": 56.1,
+        "coding": 73.9,
+        "agentic_coding": 3.3,
+        "mathematics": 70.4,
+        "data_analysis": 54.1,
+        "language": 62.3,
+        "instruction_following": 27.2,
+        "global_average": 49.6
+      },
+      "tasks": {
+        "AMPS_Hard": 98.8,
+        "code_completion": 71.7,
+        "code_generation": 76.1,
+        "connections": 86,
+        "consecutive_events": 20.9,
+        "integrals_with_game": 13,
+        "javascript": 0,
+        "logic_with_navigation": 60,
+        "math_comp": 85.3,
+        "olympiad": 84.5,
+        "paraphrase": 22.8,
+        "plot_unscrambling": 46.8,
+        "python": 10,
+        "simplify": 25.9,
+        "spatial": 94,
+        "story_generation": 28.4,
+        "summarize": 31.7,
+        "tablejoin": 43.5,
+        "tablereformat": 98,
+        "theory_of_mind": 51.9,
+        "typescript": 0,
+        "typos": 54,
+        "zebra_puzzle": 18.5
       },
       "n_categories": 7,
       "n_rows": 23,
