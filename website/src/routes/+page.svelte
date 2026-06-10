@@ -5,6 +5,7 @@
     Funnel,
     TrendingUp,
     GitFork,
+    Database,
   } from "@lucide/svelte";
   import { SvelteSet } from "svelte/reactivity";
 
@@ -74,6 +75,7 @@
       // display group
       showOpen: sp.get("showOss") !== "false", // keep legacy key
       showClosed: sp.get("showClosed") !== "false", // keep legacy key
+      showAggBenchmarks: sp.get("showAgg") !== "0",
       latest2: sp.get("latest2") === "1",
       groupByProvider: sp.get("group") !== "0",
       sortBy: (sp.get("sortBy") === "name"
@@ -107,6 +109,7 @@
   // Display group:
   let showOpen = $state<boolean>(url0?.showOpen ?? true);
   let showClosed = $state<boolean>(url0?.showClosed ?? true);
+  let showAggBenchmarks = $state<boolean>(url0?.showAggBenchmarks ?? true);
   let latest2 = $state<boolean>(url0?.latest2 ?? false);
   let showEffort = $state<Record<string, boolean>>({
     null: !url0?.eOff.includes("null"),
@@ -120,6 +123,42 @@
     url0?.sortBy ?? "category",
   );
   let selectedSortAxis = $state<string>(url0?.selectedSortAxis ?? "lb_avg");
+  let sortAxisAvgMode = $state<string>(url0?.showAggBenchmarks ? (url0?.selectedSortAxis ?? "lb_avg") : "lb_avg");
+  let sortAxisSubMode = $state<string>(!url0?.showAggBenchmarks ? (url0?.selectedSortAxis ?? "") : "");
+
+  let prevShowAgg2 = $state<boolean | null>(null);
+  $effect(() => {
+    if (prevShowAgg2 !== showAggBenchmarks) {
+      if (prevShowAgg2 !== null) {
+        if (!showAggBenchmarks) {
+          sortAxisAvgMode = selectedSortAxis;
+          selectedSortAxis = sortAxisSubMode || "lb_coding"; // Let auto-correction fix it if needed
+        } else {
+          sortAxisSubMode = selectedSortAxis;
+          selectedSortAxis = sortAxisAvgMode || "lb_avg";
+        }
+      }
+      prevShowAgg2 = showAggBenchmarks;
+    } else {
+      if (!showAggBenchmarks) {
+        sortAxisSubMode = selectedSortAxis;
+      } else {
+        sortAxisAvgMode = selectedSortAxis;
+      }
+    }
+  });
+
+  // Dedicated Auto-correction Effect
+  $effect(() => {
+    const validKeys = activeBenchmarks.map(b => b.key);
+    if (validKeys.length > 0 && !validKeys.includes(selectedSortAxis)) {
+      if (!showAggBenchmarks) {
+        selectedSortAxis = (sortAxisSubMode && validKeys.includes(sortAxisSubMode)) ? sortAxisSubMode : validKeys[0];
+      } else {
+        selectedSortAxis = (sortAxisAvgMode && validKeys.includes(sortAxisAvgMode)) ? sortAxisAvgMode : "lb_avg";
+      }
+    }
+  });
   let searchQuery = $state<string>(url0?.searchQuery ?? "");
   let brushStart = $state<Date | null>(url0?.brushStart ?? null);
   let brushEnd = $state<Date | null>(url0?.brushEnd ?? null);
@@ -156,9 +195,94 @@
   const allModels = $derived(bd?.models ?? []);
   const familyOrder = $derived(bd?.familyOrder ?? []);
 
-  // All axes come from the loaded JSON — pricing absent from static datasets.
-  const activeBenchmarks = $derived(allBenchmarks);
+  const activeBenchmarks = $derived.by(() => {
+    if (showAggBenchmarks) {
+      const cats = allBenchmarks.filter((b) => !b.parentKey && b.key !== 'lb_avg');
+      cats.sort((a, b) => getAxisAvg(b.key) - getAxisAvg(a.key));
+      const avgBench = allBenchmarks.find(b => b.key === 'lb_avg');
+      if (avgBench) cats.unshift(avgBench);
+      return cats;
+    }
+    const sub = allBenchmarks.filter((b) => !!b.parentKey);
+    const grouped = new Map<string, typeof sub>();
+    const orderOfParents: string[] = [];
+    for (const b of sub) {
+      const p = b.parentKey ?? b.key;
+      if (!grouped.has(p)) { grouped.set(p, []); orderOfParents.push(p); }
+      grouped.get(p)!.push(b);
+    }
+    for (const p of orderOfParents) {
+      grouped.get(p)!.sort((a, b) => getAxisAvg(b.key) - getAxisAvg(a.key));
+    }
+    orderOfParents.sort((a, b) => getAxisAvg(a) - getAxisAvg(b));
+    return orderOfParents.flatMap(p => grouped.get(p)!);
+  });
   const benchmarks = activeBenchmarks; // alias used throughout the template
+
+  function getAxisAvg(k: string) {
+    let sum = 0, count = 0;
+    for (const m of allModels) {
+      if (m.scores[k] != null) { sum += m.scores[k]!; count++; }
+    }
+    return count ? sum / count : 0;
+  }
+
+  function hasSubScores(m: (typeof allModels)[number]) {
+    return allBenchmarks.some(b => b.parentKey && m.scores[b.key] != null);
+  }
+
+  let prevShowAgg = $state<boolean | null>(null);
+  $effect(() => {
+    if (prevShowAgg !== showAggBenchmarks) {
+      if (prevShowAgg !== null) {
+        if (!showAggBenchmarks) {
+          // just toggled sub-benchmarks ON. Remove models that lack sub-benchmark scores.
+          const oldSize = selectedIds.size;
+          for (const id of Array.from(selectedIds)) {
+            const m = allModels.find(x => x.id === id);
+            if (!m || !hasSubScores(m)) {
+              selectedIds.delete(id);
+            }
+          }
+          if (oldSize !== selectedIds.size) selectedIds = new SvelteSet(selectedIds);
+        }
+      }
+      prevShowAgg = showAggBenchmarks;
+    }
+  });
+
+  // When switching modes, explicitly compute a new axisOrder to maintain the grouping and ordering of the parents
+  let prevShowSub = $state<boolean | null>(null);
+  $effect(() => {
+    if (prevShowSub !== showAggBenchmarks) {
+      if (prevShowSub !== null && allBenchmarks.length > 0) {
+        const newOrder: string[] = [];
+        if (!showAggBenchmarks) {
+          // Categories -> Sub-benchmarks
+          for (const key of axisOrder) {
+            if (key === 'lb_avg') newOrder.push(key);
+            else {
+              const children = activeBenchmarks.filter(b => b.parentKey === key).map(b => b.key);
+              newOrder.push(...children);
+            }
+          }
+        } else {
+          // Sub-benchmarks -> Categories
+          for (const key of axisOrder) {
+            if (key === 'lb_avg') newOrder.push(key);
+            else {
+              const b = allBenchmarks.find(x => x.key === key);
+              if (b?.parentKey && !newOrder.includes(b.parentKey)) {
+                newOrder.push(b.parentKey);
+              }
+            }
+          }
+        }
+        axisOrder = newOrder;
+      }
+      prevShowSub = showAggBenchmarks;
+    }
+  });
 
   // Ensure axisOrder is always valid when data loads OR dataset changes
   $effect(() => {
@@ -167,7 +291,7 @@
     const valid = axisOrder.filter((k) => keys.includes(k));
     const missing = keys.filter((k) => !valid.includes(k));
     if (valid.length !== keys.length || missing.length) {
-      axisOrder = [...missing, ...valid]; // new axes go first
+      axisOrder = [...valid, ...missing]; // keep existing valid order, append new axes
     }
   });
 
@@ -307,6 +431,8 @@
     // Display group
     if (!showOpen) sp.set("showOss", "false");
     if (!showClosed) sp.set("showClosed", "false");
+    if (!showAggBenchmarks) sp.set("showAgg", "0");
+    else sp.delete("showAgg");
     if (latest2) sp.set("latest2", "1");
     if (!groupByProvider) sp.set("group", "0");
     if (sortBy === "count") sp.set("sortBy", "count");
@@ -387,6 +513,7 @@
     otherSourceOnly = true;
     showOpen = true;
     showClosed = true;
+    showAggBenchmarks = true;
     showEffort = {
       null: true,
       low: true,
@@ -442,6 +569,14 @@
               <GitFork size={20} />
             </a>
             <a
+              href="{base}/livebench.csv"
+              class="pipeline-link"
+              aria-label="Download CSV"
+              download
+            >
+              <Database size={20} />
+            </a>
+            <a
               href="https://github.com/mindrones/livebenchviz"
               target="_blank"
               rel="noopener noreferrer"
@@ -485,6 +620,7 @@
             <ParallelCoords
               isMobile={breakpoints.isMobile}
               isXl={breakpoints.isXl}
+              showAggBenchmarks={showAggBenchmarks}
               {releaseHoverIds}
               {selectedIds}
               {sortBy}
@@ -528,6 +664,7 @@
             bind:settingsCollapsed={sidebarSettingsCollapsed}
             bind:showCitation
             bind:showClosed
+            bind:showAggBenchmarks
             bind:showEffort
             bind:showOpen
             bind:sortBy
@@ -604,6 +741,15 @@
                 <GitFork size={15} />
                 <span>Data Flow</span>
               </a>
+              <a
+                href="{base}/livebench.csv"
+                class="pipeline-link-btn"
+                aria-label="Download CSV"
+                download
+              >
+                <Database size={15} />
+                <span>CSV</span>
+              </a>
               <button
                 class="help-link"
                 onclick={() => (showHelp = true)}
@@ -663,6 +809,7 @@
           <ParallelCoords
             isMobile={breakpoints.isMobile}
             isXl={breakpoints.isXl}
+            showAggBenchmarks={showAggBenchmarks}
             {releaseHoverIds}
             {selectedIds}
             {sortBy}
@@ -707,6 +854,7 @@
         bind:selectedSortAxis
         bind:showCitation
         bind:showClosed
+        bind:showAggBenchmarks
         bind:showEffort
         bind:showOpen
         bind:sortBy

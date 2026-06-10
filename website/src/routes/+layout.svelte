@@ -4,6 +4,7 @@
   import { initNotifications } from '$lib/notifications.svelte';
   import NotificationBanner from '$lib/components/NotificationBanner.svelte';
   import NotificationPrompt from '$lib/components/NotificationPrompt.svelte';
+  import Tooltip from '$lib/components/Tooltip.svelte';
 
   let { children } = $props();
 
@@ -19,3 +20,4 @@
 {@render children()}
 <NotificationBanner />
 <NotificationPrompt />
+<Tooltip />

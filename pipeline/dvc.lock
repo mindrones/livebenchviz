@@ -66,7 +66,7 @@ stages:
     outs:
     - path: out/openrouter_models.json
       hash: md5
-      md5: 536b543df8146f85912fb9c87533cd4f
+      md5: 1f01de7bdf85b849efdcc84ec485ee99
       size: 113749
   normalizeModelIds:
     cmd: pnpm exec tsx src/normalizeModelIds.ts
@@ -77,7 +77,7 @@ stages:
       size: 130896
     - path: out/openrouter_models.json
       hash: md5
-      md5: 536b543df8146f85912fb9c87533cd4f
+      md5: 1f01de7bdf85b849efdcc84ec485ee99
       size: 113749
     - path: src/normalizeModelIds.ts
       hash: md5
@@ -86,7 +86,7 @@ stages:
     outs:
     - path: out/livebench_normalized.json
       hash: md5
-      md5: 49f4c561d25565a9d636217859571d95
+      md5: 3bd93fa408cf1bf425870122c7a5a51e
       size: 133043
   fetchOllama:
     cmd: pnpm exec tsx src/fetchOllama.ts
@@ -113,7 +113,7 @@ stages:
       size: 76270
     - path: out/livebench_normalized.json
       hash: md5
-      md5: 49f4c561d25565a9d636217859571d95
+      md5: 3bd93fa408cf1bf425870122c7a5a51e
       size: 133043
     - path: out/livebench_scores.json
       hash: md5
@@ -125,25 +125,25 @@ stages:
       size: 45858
     - path: out/openrouter_models.json
       hash: md5
-      md5: 536b543df8146f85912fb9c87533cd4f
+      md5: 1f01de7bdf85b849efdcc84ec485ee99
       size: 113749
     - path: src/exportLBFull.ts
       hash: md5
-      md5: 58abf72613ffcb32beef8b39a829ca52
-      size: 28795
+      md5: 9bfc4d631ada8d7ad49ed7b004b19f78
+      size: 34963
     outs:
     - path: ../website/static/benchmark_lb.json
       hash: md5
-      md5: 1390b2a4b9849b1f384b420295e05d84
-      size: 90194
+      md5: c0bec138a0a99eb665f93632924414e8
+      size: 177888
     - path: ../website/static/data-hash.json
       hash: md5
-      md5: e6b27f3f62e0c24311c36ff9f01ee3f8
+      md5: f6d78e629dce68c1b8b31aa5e28327bd
       size: 112
     - path: out/benchmark_lb.json
       hash: md5
-      md5: 1390b2a4b9849b1f384b420295e05d84
-      size: 90194
+      md5: c0bec138a0a99eb665f93632924414e8
+      size: 177888
   exportInference:
     cmd: pnpm exec tsx src/exportInference.ts
     deps:

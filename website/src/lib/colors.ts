@@ -87,7 +87,7 @@ export const AXIS_ABBREV: Record<string, string> = {
 
 // Full names for the category legend
 export const AXIS_CATEGORY_NAMES: Record<string, string> = {
-  lb_avg:    'LiveBench Average',
+  lb_avg:    'Average',
   lb_coding: 'Coding',
   lb_agentic:'Agentic Coding',
   lb_math:   'Mathematics',

@@ -26,6 +26,7 @@
     selectedSortAxis: string;                         // $bindable – which axis drives category sort
     showCitation:     boolean;
     showClosed:       boolean;
+    showAggBenchmarks: boolean;           // $bindable
     showEffort:       Record<string, boolean>; // $bindable
     showOpen:         boolean;
     sortBy:           'count' | 'alpha' | 'category'; // $bindable – persisted by parent
@@ -57,6 +58,7 @@
     selectedSortAxis = $bindable(),
     showCitation     = $bindable(),
     showClosed  = $bindable(),
+    showAggBenchmarks = $bindable(),
     showEffort  = $bindable(),
     showOpen    = $bindable(),
     sortBy           = $bindable(),
@@ -242,6 +244,7 @@
       </div>
       <div class="filter-group">
         <span class="group-label">Display</span>
+        <label><input type="checkbox" bind:checked={showAggBenchmarks} /> Show aggregate benchmarks</label>
         <label><input type="checkbox" bind:checked={latest2}          /> Show latest 2 per series</label>
         <label><input type="checkbox" bind:checked={groupByProvider} /> Group by provider</label>
       </div>

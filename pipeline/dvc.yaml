@@ -20,6 +20,11 @@ stages:
               - field: score
                 type: float
                 desc: Raw fractional score (0 to 1)
+      - ../website/static/livebench.csv:
+          cache: false
+          meta:
+            title: static/livebench.csv
+            description: Static website copy of the raw LiveBench scores CSV table.
       - out/livebench_categories.json:
           cache: false
           meta:

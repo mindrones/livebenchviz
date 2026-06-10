@@ -11,10 +11,13 @@
    *   • Hover model LINE (between axes)          → highlight model.
    *   All three targets are spatially separate and never conflict.
    */
+  import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
+  import { showTooltip, hideTooltip } from '$lib/tooltip.svelte';
   import { scalePoint, scaleLinear } from 'd3';
   import { line as d3line, max as d3max, quadtree as d3quadtree } from 'd3';
 
-  import { familyColor, AXIS_ABBREV } from '$lib/colors';
+  import { familyColor, AXIS_ABBREV, AXIS_CATEGORY_NAMES } from '$lib/colors';
   import type { Model, Benchmark } from '$lib/types';
 
   interface Props {
@@ -32,6 +35,7 @@
     selectedSortAxis: string;          // $bindable — axis key driving category sort
     isMobile?: boolean;                // mobile viewport – disables hover/select, enlarges touch targets
     isXl?: boolean;                    // ≥1280px (Tailwind xl) – show full axis labels
+    showAggBenchmarks?: boolean;
   }
   let {
     benchmarks,
@@ -45,9 +49,10 @@
     parallelBrushIds = $bindable(null as Set<string> | null),
     releaseHoverIds  = null as Set<string> | null,
     sortBy,
-    selectedSortAxis = $bindable('lb_avg'),
+    selectedSortAxis = $bindable(),
     isMobile          = false,
     isXl              = false,
+    showAggBenchmarks = true,
   }: Props = $props();
 
   // (dataset-switch sync effect is further down, after axisBrushes is declared)
@@ -59,7 +64,7 @@
   let svgEl      = $state<SVGSVGElement | null>(null);
 
   const svgH     = $derived(Math.max(0, containerH - headerH));
-  const M = $derived({ top: 60, right: 52, bottom: 24, left: 52 });
+  const M = { top: 60, right: 52, bottom: 24, left: 52 };
   const innerW = $derived(Math.max(0, containerW - M.left - M.right));
   const innerH = $derived(Math.max(0, svgH - M.top  - M.bottom));
 
@@ -71,6 +76,8 @@
   let dragCurrentX   = $state(0);    // current x in inner coords
   let dragStartMouseX = 0;           // viewport x when drag started
   let dragAxisOriginX = 0;           // xScale(dragKey) when drag started
+  let dragMinX       = $state(0);
+  let dragMaxX       = $state(9999);
 
 
   // Display order: always includes ALL current benchmark keys.
@@ -91,6 +98,30 @@
     const result = [...others];
     result.splice(slot, 0, dragKey);
     return result;
+  });
+
+  // ── Category Groups (for rendering umbrellas when sub-benchmarks are shown) ──
+  const categoryGroups = $derived.by(() => {
+    if (showAggBenchmarks) return [];
+    const groups: { parentKey: string, label: string, minX: number, maxX: number }[] = [];
+    const byParent: Record<string, number[]> = {};
+    for (const key of displayOrder) {
+      const b = benchmarks.find(x => x.key === key);
+      if (b?.parentKey) {
+        if (!byParent[b.parentKey]) byParent[b.parentKey] = [];
+        byParent[b.parentKey].push(dragKey === key ? dragCurrentX : (xScale(key) ?? 0));
+      }
+    }
+    for (const parentKey of Object.keys(byParent)) {
+      const xs = byParent[parentKey];
+      groups.push({
+        parentKey,
+        label: AXIS_CATEGORY_NAMES[parentKey] ?? parentKey,
+        minX: Math.min(...xs),
+        maxX: Math.max(...xs)
+      });
+    }
+    return groups;
   });
 
   // ── D3: x scale (uses displayOrder so other axes slide during drag) ──
@@ -153,13 +184,34 @@
   );
 
   function modelPath(m: Model): string | null {
-    return lineGen(
-      displayOrder.map(key => {
-        const s = m.scores[key];
-        const x = dragKey === key ? dragCurrentX : (xScale(key) ?? 0);
-        return { x, y: s != null ? yScales[key](s) : null };
-      })
-    );
+    if (showAggBenchmarks) {
+      return lineGen(
+        displayOrder.map(key => {
+          const s = m.scores[key];
+          const x = dragKey === key ? dragCurrentX : (xScale(key) ?? 0);
+          return { x, y: s != null ? yScales[key](s) : null };
+        })
+      );
+    }
+
+    const pts: Pt[] = [];
+    let lastParent: string | null = null;
+    for (let i = 0; i < displayOrder.length; i++) {
+      const key = displayOrder[i];
+      const b = benchmarks.find(x => x.key === key);
+      const parent = b?.parentKey ?? key;
+
+      if (i > 0 && parent !== lastParent) {
+        pts.push({ x: 0, y: null });
+      }
+
+      const s = m.scores[key];
+      const x = dragKey === key ? dragCurrentX : (xScale(key) ?? 0);
+      pts.push({ x, y: s != null ? yScales[key](s) : null });
+
+      lastParent = parent;
+    }
+    return lineGen(pts);
   }
 
   // Ticks
@@ -185,8 +237,22 @@
 
         const prevKey = displayOrder[i - 1];
         const nextKey = displayOrder[i + 1];
-        const prevScore = prevKey != null ? highlightedModel.scores[prevKey] : null;
-        const nextScore = nextKey != null ? highlightedModel.scores[nextKey] : null;
+
+        let prevScore = null;
+        if (prevKey != null) {
+          const prevBench = benchmarks.find(b => b.key === prevKey);
+          if (showAggBenchmarks || (prevBench?.parentKey ?? prevKey) === (bench?.parentKey ?? key)) {
+            prevScore = highlightedModel.scores[prevKey];
+          }
+        }
+
+        let nextScore = null;
+        if (nextKey != null) {
+          const nextBench = benchmarks.find(b => b.key === nextKey);
+          if (showAggBenchmarks || (nextBench?.parentKey ?? nextKey) === (bench?.parentKey ?? key)) {
+            nextScore = highlightedModel.scores[nextKey];
+          }
+        }
         const prevX = prevScore != null ? (dragKey === prevKey ? dragCurrentX : (xScale(prevKey) ?? 0)) : null;
         const nextX = nextScore != null ? (dragKey === nextKey ? dragCurrentX : (xScale(nextKey) ?? 0)) : null;
         const prevY = prevScore != null ? yScales[prevKey](prevScore) : null;
@@ -404,6 +470,24 @@
   function onLabelDown(e: PointerEvent, key: string) {
     if (brushDrag) return;
     e.preventDefault();
+    // Constrain drag to group bounds
+    const b = benchmarks.find(x => x.key === key);
+    if (!showAggBenchmarks && b?.parentKey) {
+      const siblings = displayOrder.filter(k => benchmarks.find(x => x.key === k)?.parentKey === b.parentKey);
+      if (siblings.length > 0) {
+        const indices = siblings.map(k => displayOrder.indexOf(k));
+        const minIdx = Math.min(...indices);
+        const maxIdx = Math.max(...indices);
+        const N = displayOrder.length;
+        const step = N > 1 ? innerW / (N - 1) : 0;
+        dragMinX = minIdx * step;
+        dragMaxX = maxIdx * step;
+      } else {
+        dragMinX = 0; dragMaxX = innerW;
+      }
+    } else {
+      dragMinX = 0; dragMaxX = innerW;
+    }
     // Capture the axis's current pixel x BEFORE setting dragKey.
     const axisX = xScale(key) ?? 0;
     dragStartMouseX = e.clientX;
@@ -418,7 +502,7 @@
     if (!dragKey || dragKey !== key) return;
     const dx = e.clientX - dragStartMouseX;
     if (Math.abs(dx) > 3) labelDragMoved = true;
-    dragCurrentX = Math.max(0, Math.min(innerW, dragAxisOriginX + dx));
+    dragCurrentX = Math.max(dragMinX, Math.min(dragMaxX, dragAxisOriginX + dx));
   }
   function onLabelUp(_e: PointerEvent, _key: string) {
     if (!dragKey) return;
@@ -531,6 +615,24 @@
 
       <g transform="translate({M.left},{M.top})">
 
+        <!-- ═══ LAYER 0: category backgrounds ═══ -->
+        <g class="category-bg-layer" pointer-events="none">
+          {#if !showAggBenchmarks && categoryGroups.length > 0}
+            {@const step = displayOrder.length > 1 ? innerW / (displayOrder.length - 1) : 0}
+            {#each categoryGroups as group, i}
+              {#if i % 2 === 1}
+                <rect
+                  x={group.minX - step / 2}
+                  y={-28}
+                  width={(group.maxX - group.minX) + step}
+                  height={svgH - M.top + 28}
+                  fill="var(--color-bg-elevated)"
+                />
+              {/if}
+            {/each}
+          {/if}
+        </g>
+
         <!-- ═══ LAYER 1: axis visuals (no pointer events) ═══ -->
         {#each benchmarks as bench}
           {@const key    = bench.key}
@@ -554,9 +656,14 @@
               <rect x={-22} y={-56} width={44} height={52} rx={4}
                 fill="transparent" pointer-events="all"
                 style="cursor:{dragKey === key ? 'grabbing' : (labelHoverX !== null && labelHoverX < 15 ? 'grab' : 'pointer')};user-select:none"
-                onpointerdown={(e) => onLabelDown(e, key)}
+                onpointerdown={(e) => { hideTooltip(); onLabelDown(e, key); }}
                 onpointermove={(e) => {
                   onLabelMove(e, key);
+                  if (bench.desc && dragKey === null) {
+                    showTooltip(e, bench.label, bench.desc);
+                  } else {
+                    hideTooltip();
+                  }
                   const rect = svgEl?.getBoundingClientRect();
                   if (rect) {
                     const svgLocalX = e.clientX - rect.left - M.left;
@@ -565,20 +672,23 @@
                   }
                 }}
                 onpointerup={(e) => onLabelUp(e, key)}
-                onpointercancel={(e) => { onLabelUp(e, key); labelHoverX = null; }}
-                onpointerleave={() => labelHoverX = null}
+                onpointercancel={(e) => { onLabelUp(e, key); labelHoverX = null; hideTooltip(); }}
+                onpointerleave={() => { labelHoverX = null; hideTooltip(); }}
               />
               <!-- Visual label (no pointer events — overlay rect handles interaction) -->
-              <text x={0} y={-14} text-anchor="middle" font-size={isXl ? 12 : 13} font-weight={600} pointer-events="none">
+              <text x={0} y={(!showAggBenchmarks && !bench.parentKey) ? -36 : -14} text-anchor="middle" font-size={isXl ? 12 : 13} font-weight={600} pointer-events="none">
+                {#if showAggBenchmarks || !bench.parentKey}
+                  <tspan
+                    fill="var(--color-text-muted)"
+                    font-size={11} font-weight={400}
+                    style="user-select:none"
+                  >⠿</tspan>
+                {/if}
                 <tspan
-                  fill="var(--color-text-muted)"
-                  font-size={11} font-weight={400}
-                  style="user-select:none"
-                >⠿</tspan><tspan
-                  dx={5}
+                  dx={(showAggBenchmarks || !bench.parentKey) ? 5 : 0}
                   fill={sortBy === 'category' && key === selectedSortAxis ? '#f97316' : 'var(--color-text-primary)'}
                   style="user-select:none"
-                >{isXl ? bench.label : (AXIS_ABBREV[key] ?? bench.label)}</tspan>
+                >{bench.abbrev ?? (isXl ? bench.label : (AXIS_ABBREV[key] ?? bench.label))}</tspan>
               </text>
 
             <!-- Brush visual (pointer-events:none) -->
@@ -601,6 +711,25 @@
             {/if}
           </g>
         {/each}
+
+        <!-- ═══ CATEGORY GROUPS ═══ -->
+        {#if !showAggBenchmarks && categoryGroups.length > 0}
+          {@const step = displayOrder.length > 1 ? innerW / (displayOrder.length - 1) : 0}
+          {#each categoryGroups as group}
+            {@const cx = (group.minX + group.maxX) / 2}
+            <text x={cx} y={-36} text-anchor="middle" fill="var(--color-text-primary)" font-size={isXl ? 12 : 13} font-weight={600} pointer-events="none">
+              {isXl ? group.label : (AXIS_ABBREV[group.parentKey] ?? group.label)}
+            </text>
+            <line
+              x1={group.minX - step * 0.35}
+              x2={group.maxX + step * 0.35}
+              y1={-28} y2={-28}
+              stroke="var(--color-border)"
+              stroke-width={1.5}
+              stroke-linecap="round"
+            />
+          {/each}
+        {/if}
 
         <!-- ═══ LAYER 2: axis overlay rects (brush + reorder) ═══
              No hit-paths for models — hover is handled by SVG onmousemove + quadtree. -->
@@ -666,7 +795,7 @@
     flex-shrink: 0;
     text-align: center;
     padding: 4px 0 0;
-    min-height: 20px;
+    min-height: 54px;
   }
   .header-title {
     font-size: 18px; font-weight: 700; font-family: Inter, system-ui, sans-serif;

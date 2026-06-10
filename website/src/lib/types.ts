@@ -4,6 +4,8 @@ export interface Benchmark {
   desc:           string;
   unit:           string;    // '%' | '$/1M'
   higherIsBetter: boolean;   // false for cost axes
+  parentKey?:     string;    // key of the parent category if this is a sub-benchmark
+  abbrev?:        string;    // unique abbreviation within the category
 }
 
 export interface Model {

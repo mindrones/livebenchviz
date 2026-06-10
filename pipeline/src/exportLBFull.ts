@@ -29,7 +29,7 @@ const OUT_DIR   = path.join(__dirname, '..', 'out');
 // ── Benchmark definitions (LB axes only — no pricing, no HF axes) ─────────────
 const BENCHMARKS = {
   // Global average first — shown as the primary axis in the parallel chart
-  lb_avg:          { key:'lb_avg',          label:'LB Average',      desc:'LiveBench global average — equal-weighted mean of all 7 category scores (0\u2013100).',           unit:'%', higherIsBetter:true },
+  lb_avg:          { key:'lb_avg',          label:'Average',         desc:'LiveBench global average — equal-weighted mean of all 7 category scores (0\u2013100).',           unit:'%', higherIsBetter:true },
   // Individual category axes
   lb_coding:       { key:'lb_coding',       label:'Coding',          desc:'LiveBench coding — LCB code generation + completion (0\u2013100).',                             unit:'%', higherIsBetter:true },
   lb_agentic:      { key:'lb_agentic',      label:'Agentic Coding',  desc:'LiveBench agentic coding — JavaScript, TypeScript, Python real-world tasks (0\u2013100).',    unit:'%', higherIsBetter:true },
@@ -38,6 +38,37 @@ const BENCHMARKS = {
   lb_data:         { key:'lb_data',         label:'Data Analysis',   desc:'LiveBench data analysis — table joins, reformatting, consecutive events (0\u2013100).',       unit:'%', higherIsBetter:true },
   lb_lang:         { key:'lb_lang',         label:'Language',        desc:'LiveBench language — Connections, plot unscrambling, typos (0\u2013100).',                      unit:'%', higherIsBetter:true },
   lb_instruct:     { key:'lb_instruct',     label:'Instruction',     desc:'LiveBench instruction-following — paraphrase, simplify, story, summarise (0\u2013100).',       unit:'%', higherIsBetter:true },
+  // ── Sub-benchmarks ──
+  // Reasoning
+  theory_of_mind:         { key:'theory_of_mind',         label:'Theory of Mind',         desc:'Reasoning: Theory of Mind',         unit:'%', higherIsBetter:true, parentKey:'lb_reasoning', abbrev:'TM' },
+  zebra_puzzle:           { key:'zebra_puzzle',           label:'Zebra Puzzle',           desc:'Reasoning: Zebra Puzzle',           unit:'%', higherIsBetter:true, parentKey:'lb_reasoning', abbrev:'ZP' },
+  spatial:                { key:'spatial',                label:'Spatial',                desc:'Reasoning: Spatial',                unit:'%', higherIsBetter:true, parentKey:'lb_reasoning', abbrev:'Sp' },
+  logic_with_navigation:  { key:'logic_with_navigation',  label:'Logic with Navigation',  desc:'Reasoning: Logic with Navigation',  unit:'%', higherIsBetter:true, parentKey:'lb_reasoning', abbrev:'LN' },
+  // Coding
+  code_generation:        { key:'code_generation',        label:'Code Generation',        desc:'Coding: Code Generation',           unit:'%', higherIsBetter:true, parentKey:'lb_coding', abbrev:'G' },
+  code_completion:        { key:'code_completion',        label:'Code Completion',        desc:'Coding: Code Completion',           unit:'%', higherIsBetter:true, parentKey:'lb_coding', abbrev:'C' },
+  // Agentic Coding
+  javascript:             { key:'javascript',             label:'JavaScript',             desc:'Agentic Coding: JavaScript',        unit:'%', higherIsBetter:true, parentKey:'lb_agentic', abbrev:'JS' },
+  typescript:             { key:'typescript',             label:'TypeScript',             desc:'Agentic Coding: TypeScript',        unit:'%', higherIsBetter:true, parentKey:'lb_agentic', abbrev:'TS' },
+  python:                 { key:'python',                 label:'Python',                 desc:'Agentic Coding: Python',            unit:'%', higherIsBetter:true, parentKey:'lb_agentic', abbrev:'Py' },
+  // Mathematics
+  AMPS_Hard:              { key:'AMPS_Hard',              label:'AMPS Hard',              desc:'Mathematics: AMPS Hard',            unit:'%', higherIsBetter:true, parentKey:'lb_math', abbrev:'AH' },
+  integrals_with_game:    { key:'integrals_with_game',    label:'Integrals with Game',    desc:'Mathematics: Integrals with Game',  unit:'%', higherIsBetter:true, parentKey:'lb_math', abbrev:'IG' },
+  math_comp:              { key:'math_comp',              label:'Math Comp',              desc:'Mathematics: Math Comp',            unit:'%', higherIsBetter:true, parentKey:'lb_math', abbrev:'MC' },
+  olympiad:               { key:'olympiad',               label:'Olympiad',               desc:'Mathematics: Olympiad',             unit:'%', higherIsBetter:true, parentKey:'lb_math', abbrev:'Ol' },
+  // Data Analysis
+  consecutive_events:     { key:'consecutive_events',     label:'Consecutive Events',     desc:'Data Analysis: Consecutive Events', unit:'%', higherIsBetter:true, parentKey:'lb_data', abbrev:'CE' },
+  tablejoin:              { key:'tablejoin',              label:'Tablejoin',              desc:'Data Analysis: Tablejoin',          unit:'%', higherIsBetter:true, parentKey:'lb_data', abbrev:'TJ' },
+  tablereformat:          { key:'tablereformat',          label:'Tablereformat',          desc:'Data Analysis: Tablereformat',      unit:'%', higherIsBetter:true, parentKey:'lb_data', abbrev:'TR' },
+  // Language
+  connections:            { key:'connections',            label:'Connections',            desc:'Language: Connections',             unit:'%', higherIsBetter:true, parentKey:'lb_lang', abbrev:'Cn' },
+  plot_unscrambling:      { key:'plot_unscrambling',      label:'Plot Unscrambling',      desc:'Language: Plot Unscrambling',       unit:'%', higherIsBetter:true, parentKey:'lb_lang', abbrev:'PU' },
+  typos:                  { key:'typos',                  label:'Typos',                  desc:'Language: Typos',                   unit:'%', higherIsBetter:true, parentKey:'lb_lang', abbrev:'Ty' },
+  // Instruction
+  paraphrase:             { key:'paraphrase',             label:'Paraphrase',             desc:'Instruction: Paraphrase',           unit:'%', higherIsBetter:true, parentKey:'lb_instruct', abbrev:'P' },
+  simplify:               { key:'simplify',               label:'Simplify',               desc:'Instruction: Simplify',             unit:'%', higherIsBetter:true, parentKey:'lb_instruct', abbrev:'Si' },
+  story_generation:       { key:'story_generation',       label:'Story Generation',       desc:'Instruction: Story Generation',     unit:'%', higherIsBetter:true, parentKey:'lb_instruct', abbrev:'SG' },
+  summarize:              { key:'summarize',              label:'Summarize',              desc:'Instruction: Summarize',            unit:'%', higherIsBetter:true, parentKey:'lb_instruct', abbrev:'Su' },
 };
 
 // ── Display name overrides for LB model IDs ────────────────────────────────────
@@ -308,6 +339,7 @@ const LB_RELEASE_DATES_FALLBACK: Record<string, string> = {
 interface LBModel {
   id:           string;
   scores:       Record<string, number>;
+  tasks:        Record<string, number>;
   n_categories: number;
 }
 interface LBData      { categories: string[]; models: LBModel[] }
@@ -343,16 +375,7 @@ interface OutputModel {
   openRouterId:  string | null;
   inference:    InferenceEntry;
   sources:      string[];
-  scores:   {
-    lb_avg:       number | null;
-    lb_coding:    number | null;
-    lb_agentic:   number | null;
-    lb_math:      number | null;
-    lb_reasoning: number | null;
-    lb_data:      number | null;
-    lb_lang:      number | null;
-    lb_instruct:  number | null;
-  };
+  scores: Record<string, number | null>;
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
@@ -518,6 +541,30 @@ async function main() {
         lb_data:      round1(lbm.scores['data_analysis']),
         lb_lang:      round1(lbm.scores['language']),
         lb_instruct:  round1(lbm.scores['instruction_following']),
+        // Tasks
+        theory_of_mind:         round1(lbm.tasks?.['theory_of_mind']),
+        zebra_puzzle:           round1(lbm.tasks?.['zebra_puzzle']),
+        spatial:                round1(lbm.tasks?.['spatial']),
+        logic_with_navigation:  round1(lbm.tasks?.['logic_with_navigation']),
+        code_generation:        round1(lbm.tasks?.['code_generation']),
+        code_completion:        round1(lbm.tasks?.['code_completion']),
+        javascript:             round1(lbm.tasks?.['javascript']),
+        typescript:             round1(lbm.tasks?.['typescript']),
+        python:                 round1(lbm.tasks?.['python']),
+        AMPS_Hard:              round1(lbm.tasks?.['AMPS_Hard']),
+        integrals_with_game:    round1(lbm.tasks?.['integrals_with_game']),
+        math_comp:              round1(lbm.tasks?.['math_comp']),
+        olympiad:               round1(lbm.tasks?.['olympiad']),
+        consecutive_events:     round1(lbm.tasks?.['consecutive_events']),
+        tablejoin:              round1(lbm.tasks?.['tablejoin']),
+        tablereformat:          round1(lbm.tasks?.['tablereformat']),
+        connections:            round1(lbm.tasks?.['connections']),
+        plot_unscrambling:      round1(lbm.tasks?.['plot_unscrambling']),
+        typos:                  round1(lbm.tasks?.['typos']),
+        paraphrase:             round1(lbm.tasks?.['paraphrase']),
+        simplify:               round1(lbm.tasks?.['simplify']),
+        story_generation:       round1(lbm.tasks?.['story_generation']),
+        summarize:              round1(lbm.tasks?.['summarize']),
       },
     });
   }

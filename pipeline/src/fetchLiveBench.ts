@@ -25,6 +25,7 @@ import { execSync } from 'child_process';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT_DIR   = path.join(__dirname, '..', 'out');
 const OUT_FILE        = path.join(OUT_DIR, 'livebench.csv');
+const OUT_FILE_STATIC = path.join(__dirname, '..', '..', 'website', 'static', 'livebench.csv');
 const CATEGORIES_FILE = path.join(OUT_DIR, 'livebench_categories.json');
 const RELEASE_FILE    = path.join(OUT_DIR, 'livebench_release.txt');
 
@@ -91,10 +92,12 @@ async function main() {
   // Copy local CSV to out/
   if (existsSync(repoCsvPath)) {
     copyFileSync(repoCsvPath, OUT_FILE);
+    copyFileSync(repoCsvPath, OUT_FILE_STATIC);
     const csvContent = readFileSync(OUT_FILE, 'utf8');
     const rows = csvContent.trim().split('\n').length - 1;
     writeFileSync(RELEASE_FILE, release, 'utf8');
     console.log(`✅  Saved  →  ${OUT_FILE}  (${rows} models, release ${release}, ${(csvContent.length / 1024).toFixed(0)} KB)`);
+    console.log(`✅  Saved  →  ${OUT_FILE_STATIC}`);
   } else {
     if (!existsSync(OUT_FILE)) {
       throw new Error(`CSV file not found at ${repoCsvPath}`);
