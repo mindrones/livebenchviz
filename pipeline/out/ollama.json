@@ -1,7 +1,7 @@
 {
-  "fetched": "2026-06-10T07:09:45.103Z",
+  "fetched": "2026-06-17T08:59:06.060Z",
   "source": "https://ollama.com",
-  "tagCount": 283,
+  "tagCount": 230,
   "slugCount": 27,
   "tags": [
     {
@@ -383,6 +383,13 @@
       "isOllamaCloud": true
     },
     {
+      "name": "glm-5.2:cloud",
+      "slug": "glm-5.2",
+      "tag": "cloud",
+      "isOllamaLocal": false,
+      "isOllamaCloud": true
+    },
+    {
       "name": "glm-ocr:bf16",
       "slug": "glm-ocr",
       "tag": "bf16",
@@ -453,46 +460,11 @@
       "isOllamaCloud": true
     },
     {
-      "name": "lfm2:24b",
-      "slug": "lfm2",
-      "tag": "24b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "lfm2:24b-a2b",
-      "slug": "lfm2",
-      "tag": "24b-a2b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "lfm2:24b-bf16",
-      "slug": "lfm2",
-      "tag": "24b-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "lfm2:24b-q4_K_M",
-      "slug": "lfm2",
-      "tag": "24b-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "lfm2:24b-q8_0",
-      "slug": "lfm2",
-      "tag": "24b-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "lfm2:latest",
-      "slug": "lfm2",
-      "tag": "latest",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
+      "name": "kimi-k2.7-code:cloud",
+      "slug": "kimi-k2.7-code",
+      "tag": "cloud",
+      "isOllamaLocal": false,
+      "isOllamaCloud": true
     },
     {
       "name": "lfm2.5:8b",
@@ -526,6 +498,97 @@
       "name": "lfm2.5:latest",
       "slug": "lfm2.5",
       "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:8b",
+      "slug": "minicpm-v4.5",
+      "tag": "8b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:f16",
+      "slug": "minicpm-v4.5",
+      "tag": "f16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:latest",
+      "slug": "minicpm-v4.5",
+      "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q4_0",
+      "slug": "minicpm-v4.5",
+      "tag": "q4_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q4_1",
+      "slug": "minicpm-v4.5",
+      "tag": "q4_1",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q4_K_M",
+      "slug": "minicpm-v4.5",
+      "tag": "q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q4_K_S",
+      "slug": "minicpm-v4.5",
+      "tag": "q4_K_S",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q5_0",
+      "slug": "minicpm-v4.5",
+      "tag": "q5_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q5_1",
+      "slug": "minicpm-v4.5",
+      "tag": "q5_1",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q5_K_M",
+      "slug": "minicpm-v4.5",
+      "tag": "q5_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q5_K_S",
+      "slug": "minicpm-v4.5",
+      "tag": "q5_K_S",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q6_K",
+      "slug": "minicpm-v4.5",
+      "tag": "q6_K",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "minicpm-v4.5:q8_0",
+      "slug": "minicpm-v4.5",
+      "tag": "q8_0",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
@@ -649,69 +712,6 @@
       "isOllamaCloud": true
     },
     {
-      "name": "nemotron-3-nano:30b",
-      "slug": "nemotron-3-nano",
-      "tag": "30b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:30b-a3b-fp16",
-      "slug": "nemotron-3-nano",
-      "tag": "30b-a3b-fp16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:30b-a3b-q4_K_M",
-      "slug": "nemotron-3-nano",
-      "tag": "30b-a3b-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:30b-a3b-q8_0",
-      "slug": "nemotron-3-nano",
-      "tag": "30b-a3b-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:30b-cloud",
-      "slug": "nemotron-3-nano",
-      "tag": "30b-cloud",
-      "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:4b",
-      "slug": "nemotron-3-nano",
-      "tag": "4b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:4b-bf16",
-      "slug": "nemotron-3-nano",
-      "tag": "4b-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:4b-q8_0",
-      "slug": "nemotron-3-nano",
-      "tag": "4b-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "nemotron-3-nano:latest",
-      "slug": "nemotron-3-nano",
-      "tag": "latest",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
       "name": "nemotron-3-super:120b",
       "slug": "nemotron-3-super",
       "tag": "120b",
@@ -796,442 +796,71 @@
       "isOllamaCloud": false
     },
     {
-      "name": "qwen3-coder-next:cloud",
-      "slug": "qwen3-coder-next",
-      "tag": "cloud",
-      "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-coder-next:latest",
-      "slug": "qwen3-coder-next",
-      "tag": "latest",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-coder-next:q4_K_M",
-      "slug": "qwen3-coder-next",
-      "tag": "q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-coder-next:q8_0",
-      "slug": "qwen3-coder-next",
-      "tag": "q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b",
-      "slug": "qwen3-vl",
-      "tag": "235b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-instruct",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-instruct",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-instruct-bf16",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-instruct-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-instruct-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-instruct-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-instruct-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-instruct-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-thinking",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-thinking",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-thinking-bf16",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-thinking-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-thinking-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-thinking-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-a22b-thinking-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "235b-a22b-thinking-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-cloud",
-      "slug": "qwen3-vl",
-      "tag": "235b-cloud",
-      "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:235b-instruct-cloud",
-      "slug": "qwen3-vl",
-      "tag": "235b-instruct-cloud",
-      "isOllamaLocal": false,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b",
-      "slug": "qwen3-vl",
-      "tag": "2b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-instruct",
-      "slug": "qwen3-vl",
-      "tag": "2b-instruct",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-instruct-bf16",
-      "slug": "qwen3-vl",
-      "tag": "2b-instruct-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-instruct-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "2b-instruct-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-instruct-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "2b-instruct-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-thinking",
-      "slug": "qwen3-vl",
-      "tag": "2b-thinking",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-thinking-bf16",
-      "slug": "qwen3-vl",
-      "tag": "2b-thinking-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-thinking-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "2b-thinking-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:2b-thinking-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "2b-thinking-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:30b",
-      "slug": "qwen3-vl",
+      "name": "qwen3-coder:30b",
+      "slug": "qwen3-coder",
       "tag": "30b",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b",
+      "name": "qwen3-coder:30b-a3b-fp16",
+      "slug": "qwen3-coder",
+      "tag": "30b-a3b-fp16",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-instruct",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-instruct",
+      "name": "qwen3-coder:30b-a3b-q4_K_M",
+      "slug": "qwen3-coder",
+      "tag": "30b-a3b-q4_K_M",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-instruct-bf16",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-instruct-bf16",
+      "name": "qwen3-coder:30b-a3b-q8_0",
+      "slug": "qwen3-coder",
+      "tag": "30b-a3b-q8_0",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-instruct-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-instruct-q4_K_M",
+      "name": "qwen3-coder:480b",
+      "slug": "qwen3-coder",
+      "tag": "480b",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-instruct-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-instruct-q8_0",
+      "name": "qwen3-coder:480b-a35b-fp16",
+      "slug": "qwen3-coder",
+      "tag": "480b-a35b-fp16",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-thinking",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-thinking",
+      "name": "qwen3-coder:480b-a35b-q4_K_M",
+      "slug": "qwen3-coder",
+      "tag": "480b-a35b-q4_K_M",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-thinking-bf16",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-thinking-bf16",
+      "name": "qwen3-coder:480b-a35b-q8_0",
+      "slug": "qwen3-coder",
+      "tag": "480b-a35b-q8_0",
       "isOllamaLocal": true,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-thinking-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-thinking-q4_K_M",
-      "isOllamaLocal": true,
+      "name": "qwen3-coder:480b-cloud",
+      "slug": "qwen3-coder",
+      "tag": "480b-cloud",
+      "isOllamaLocal": false,
       "isOllamaCloud": true
     },
     {
-      "name": "qwen3-vl:30b-a3b-thinking-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "30b-a3b-thinking-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b",
-      "slug": "qwen3-vl",
-      "tag": "32b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-instruct",
-      "slug": "qwen3-vl",
-      "tag": "32b-instruct",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-instruct-bf16",
-      "slug": "qwen3-vl",
-      "tag": "32b-instruct-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-instruct-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "32b-instruct-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-instruct-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "32b-instruct-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-thinking",
-      "slug": "qwen3-vl",
-      "tag": "32b-thinking",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-thinking-bf16",
-      "slug": "qwen3-vl",
-      "tag": "32b-thinking-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-thinking-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "32b-thinking-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:32b-thinking-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "32b-thinking-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b",
-      "slug": "qwen3-vl",
-      "tag": "4b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-instruct",
-      "slug": "qwen3-vl",
-      "tag": "4b-instruct",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-instruct-bf16",
-      "slug": "qwen3-vl",
-      "tag": "4b-instruct-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-instruct-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "4b-instruct-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-instruct-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "4b-instruct-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-thinking",
-      "slug": "qwen3-vl",
-      "tag": "4b-thinking",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-thinking-bf16",
-      "slug": "qwen3-vl",
-      "tag": "4b-thinking-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-thinking-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "4b-thinking-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:4b-thinking-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "4b-thinking-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b",
-      "slug": "qwen3-vl",
-      "tag": "8b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-instruct",
-      "slug": "qwen3-vl",
-      "tag": "8b-instruct",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-instruct-bf16",
-      "slug": "qwen3-vl",
-      "tag": "8b-instruct-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-instruct-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "8b-instruct-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-instruct-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "8b-instruct-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-thinking",
-      "slug": "qwen3-vl",
-      "tag": "8b-thinking",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-thinking-bf16",
-      "slug": "qwen3-vl",
-      "tag": "8b-thinking-bf16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-thinking-q4_K_M",
-      "slug": "qwen3-vl",
-      "tag": "8b-thinking-q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:8b-thinking-q8_0",
-      "slug": "qwen3-vl",
-      "tag": "8b-thinking-q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": true
-    },
-    {
-      "name": "qwen3-vl:latest",
-      "slug": "qwen3-vl",
+      "name": "qwen3-coder:latest",
+      "slug": "qwen3-coder",
       "tag": "latest",
       "isOllamaLocal": true,
       "isOllamaCloud": true

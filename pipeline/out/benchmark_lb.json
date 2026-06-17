@@ -1,12 +1,12 @@
 {
-  "generated": "2026-06-10T09:37:38.357Z",
+  "generated": "2026-06-17T08:59:06.628Z",
   "dataset": "lb",
   "openRouterOnly": false,
-  "modelCount": 124,
+  "modelCount": 126,
   "benchmarks": {
     "lb_avg": {
       "key": "lb_avg",
-      "label": "LB Average",
+      "label": "Average",
       "desc": "LiveBench global average — equal-weighted mean of all 7 category scores (0–100).",
       "unit": "%",
       "higherIsBetter": true
@@ -6010,6 +6010,59 @@
       }
     },
     {
+      "id": "kimi-k2.7-code",
+      "slug": "kimi-k27-code",
+      "name": "Kimi K2.7 Code",
+      "family": "moonshotai",
+      "brand": "Moonshot AI",
+      "type": "open",
+      "released": "2026-06-12",
+      "effort": null,
+      "vfl": 0,
+      "openRouterId": "moonshotai/kimi-k2.7-code",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
+      "sources": [
+        "livebench"
+      ],
+      "scores": {
+        "lb_avg": 71.9,
+        "lb_coding": 73.9,
+        "lb_agentic": 70,
+        "lb_math": 79.6,
+        "lb_reasoning": 82.8,
+        "lb_data": 62.7,
+        "lb_lang": 77.9,
+        "lb_instruct": 56.3,
+        "theory_of_mind": 69.2,
+        "zebra_puzzle": 96,
+        "spatial": 92,
+        "logic_with_navigation": 74,
+        "code_generation": 71.8,
+        "code_completion": 76.1,
+        "javascript": 55,
+        "typescript": 65,
+        "python": 90,
+        "AMPS_Hard": 97,
+        "integrals_with_game": 37,
+        "math_comp": 94.1,
+        "olympiad": 90.3,
+        "consecutive_events": 48.3,
+        "tablejoin": 47.5,
+        "tablereformat": 92.2,
+        "connections": 98,
+        "plot_unscrambling": 55.7,
+        "typos": 80,
+        "paraphrase": 48.5,
+        "simplify": 49.8,
+        "story_generation": 68.6,
+        "summarize": 58.3
+      }
+    },
+    {
       "id": "kimi-k2.6-thinking",
       "slug": "kimi-k26-thinking",
       "name": "Kimi K2.6",
@@ -6018,7 +6071,7 @@
       "type": "open",
       "released": "2026-01-15",
       "effort": null,
-      "vfl": 0,
+      "vfl": 1,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": true,
@@ -6071,7 +6124,7 @@
       "type": "open",
       "released": "2025-11-08",
       "effort": null,
-      "vfl": 1,
+      "vfl": 2,
       "openRouterId": "moonshotai/kimi-k2-thinking",
       "inference": {
         "ollamaCloud": false,
@@ -6124,7 +6177,7 @@
       "type": "open",
       "released": "2025-09-01",
       "effort": null,
-      "vfl": 2,
+      "vfl": 3,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": true,
@@ -6177,7 +6230,7 @@
       "type": "open",
       "released": "2025-07-11",
       "effort": null,
-      "vfl": 3,
+      "vfl": 4,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -6222,6 +6275,59 @@
       }
     },
     {
+      "id": "glm-5.2",
+      "slug": "glm-52",
+      "name": "Glm 5.2",
+      "family": "zhipuai",
+      "brand": "Zhipu AI",
+      "type": "open",
+      "released": "2026-06-16",
+      "effort": null,
+      "vfl": 0,
+      "openRouterId": "z-ai/glm-5.2",
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": true
+      },
+      "sources": [
+        "livebench"
+      ],
+      "scores": {
+        "lb_avg": 76.2,
+        "lb_coding": 79.7,
+        "lb_agentic": 73.3,
+        "lb_math": 89.8,
+        "lb_reasoning": 78.6,
+        "lb_data": 73.8,
+        "lb_lang": 76.2,
+        "lb_instruct": 62.3,
+        "theory_of_mind": 75,
+        "zebra_puzzle": 65.5,
+        "spatial": 94,
+        "logic_with_navigation": 80,
+        "code_generation": 78.9,
+        "code_completion": 80.4,
+        "javascript": 65,
+        "typescript": 65,
+        "python": 90,
+        "AMPS_Hard": 98,
+        "integrals_with_game": 76,
+        "math_comp": 96.1,
+        "olympiad": 89,
+        "consecutive_events": 79.3,
+        "tablejoin": 45.9,
+        "tablereformat": 96.1,
+        "connections": 94,
+        "plot_unscrambling": 60.7,
+        "typos": 74,
+        "paraphrase": 62.3,
+        "simplify": 55.7,
+        "story_generation": 62.9,
+        "summarize": 68.4
+      }
+    },
+    {
       "id": "glm-5v-turbo",
       "slug": "glm-5v-turbo",
       "name": "Glm 5V Turbo",
@@ -6230,7 +6336,7 @@
       "type": "open",
       "released": "2026-01-01",
       "effort": null,
-      "vfl": 0,
+      "vfl": 1,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -6283,7 +6389,7 @@
       "type": "open",
       "released": "2026-01-01",
       "effort": null,
-      "vfl": 1,
+      "vfl": 2,
       "openRouterId": "z-ai/glm-5.1",
       "inference": {
         "ollamaCloud": true,
@@ -6336,7 +6442,7 @@
       "type": "open",
       "released": "2025-12-08",
       "effort": null,
-      "vfl": 2,
+      "vfl": 3,
       "openRouterId": "z-ai/glm-4.6v",
       "inference": {
         "ollamaCloud": false,
@@ -6389,7 +6495,7 @@
       "type": "open",
       "released": "2025-12-01",
       "effort": null,
-      "vfl": 3,
+      "vfl": 4,
       "openRouterId": "z-ai/glm-5",
       "inference": {
         "ollamaCloud": true,
@@ -6442,7 +6548,7 @@
       "type": "open",
       "released": "2025-10-01",
       "effort": null,
-      "vfl": 4,
+      "vfl": 5,
       "openRouterId": "z-ai/glm-4.7",
       "inference": {
         "ollamaCloud": true,
@@ -6495,7 +6601,7 @@
       "type": "open",
       "released": "2025-09-01",
       "effort": null,
-      "vfl": 5,
+      "vfl": 6,
       "openRouterId": "z-ai/glm-4.6",
       "inference": {
         "ollamaCloud": false,

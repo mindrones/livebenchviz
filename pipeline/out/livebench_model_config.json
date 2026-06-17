@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-06-10T07:09:29.804Z",
+  "fetched": "2026-06-17T08:58:53.814Z",
   "bundle_url": "local:src/Table/modelLinks.js",
   "models": {
     "arcee-trinity-large-preview": {
@@ -874,8 +874,8 @@
       "url": "https://x.ai/blog/grok-3",
       "organization": "xAI",
       "displayName": "Grok 3 Thinking",
-      "version": null,
-      "version_source": "unknown"
+      "version": "2025-02-19",
+      "version_source": "page_meta"
     },
     "grok-3-beta": {
       "url": "https://x.ai/blog/grok-3",
@@ -2178,6 +2178,20 @@
       "displayName": "Claude Fable 5 Thinking High Effort",
       "version": "2026-06-09",
       "version_source": "bundle"
+    },
+    "glm-5.2": {
+      "url": "https://z.ai/blog/glm-5.2",
+      "organization": "Z.AI",
+      "displayName": "GLM 5.2",
+      "version": null,
+      "version_source": "unknown"
+    },
+    "kimi-k2.7-code": {
+      "url": "https://platform.kimi.ai/docs/guide/kimi-k2-7-code-quickstart#overview-of-kimi-k2-7-code-model",
+      "organization": "Moonshot AI",
+      "displayName": "Kimi K2.7 Code",
+      "version": null,
+      "version_source": "unknown"
     }
   }
 }
