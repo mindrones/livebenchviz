@@ -64,7 +64,10 @@
   let svgEl      = $state<SVGSVGElement | null>(null);
 
   const svgH     = $derived(Math.max(0, containerH - headerH));
-  const M = { top: 60, right: 52, bottom: 24, left: 52 };
+  const M = $derived(isMobile
+    ? { top: 36, right: 40, bottom: 20, left: 40 }
+    : { top: 60, right: 52, bottom: 24, left: 52 }
+  );
   const innerW = $derived(Math.max(0, containerW - M.left - M.right));
   const innerH = $derived(Math.max(0, svgH - M.top  - M.bottom));
 
@@ -794,8 +797,8 @@
   .chart-header {
     flex-shrink: 0;
     text-align: center;
-    padding: 4px 0 0;
-    min-height: 54px;
+    padding: 2px 0 0;
+    min-height: 28px;
   }
   .header-title {
     font-size: 18px; font-weight: 700; font-family: Inter, system-ui, sans-serif;
@@ -837,7 +840,7 @@
     display: flex; flex-wrap: wrap; gap: 4px 14px;
     align-items: center; justify-content: center;
     font-style: italic; font-family: Inter, system-ui, sans-serif;
-    color: var(--color-text-muted); padding: 8px 12px 0;
+    color: var(--color-text-muted); padding: 4px 12px 0;
   }
   .hint-chip { white-space: nowrap; }
   .pointer-fine-only { display: none; }

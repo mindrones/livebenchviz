@@ -1,6 +1,8 @@
 <script lang="ts">
   import {
     ChartColumn,
+    ChevronDown,
+    ChevronUp,
     CircleQuestionMark,
     Funnel,
     TrendingUp,
@@ -175,6 +177,7 @@
   let showCitation = $state(false);
   let showHelp = $state(false);
   let sidebarSettingsCollapsed = $state(false);
+  let legendExpanded = $state(false);
 
   // ── Mobile navigation state ────────────────────────────────────────────
   type MobileTab = "filter" | "chart" | "stats" | "help";
@@ -214,7 +217,7 @@
     for (const p of orderOfParents) {
       grouped.get(p)!.sort((a, b) => getAxisAvg(b.key) - getAxisAvg(a.key));
     }
-    orderOfParents.sort((a, b) => getAxisAvg(a) - getAxisAvg(b));
+    orderOfParents.sort((a, b) => getAxisAvg(b) - getAxisAvg(a));
     return orderOfParents.flatMap(p => grouped.get(p)!);
   });
   const benchmarks = activeBenchmarks; // alias used throughout the template
@@ -607,12 +610,25 @@
       <div class="mobile-content">
         {#if activeTab === "chart"}
           {#if !breakpoints.isXl}
-            <div class="legend category-legend">
-              {#each categoryLegend as item (item.key)}
-                <span class="category-pill"
-                  ><span class="category-abbr">{item.abbrev}</span> = {item.name}</span
-                >
-              {/each}
+            <div class="legend category-legend" class:expanded={legendExpanded}>
+              <div class="category-legend-items">
+                {#each categoryLegend as item (item.key)}
+                  <span class="category-pill"
+                    ><span class="category-abbr">{item.abbrev}</span>&nbsp;=&nbsp;{item.name}</span
+                  >
+                {/each}
+              </div>
+              <button
+                class="legend-toggle"
+                onclick={() => (legendExpanded = !legendExpanded)}
+                aria-label={legendExpanded ? 'Collapse legend' : 'Expand legend'}
+              >
+                {#if legendExpanded}
+                  <ChevronUp size={16} />
+                {:else}
+                  <ChevronDown size={16} />
+                {/if}
+              </button>
             </div>
           {/if}
 
@@ -1106,24 +1122,51 @@
   }
 
   .category-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 10px;
-    margin-bottom: 8px;
-    padding: 6px 10px;
+    position: relative;
+    margin-bottom: 6px;
+    padding: 6px 36px 6px 10px;
     background: var(--color-bg-surface);
     border: 1px solid var(--color-border);
     border-radius: 7px;
+    overflow: hidden;
+    max-height: 30px;
+    transition: max-height 0.25s ease;
+  }
+  .category-legend.expanded {
+    max-height: 400px;
+  }
+  .category-legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 10px;
   }
   .category-pill {
     font-size: 11px;
     color: var(--color-text-primary);
     padding: 2px 0;
+    white-space: nowrap;
   }
   .category-abbr {
     font-weight: 700;
     color: var(--color-accent-light);
-    margin-right: 2px;
+  }
+  .legend-toggle {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: none;
+    border: none;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: color 0.15s;
+  }
+  .legend-toggle:hover {
+    color: var(--color-text-primary);
   }
 
   .chart-section {

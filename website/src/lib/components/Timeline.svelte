@@ -33,9 +33,9 @@
   }: Props = $props();
 
   // ── Geometry ──
-  const TRACK_H  = 52;   // height of the tick + brush area
-  const AXIS_H   = 20;   // height below the track for year labels
-  const SVG_H    = TRACK_H + AXIS_H;
+  const TRACK_H  = $derived(isMobile ? 38 : 52);   // height of the tick + brush area
+  const AXIS_H   = $derived(isMobile ? 14 : 20);   // height below the track for year labels
+  const SVG_H    = $derived(TRACK_H + AXIS_H);
   const ML       = 12;   // left margin
   const MR       = 12;   // right margin
   const EDGE_PX  = $derived(isMobile ? 16 : 8);    // brush edge grab zone (larger on touch)
@@ -404,7 +404,7 @@
   .tl-outer { padding: 10px 0 14px; }
 
   .tl-top {
-    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
   }
   .tl-title {
     font-size: 11px; font-weight: 600; text-transform: uppercase;
@@ -418,10 +418,12 @@
   .tl-btn:hover { border-color: var(--color-accent); color: var(--color-text-primary); }
   .tl-btn.active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); border-color: var(--color-accent); color: var(--color-accent-light); }
 
-  /* ── Touch-friendly sizing on mobile ── */
+  /* ── Touch-friendly sizing on mobile (44px = WCAG 2.5.8 minimum) ── */
   @media (max-width: 767px) {
-    .tl-btn { min-width: 44px; min-height: 44px; padding: 6px 12px; font-size: 13px; }
-    .tl-range { min-height: 28px; display: flex; align-items: center; justify-content: center; }
+    .tl-outer { padding: 6px 0 8px; }
+    .tl-top { margin-bottom: 2px; }
+    .tl-btn { min-width: 44px; min-height: 36px; padding: 4px 10px; font-size: 12px; }
+    .tl-range { min-height: 20px; display: flex; align-items: center; justify-content: center; }
   }
 
   .tl-svg-wrap { width: 100%; }
@@ -431,7 +433,7 @@
     font-size: 11px;
     color: var(--color-accent-light);
     letter-spacing: .03em;
-    margin: 2px 0 4px;
+    margin: 1px 0 2px;
     min-height: 16px;
   }
   .tl-hover-date { color: var(--color-error); font-weight: 600; }
