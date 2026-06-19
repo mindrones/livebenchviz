@@ -13,7 +13,6 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_APP).then((cache) => cache.addAll(APP_FILES))
   );
-  self.skipWaiting();
 });
 
 // 2. Activate phase: Clean up ONLY the stale caches.
@@ -28,7 +27,6 @@ self.addEventListener('activate', (event) => {
       )
     )
   );
-  self.clients.claim();
 });
 
 // 3. Fetch phase: Intercept and route to correct cache

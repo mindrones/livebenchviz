@@ -107,17 +107,5 @@
   </head>
   <body data-sveltekit-preload-data="off">
     <div style="display: contents">%sveltekit.body%</div>
-    <script>
-      // Automatically refresh page to apply updates when a new service worker takes control
-      if ('serviceWorker' in navigator) {
-        let refreshing = false;
-        navigator.serviceWorker.addEventListener('controllerchange', () => {
-          if (!refreshing) {
-            refreshing = true;
-            window.location.reload();
-          }
-        });
-      }
-    </script>
   </body>
 </html>
