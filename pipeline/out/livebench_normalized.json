@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-17T08:58:55.469Z",
+  "generated": "2026-06-20T08:10:19.410Z",
   "categories": [
     "reasoning",
     "coding",
@@ -149,11 +149,11 @@
         "reasoning": 89.7,
         "coding": 79.3,
         "agentic_coding": 60,
-        "mathematics": 84.3,
+        "mathematics": 95.3,
         "data_analysis": 78.3,
         "language": 81.4,
         "instruction_following": 67.5,
-        "global_average": 77.2
+        "global_average": 78.8
       },
       "tasks": {
         "AMPS_Hard": 98,
@@ -161,7 +161,7 @@
         "code_generation": 80.3,
         "connections": 97.8,
         "consecutive_events": 89.2,
-        "integrals_with_game": 51,
+        "integrals_with_game": 95,
         "javascript": 55,
         "logic_with_navigation": 82,
         "math_comp": 97.1,
@@ -2078,11 +2078,11 @@
         "reasoning": 84.5,
         "coding": 78.9,
         "agentic_coding": 58.3,
-        "mathematics": 81.6,
+        "mathematics": 90.9,
         "data_analysis": 77.2,
         "language": 80.4,
         "instruction_following": 58.1,
-        "global_average": 74.1
+        "global_average": 75.5
       },
       "tasks": {
         "AMPS_Hard": 98,
@@ -2090,7 +2090,7 @@
         "code_generation": 81.7,
         "connections": 95.8,
         "consecutive_events": 87.7,
-        "integrals_with_game": 45,
+        "integrals_with_game": 82,
         "javascript": 65,
         "logic_with_navigation": 76,
         "math_comp": 93.1,
@@ -2535,6 +2535,48 @@
       "match_type": "no_match"
     },
     {
+      "id": "claude-opus-4-8-low-effort",
+      "scores": {
+        "reasoning": 83.5,
+        "coding": 76.4,
+        "agentic_coding": 38.3,
+        "mathematics": 88.8,
+        "data_analysis": 76.4,
+        "language": 77.3,
+        "instruction_following": 59.2,
+        "global_average": 71.4
+      },
+      "tasks": {
+        "AMPS_Hard": 98,
+        "code_completion": 78.3,
+        "code_generation": 74.6,
+        "connections": 97,
+        "consecutive_events": 85.6,
+        "integrals_with_game": 71,
+        "javascript": 35,
+        "logic_with_navigation": 70,
+        "math_comp": 95.1,
+        "olympiad": 90.9,
+        "paraphrase": 54.3,
+        "plot_unscrambling": 63,
+        "python": 40,
+        "simplify": 52.9,
+        "spatial": 100,
+        "story_generation": 63.4,
+        "summarize": 66,
+        "tablejoin": 45.6,
+        "tablereformat": 98,
+        "theory_of_mind": 67.3,
+        "typescript": 40,
+        "typos": 72,
+        "zebra_puzzle": 96.8
+      },
+      "n_categories": 7,
+      "n_rows": 23,
+      "openRouterId": null,
+      "match_type": "no_match"
+    },
+    {
       "id": "gpt-5-pro-2025-10-06",
       "scores": {
         "reasoning": 81.7,
@@ -2619,48 +2661,6 @@
       "match_type": "no_match"
     },
     {
-      "id": "claude-opus-4-8-low-effort",
-      "scores": {
-        "reasoning": 83.5,
-        "coding": 76.4,
-        "agentic_coding": 38.3,
-        "mathematics": 80.5,
-        "data_analysis": 76.4,
-        "language": 77.3,
-        "instruction_following": 59.2,
-        "global_average": 70.2
-      },
-      "tasks": {
-        "AMPS_Hard": 98,
-        "code_completion": 78.3,
-        "code_generation": 74.6,
-        "connections": 97,
-        "consecutive_events": 85.6,
-        "integrals_with_game": 38,
-        "javascript": 35,
-        "logic_with_navigation": 70,
-        "math_comp": 95.1,
-        "olympiad": 90.9,
-        "paraphrase": 54.3,
-        "plot_unscrambling": 63,
-        "python": 40,
-        "simplify": 52.9,
-        "spatial": 100,
-        "story_generation": 63.4,
-        "summarize": 66,
-        "tablejoin": 45.6,
-        "tablereformat": 98,
-        "theory_of_mind": 67.3,
-        "typescript": 40,
-        "typos": 72,
-        "zebra_puzzle": 96.8
-      },
-      "n_categories": 7,
-      "n_rows": 23,
-      "openRouterId": null,
-      "match_type": "no_match"
-    },
-    {
       "id": "gpt-5.4-nano-xhigh",
       "scores": {
         "reasoning": 81.1,
@@ -2703,6 +2703,48 @@
       "match_type": "no_match"
     },
     {
+      "id": "claude-opus-4-7-low-effort",
+      "scores": {
+        "reasoning": 74.8,
+        "coding": 76.4,
+        "agentic_coding": 60,
+        "mathematics": 83.1,
+        "data_analysis": 75.6,
+        "language": 74.5,
+        "instruction_following": 46.1,
+        "global_average": 70.1
+      },
+      "tasks": {
+        "AMPS_Hard": 99,
+        "code_completion": 78.3,
+        "code_generation": 74.6,
+        "connections": 87.8,
+        "consecutive_events": 87.6,
+        "integrals_with_game": 58,
+        "javascript": 60,
+        "logic_with_navigation": 66,
+        "math_comp": 87.3,
+        "olympiad": 88.1,
+        "paraphrase": 45.9,
+        "plot_unscrambling": 59.8,
+        "python": 65,
+        "simplify": 46.1,
+        "spatial": 90,
+        "story_generation": 48.2,
+        "summarize": 44.3,
+        "tablejoin": 41.1,
+        "tablereformat": 98,
+        "theory_of_mind": 53.8,
+        "typescript": 55,
+        "typos": 76,
+        "zebra_puzzle": 89.5
+      },
+      "n_categories": 7,
+      "n_rows": 23,
+      "openRouterId": null,
+      "match_type": "no_match"
+    },
+    {
       "id": "gpt-5.1-2025-11-13-medium",
       "scores": {
         "reasoning": 74,
@@ -2738,48 +2780,6 @@
         "typescript": 50,
         "typos": 80,
         "zebra_puzzle": 63
-      },
-      "n_categories": 7,
-      "n_rows": 23,
-      "openRouterId": null,
-      "match_type": "no_match"
-    },
-    {
-      "id": "claude-opus-4-7-low-effort",
-      "scores": {
-        "reasoning": 74.8,
-        "coding": 76.4,
-        "agentic_coding": 60,
-        "mathematics": 76.4,
-        "data_analysis": 75.6,
-        "language": 74.5,
-        "instruction_following": 46.1,
-        "global_average": 69.1
-      },
-      "tasks": {
-        "AMPS_Hard": 99,
-        "code_completion": 78.3,
-        "code_generation": 74.6,
-        "connections": 87.8,
-        "consecutive_events": 87.6,
-        "integrals_with_game": 31,
-        "javascript": 60,
-        "logic_with_navigation": 66,
-        "math_comp": 87.3,
-        "olympiad": 88.1,
-        "paraphrase": 45.9,
-        "plot_unscrambling": 59.8,
-        "python": 65,
-        "simplify": 46.1,
-        "spatial": 90,
-        "story_generation": 48.2,
-        "summarize": 44.3,
-        "tablejoin": 41.1,
-        "tablereformat": 98,
-        "theory_of_mind": 53.8,
-        "typescript": 55,
-        "typos": 76,
-        "zebra_puzzle": 89.5
       },
       "n_categories": 7,
       "n_rows": 23,

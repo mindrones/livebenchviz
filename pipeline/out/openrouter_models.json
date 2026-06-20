@@ -1,16 +1,52 @@
 {
-  "generated": "2026-06-17T08:58:54.979Z",
-  "n_models": 337,
+  "generated": "2026-06-20T08:10:18.933Z",
+  "n_models": 340,
   "models": [
+    {
+      "id": "google/gemini-3.1-flash-image",
+      "name": "Google: Nano Banana 2 (Gemini 3.1 Flash Image)",
+      "created": 1781754065,
+      "context_length": 131072,
+      "pricing": {
+        "prompt": "0.0000005",
+        "completion": "0.000003",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text+image->text+image"
+    },
+    {
+      "id": "google/gemini-3-pro-image",
+      "name": "Google: Nano Banana Pro (Gemini 3 Pro Image)",
+      "created": 1781754054,
+      "context_length": 65536,
+      "pricing": {
+        "prompt": "0.000002",
+        "completion": "0.000012",
+        "input_cache_read": "0.0000002"
+      },
+      "architecture_modality": "text+image->text+image"
+    },
+    {
+      "id": "cohere/north-mini-code:free",
+      "name": "Cohere: North Mini Code (free)",
+      "created": 1781723748,
+      "context_length": 256000,
+      "pricing": {
+        "prompt": "0",
+        "completion": "0",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
     {
       "id": "z-ai/glm-5.2",
       "name": "Z.ai: GLM 5.2",
       "created": 1781631930,
       "context_length": 1048576,
       "pricing": {
-        "prompt": "0.0000014",
-        "completion": "0.0000044",
-        "input_cache_read": "0.00000026"
+        "prompt": "0.0000012",
+        "completion": "0.0000041",
+        "input_cache_read": "0.0000002"
       },
       "architecture_modality": "text->text"
     },
@@ -32,9 +68,9 @@
       "created": 1781266361,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000074",
-        "completion": "0.0000035",
-        "input_cache_read": "0.00000015"
+        "prompt": "0.000000612",
+        "completion": "0.000003069",
+        "input_cache_read": "0.0000001296"
       },
       "architecture_modality": "text+image->text"
     },
@@ -339,6 +375,18 @@
       "architecture_modality": "text->text"
     },
     {
+      "id": "poolside/laguna-xs.2",
+      "name": "Poolside: Laguna XS.2",
+      "created": 1777389604,
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.0000001",
+        "completion": "0.0000002",
+        "input_cache_read": "0.00000005"
+      },
+      "architecture_modality": "text->text"
+    },
+    {
       "id": "poolside/laguna-m.1:free",
       "name": "Poolside: Laguna M.1 (free)",
       "created": 1777388504,
@@ -347,6 +395,18 @@
         "prompt": "0",
         "completion": "0",
         "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "poolside/laguna-m.1",
+      "name": "Poolside: Laguna M.1",
+      "created": 1777388504,
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.0000002",
+        "completion": "0.0000004",
+        "input_cache_read": "0.0000001"
       },
       "architecture_modality": "text->text"
     },
@@ -392,9 +452,9 @@
       "created": 1777318428,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000068",
-        "completion": "0.00000341",
-        "input_cache_read": "0.00000034"
+        "prompt": "0.00000066",
+        "completion": "0.0000035",
+        "input_cache_read": "0.00000033"
       },
       "architecture_modality": "text+image->text"
     },
@@ -464,9 +524,9 @@
       "created": 1777260255,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000015",
+        "prompt": "0.00000014",
         "completion": "0.000001",
-        "input_cache_read": "0.00000005"
+        "input_cache_read": null
       },
       "architecture_modality": "text+image+video->text"
     },
@@ -560,9 +620,9 @@
       "created": 1776878150,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.000000066",
-        "completion": "0.00000026",
-        "input_cache_read": "0.000000029"
+        "prompt": "0.000000063",
+        "completion": "0.00000021",
+        "input_cache_read": "0.000000021"
       },
       "architecture_modality": "text->text"
     },
@@ -644,9 +704,9 @@
       "created": 1776699402,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000068",
-        "completion": "0.00000341",
-        "input_cache_read": "0.00000034"
+        "prompt": "0.00000066",
+        "completion": "0.0000035",
+        "input_cache_read": "0.00000033"
       },
       "architecture_modality": "text+image->text"
     },
@@ -1030,7 +1090,7 @@
       "pricing": {
         "prompt": "0.00000014",
         "completion": "0.000001",
-        "input_cache_read": "0.00000005"
+        "input_cache_read": null
       },
       "architecture_modality": "text+image+video->text"
     },
@@ -1431,18 +1491,6 @@
       "architecture_modality": "text+image+file+audio+video->text"
     },
     {
-      "id": "xiaomi/mimo-v2-flash",
-      "name": "Xiaomi: MiMo-V2-Flash",
-      "created": 1765731308,
-      "context_length": 262144,
-      "pricing": {
-        "prompt": "0.0000001",
-        "completion": "0.0000003",
-        "input_cache_read": "0.00000001"
-      },
-      "architecture_modality": "text->text"
-    },
-    {
       "id": "nvidia/nemotron-3-nano-30b-a3b:free",
       "name": "NVIDIA: Nemotron 3 Nano 30B A3B (free)",
       "created": 1765731275,
@@ -1822,7 +1870,7 @@
       "pricing": {
         "prompt": "0.000000075",
         "completion": "0.0000003",
-        "input_cache_read": "0.000000037"
+        "input_cache_read": "0.0000000375"
       },
       "architecture_modality": "text->text"
     },
@@ -3850,18 +3898,6 @@
       "pricing": {
         "prompt": "0.00000014",
         "completion": "0.00000014",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
-      "id": "meta-llama/llama-3-70b-instruct",
-      "name": "Meta: Llama 3 70B Instruct",
-      "created": 1713398400,
-      "context_length": 8192,
-      "pricing": {
-        "prompt": "0.00000051",
-        "completion": "0.00000074",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"

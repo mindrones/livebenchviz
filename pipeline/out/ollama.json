@@ -1,8 +1,8 @@
 {
-  "fetched": "2026-06-17T08:59:06.060Z",
+  "fetched": "2026-06-20T08:10:27.515Z",
   "source": "https://ollama.com",
-  "tagCount": 230,
-  "slugCount": 27,
+  "tagCount": 243,
+  "slugCount": 29,
   "tags": [
     {
       "name": "deepseek-v4-flash:cloud",
@@ -467,6 +467,48 @@
       "isOllamaCloud": true
     },
     {
+      "name": "lfm2:24b",
+      "slug": "lfm2",
+      "tag": "24b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "lfm2:24b-a2b",
+      "slug": "lfm2",
+      "tag": "24b-a2b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "lfm2:24b-bf16",
+      "slug": "lfm2",
+      "tag": "24b-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "lfm2:24b-q4_K_M",
+      "slug": "lfm2",
+      "tag": "24b-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "lfm2:24b-q8_0",
+      "slug": "lfm2",
+      "tag": "24b-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "lfm2:latest",
+      "slug": "lfm2",
+      "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
       "name": "lfm2.5:8b",
       "slug": "lfm2.5",
       "tag": "8b",
@@ -792,6 +834,55 @@
       "name": "nemotron3:33b-q8",
       "slug": "nemotron3",
       "tag": "33b-q8",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "north-mini-code-1.0:bf16",
+      "slug": "north-mini-code-1.0",
+      "tag": "bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "north-mini-code-1.0:latest",
+      "slug": "north-mini-code-1.0",
+      "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "north-mini-code-1.0:mlx-bf16",
+      "slug": "north-mini-code-1.0",
+      "tag": "mlx-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "north-mini-code-1.0:mlx-mxfp8",
+      "slug": "north-mini-code-1.0",
+      "tag": "mlx-mxfp8",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "north-mini-code-1.0:mlx-nvfp4",
+      "slug": "north-mini-code-1.0",
+      "tag": "mlx-nvfp4",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "north-mini-code-1.0:q4_K_M",
+      "slug": "north-mini-code-1.0",
+      "tag": "q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "north-mini-code-1.0:q8_0",
+      "slug": "north-mini-code-1.0",
+      "tag": "q8_0",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
