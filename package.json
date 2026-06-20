@@ -11,6 +11,7 @@
 		"dev": "pnpm --filter website run dev",
 		"fetch-data": "pnpm --filter pipeline run build:data",
 		"pipeline": "pnpm --filter pipeline run all",
+		"pipeline:notify": "node pipeline/scripts/run-pipeline-and-notify.cjs",
 		"prepare": "git config core.hooksPath .githooks || true"
 	},
 	"version": "1.6.4"
