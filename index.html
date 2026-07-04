@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LLM Benchmark Dashboard</title>
+    <meta name="description" content="Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates." />
+    <link rel="canonical" href="https://mindrones.github.io/livebenchviz/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- ─── Open Graph (Facebook, LinkedIn, Pinterest, Slack, Discord, iMessage, WhatsApp, Telegram, Reddit, Mastodon, Threads, Bluesky) ─── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mindrones.github.io/livebenchviz/" />
+    <meta property="og:title" content="LLM Benchmark Dashboard" />
+    <meta property="og:description" content="Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates." />
+    <meta property="og:image" content="https://mindrones.github.io/livebenchviz/og-image.png" />
+    <meta property="og:image:secure_url" content="https://mindrones.github.io/livebenchviz/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="Screenshot of the LLM Benchmark Dashboard showing parallel coordinates, timeline, and model comparison tables." />
+    <meta property="og:site_name" content="LiveBench Viz" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ─── Twitter / X Card ─── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@mindrones" />
+    <meta name="twitter:title" content="LLM Benchmark Dashboard" />
+    <meta name="twitter:description" content="Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates." />
+    <meta name="twitter:image" content="https://mindrones.github.io/livebenchviz/og-image.png" />
+    <meta name="twitter:image:alt" content="Screenshot of the LLM Benchmark Dashboard showing parallel coordinates, timeline, and model comparison tables." />
+
+    <!-- ─── Schema.org JSON-LD (Google Search, Bing, AI crawlers) ─── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://mindrones.github.io/livebenchviz/#webapp",
+          "name": "LLM Benchmark Dashboard",
+          "alternateName": "LiveBench Viz",
+          "url": "https://mindrones.github.io/livebenchviz/",
+          "description": "Interactive dashboard for comparing LLM benchmark scores across models, families, and evaluation dates.",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "screenshot": "https://mindrones.github.io/livebenchviz/og-image.png",
+          "browserRequirements": "Requires a modern browser with JavaScript enabled"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://mindrones.github.io/livebenchviz/#website",
+          "url": "https://mindrones.github.io/livebenchviz/",
+          "name": "LiveBench Viz",
+          "publisher": { "@id": "https://mindrones.github.io/livebenchviz/#webapp" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- ─── Microsoft / Windows tiles (Teams, pinned sites) ─── -->
+    <meta name="msapplication-TileColor" content="#0f1117" />
+    <meta name="msapplication-TileImage" content="/livebenchviz/icon-32x32.png" />
+
+    <!-- ─── Apple iOS web app ─── -->
+    <meta name="apple-mobile-web-app-title" content="LiveBench Viz" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- ─── Browser chrome / theme ─── -->
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/x-icon" href="/livebenchviz/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/livebenchviz/icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/livebenchviz/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/livebenchviz/icon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/livebenchviz/icon-16x16.png">
+    <link rel="manifest" href="/livebenchviz/site.webmanifest">
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="/livebenchviz/_app/immutable/entry/start.CC1mi3bW.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/BrRDZPCq.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/C-ix0i2P.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/entry/app.BNVY2cw0.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/BAZ8jsyI.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/Cp7nUO-T.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/B-0WlTOM.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/BfMhX7Tg.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/nodes/0.Bw8folVX.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/gxvDRRPY.js" rel="modulepreload">
+		<link href="/livebenchviz/_app/immutable/chunks/x2_kiUiD.js" rel="modulepreload">
+		
+		<link href="/livebenchviz/_app/immutable/assets/0.BYER0cBE.css" rel="stylesheet">
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('app-theme');
+          var dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (dark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch(e) {}
+      })();
+    </script>
+  </head>
+  <body data-sveltekit-preload-data="off">
+    <div style="display: contents">
+			<script>
+				{
+					__sveltekit_l0dko2 = {
+						base: "/livebenchviz",
+						assets: "/livebenchviz"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("/livebenchviz/_app/immutable/entry/start.CC1mi3bW.js"),
+						import("/livebenchviz/_app/immutable/entry/app.BNVY2cw0.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element);
+					});
+
+					if ('serviceWorker' in navigator) {
+						const script_url = '/livebenchviz/service-worker.js';
+						const policy = globalThis?.window?.trustedTypes?.createPolicy(
+							'sveltekit-trusted-url',
+							{ createScriptURL(url) { return url; } }
+						);
+						const sanitised = policy?.createScriptURL(script_url) ?? script_url;
+						addEventListener('load', function () {
+							navigator.serviceWorker.register(sanitised);
+						});
+					}
+				}
+			</script>
+		</div>
+  </body>
+</html>
