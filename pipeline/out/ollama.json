@@ -1,7 +1,7 @@
 {
-  "fetched": "2026-06-20T08:10:27.515Z",
+  "fetched": "2026-07-01T08:00:34.527Z",
   "source": "https://ollama.com",
-  "tagCount": 243,
+  "tagCount": 230,
   "slugCount": 29,
   "tags": [
     {
@@ -362,6 +362,34 @@
       "isOllamaCloud": true
     },
     {
+      "name": "glm-4.7-flash:bf16",
+      "slug": "glm-4.7-flash",
+      "tag": "bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "glm-4.7-flash:latest",
+      "slug": "glm-4.7-flash",
+      "tag": "latest",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "glm-4.7-flash:q4_K_M",
+      "slug": "glm-4.7-flash",
+      "tag": "q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "glm-4.7-flash:q8_0",
+      "slug": "glm-4.7-flash",
+      "tag": "q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
       "name": "glm-4.7:cloud",
       "slug": "glm-4.7",
       "tag": "cloud",
@@ -509,219 +537,37 @@
       "isOllamaCloud": false
     },
     {
-      "name": "lfm2.5:8b",
-      "slug": "lfm2.5",
-      "tag": "8b",
+      "name": "lfm2.5-thinking:1.2b",
+      "slug": "lfm2.5-thinking",
+      "tag": "1.2b",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
     {
-      "name": "lfm2.5:8b-a1b-bf16",
-      "slug": "lfm2.5",
-      "tag": "8b-a1b-bf16",
+      "name": "lfm2.5-thinking:1.2b-bf16",
+      "slug": "lfm2.5-thinking",
+      "tag": "1.2b-bf16",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
     {
-      "name": "lfm2.5:8b-a1b-q4_K_M",
-      "slug": "lfm2.5",
-      "tag": "8b-a1b-q4_K_M",
+      "name": "lfm2.5-thinking:1.2b-q4_K_M",
+      "slug": "lfm2.5-thinking",
+      "tag": "1.2b-q4_K_M",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
     {
-      "name": "lfm2.5:8b-a1b-q8_0",
-      "slug": "lfm2.5",
-      "tag": "8b-a1b-q8_0",
+      "name": "lfm2.5-thinking:1.2b-q8_0",
+      "slug": "lfm2.5-thinking",
+      "tag": "1.2b-q8_0",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
     {
-      "name": "lfm2.5:latest",
-      "slug": "lfm2.5",
+      "name": "lfm2.5-thinking:latest",
+      "slug": "lfm2.5-thinking",
       "tag": "latest",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:8b",
-      "slug": "minicpm-v4.5",
-      "tag": "8b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:f16",
-      "slug": "minicpm-v4.5",
-      "tag": "f16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:latest",
-      "slug": "minicpm-v4.5",
-      "tag": "latest",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q4_0",
-      "slug": "minicpm-v4.5",
-      "tag": "q4_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q4_1",
-      "slug": "minicpm-v4.5",
-      "tag": "q4_1",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q4_K_M",
-      "slug": "minicpm-v4.5",
-      "tag": "q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q4_K_S",
-      "slug": "minicpm-v4.5",
-      "tag": "q4_K_S",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q5_0",
-      "slug": "minicpm-v4.5",
-      "tag": "q5_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q5_1",
-      "slug": "minicpm-v4.5",
-      "tag": "q5_1",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q5_K_M",
-      "slug": "minicpm-v4.5",
-      "tag": "q5_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q5_K_S",
-      "slug": "minicpm-v4.5",
-      "tag": "q5_K_S",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q6_K",
-      "slug": "minicpm-v4.5",
-      "tag": "q6_K",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.5:q8_0",
-      "slug": "minicpm-v4.5",
-      "tag": "q8_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:1b",
-      "slug": "minicpm-v4.6",
-      "tag": "1b",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:f16",
-      "slug": "minicpm-v4.6",
-      "tag": "f16",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:latest",
-      "slug": "minicpm-v4.6",
-      "tag": "latest",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q4_0",
-      "slug": "minicpm-v4.6",
-      "tag": "q4_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q4_1",
-      "slug": "minicpm-v4.6",
-      "tag": "q4_1",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q4_K_M",
-      "slug": "minicpm-v4.6",
-      "tag": "q4_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q4_K_S",
-      "slug": "minicpm-v4.6",
-      "tag": "q4_K_S",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q5_0",
-      "slug": "minicpm-v4.6",
-      "tag": "q5_0",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q5_1",
-      "slug": "minicpm-v4.6",
-      "tag": "q5_1",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q5_K_M",
-      "slug": "minicpm-v4.6",
-      "tag": "q5_K_M",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q5_K_S",
-      "slug": "minicpm-v4.6",
-      "tag": "q5_K_S",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q6_K",
-      "slug": "minicpm-v4.6",
-      "tag": "q6_K",
-      "isOllamaLocal": true,
-      "isOllamaCloud": false
-    },
-    {
-      "name": "minicpm-v4.6:q8_0",
-      "slug": "minicpm-v4.6",
-      "tag": "q8_0",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },
@@ -883,6 +729,69 @@
       "name": "north-mini-code-1.0:q8_0",
       "slug": "north-mini-code-1.0",
       "tag": "q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:35b",
+      "slug": "ornith",
+      "tag": "35b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:35b-bf16",
+      "slug": "ornith",
+      "tag": "35b-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:35b-q4_K_M",
+      "slug": "ornith",
+      "tag": "35b-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:35b-q8_0",
+      "slug": "ornith",
+      "tag": "35b-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:9b",
+      "slug": "ornith",
+      "tag": "9b",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:9b-bf16",
+      "slug": "ornith",
+      "tag": "9b-bf16",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:9b-q4_K_M",
+      "slug": "ornith",
+      "tag": "9b-q4_K_M",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:9b-q8_0",
+      "slug": "ornith",
+      "tag": "9b-q8_0",
+      "isOllamaLocal": true,
+      "isOllamaCloud": false
+    },
+    {
+      "name": "ornith:latest",
+      "slug": "ornith",
+      "tag": "latest",
       "isOllamaLocal": true,
       "isOllamaCloud": false
     },

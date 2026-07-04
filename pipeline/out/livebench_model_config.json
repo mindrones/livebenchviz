@@ -1,5 +1,5 @@
 {
-  "fetched": "2026-06-20T08:10:17.698Z",
+  "fetched": "2026-07-01T08:00:22.289Z",
   "bundle_url": "local:src/Table/modelLinks.js",
   "models": {
     "arcee-trinity-large-preview": {
@@ -2190,6 +2190,13 @@
       "url": "https://platform.kimi.ai/docs/guide/kimi-k2-7-code-quickstart#overview-of-kimi-k2-7-code-model",
       "organization": "Moonshot AI",
       "displayName": "Kimi K2.7 Code",
+      "version": null,
+      "version_source": "unknown"
+    },
+    "claude-sonnet-5-xhigh-effort": {
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "organization": "Anthropic",
+      "displayName": "Claude Sonnet 5 xHigh Effort",
       "version": null,
       "version_source": "unknown"
     }

@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-20T08:10:13.037Z",
+  "generated": "2026-07-01T08:00:12.361Z",
   "source": "livebench.github.io/public/table_2026_01_08.csv",
   "release": "2026_01_08",
   "categories": [
@@ -45,7 +45,7 @@
     "typos",
     "zebra_puzzle"
   ],
-  "n_models": 126,
+  "n_models": 127,
   "models": [
     {
       "id": "gpt-5.5-xhigh",
@@ -483,6 +483,46 @@
         "typescript": 55,
         "typos": 78,
         "zebra_puzzle": 77.5
+      },
+      "n_categories": 7,
+      "n_rows": 23
+    },
+    {
+      "id": "claude-sonnet-5-xhigh-effort",
+      "scores": {
+        "reasoning": 86.9,
+        "coding": 78.6,
+        "agentic_coding": 65,
+        "mathematics": 89.6,
+        "data_analysis": 72.4,
+        "language": 78.8,
+        "instruction_following": 59.4,
+        "global_average": 75.8
+      },
+      "tasks": {
+        "AMPS_Hard": 98,
+        "code_completion": 78.3,
+        "code_generation": 78.9,
+        "connections": 99.3,
+        "consecutive_events": 77.9,
+        "integrals_with_game": 78,
+        "javascript": 55,
+        "logic_with_navigation": 82,
+        "math_comp": 92.2,
+        "olympiad": 90.3,
+        "paraphrase": 56,
+        "plot_unscrambling": 55.1,
+        "python": 80,
+        "simplify": 56.7,
+        "spatial": 100,
+        "story_generation": 63.6,
+        "summarize": 61.3,
+        "tablejoin": 41.4,
+        "tablereformat": 98,
+        "theory_of_mind": 76.9,
+        "typescript": 60,
+        "typos": 82,
+        "zebra_puzzle": 88.8
       },
       "n_categories": 7,
       "n_rows": 23

@@ -329,6 +329,7 @@ const LB_RELEASE_DATES_FALLBACK: Record<string, string> = {
   'claude-opus-4-8-high-effort':         '2026-04-16',
   'claude-opus-4-8-medium-effort':       '2026-04-16',
   'claude-opus-4-8-low-effort':          '2026-04-16',
+  'claude-sonnet-5-xhigh-effort':        '2026-06-30',
   // Minimax overrides (prevent dynamic scraping dates)
   'minimax-m2.5':                        '2026-02-12',
   'minimax-m2.7':                        '2026-03-18',

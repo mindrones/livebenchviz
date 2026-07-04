@@ -1,7 +1,67 @@
 {
-  "generated": "2026-06-20T08:10:18.933Z",
+  "generated": "2026-07-04T15:53:35.290Z",
   "n_models": 340,
   "models": [
+    {
+      "id": "poolside/laguna-xs-2.1:free",
+      "name": "Poolside: Laguna XS 2.1 (free)",
+      "created": 1783002429,
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0",
+        "completion": "0",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "poolside/laguna-xs-2.1",
+      "name": "Poolside: Laguna XS 2.1",
+      "created": 1783002429,
+      "context_length": 262144,
+      "pricing": {
+        "prompt": "0.00000006",
+        "completion": "0.00000012",
+        "input_cache_read": "0.00000003"
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "anthropic/claude-sonnet-5",
+      "name": "Anthropic: Claude Sonnet 5",
+      "created": 1782843083,
+      "context_length": 1000000,
+      "pricing": {
+        "prompt": "0.000002",
+        "completion": "0.00001",
+        "input_cache_read": "0.0000002"
+      },
+      "architecture_modality": "text+image+file->text"
+    },
+    {
+      "id": "google/gemini-3.1-flash-lite-image",
+      "name": "Google: Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)",
+      "created": 1782837225,
+      "context_length": 65536,
+      "pricing": {
+        "prompt": "0.00000025",
+        "completion": "0.0000015",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text+image->text+image"
+    },
+    {
+      "id": "sakana/fugu-ultra",
+      "name": "Sakana: Fugu Ultra",
+      "created": 1782276303,
+      "context_length": 1000000,
+      "pricing": {
+        "prompt": "0.000005",
+        "completion": "0.00003",
+        "input_cache_read": "0.0000005"
+      },
+      "architecture_modality": "text+image->text"
+    },
     {
       "id": "google/gemini-3.1-flash-image",
       "name": "Google: Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -44,9 +104,9 @@
       "created": 1781631930,
       "context_length": 1048576,
       "pricing": {
-        "prompt": "0.0000012",
-        "completion": "0.0000041",
-        "input_cache_read": "0.0000002"
+        "prompt": "0.00000084",
+        "completion": "0.00000264",
+        "input_cache_read": "0.000000156"
       },
       "architecture_modality": "text->text"
     },
@@ -68,9 +128,9 @@
       "created": 1781266361,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.000000612",
-        "completion": "0.000003069",
-        "input_cache_read": "0.0000001296"
+        "prompt": "0.00000074",
+        "completion": "0.0000035",
+        "input_cache_read": "0.00000015"
       },
       "architecture_modality": "text+image->text"
     },
@@ -99,14 +159,14 @@
       "architecture_modality": "text+image+file->text"
     },
     {
-      "id": "nex-agi/nex-n2-pro:free",
-      "name": "Nex AGI: Nex-N2-Pro (free)",
+      "id": "nex-agi/nex-n2-pro",
+      "name": "Nex AGI: Nex-N2-Pro",
       "created": 1780937140,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0",
-        "completion": "0",
-        "input_cache_read": null
+        "prompt": "0.00000025",
+        "completion": "0.000001",
+        "input_cache_read": "0.000000025"
       },
       "architecture_modality": "text+image->text"
     },
@@ -312,7 +372,7 @@
         "completion": "0.0000025",
         "input_cache_read": "0.0000002"
       },
-      "architecture_modality": "text+image->text"
+      "architecture_modality": "text+image+file->text"
     },
     {
       "id": "ibm-granite/granite-4.1-8b",
@@ -337,18 +397,6 @@
         "input_cache_read": null
       },
       "architecture_modality": "text+image+file->text"
-    },
-    {
-      "id": "openrouter/owl-alpha",
-      "name": "Owl Alpha",
-      "created": 1777398589,
-      "context_length": 1048756,
-      "pricing": {
-        "prompt": "0",
-        "completion": "0",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
     },
     {
       "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
@@ -453,8 +501,8 @@
       "context_length": 262144,
       "pricing": {
         "prompt": "0.00000066",
-        "completion": "0.0000035",
-        "input_cache_read": "0.00000033"
+        "completion": "0.00000341",
+        "input_cache_read": "0.00000014"
       },
       "architecture_modality": "text+image->text"
     },
@@ -476,9 +524,9 @@
       "created": 1777318368,
       "context_length": 1000000,
       "pricing": {
-        "prompt": "0.000003",
-        "completion": "0.000015",
-        "input_cache_read": "0.0000003"
+        "prompt": "0.000002",
+        "completion": "0.00001",
+        "input_cache_read": "0.0000002"
       },
       "architecture_modality": "text+image+file->text"
     },
@@ -548,9 +596,9 @@
       "created": 1777255064,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.0000002885",
-        "completion": "0.00000317",
-        "input_cache_read": null
+        "prompt": "0.000000285",
+        "completion": "0.0000024",
+        "input_cache_read": "0.00000015"
       },
       "architecture_modality": "text+image+video->text"
     },
@@ -598,7 +646,7 @@
       "pricing": {
         "prompt": "0.00000009",
         "completion": "0.00000018",
-        "input_cache_read": "0.00000002"
+        "input_cache_read": "0.000000018"
       },
       "architecture_modality": "text->text"
     },
@@ -644,9 +692,9 @@
       "created": 1776874269,
       "context_length": 1048576,
       "pricing": {
-        "prompt": "0.00000014",
+        "prompt": "0.000000105",
         "completion": "0.00000028",
-        "input_cache_read": "0.0000000028"
+        "input_cache_read": null
       },
       "architecture_modality": "text+image+audio+video->text"
     },
@@ -705,8 +753,8 @@
       "context_length": 262144,
       "pricing": {
         "prompt": "0.00000066",
-        "completion": "0.0000035",
-        "input_cache_read": "0.00000033"
+        "completion": "0.00000341",
+        "input_cache_read": "0.00000014"
       },
       "architecture_modality": "text+image->text"
     },
@@ -723,26 +771,14 @@
       "architecture_modality": "text+image+file->text"
     },
     {
-      "id": "anthropic/claude-opus-4.6-fast",
-      "name": "Anthropic: Claude Opus 4.6 (Fast)",
-      "created": 1775592472,
-      "context_length": 1000000,
-      "pricing": {
-        "prompt": "0.00003",
-        "completion": "0.00015",
-        "input_cache_read": "0.000003"
-      },
-      "architecture_modality": "text+image+file->text"
-    },
-    {
       "id": "z-ai/glm-5.1",
       "name": "Z.ai: GLM 5.1",
       "created": 1775578025,
       "context_length": 202752,
       "pricing": {
-        "prompt": "0.00000098",
-        "completion": "0.00000308",
-        "input_cache_read": "0.000000182"
+        "prompt": "0.000000966",
+        "completion": "0.000003036",
+        "input_cache_read": "0.0000001794"
       },
       "architecture_modality": "text->text"
     },
@@ -807,13 +843,25 @@
       "architecture_modality": "text+image+video->text"
     },
     {
+      "id": "z-ai/glm-5v-turbo",
+      "name": "Z.ai: GLM 5V Turbo",
+      "created": 1775061458,
+      "context_length": 202752,
+      "pricing": {
+        "prompt": "0.0000012",
+        "completion": "0.000004",
+        "input_cache_read": "0.00000024"
+      },
+      "architecture_modality": "text+image+video->text"
+    },
+    {
       "id": "arcee-ai/trinity-large-thinking",
       "name": "Arcee AI: Trinity Large Thinking",
       "created": 1775058318,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000022",
-        "completion": "0.00000085",
+        "prompt": "0.00000025",
+        "completion": "0.0000008",
         "input_cache_read": "0.00000006"
       },
       "architecture_modality": "text->text"
@@ -896,9 +944,9 @@
       "created": 1773836697,
       "context_length": 204800,
       "pricing": {
-        "prompt": "0.00000025",
-        "completion": "0.000001",
-        "input_cache_read": "0.00000005"
+        "prompt": "0.00000018",
+        "completion": "0.00000072",
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -968,7 +1016,7 @@
       "created": 1773245239,
       "context_length": 1000000,
       "pricing": {
-        "prompt": "0.00000009",
+        "prompt": "0.00000008",
         "completion": "0.00000045",
         "input_cache_read": null
       },
@@ -1090,7 +1138,7 @@
       "pricing": {
         "prompt": "0.00000014",
         "completion": "0.000001",
-        "input_cache_read": null
+        "input_cache_read": "0.00000005"
       },
       "architecture_modality": "text+image+video->text"
     },
@@ -1232,9 +1280,9 @@
       "created": 1770908502,
       "context_length": 204800,
       "pricing": {
-        "prompt": "0.00000015",
-        "completion": "0.0000009",
-        "input_cache_read": "0.00000005"
+        "prompt": "0.00000012",
+        "completion": "0.00000048",
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -1304,9 +1352,9 @@
       "created": 1769728337,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.00000009",
+        "prompt": "0.0000001",
         "completion": "0.0000003",
-        "input_cache_read": "0.00000002"
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -1460,8 +1508,8 @@
       "created": 1766454997,
       "context_length": 204800,
       "pricing": {
-        "prompt": "0.00000029",
-        "completion": "0.00000095",
+        "prompt": "0.0000003",
+        "completion": "0.0000012",
         "input_cache_read": "0.00000003"
       },
       "architecture_modality": "text->text"
@@ -1587,18 +1635,6 @@
       "architecture_modality": "text+image+video->text"
     },
     {
-      "id": "essentialai/rnj-1-instruct",
-      "name": "EssentialAI: Rnj 1 Instruct",
-      "created": 1765094847,
-      "context_length": 32768,
-      "pricing": {
-        "prompt": "0.00000015",
-        "completion": "0.00000015",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
       "id": "openrouter/bodybuilder",
       "name": "Body Builder (beta)",
       "created": 1764903653,
@@ -1702,19 +1738,7 @@
       "pricing": {
         "prompt": "0.0000002288",
         "completion": "0.0000003432",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
-      "id": "prime-intellect/intellect-3",
-      "name": "Prime Intellect: INTELLECT-3",
-      "created": 1764212534,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.0000002",
-        "completion": "0.0000011",
-        "input_cache_read": null
+        "input_cache_read": "0.00000002288"
       },
       "architecture_modality": "text->text"
     },
@@ -1822,7 +1846,7 @@
       "pricing": {
         "prompt": "0.0000006",
         "completion": "0.0000025",
-        "input_cache_read": null
+        "input_cache_read": "0.00000015"
       },
       "architecture_modality": "text->text"
     },
@@ -1893,8 +1917,8 @@
       "context_length": 204800,
       "pricing": {
         "prompt": "0.000000255",
-        "completion": "0.000001",
-        "input_cache_read": "0.00000003"
+        "completion": "0.00000102",
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -1919,18 +1943,6 @@
         "prompt": "0.000000017",
         "completion": "0.000000112",
         "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
-      "id": "microsoft/phi-4-mini-instruct",
-      "name": "Microsoft: Phi 4 Mini Instruct",
-      "created": 1760726049,
-      "context_length": 131072,
-      "pricing": {
-        "prompt": "0.00000008",
-        "completion": "0.00000035",
-        "input_cache_read": "0.00000008"
       },
       "architecture_modality": "text->text"
     },
@@ -1976,8 +1988,8 @@
       "created": 1760463308,
       "context_length": 256000,
       "pricing": {
-        "prompt": "0.00000008",
-        "completion": "0.0000005",
+        "prompt": "0.000000117",
+        "completion": "0.000000455",
         "input_cache_read": null
       },
       "architecture_modality": "text+image->text"
@@ -2324,9 +2336,9 @@
       "created": 1756399192,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.00000008",
-        "completion": "0.0000004",
-        "input_cache_read": "0.00000008"
+        "prompt": "0.00000013",
+        "completion": "0.00000156",
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -2468,8 +2480,8 @@
       "created": 1754414231,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.000000039",
-        "completion": "0.00000018",
+        "prompt": "0.00000003",
+        "completion": "0.00000015",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -2576,9 +2588,9 @@
       "created": 1753449557,
       "context_length": 262144,
       "pricing": {
-        "prompt": "0.0000001",
-        "completion": "0.0000001",
-        "input_cache_read": "0.0000001"
+        "prompt": "0.0000001495",
+        "completion": "0.000001495",
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -2924,9 +2936,9 @@
       "created": 1745876632,
       "context_length": 131072,
       "pricing": {
-        "prompt": "0.00000005",
-        "completion": "0.0000004",
-        "input_cache_read": "0.00000005"
+        "prompt": "0.000000117",
+        "completion": "0.000000455",
+        "input_cache_read": null
       },
       "architecture_modality": "text->text"
     },
@@ -3068,8 +3080,8 @@
       "created": 1742824755,
       "context_length": 163840,
       "pricing": {
-        "prompt": "0.0000002",
-        "completion": "0.00000077",
+        "prompt": "0.00000024",
+        "completion": "0.0000009",
         "input_cache_read": "0.000000135"
       },
       "architecture_modality": "text->text"
@@ -3392,7 +3404,7 @@
       "created": 1736489872,
       "context_length": 16384,
       "pricing": {
-        "prompt": "0.000000065",
+        "prompt": "0.00000007",
         "completion": "0.00000014",
         "input_cache_read": null
       },
@@ -3567,18 +3579,6 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "anthropic/claude-3.5-haiku",
-      "name": "Anthropic: Claude 3.5 Haiku",
-      "created": 1730678400,
-      "context_length": 200000,
-      "pricing": {
-        "prompt": "0.0000008",
-        "completion": "0.000004",
-        "input_cache_read": "0.00000008"
-      },
-      "architecture_modality": "text+image->text"
-    },
-    {
       "id": "anthracite-org/magnum-v4-72b",
       "name": "Magnum v4 72B",
       "created": 1729555200,
@@ -3632,8 +3632,8 @@
       "created": 1727654400,
       "context_length": 32768,
       "pricing": {
-        "prompt": "0.00000017",
-        "completion": "0.00000043",
+        "prompt": "0.00000025",
+        "completion": "0.0000005",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -3699,18 +3699,6 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "cohere/command-r-plus-08-2024",
-      "name": "Cohere: Command R+ (08-2024)",
-      "created": 1724976000,
-      "context_length": 128000,
-      "pricing": {
-        "prompt": "0.0000025",
-        "completion": "0.00001",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
       "id": "cohere/command-r-08-2024",
       "name": "Cohere: Command R (08-2024)",
       "created": 1724976000,
@@ -3718,6 +3706,18 @@
       "pricing": {
         "prompt": "0.00000015",
         "completion": "0.0000006",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "cohere/command-r-plus-08-2024",
+      "name": "Cohere: Command R+ (08-2024)",
+      "created": 1724976000,
+      "context_length": 128000,
+      "pricing": {
+        "prompt": "0.0000025",
+        "completion": "0.00001",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"
@@ -3831,8 +3831,8 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "openai/gpt-4o-mini-2024-07-18",
-      "name": "OpenAI: GPT-4o-mini (2024-07-18)",
+      "id": "openai/gpt-4o-mini",
+      "name": "OpenAI: GPT-4o-mini",
       "created": 1721260800,
       "context_length": 128000,
       "pricing": {
@@ -3843,8 +3843,8 @@
       "architecture_modality": "text+image+file->text"
     },
     {
-      "id": "openai/gpt-4o-mini",
-      "name": "OpenAI: GPT-4o-mini",
+      "id": "openai/gpt-4o-mini-2024-07-18",
+      "name": "OpenAI: GPT-4o-mini (2024-07-18)",
       "created": 1721260800,
       "context_length": 128000,
       "pricing": {
@@ -3867,18 +3867,6 @@
       "architecture_modality": "text->text"
     },
     {
-      "id": "openai/gpt-4o-2024-05-13",
-      "name": "OpenAI: GPT-4o (2024-05-13)",
-      "created": 1715558400,
-      "context_length": 128000,
-      "pricing": {
-        "prompt": "0.000005",
-        "completion": "0.000015",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text+image+file->text"
-    },
-    {
       "id": "openai/gpt-4o",
       "name": "OpenAI: GPT-4o",
       "created": 1715558400,
@@ -3886,6 +3874,18 @@
       "pricing": {
         "prompt": "0.0000025",
         "completion": "0.00001",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text+image+file->text"
+    },
+    {
+      "id": "openai/gpt-4o-2024-05-13",
+      "name": "OpenAI: GPT-4o (2024-05-13)",
+      "created": 1715558400,
+      "context_length": 128000,
+      "pricing": {
+        "prompt": "0.000005",
+        "completion": "0.000015",
         "input_cache_read": null
       },
       "architecture_modality": "text+image+file->text"
@@ -3963,18 +3963,6 @@
       "architecture_modality": "text+file->text"
     },
     {
-      "id": "openai/gpt-4-turbo-preview",
-      "name": "OpenAI: GPT-4 Turbo Preview",
-      "created": 1706140800,
-      "context_length": 128000,
-      "pricing": {
-        "prompt": "0.00001",
-        "completion": "0.00003",
-        "input_cache_read": null
-      },
-      "architecture_modality": "text->text"
-    },
-    {
       "id": "openai/gpt-3.5-turbo-0613",
       "name": "OpenAI: GPT-3.5 Turbo (older v0613)",
       "created": 1706140800,
@@ -3982,6 +3970,18 @@
       "pricing": {
         "prompt": "0.000001",
         "completion": "0.000002",
+        "input_cache_read": null
+      },
+      "architecture_modality": "text->text"
+    },
+    {
+      "id": "openai/gpt-4-turbo-preview",
+      "name": "OpenAI: GPT-4 Turbo Preview",
+      "created": 1706140800,
+      "context_length": 128000,
+      "pricing": {
+        "prompt": "0.00001",
+        "completion": "0.00003",
         "input_cache_read": null
       },
       "architecture_modality": "text->text"

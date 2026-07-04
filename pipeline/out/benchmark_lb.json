@@ -1,8 +1,8 @@
 {
-  "generated": "2026-06-20T08:10:28.073Z",
+  "generated": "2026-07-04T15:53:36.449Z",
   "dataset": "lb",
   "openRouterOnly": false,
-  "modelCount": 126,
+  "modelCount": 127,
   "benchmarks": {
     "lb_avg": {
       "key": "lb_avg",
@@ -2406,6 +2406,59 @@
       }
     },
     {
+      "id": "claude-sonnet-5-xhigh-effort",
+      "slug": "claude-sonnet-5-xhigh-effort",
+      "name": "Claude Sonnet 5",
+      "family": "anthropic",
+      "brand": "Anthropic",
+      "type": "closed",
+      "released": "2026-06-30",
+      "effort": "xhigh",
+      "vfl": 0,
+      "openRouterId": null,
+      "inference": {
+        "ollamaCloud": false,
+        "ollamaLocal": false,
+        "openRouter": false
+      },
+      "sources": [
+        "livebench"
+      ],
+      "scores": {
+        "lb_avg": 75.8,
+        "lb_coding": 78.6,
+        "lb_agentic": 65,
+        "lb_math": 89.6,
+        "lb_reasoning": 86.9,
+        "lb_data": 72.4,
+        "lb_lang": 78.8,
+        "lb_instruct": 59.4,
+        "theory_of_mind": 76.9,
+        "zebra_puzzle": 88.8,
+        "spatial": 100,
+        "logic_with_navigation": 82,
+        "code_generation": 78.9,
+        "code_completion": 78.3,
+        "javascript": 55,
+        "typescript": 60,
+        "python": 80,
+        "AMPS_Hard": 98,
+        "integrals_with_game": 78,
+        "math_comp": 92.2,
+        "olympiad": 90.3,
+        "consecutive_events": 77.9,
+        "tablejoin": 41.4,
+        "tablereformat": 98,
+        "connections": 99.3,
+        "plot_unscrambling": 55.1,
+        "typos": 82,
+        "paraphrase": 56,
+        "simplify": 56.7,
+        "story_generation": 63.6,
+        "summarize": 61.3
+      }
+    },
+    {
       "id": "claude-fable-5-xhigh-effort",
       "slug": "claude-fable-5-xhigh-effort",
       "name": "Claude Fable 5",
@@ -2414,7 +2467,7 @@
       "type": "closed",
       "released": "2026-06-09",
       "effort": "xhigh",
-      "vfl": 0,
+      "vfl": 1,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2467,7 +2520,7 @@
       "type": "closed",
       "released": "2026-06-09",
       "effort": "high",
-      "vfl": 1,
+      "vfl": 2,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2520,7 +2573,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "xhigh",
-      "vfl": 2,
+      "vfl": 3,
       "openRouterId": "anthropic/claude-opus-4.8",
       "inference": {
         "ollamaCloud": false,
@@ -2573,7 +2626,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "medium",
-      "vfl": 3,
+      "vfl": 4,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2626,7 +2679,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "low",
-      "vfl": 4,
+      "vfl": 5,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2679,7 +2732,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "high",
-      "vfl": 5,
+      "vfl": 6,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2732,7 +2785,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "xhigh",
-      "vfl": 6,
+      "vfl": 7,
       "openRouterId": "anthropic/claude-opus-4.7",
       "inference": {
         "ollamaCloud": false,
@@ -2785,7 +2838,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "medium",
-      "vfl": 7,
+      "vfl": 8,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2838,7 +2891,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "low",
-      "vfl": 8,
+      "vfl": 9,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2891,7 +2944,7 @@
       "type": "closed",
       "released": "2026-04-16",
       "effort": "high",
-      "vfl": 9,
+      "vfl": 10,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -2944,7 +2997,7 @@
       "type": "closed",
       "released": "2026-02-17",
       "effort": "medium",
-      "vfl": 10,
+      "vfl": 11,
       "openRouterId": "anthropic/claude-sonnet-4.6",
       "inference": {
         "ollamaCloud": false,
@@ -2997,7 +3050,7 @@
       "type": "closed",
       "released": "2026-02-17",
       "effort": "low",
-      "vfl": 11,
+      "vfl": 12,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3050,7 +3103,7 @@
       "type": "closed",
       "released": "2026-02-17",
       "effort": "high",
-      "vfl": 12,
+      "vfl": 13,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3103,7 +3156,7 @@
       "type": "closed",
       "released": "2026-02-05",
       "effort": "high",
-      "vfl": 13,
+      "vfl": 14,
       "openRouterId": "anthropic/claude-opus-4.6",
       "inference": {
         "ollamaCloud": false,
@@ -3156,7 +3209,7 @@
       "type": "closed",
       "released": "2025-11-01",
       "effort": "medium",
-      "vfl": 14,
+      "vfl": 15,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3209,7 +3262,7 @@
       "type": "closed",
       "released": "2025-11-01",
       "effort": "low",
-      "vfl": 15,
+      "vfl": 16,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3262,7 +3315,7 @@
       "type": "closed",
       "released": "2025-11-01",
       "effort": "high",
-      "vfl": 16,
+      "vfl": 17,
       "openRouterId": "anthropic/claude-opus-4.5",
       "inference": {
         "ollamaCloud": false,
@@ -3315,7 +3368,7 @@
       "type": "closed",
       "released": "2025-11-01",
       "effort": "medium",
-      "vfl": 17,
+      "vfl": 18,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3368,7 +3421,7 @@
       "type": "closed",
       "released": "2025-11-01",
       "effort": "low",
-      "vfl": 18,
+      "vfl": 19,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3421,7 +3474,7 @@
       "type": "closed",
       "released": "2025-11-01",
       "effort": "high",
-      "vfl": 19,
+      "vfl": 20,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3474,7 +3527,7 @@
       "type": "closed",
       "released": "2025-10-01",
       "effort": null,
-      "vfl": 20,
+      "vfl": 21,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3527,7 +3580,7 @@
       "type": "closed",
       "released": "2025-10-01",
       "effort": null,
-      "vfl": 21,
+      "vfl": 22,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3580,7 +3633,7 @@
       "type": "closed",
       "released": "2025-09-29",
       "effort": null,
-      "vfl": 22,
+      "vfl": 23,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3633,7 +3686,7 @@
       "type": "closed",
       "released": "2025-09-29",
       "effort": null,
-      "vfl": 23,
+      "vfl": 24,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3686,7 +3739,7 @@
       "type": "closed",
       "released": "2025-08-05",
       "effort": null,
-      "vfl": 24,
+      "vfl": 25,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3739,7 +3792,7 @@
       "type": "closed",
       "released": "2025-08-05",
       "effort": null,
-      "vfl": 25,
+      "vfl": 26,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3792,7 +3845,7 @@
       "type": "closed",
       "released": "2025-05-14",
       "effort": null,
-      "vfl": 26,
+      "vfl": 27,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -3845,7 +3898,7 @@
       "type": "closed",
       "released": "2025-05-14",
       "effort": null,
-      "vfl": 27,
+      "vfl": 28,
       "openRouterId": null,
       "inference": {
         "ollamaCloud": false,
@@ -6337,11 +6390,11 @@
       "released": "2026-01-01",
       "effort": null,
       "vfl": 1,
-      "openRouterId": null,
+      "openRouterId": "z-ai/glm-5v-turbo",
       "inference": {
         "ollamaCloud": false,
         "ollamaLocal": false,
-        "openRouter": false
+        "openRouter": true
       },
       "sources": [
         "livebench"

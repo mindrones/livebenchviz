@@ -14,5 +14,5 @@
 		"pipeline:notify": "node pipeline/scripts/run-pipeline-and-notify.cjs",
 		"prepare": "git config core.hooksPath .githooks || true"
 	},
-	"version": "1.6.4"
+	"version": "1.6.5"
 }

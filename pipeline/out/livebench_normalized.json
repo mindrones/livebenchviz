@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-20T08:10:19.410Z",
+  "generated": "2026-07-04T15:53:35.752Z",
   "categories": [
     "reasoning",
     "coding",
@@ -10,11 +10,11 @@
     "instruction_following"
   ],
   "summary": {
-    "total_lb_models": 126,
+    "total_lb_models": 127,
     "skipped_not_on_openrouter": 0,
-    "matched_to_openrouter": 47,
+    "matched_to_openrouter": 48,
     "unmatched": 74,
-    "full_coverage_and_matched": 47
+    "full_coverage_and_matched": 48
   },
   "models": [
     {
@@ -1656,6 +1656,48 @@
       "match_type": "matched"
     },
     {
+      "id": "glm-5v-turbo",
+      "scores": {
+        "reasoning": 56.1,
+        "coding": 73.9,
+        "agentic_coding": 3.3,
+        "mathematics": 70.4,
+        "data_analysis": 54.1,
+        "language": 62.3,
+        "instruction_following": 27.2,
+        "global_average": 49.6
+      },
+      "tasks": {
+        "AMPS_Hard": 98.8,
+        "code_completion": 71.7,
+        "code_generation": 76.1,
+        "connections": 86,
+        "consecutive_events": 20.9,
+        "integrals_with_game": 13,
+        "javascript": 0,
+        "logic_with_navigation": 60,
+        "math_comp": 85.3,
+        "olympiad": 84.5,
+        "paraphrase": 22.8,
+        "plot_unscrambling": 46.8,
+        "python": 10,
+        "simplify": 25.9,
+        "spatial": 94,
+        "story_generation": 28.4,
+        "summarize": 31.7,
+        "tablejoin": 43.5,
+        "tablereformat": 98,
+        "theory_of_mind": 51.9,
+        "typescript": 0,
+        "typos": 54,
+        "zebra_puzzle": 18.5
+      },
+      "n_categories": 7,
+      "n_rows": 23,
+      "openRouterId": "z-ai/glm-5v-turbo",
+      "match_type": "matched"
+    },
+    {
       "id": "gpt-5-nano",
       "scores": {
         "reasoning": 35.5,
@@ -2024,6 +2066,48 @@
         "typescript": 55,
         "typos": 88,
         "zebra_puzzle": 100
+      },
+      "n_categories": 7,
+      "n_rows": 23,
+      "openRouterId": null,
+      "match_type": "no_match"
+    },
+    {
+      "id": "claude-sonnet-5-xhigh-effort",
+      "scores": {
+        "reasoning": 86.9,
+        "coding": 78.6,
+        "agentic_coding": 65,
+        "mathematics": 89.6,
+        "data_analysis": 72.4,
+        "language": 78.8,
+        "instruction_following": 59.4,
+        "global_average": 75.8
+      },
+      "tasks": {
+        "AMPS_Hard": 98,
+        "code_completion": 78.3,
+        "code_generation": 78.9,
+        "connections": 99.3,
+        "consecutive_events": 77.9,
+        "integrals_with_game": 78,
+        "javascript": 55,
+        "logic_with_navigation": 82,
+        "math_comp": 92.2,
+        "olympiad": 90.3,
+        "paraphrase": 56,
+        "plot_unscrambling": 55.1,
+        "python": 80,
+        "simplify": 56.7,
+        "spatial": 100,
+        "story_generation": 63.6,
+        "summarize": 61.3,
+        "tablejoin": 41.4,
+        "tablereformat": 98,
+        "theory_of_mind": 76.9,
+        "typescript": 60,
+        "typos": 82,
+        "zebra_puzzle": 88.8
       },
       "n_categories": 7,
       "n_rows": 23,
@@ -4208,48 +4292,6 @@
         "typescript": 25,
         "typos": 84,
         "zebra_puzzle": 13
-      },
-      "n_categories": 7,
-      "n_rows": 23,
-      "openRouterId": null,
-      "match_type": "no_match"
-    },
-    {
-      "id": "glm-5v-turbo",
-      "scores": {
-        "reasoning": 56.1,
-        "coding": 73.9,
-        "agentic_coding": 3.3,
-        "mathematics": 70.4,
-        "data_analysis": 54.1,
-        "language": 62.3,
-        "instruction_following": 27.2,
-        "global_average": 49.6
-      },
-      "tasks": {
-        "AMPS_Hard": 98.8,
-        "code_completion": 71.7,
-        "code_generation": 76.1,
-        "connections": 86,
-        "consecutive_events": 20.9,
-        "integrals_with_game": 13,
-        "javascript": 0,
-        "logic_with_navigation": 60,
-        "math_comp": 85.3,
-        "olympiad": 84.5,
-        "paraphrase": 22.8,
-        "plot_unscrambling": 46.8,
-        "python": 10,
-        "simplify": 25.9,
-        "spatial": 94,
-        "story_generation": 28.4,
-        "summarize": 31.7,
-        "tablejoin": 43.5,
-        "tablereformat": 98,
-        "theory_of_mind": 51.9,
-        "typescript": 0,
-        "typos": 54,
-        "zebra_puzzle": 18.5
       },
       "n_categories": 7,
       "n_rows": 23,
